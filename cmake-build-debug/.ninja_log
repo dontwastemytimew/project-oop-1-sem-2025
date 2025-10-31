@@ -1,0 +1,12 @@
+# ninja log v6
+18	1735	7836351641329858	project_oop_1_sem_2025_autogen/timestamp	bfd500e4eba673ee
+18	1735	7836351641329858	D:/clionprojects/project-oop-1-sem-2025/cmake-build-debug/project_oop_1_sem_2025_autogen/mocs_compilation.cpp	bfd500e4eba673ee
+2057	8465	7836351646506866	CMakeFiles/project_oop_1_sem_2025.dir/DatabaseManager.cpp.obj	ab2875dfbd09a0c7
+18	1735	7836351641329858	project_oop_1_sem_2025_autogen/mocs_compilation.cpp	bfd500e4eba673ee
+18	1735	7836351641329858	D:/clionprojects/project-oop-1-sem-2025/cmake-build-debug/project_oop_1_sem_2025_autogen/timestamp	bfd500e4eba673ee
+1745	2684	7836351643384209	CMakeFiles/project_oop_1_sem_2025.dir/project_oop_1_sem_2025_autogen/mocs_compilation.cpp.obj	cdabe34cf693784e
+1918	6483	7836351645117520	CMakeFiles/project_oop_1_sem_2025.dir/ContactInfo.cpp.obj	86e74c15fedfc006
+2573	6804	7836351651658950	CMakeFiles/project_oop_1_sem_2025.dir/UserProfile.cpp.obj	312693664bfc927c
+2175	8486	7836351647678933	CMakeFiles/project_oop_1_sem_2025.dir/main.cpp.obj	760a37f5b762901a
+2373	8705	7836351649656556	CMakeFiles/project_oop_1_sem_2025.dir/UserLogger.cpp.obj	c9465e00b07d42b3
+8705	9802	7836351712987469	project_oop_1_sem_2025.exe	e1651d8116d23f3d

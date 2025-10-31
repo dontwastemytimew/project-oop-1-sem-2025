@@ -39,3 +39,16 @@
 
 # debug information files
 *.dwo
+
+
+# Папки збірки та IDE
+cmake-build-debug/
+cmake-build-release/
+.idea/
+
+# Файли баз даних
+*.db
+
+# Файли логів
+*.log
+*.txt

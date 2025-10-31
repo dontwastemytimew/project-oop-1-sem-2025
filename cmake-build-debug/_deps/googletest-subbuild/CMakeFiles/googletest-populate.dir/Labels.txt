@@ -1,0 +1,14 @@
+# Target labels
+ googletest-populate
+# Source files and their labels
+D:/clionprojects/project-oop-1-sem-2025/cmake-build-debug/_deps/googletest-subbuild/CMakeFiles/googletest-populate
+D:/clionprojects/project-oop-1-sem-2025/cmake-build-debug/_deps/googletest-subbuild/CMakeFiles/googletest-populate.rule
+D:/clionprojects/project-oop-1-sem-2025/cmake-build-debug/_deps/googletest-subbuild/CMakeFiles/googletest-populate-complete.rule
+D:/clionprojects/project-oop-1-sem-2025/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-build.rule
+D:/clionprojects/project-oop-1-sem-2025/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-configure.rule
+D:/clionprojects/project-oop-1-sem-2025/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-download.rule
+D:/clionprojects/project-oop-1-sem-2025/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-install.rule
+D:/clionprojects/project-oop-1-sem-2025/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-mkdir.rule
+D:/clionprojects/project-oop-1-sem-2025/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-patch.rule
+D:/clionprojects/project-oop-1-sem-2025/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-test.rule
+D:/clionprojects/project-oop-1-sem-2025/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-update.rule
