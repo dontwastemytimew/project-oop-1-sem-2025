@@ -1,6 +1,0 @@
-"D:\CLion 2024.2.3\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=D:/CLion 2024.2.3/bin/ninja/win/x64/ninja.exe" -DCMAKE_PREFIX_PATH=D:/Qt/6.5.3/mingw_64 -G Ninja -S D:\clionprojects\project-oop-1-sem-2025 -B D:\clionprojects\project-oop-1-sem-2025\cmake-build-debug
--- Could NOT find WrapVulkanHeaders (missing: Vulkan_INCLUDE_DIR) 
--- Could NOT find Python3 (missing: Python3_EXECUTABLE Interpreter) 
--- Configuring done (7.2s)
--- Generating done (0.1s)
--- Build files have been written to: D:/clionprojects/project-oop-1-sem-2025/cmake-build-debug

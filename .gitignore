@@ -51,4 +51,3 @@ cmake-build-release/
 
 # Файли логів
 *.log
-*.txt
