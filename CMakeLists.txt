@@ -46,6 +46,8 @@ add_executable(dating_agency_tests
         tests/DatabaseManagerTests.cpp
         tests/DatabaseManagerTests.cpp
         tests/tests_main.cpp
+        Preference.h
+        Preference.cpp
 )
 
 

@@ -2,8 +2,9 @@
 #define DATABASEMANAGER_H
 
 #include <QSqlDatabase>
-#include <QVariant> // Потрібен для QVariant у loadProfileByEmail
-#include "UserProfile.h" // Потрібен для роботи з об'єктами
+#include <QVariant>
+#include "UserProfile.h"
+#include "Preference.h"
 
 /**
  * @brief Клас DatabaseManager
@@ -80,6 +81,15 @@ public:
      * @return true, якщо видалення пройшло успішно.
      */
     bool deleteProfile(int profileId);
+
+
+ /**
+     * @brief (Read) Повертає список профілів, що відповідають критеріям.
+     * @param prefs Об'єкт Preference з критеріями пошуку.
+     * @return Список об'єктів UserProfile.
+     */
+ QList<UserProfile> getProfilesByCriteria(const Preference &prefs);
+
 
 private:
     /// Об'єкт з'єднання з базою даних Qt.

@@ -2,6 +2,7 @@
 #include "UserLogger.h"
 #include <QSqlQuery>
 #include <QSqlError>
+#include "Preference.h"
 
 DatabaseManager::DatabaseManager() {
     m_db = QSqlDatabase::addDatabase("QSQLITE");
@@ -52,6 +53,26 @@ bool DatabaseManager::createTables() {
 }
 
 bool DatabaseManager::saveProfile(const UserProfile &profile) {
+
+    if (profile.getName().isEmpty()) {
+        UserLogger::log(Warning, "Save failed: Name cannot be empty.");
+        return false;
+    }
+    if (profile.getContactInfo().getEmail().isEmpty()) {
+        UserLogger::log(Warning, "Save failed: Email cannot be empty.");
+        return false;
+    }
+    // Перевіряємо, що email коректний (проста перевірка на '@')
+    if (!profile.getContactInfo().getEmail().contains('@')) {
+        UserLogger::log(Warning, "Save failed: Email is not valid.");
+        return false;
+    }
+    if (profile.getAge() < 18) {
+        UserLogger::log(Warning, "Save failed: User must be 18 or older.");
+        return false;
+    }
+
+
     if (!m_db.transaction()) {
         UserLogger::log(Error, "Failed to start transaction: " + m_db.lastError().text());
         return false;
@@ -207,5 +228,58 @@ bool DatabaseManager::deleteProfile(int profileId) {
         m_db.rollback();
         return false;
     }
+}
+
+
+QList<UserProfile> DatabaseManager::getProfilesByCriteria(const Preference &prefs) {
+    QList<UserProfile> profiles;
+    QSqlQuery query(m_db);
+
+    QString sql = "SELECT * FROM users WHERE 1=1";
+    QMap<QString, QVariant> bindValues;
+
+    if (prefs.getMinAge() > 0) {
+        sql += " AND age >= :minAge";
+        bindValues[":minAge"] = prefs.getMinAge();
+    }
+    if (prefs.getMaxAge() > 0) {
+        sql += " AND age <= :maxAge";
+        bindValues[":maxAge"] = prefs.getMaxAge();
+    }
+    if (!prefs.getCity().isEmpty()) {
+        sql += " AND city LIKE :city";
+        bindValues[":city"] = "%" + prefs.getCity() + "%";
+    }
+
+    query.prepare(sql);
+
+    for (auto it = bindValues.constBegin(); it != bindValues.constEnd(); ++it) {
+        query.bindValue(it.key(), it.value());
+    }
+
+    if (!query.exec()) {
+        UserLogger::log(Error, "Failed to get profiles by criteria: " + query.lastError().text());
+        return profiles;
+    }
+
+    while (query.next()) {
+        UserProfile profile;
+        profile.setId(query.value("id").toInt());
+        profile.setName(query.value("name").toString());
+        profile.setAge(query.value("age").toInt());
+        profile.setCity(query.value("city").toString());
+        profile.setBio(query.value("bio").toString());
+
+        ContactInfo contacts(
+            query.value("phone").toString(),
+            query.value("email").toString()
+        );
+        profile.setContactInfo(contacts);
+
+        profiles.append(profile);
+    }
+
+    UserLogger::log(Info, QString("Found %1 profiles matching criteria.").arg(profiles.count()));
+    return profiles;
 }
 
