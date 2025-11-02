@@ -2,6 +2,8 @@
 #include <QTranslator>
 #include "UserLogger.h"
 #include "DatabaseManager.h"
+#include "Preference.h"
+#include "MatchEngine.h"
 
 int main(int argc, char *argv[]) {
     QApplication a(argc, argv);
