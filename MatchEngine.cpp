@@ -17,6 +17,6 @@ bool MatchEngine::calculateMatch(const UserProfile &profile, const Preference &p
         return false;
     }
 
-    //якшо профіль відповідає хоча б одному критерію
+    //якщо профіль відповідає хоча б одному критерію
     return true;
 }
