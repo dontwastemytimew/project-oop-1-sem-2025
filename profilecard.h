@@ -2,6 +2,7 @@
 #define PROFILECARD_H
 
 #include <QWidget>
+#include <QLabel>
 
 class ProfileCard : public QWidget
 {

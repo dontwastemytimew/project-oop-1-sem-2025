@@ -1,4 +1,10 @@
+#ifndef MAINWINDOW_H
+#define MAINWINDOW_H
+
+#include <QMainWindow>
 #include "UserLogger.h"
+#include <profilecard.h>
+
 
 class MainWindow : public QMainWindow
 {
