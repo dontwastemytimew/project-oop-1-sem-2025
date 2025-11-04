@@ -1,0 +1,9 @@
+<map id="MainWindow" name="MainWindow">
+<area shape="rect" id="Node000001" title=" " alt="" coords="50,180,147,207"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,81,112,108"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="72,122,96,179,91,181,67,124"/>
+<area shape="rect" id="Node000003" href="$class_profile_card.html" title=" " alt="" coords="135,81,222,108"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="161,122,111,181,107,178,157,118"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="142,5,215,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="181,47,181,81,176,81,176,47"/>
+</map>

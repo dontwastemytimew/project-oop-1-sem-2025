@@ -1,0 +1,5 @@
+var searchData=
+[
+  ['loadprofilebyemail_0',['loadProfileByEmail',['../class_database_manager.html#aba74d09f4893a1d39317bf43693c480b',1,'DatabaseManager']]],
+  ['log_1',['log',['../class_user_logger.html#a0b46b7418171fa636af3700203b1ca52',1,'UserLogger']]]
+];

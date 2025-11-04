@@ -17,6 +17,7 @@ add_library(DatingAgencyLogic STATIC
         ContactInfo.cpp ContactInfo.h
         UserLogger.cpp UserLogger.h
         Preference.cpp Preference.h
+        MatchEngine.cpp MatchEngine.h
 )
 
 target_link_libraries(DatingAgencyLogic PUBLIC
