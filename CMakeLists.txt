@@ -16,6 +16,7 @@ add_library(DatingAgencyLogic STATIC
         UserProfile.cpp UserProfile.h
         ContactInfo.cpp ContactInfo.h
         UserLogger.cpp UserLogger.h
+        Preference.cpp Preference.h
 )
 
 target_link_libraries(DatingAgencyLogic PUBLIC
@@ -23,7 +24,11 @@ target_link_libraries(DatingAgencyLogic PUBLIC
         Qt6::Sql
 )
 
-add_executable(project_oop_1_sem_2025 main.cpp)
+add_executable(project_oop_1_sem_2025
+        main.cpp
+        mainwindow.h mainwindow.cpp mainwindow.ui
+        profilecard.h profilecard.cpp
+)
 target_link_libraries(project_oop_1_sem_2025 PRIVATE
         DatingAgencyLogic
         Qt6::Gui
@@ -44,10 +49,6 @@ include(GoogleTest)
 add_executable(dating_agency_tests
         tests/tests_main.cpp
         tests/DatabaseManagerTests.cpp
-        tests/DatabaseManagerTests.cpp
-        tests/tests_main.cpp
-        Preference.h
-        Preference.cpp
 )
 
 
