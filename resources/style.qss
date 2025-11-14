@@ -1,0 +1,123 @@
+/* Загальні стилі для всього додатку */
+QMainWindow {
+    background-color: #f0f2f5; /* Світло-сірий фон для головного вікна */
+}
+
+/* Стиль для бокового меню (контейнер QWidget з objectName="nav_menu") */
+QWidget#nav_menu {
+    background-color: #ffffff; /* Білий фон для меню */
+    border-right: 1px solid #e0e0e0; /* Тонка сіра лінія-роздільник справа */
+    padding: 0 0 0 0; /* Внутрішні відступи зверху/знизу */
+}
+
+/* Стиль для назви додатку */
+QLabel#label_AppTitle {
+    color: #9932CC; /* Темно-фіолетовий */
+    font-family: "Segoe UI", "Arial", sans-serif;
+    font-size: 18pt; /* Збільшений розмір */
+    font-weight: bold;
+    text-align: center;
+    padding: 10px 0 10px 0; /* Відступ зверху, збоку, знизу */
+}
+
+/* Стилі для кнопок навігації в меню */
+QWidget#nav_menu QPushButton {
+    background-color: transparent; /* Прозорий фон */
+    color: #555555; /* Темно-сірий текст */
+    font-family: "Segoe UI", "Arial", sans-serif;
+    font-size: 14px;
+    font-weight: normal; /* Звичайний шрифт */
+    border: none;
+    padding: 12px 20px; /* Внутрішні відступи */
+    text-align: left; /* Текст вирівняний по лівому краю */
+    border-radius: 8px; /* ЗАОКРУГЛЕНІ КУТИ */
+    margin: 4px 10px; /* Зовнішні відступи (між кнопками і від країв) */
+}
+
+/* Стиль кнопки меню при наведенні */
+QWidget#nav_menu QPushButton:hover {
+    background-color: #f0f2f5; /* Світло-сірий фон при наведенні */
+    color: #333333;
+}
+
+/* Стиль кнопки меню, коли вона АКТИВНА/вибрана */
+QWidget#nav_menu QPushButton:checked,
+QWidget#nav_menu QPushButton:pressed { /* Можна використовувати :checked для toggle-кнопок */
+    background-color: #e0e0e0; /* Темніший сірий для активної */
+    color: #000000;
+    font-weight: bold;
+}
+
+/* Стилі для QStackedWidget (області сторінок) */
+QStackedWidget {
+    background-color: #f0f2f5; /* Такий же фон як у головного вікна */
+    border: none;
+}
+
+/* Стилі для полів вводу (QLineEdit, QSpinBox) - загальні */
+QLineEdit, QSpinBox, QTextEdit {
+    border: 1px solid #cccccc;
+    border-radius: 5px; /* Заокруглені кути */
+    padding: 8px;
+    background-color: #ffffff;
+    font-size: 13px;
+    color: #333333;
+}
+
+QLineEdit:focus, QSpinBox:focus, QTextEdit:focus {
+    border: 1px solid #4a00e0; /* Фіолетова рамка при фокусі */
+    background-color: #f9f9ff;
+}
+
+/* Стилі для звичайних кнопок (наприклад, "Зберегти", "Знайти пару") */
+QPushButton {
+    border: 1px solid transparent;
+
+    background-color: #9932CC; /* Фіолетовий фон */
+    color: #ffffff; /* Білий текст */
+
+    border-radius: 8px; /* ЗАОКРУГЛЕНІ КУТИ */
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    min-height: 30px;
+
+    /* ДОДАТКОВИЙ ФІКС: Можна форсувати не-нативний стиль */
+    /* qproperty-flat: true; */
+}
+
+QPushButton:hover {
+    background-color: #6a1b9a; /* Темніший фіолетовий при наведенні */
+}
+
+QPushButton:pressed {
+    background-color: #3800a0; /* Ще темніший при натисканні */
+}
+
+/* Стилі для кнопок Like/Skip */
+QPushButton#likeButton { /* Якщо у твоєї кнопки objectName="likeButton" */
+    background-color: #4CAF50; /* Зелений */
+    border-radius: 20px; /* Дуже заокруглені */
+    min-width: 100px;
+    min-height: 40px;
+}
+QPushButton#likeButton:hover {
+    background-color: #66BB6A;
+}
+
+QPushButton#skipButton { /* Якщо у твоєї кнопки objectName="skipButton" */
+    background-color: #F44336; /* Червоний */
+    border-radius: 20px; /* Дуже заокруглені */
+    min-width: 100px;
+    min-height: 40px;
+}
+QPushButton#skipButton:hover {
+    background-color: #EF5350;
+}
+
+/* Стилі для QLabel (текстових міток) */
+QLabel {
+    color: #333333; /* Темно-сірий текст */
+    font-family: "Segoe UI", "Arial", sans-serif;
+    font-size: 13px;
+}

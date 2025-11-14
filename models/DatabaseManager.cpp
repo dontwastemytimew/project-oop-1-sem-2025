@@ -112,8 +112,6 @@ bool DatabaseManager::profileExists(const QString &email) const {
 
     if (query.exec()) {
         if (query.next()) {
-            // query.value(0).toInt() повертає кількість знайдених записів.
-            // Якщо вона більша за 0, значить профіль існує.
             return query.value(0).toInt() > 0;
         }
     } else {

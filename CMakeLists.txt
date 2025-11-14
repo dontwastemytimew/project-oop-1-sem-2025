@@ -17,7 +17,7 @@ add_library(DatingAgencyLogic STATIC
         models/DatabaseManager.cpp models/DatabaseManager.h
         models/UserProfile.cpp models/UserProfile.h
         models/ContactInfo.cpp models/ContactInfo.h
-        core/UserLogger.cpp core/UserLogger.h
+        utils/UserLogger.cpp utils/UserLogger.h
         models/Preference.cpp models/Preference.h
         core/MatchEngine.cpp core/MatchEngine.h
 )
@@ -29,8 +29,13 @@ target_link_libraries(DatingAgencyLogic PUBLIC
 
 add_executable(project_oop_1_sem_2025
         main.cpp
-        gui/mainwindow.h gui/mainwindow.cpp gui/mainwindow.ui
-        gui/profilecard.h gui/profilecard.cpp
+        gui/mainwindow.cpp
+        gui/profilecard.cpp
+        gui/searchpagewidget.cpp
+        gui/profilepagewidget.cpp
+        gui/matchespagewidget.cpp
+        gui/settingspagewidget.cpp
+        resources.qrc
 )
 target_link_libraries(project_oop_1_sem_2025 PRIVATE
         DatingAgencyLogic

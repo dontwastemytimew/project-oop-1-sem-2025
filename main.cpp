@@ -2,10 +2,7 @@
 #include <QTranslator>
 #include "UserLogger.h"
 #include "DatabaseManager.h"
-
-
 #include "mainwindow.h"
-
 #include "Preference.h"
 #include "MatchEngine.h"
 
@@ -13,17 +10,18 @@
 int main(int argc, char *argv[]) {
     QApplication a(argc, argv);
 
+    QFile styleFile(":/resources/style.qss");
+    if (styleFile.open(QFile::ReadOnly | QFile::Text)) {
+        QString styleSheet = QTextStream(&styleFile).readAll();
+        a.setStyleSheet(styleSheet);
+        styleFile.close();
+    } else {
+        qWarning("Failed to load style.qss!");
+    }
   
     UserLogger::init("app_log.txt");
     UserLogger::log(Info, "Application starting up.");
 
-    QTranslator translator;
-    if (translator.load(":/translations/app_ua.qm")) {
-        a.installTranslator(&translator);
-        UserLogger::log(Info, "Ukrainian translator loaded.");
-    } else {
-        UserLogger::log(Warning, "Ukrainian translation file not found.");
-    }
 
     DatabaseManager dbManager;
     if (!dbManager.openDatabase()) {
@@ -35,7 +33,7 @@ int main(int argc, char *argv[]) {
 
     // UI
     UserLogger::log(Info, "Initializing MainWindow...");
-    MainWindow w;
+    MainWindow w(&dbManager);
     w.show();
 
 
