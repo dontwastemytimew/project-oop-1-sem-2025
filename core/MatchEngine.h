@@ -2,18 +2,9 @@
 #define MATCHENGINE_H
 
 #include "Preference.h"
+#include "UserProfile.h"
 #include <QString>
 
-/**
- * @brief UserProfile struct
- *
- * структура для демонстрацї профілю користувача
- */
-struct UserProfile {
-    QString name;
-    int age;
-    QString city;
-};
 
 /**
  * @brief MatchEngine class

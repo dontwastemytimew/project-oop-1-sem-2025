@@ -1,4 +1,4 @@
-#include "ContactInfo.h"
+#include "models/ContactInfo.h"
 #include <QString>
 
 

@@ -9,15 +9,17 @@ set(CMAKE_AUTOUIC ON)
 
 find_package(Qt6 COMPONENTS Core Sql Gui Widgets REQUIRED)
 
-include_directories(.)
+include_directories(models core gui utils)
+
+include_directories(. models core gui utils)
 
 add_library(DatingAgencyLogic STATIC
-        DatabaseManager.cpp DatabaseManager.h
-        UserProfile.cpp UserProfile.h
-        ContactInfo.cpp ContactInfo.h
-        UserLogger.cpp UserLogger.h
-        Preference.cpp Preference.h
-        MatchEngine.cpp MatchEngine.h
+        models/DatabaseManager.cpp models/DatabaseManager.h
+        models/UserProfile.cpp models/UserProfile.h
+        models/ContactInfo.cpp models/ContactInfo.h
+        core/UserLogger.cpp core/UserLogger.h
+        models/Preference.cpp models/Preference.h
+        core/MatchEngine.cpp core/MatchEngine.h
 )
 
 target_link_libraries(DatingAgencyLogic PUBLIC
@@ -27,8 +29,8 @@ target_link_libraries(DatingAgencyLogic PUBLIC
 
 add_executable(project_oop_1_sem_2025
         main.cpp
-        mainwindow.h mainwindow.cpp mainwindow.ui
-        profilecard.h profilecard.cpp
+        gui/mainwindow.h gui/mainwindow.cpp gui/mainwindow.ui
+        gui/profilecard.h gui/profilecard.cpp
 )
 target_link_libraries(project_oop_1_sem_2025 PRIVATE
         DatingAgencyLogic
