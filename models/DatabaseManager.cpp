@@ -40,7 +40,8 @@ bool DatabaseManager::createTables() {
         "city VARCHAR(100), "
         "bio TEXT, "
         "phone VARCHAR(20), "
-        "email VARCHAR(100)"
+        "email VARCHAR(100),"
+        "is_hidden BOOLEAN DEFAULT 0"
         ");";
 
     if (query.exec(createSql)) {
@@ -233,7 +234,7 @@ QList<UserProfile> DatabaseManager::getProfilesByCriteria(const Preference &pref
     QList<UserProfile> profiles;
     QSqlQuery query(m_db);
 
-    QString sql = "SELECT * FROM users WHERE 1=1";
+    QString sql = "SELECT * FROM users WHERE 1=1 AND is_hidden = 0";
     QMap<QString, QVariant> bindValues;
 
     if (prefs.getMinAge() > 0) {
@@ -281,3 +282,56 @@ QList<UserProfile> DatabaseManager::getProfilesByCriteria(const Preference &pref
     return profiles;
 }
 
+bool DatabaseManager::setProfileHidden(int profileId, bool isHidden) {
+    if (profileId <= 0) return false;
+
+    if (!m_db.transaction()) {
+        UserLogger::log(Error, "Failed to start transaction (setHidden): " + m_db.lastError().text());
+        return false;
+    }
+
+    QSqlQuery query;
+    query.prepare("UPDATE users SET is_hidden = ? WHERE id = ?");
+    query.addBindValue(isHidden);
+    query.addBindValue(profileId);
+
+    if (query.exec()) {
+        m_db.commit();
+        UserLogger::log(Info, QString("Profile %1 hidden status set to: %2").arg(profileId).arg(isHidden));
+        return true;
+    } else {
+        UserLogger::log(Error, "Failed to update hidden status: " + query.lastError().text());
+        m_db.rollback();
+        return false;
+    }
+}
+
+// Ця функція-заглушка "симулює" вхід в акаунт.
+// Вона просто завжди завантажує профіль з ID=1.
+bool DatabaseManager::getCurrentUserProfile(UserProfile &profile) {
+    // Ми використовуємо loadProfileByEmail, щоб не писати дублюючий код.
+    // Якщо ID=1 не існує, ми не зможемо отримати профіль.
+    // (Для реального проєкту тут був би ID з сесії)
+    // Краще завантажимо за ID=1.
+
+    QSqlQuery query;
+    query.prepare("SELECT * FROM users WHERE id = 1"); // Завжди завантажуємо ID 1
+
+    if (query.exec() && query.next()) {
+        profile.setId(query.value("id").toInt());
+        profile.setName(query.value("name").toString());
+        profile.setAge(query.value("age").toInt());
+        profile.setCity(query.value("city").toString());
+        profile.setBio(query.value("bio").toString());
+
+        ContactInfo contacts(
+            query.value("phone").toString(),
+            query.value("email").toString()
+        );
+        profile.setContactInfo(contacts);
+        return true;
+    }
+
+    // Якщо ID 1 не знайдено (напр, після видалення), повертаємо false
+    return false;
+}

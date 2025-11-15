@@ -16,6 +16,9 @@ public:
 
     void setDatabaseManager(DatabaseManager* dbManager);
 
+    signals:
+    void profileSaved();
+
     private slots:
         void on_btn_SaveProfile_clicked();
 

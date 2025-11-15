@@ -38,10 +38,12 @@ SearchPageWidget::SearchPageWidget(QWidget *parent)
     placeholder->setAlignment(Qt::AlignCenter);
     m_resultsStack->addWidget(placeholder);
 
-    m_likeButton = new QPushButton(tr("❤️ Like"), this);
+    m_likeButton = new QPushButton(tr(" Like"), this);
+    m_likeButton->setIcon(QIcon(":/resources/icons/like-white.png"));
     m_likeButton->setObjectName("m_likeButton");
 
-    m_skipButton = new QPushButton(tr("❌ Skip"), this);
+    m_skipButton = new QPushButton(tr(" Skip"), this);
+    m_skipButton->setIcon(QIcon(":/resources/icons/skip-white.png"));
     m_skipButton->setObjectName("m_skipButton");
 
     QHBoxLayout* buttonLayout = new QHBoxLayout();

@@ -36,6 +36,7 @@ add_executable(project_oop_1_sem_2025
         gui/matchespagewidget.cpp
         gui/settingspagewidget.cpp
         resources.qrc
+        gui/welcomepagewidget.cpp
 )
 target_link_libraries(project_oop_1_sem_2025 PRIVATE
         DatingAgencyLogic

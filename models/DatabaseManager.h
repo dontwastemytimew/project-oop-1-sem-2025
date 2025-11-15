@@ -82,6 +82,20 @@ public:
      */
     bool deleteProfile(int profileId);
 
+ /**
+     * @brief Встановлює статус "прихований" для профілю.
+     * @param profileId ID профілю.
+     * @param isHidden true, щоб приховати, false, щоб показати.
+     * @return true, якщо операція успішна.
+     */
+ bool setProfileHidden(int profileId, bool isHidden);
+
+ /**
+  * @brief Отримує поточний профіль (для симуляції "сесії").
+  * @param profile Посилання на об'єкт, який буде заповнено.
+  * @return true, якщо профіль (ID=1) знайдено.
+  */
+ bool getCurrentUserProfile(UserProfile &profile);
 
  /**
      * @brief (Read) Повертає список профілів, що відповідають критеріям.

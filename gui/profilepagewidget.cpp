@@ -70,6 +70,7 @@ void ProfilePageWidget::on_btn_SaveProfile_clicked() {
     if (m_dbManager->saveProfile(profile)) {
         UserLogger::log(Info, "Profile saved successfully for: " + name);
         QMessageBox::information(this, tr("Успіх"), tr("Профіль успішно збережено!"));
+        emit profileSaved();
         m_nameEdit->clear();
         m_ageSpinBox->setValue(18);
         m_bioEdit->clear();
