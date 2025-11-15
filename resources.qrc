@@ -1,0 +1,13 @@
+<!DOCTYPE RCC>
+<RCC version="1.0">
+    <qresource prefix="/">
+        <file>resources/light_theme.qss</file>
+        <file>resources/dark_theme.qss</file>
+        <file>resources/icons/sun.png</file>
+        <file>resources/icons/moon.png</file>
+        <file>resources/icons/chevron-down-white.png</file>
+        <file>resources/icons/chevron-down.png</file>
+        <file>resources/icons/skip-white.png</file>
+        <file>resources/icons/like-white.png</file>
+    </qresource>
+</RCC>

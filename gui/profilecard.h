@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QLabel>
+#include "UserProfile.h"
 
 class ProfileCard : public QWidget
 {
@@ -10,7 +11,7 @@ class ProfileCard : public QWidget
 
 public:
     explicit ProfileCard(QWidget* parent = nullptr);
-    void setProfileData(const QString& name, int age, const QString& city, const QString& desc);
+    void setProfileData(const UserProfile& profile);
 
 private:
     QLabel* lblPhoto;

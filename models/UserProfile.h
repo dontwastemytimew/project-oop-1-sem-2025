@@ -2,7 +2,7 @@
 #define USERPROFILE_H
 
 #include <QString>
-#include "ContactInfo.h" // Включення класу ContactInfo
+#include "ContactInfo.h"
 
 /**
  * @brief Клас UserProfile
@@ -52,7 +52,7 @@ public:
     void setContactInfo(const ContactInfo &info);
 
 private:
-    /// Унікальний ID користувача (зазвичай з БД).
+    /// Унікальний ID користувача
     int m_id;
 
     /// Ім'я користувача.
