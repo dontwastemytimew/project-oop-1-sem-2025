@@ -1,0 +1,37 @@
+<map id="SettingsPageWidget" name="SettingsPageWidget">
+<area shape="rect" id="Node000001" title=" " alt="" coords="546,216,698,241"/>
+<area shape="rect" id="Node000003" href="$classMainWindow.html" title=" " alt="" coords="864,197,971,223"/>
+<area shape="poly" id="edge18_Node000003_Node000001" title=" " alt="" coords="712,220,864,211,864,216,712,226"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="283,99,362,124"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="376,106,410,108,448,114,486,125,520,144,530,155,534,167,537,178,545,189,563,203,583,214,581,218,560,208,541,193,532,181,529,169,526,158,517,148,484,130,447,119,410,113,376,111"/>
+<area shape="rect" id="Node000005" href="$classWelcomePageWidget.html" title=" " alt="" coords="543,5,701,31"/>
+<area shape="poly" id="edge5_Node000005_Node000002" title=" " alt="" coords="352,89,382,70,416,54,480,36,542,24,543,29,481,41,418,59,385,75,354,93"/>
+<area shape="rect" id="Node000006" href="$classSearchPageWidget.html" title=" " alt="" coords="551,153,693,179"/>
+<area shape="poly" id="edge7_Node000006_Node000002" title=" " alt="" coords="375,98,409,94,446,93,484,98,520,110,529,117,533,125,537,133,544,140,566,151,563,156,541,144,533,136,529,128,525,121,517,115,483,103,445,99,409,99,376,103"/>
+<area shape="rect" id="Node000008" href="$classProfilePageWidget.html" title=" " alt="" coords="552,412,692,437"/>
+<area shape="poly" id="edge10_Node000008_Node000002" title=" " alt="" coords="336,136,367,200,390,234,419,264,445,277,470,280,495,284,508,291,521,302,533,325,534,348,534,369,545,391,572,410,569,414,541,394,529,371,528,348,528,326,517,305,505,295,494,289,469,285,443,282,416,268,386,237,362,202,331,138"/>
+<area shape="rect" id="Node000012" href="$classMatchesPageWidget.html" title=" " alt="" coords="545,104,699,129"/>
+<area shape="poly" id="edge16_Node000012_Node000002" title=" " alt="" coords="365,91,417,77,468,70,519,77,532,83,544,90,574,101,573,106,542,95,530,88,518,82,468,75,418,82,367,96"/>
+<area shape="rect" id="Node000013" href="$classAdminPageWidget.html" title=" " alt="" coords="551,288,693,313"/>
+<area shape="poly" id="edge20_Node000013_Node000002" title=" " alt="" coords="350,132,382,158,419,185,446,200,469,209,492,218,520,233,544,252,599,286,596,290,541,256,517,238,490,223,467,214,444,205,416,190,378,163,346,136"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="890,233,867,246,841,257,792,263,743,261,698,254,660,244,661,239,699,249,744,256,792,258,839,251,864,242,887,228"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="564,55,680,80"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="694,64,768,75,806,86,841,104,867,125,887,150,913,196,908,199,883,153,863,128,839,108,804,91,767,80,694,69"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="716,20,781,35,813,48,842,67,871,97,893,134,907,169,915,196,910,198,902,171,888,136,867,101,838,71,810,53,779,40,714,25"/>
+<area shape="poly" id="edge6_Node000003_Node000006" title=" " alt="" coords="707,173,840,191,864,196,863,201,840,197,707,178"/>
+<area shape="rect" id="Node000007" href="$classDatabaseManager.html" title="Клас DatabaseManager." alt="" coords="252,307,393,332"/>
+<area shape="poly" id="edge22_Node000001_Node000007" title=" " alt="" coords="370,299,417,283,571,239,573,244,418,289,371,305"/>
+<area shape="poly" id="edge17_Node000003_Node000007" title=" " alt="" coords="380,333,474,353,531,361,593,365,657,363,721,354,782,336,839,308,862,288,882,265,908,221,912,224,886,268,866,292,841,312,784,341,722,359,658,368,593,370,531,366,473,358,378,338"/>
+<area shape="poly" id="edge8_Node000006_Node000007" title=" " alt="" coords="343,294,375,263,416,233,453,214,491,198,563,176,565,181,493,204,455,219,419,238,379,267,347,298"/>
+<area shape="poly" id="edge11_Node000008_Node000007" title=" " alt="" coords="346,340,378,369,418,394,451,406,486,414,552,422,551,427,485,419,450,411,416,399,375,373,343,344"/>
+<area shape="poly" id="edge21_Node000013_Node000007" title=" " alt="" coords="407,311,551,302,551,308,407,317"/>
+<area shape="poly" id="edge9_Node000003_Node000008" title=" " alt="" coords="705,430,739,429,774,423,808,412,838,395,858,376,873,354,895,305,907,258,912,223,918,223,913,259,900,307,878,357,862,380,842,399,810,417,776,428,740,434,706,436"/>
+<area shape="rect" id="Node000009" href="$classUserProfile.html" title="Клас UserProfile." alt="" coords="276,431,369,456"/>
+<area shape="poly" id="edge12_Node000008_Node000009" title=" " alt="" coords="383,443,448,443,518,439,555,435,556,440,519,445,449,448,383,448"/>
+<area shape="rect" id="Node000010" href="$classContactInfo.html" title="Клас ContactInfo." alt="" coords="5,405,103,431"/>
+<area shape="poly" id="edge13_Node000009_Node000010" title=" " alt="" coords="117,421,276,436,276,442,116,427"/>
+<area shape="rect" id="Node000011" href="$classPreference.html" title="Клас Preference." alt="" coords="8,455,100,480"/>
+<area shape="poly" id="edge14_Node000009_Node000011" title=" " alt="" coords="114,465,228,459,275,451,276,457,228,465,114,471"/>
+<area shape="poly" id="edge15_Node000003_Node000012" title=" " alt="" coords="714,122,777,134,841,154,876,174,903,195,900,199,873,178,839,159,776,139,713,127"/>
+<area shape="poly" id="edge19_Node000003_Node000013" title=" " alt="" coords="707,303,773,297,807,290,839,278,859,266,877,251,904,221,908,225,881,255,862,271,841,283,808,295,774,302,707,308"/>
+</map>
