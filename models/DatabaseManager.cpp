@@ -381,7 +381,6 @@ QSqlTableModel* DatabaseManager::getUsersModel(QObject* parent) {
     model->setHeaderData(6, Qt::Horizontal, QObject::tr("Email"));
     model->setHeaderData(7, Qt::Horizontal, QObject::tr("Стать"));
     model->setHeaderData(8, Qt::Horizontal, QObject::tr("Орієнтація"));
-
     model->setHeaderData(9, Qt::Horizontal, QObject::tr("Прихований"));
 
     model->select();

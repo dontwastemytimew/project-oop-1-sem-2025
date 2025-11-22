@@ -13,9 +13,12 @@
         <file>resources/icons/back_white.png</file>
         <file>resources/icons/dice_white.png</file>
         <file>resources/icons/trash_white.png</file>
+        <file>resources/icons/trash-black.png</file>
         <file>resources/icons/search_icon.png</file>
         <file>resources/icons/wrench.png</file>
         <file>resources/icons/copy.png</file>
         <file>resources/icons/chart.png</file>
+        <file>resources/icons/hide.png</file>
+        <file>resources/icons/unhide.png</file>
     </qresource>
 </RCC>

@@ -174,27 +174,26 @@ void AdminPageWidget::onCustomContextMenu(const QPoint &pos) {
 
     QMenu contextMenu(this);
 
+    QModelIndex sourceIndex = m_proxyModel->mapToSource(proxyIndex);
+
+    bool isHidden = m_model->data(m_model->index(sourceIndex.row(), 9)).toBool();
+
     // Копіювати Email
     QAction *copyAction = contextMenu.addAction(QIcon(":/resources/icons/copy.png"), tr("Копіювати Email"));
 
-    // Приховати/Показати (Бан)
-    // Дізнаємося поточний статус
-    QModelIndex sourceIndex = m_proxyModel->mapToSource(proxyIndex);
-    bool isHidden = m_model->data(m_model->index(sourceIndex.row(), 7)).toBool();
+    contextMenu.addSeparator();
 
     QString banText = isHidden ? tr("Розбанити (Показати)") : tr("Забанити (Приховати)");
-    QAction *banAction = contextMenu.addAction(banText);
+    QString banIconPath = isHidden ? ":/resources/icons/unhide.png" : ":/resources/icons/hide.png";
+    QAction *banAction = contextMenu.addAction(QIcon(banIconPath), banText);
 
     // Видалити
     contextMenu.addSeparator();
-    QAction *deleteAction = contextMenu.addAction(QIcon(":/resources/icons/trash_white.png"), tr("Видалити"));
 
-    // Показуємо меню і чекаємо вибору
+    QAction *deleteAction = contextMenu.addAction(QIcon(":/resources/icons/trash-black.png"), tr("Видалити"));
     QAction *selectedAction = contextMenu.exec(m_tableView->viewport()->mapToGlobal(pos));
 
-    // Обробка вибору
     if (selectedAction == copyAction) {
-        // Беремо Email
         QString email = m_model->data(m_model->index(sourceIndex.row(), 6)).toString();
         QApplication::clipboard()->setText(email);
         UserLogger::log(Info, "Email copied to clipboard: " + email);
@@ -208,18 +207,19 @@ void AdminPageWidget::onCustomContextMenu(const QPoint &pos) {
 }
 
 void AdminPageWidget::toggleHiddenStatus(int row) {
-    // Отримуємо ID та поточний статус
-    int userId = m_model->data(m_model->index(row, 0)).toInt();
-    bool currentHidden = m_model->data(m_model->index(row, 7)).toBool();
+    if (!m_dbManager || !m_model) return;
 
-    // Змінюємо на протилежний
+    int userId = m_model->data(m_model->index(row, 0)).toInt();
+
+    bool currentHidden = m_model->data(m_model->index(row, 9)).toBool();
     bool newHidden = !currentHidden;
 
     if (m_dbManager->setProfileHidden(userId, newHidden)) {
+        UserLogger::log(Info, QString("Admin set user ID %1 hidden status to %2").arg(userId).arg(newHidden));
+
         refreshTable();
-        UserLogger::log(Info, QString("User %1 hidden status set to %2").arg(userId).arg(newHidden));
     } else {
-        QMessageBox::warning(this, tr("Помилка"), tr("Не вдалося змінити статус."));
+        QMessageBox::critical(this, tr("Помилка"), tr("Не вдалося виконати операцію Бану/Розбану."));
     }
 }
 void AdminPageWidget::onStatsClicked() {
