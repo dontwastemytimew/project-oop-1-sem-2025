@@ -1,18 +1,12 @@
 #ifndef SETTINGSPAGEWIDGET_H
 #define SETTINGSPAGEWIDGET_H
 
-#include <QWidget>
 #include <QCheckBox>
-
-
 #include "DatabaseManager.h"
-
 
 class MainWindow;
 class QComboBox;
 class QPushButton;
-class MainWindow;
-
 class UserProfile;
 
 class SettingsPageWidget : public QWidget {
@@ -25,10 +19,14 @@ public:
     void setDatabaseManager(DatabaseManager* dbManager);
     void loadCurrentSettings(const UserProfile& profile);
 
+    signals:
+    void openAdminPanelRequested();
+
     private slots:
         void on_languageChanged(int index);
     void on_themeToggled();
     void on_deleteClicked();
+    void onAdminBtnClicked();
 
 private:
     MainWindow* m_mainWindow;
@@ -39,5 +37,6 @@ private:
     DatabaseManager* m_dbManager;
     QPushButton* m_deleteButton;
     int m_currentProfileId;
+    QPushButton* m_btnOpenAdmin;
 };
 #endif // SETTINGSPAGEWIDGET_H

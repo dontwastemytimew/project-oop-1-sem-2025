@@ -1,8 +1,8 @@
 #ifndef DATABASEMANAGER_H
 #define DATABASEMANAGER_H
 
-#include <QSqlDatabase>
-#include <QVariant>
+#include <QSqlTableModel>
+#include <QMap>
 #include "UserProfile.h"
 #include "Preference.h"
 
@@ -44,13 +44,11 @@ public:
 
     // --- CRUD Операції ---
 
-    /**
-     * @brief (Create) Зберігає новий профіль у базі даних.
-     * Використовує транзакцію для безпечного збереження.
-     * @param profile Об'єкт UserProfile для збереження.
-     * @return true, якщо збереження пройшло успішно.
-     */
-    bool saveProfile(const UserProfile &profile);
+ /**
+   * @brief Зберігає новий профіль.
+   * @return Унікальний ID нового профілю, або -1 у разі помилки.
+   */
+ int saveProfile(const UserProfile &profile);
 
     /**
      * @brief (Read) Завантажує профіль з БД за унікальним email.
@@ -103,6 +101,43 @@ public:
      * @return Список об'єктів UserProfile.
      */
  QList<UserProfile> getProfilesByCriteria(const Preference &prefs);
+
+ /**
+     * @brief Створює та повертає модель таблиці для перегляду всіх користувачів.
+     * @param parent Батьківський об'єкт для управління пам'яттю.
+     */
+ QSqlTableModel* getUsersModel(QObject* parent = nullptr);
+
+ /**
+     * @brief Отримує статистику кількості користувачів по містах (Top-5).
+     * @return QMap, де ключ - назва міста, значення - кількість користувачів.
+     */
+ QMap<QString, int> getCityStatistics();
+
+ /**
+  * @brief Отримує статистику розподілу користувачів за статтю.
+  * @return QMap, де ключ - стать (Чоловік/Жінка), значення - кількість.
+  */
+ QMap<QString, int> getGenderStatistics();
+
+ /**
+  * @brief Отримує статистику розподілу користувачів за віковими групами.
+  * @return QMap, де ключ - вікова група (напр. "18-25"), значення - кількість.
+  */
+ QMap<QString, int> getAgeStatistics();
+
+ QList<UserProfile> getAllProfiles();
+
+ /**
+     * @brief Швидкісний інсерт списку профілів в одній транзакції.
+     */
+ bool saveProfileBulk(const QList<UserProfile> &profiles);
+
+ /**
+     * @brief Рахує загальну кількість активних користувачів у таблиці.
+     * @return Кількість користувачів.
+     */
+ int countUsers();
 
 
 private:

@@ -10,6 +10,7 @@ class QSpinBox;
 class QLineEdit;
 class QPushButton;
 class QStackedWidget;
+class QComboBox;
 
 class SearchPageWidget : public QWidget {
     Q_OBJECT
@@ -39,6 +40,8 @@ private:
 
     QList<UserProfile> m_currentMatches;
     int m_currentMatchIndex;
+    QComboBox* m_genderCombo;
+    QComboBox* m_orientationCombo;
 };
 
 #endif // SEARCHPAGEWIDGET_H

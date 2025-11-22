@@ -2,7 +2,6 @@
 #define USERLOGGER_H
 
 #include <QFile>
-#include <QTextStream>
 #include <QDateTime>
 #include <QDebug>
 

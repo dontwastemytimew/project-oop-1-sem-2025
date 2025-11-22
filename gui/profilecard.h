@@ -1,7 +1,6 @@
 #ifndef PROFILECARD_H
 #define PROFILECARD_H
 
-#include <QWidget>
 #include <QLabel>
 #include "UserProfile.h"
 

@@ -22,7 +22,6 @@ void UserLogger::log(LogLevel level, const QString &message) {
         return;
     }
 
-
     QString levelStr;
     switch (level) {
         case Debug:    levelStr = "[DEBUG]"; break;

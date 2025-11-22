@@ -8,6 +8,7 @@
 #include "matchespagewidget.h"
 #include "DatabaseManager.h"
 #include "welcomepagewidget.h"
+#include "adminpagewidget.h"
 #include <QButtonGroup>
 
 QT_BEGIN_NAMESPACE
@@ -29,6 +30,7 @@ public:
 
     void switchLanguage(const QString& languageCode);
     void switchTheme(bool isDark);
+    void showAdminPage();
 
     private slots:
     void on_btn_Search_clicked();
@@ -49,6 +51,7 @@ private:
     SettingsPageWidget *m_settingsPage;
     QButtonGroup *m_navButtonGroup;
     bool m_userExists;
+    AdminPageWidget* m_adminPage;
 };
 
 #endif // MAINWINDOW_H

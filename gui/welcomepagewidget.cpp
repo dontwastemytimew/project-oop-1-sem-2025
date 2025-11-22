@@ -10,7 +10,7 @@ WelcomePageWidget::WelcomePageWidget(QWidget *parent) : QWidget(parent)
     mainLayout->setContentsMargins(50, 50, 50, 50);
 
     QLabel* titleLabel = new QLabel(tr("Вітаємо у Title!"), this);
-    titleLabel->setObjectName("welcomeTitle"); // Для QSS
+    titleLabel->setObjectName("welcomeTitle");
     titleLabel->setAlignment(Qt::AlignCenter);
 
     QLabel* subtitleLabel = new QLabel(tr("Оберіть 'Профіль' для налаштування або 'Пошук', щоб почати"), this);

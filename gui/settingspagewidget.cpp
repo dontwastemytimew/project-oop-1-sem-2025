@@ -45,6 +45,16 @@ SettingsPageWidget::SettingsPageWidget(QWidget *parent)
 
     setLayout(mainLayout);
 
+    // Створюємо кнопку
+    m_btnOpenAdmin = new QPushButton(tr("Панель Адміністратора"), this);
+    m_btnOpenAdmin->setObjectName("settingsAdminBtn");
+
+    // Додаємо її в layout (наприклад, в самий низ)
+    mainLayout->addStretch(); // Пружинка, щоб притиснути кнопку до низу
+    mainLayout->addWidget(m_btnOpenAdmin);
+
+    connect(m_btnOpenAdmin, &QPushButton::clicked, this, &SettingsPageWidget::onAdminBtnClicked);
+
     connect(m_langComboBox, &QComboBox::currentIndexChanged, this, &SettingsPageWidget::on_languageChanged);
     connect(m_themeToggle, &QPushButton::clicked, this, &SettingsPageWidget::on_themeToggled);
     connect(m_pauseToggle, &QCheckBox::toggled, this, &SettingsPageWidget::on_pauseToggled);
@@ -121,4 +131,9 @@ void SettingsPageWidget::on_deleteClicked() {
     } else {
         UserLogger::log(Info, "User cancelled account deletion.");
     }
+}
+
+void SettingsPageWidget::onAdminBtnClicked() {
+    UserLogger::log(Info, "User requested Admin Panel from Settings.");
+    emit openAdminPanelRequested(); // Посилаємо сигнал батьку (MainWindow)
 }

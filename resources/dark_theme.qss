@@ -233,3 +233,176 @@ QMessageBox QLabel {
 QMessageBox QPushButton {
     min-width: 80px; /* Щоб кнопки "Yes" / "No" були гарної ширини */
 }
+
+/* ---------------------------------- */
+/* ПАНЕЛЬ АДМІНІСТРАТОРА (ТЕМНА) */
+/* ---------------------------------- */
+
+/* Заголовок адмінки */
+QLabel#adminTitleLabel {
+    font-size: 20pt;
+    font-weight: bold;
+    color: #9932CC; /* Фіолетовий */
+    padding: 10px;
+}
+
+/* Кнопка Назад (Сіра) */
+QPushButton#adminBackBtn {
+    background-color: #444444;
+    color: #dddddd;
+    border: 1px solid #555555;
+    min-width: 100px;
+}
+QPushButton#adminBackBtn:hover { background-color: #555555; }
+
+/* Кнопка Генерувати (Фіолетова/Рожева) */
+QPushButton#adminGenBtn {
+    background-color: #7B1FA2;
+    color: white;
+}
+QPushButton#adminGenBtn:hover { background-color: #9C27B0; }
+
+/* Кнопка Видалити (Червона) */
+QPushButton#adminDelBtn {
+    background-color: #D32F2F;
+    color: white;
+}
+QPushButton#adminDelBtn:hover { background-color: #F44336; }
+
+/* Таблиця (Темна) */
+QTableView#adminTable {
+    background-color: #2D2D2D;
+    alternate-background-color: #383838;
+    gridline-color: #444444;
+    color: #F0F0F0;
+    border: 1px solid #444444;
+}
+QTableView#adminTable::item:selected {
+    background-color: #9932CC; /* Фіолетове виділення */
+    color: white;
+}
+QHeaderView::section {
+    background-color: #333333;
+    color: #F0F0F0;
+    border: 1px solid #444444;
+    padding: 4px;
+}
+
+QPushButton#adminBackBtn {
+    background-color: #444444;
+    color: #dddddd;
+    border: 1px solid #555555;
+    min-width: 100px;
+    /* ДОДАЄМО ІКОНКУ ЧЕРЕЗ QSS */
+    qproperty-icon: url(:/resources/icons/back_white.png);
+    qproperty-iconSize: 20px 20px; /* Розмір іконки */
+}
+
+QPushButton#adminGenBtn {
+    background-color: #7B1FA2;
+    color: white;
+    qproperty-icon: url(:/resources/icons/dice_white.png);
+    qproperty-iconSize: 24px 24px;
+}
+
+QPushButton#adminDelBtn {
+    background-color: #D32F2F;
+    color: white;
+    qproperty-icon: url(:/resources/icons/trash_white.png);
+    qproperty-iconSize: 20px 20px;
+}
+
+QPushButton#settingsAdminBtn {
+    background-color: #9932CC;
+    color: white;
+    font-size: 14pt;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 15px;
+    qproperty-icon: url(:/resources/icons/wrench.png);
+    qproperty-iconSize: 32px 32px;
+}
+QPushButton#settingsAdminBtn:hover {
+    background-color: #B048D4;
+}
+
+QLabel#searchIconLbl {
+    image: url(:/resources/icons/search_icon.png);
+    min-width: 24px;
+    min-height: 24px;
+    padding-right: 5px;
+}
+
+/* Кнопка Статистики (Синя) */
+QPushButton#adminStatsBtn {
+    background-color: #0288D1;
+    color: white;
+    min-width: 100px;
+    qproperty-icon: url(:/resources/icons/chart.png);
+}
+QPushButton#adminStatsBtn:hover {
+    background-color: #03A9F4;
+}
+
+/* Фон діалогового вікна */
+QDialog#statsDialog {
+    background-color: #2D2D2D;
+}
+
+/* Вкладки */
+QTabWidget#statsTabs::pane {
+    border: 1px solid #444444;
+    background-color: #2D2D2D;
+}
+QTabBar::tab {
+    background: #444444;
+    color: #AAAAAA;
+    padding: 8px 20px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+QTabBar::tab:selected {
+    background: #9932CC; /* Фіолетовий акцент */
+    color: white;
+    font-weight: bold;
+}
+
+QChartView {
+    background-color: transparent;
+}
+
+/* --- КАРТКА ПРОФІЛЮ (Темна тема) --- */
+
+/* Темно-сіра плашка */
+QFrame#cardFrame {
+    background-color: #2D2D2D;
+    border-radius: 20px;
+    border: 1px solid #444444;
+}
+
+/* Ім'я */
+QLabel#cardName {
+    font-size: 26px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+/* Вік */
+QLabel#cardAge {
+    font-size: 26px;
+    font-weight: normal;
+    color: #dddddd;
+}
+
+/* Місто */
+QLabel#cardCity {
+    font-size: 16px;
+    color: #aaaaaa;
+    padding-bottom: 10px;
+}
+
+/* Біо */
+QLabel#cardBio {
+    font-size: 14px;
+    color: #cccccc;
+}

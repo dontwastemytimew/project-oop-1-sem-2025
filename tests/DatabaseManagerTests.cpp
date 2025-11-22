@@ -11,7 +11,6 @@ protected:
 
     // Ця функція викликається перед КОЖНИМ тестом
     void SetUp() override {
-        // Ініціалізуємо логер (щоб бачити логи під час тестів)
         UserLogger::init("test_log.txt");
 
         dbManager = new DatabaseManager(); 

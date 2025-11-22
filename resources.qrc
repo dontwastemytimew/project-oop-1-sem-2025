@@ -9,5 +9,13 @@
         <file>resources/icons/chevron-down.png</file>
         <file>resources/icons/skip-white.png</file>
         <file>resources/icons/like-white.png</file>
+        <file>resources/icons/back_black.png</file>
+        <file>resources/icons/back_white.png</file>
+        <file>resources/icons/dice_white.png</file>
+        <file>resources/icons/trash_white.png</file>
+        <file>resources/icons/search_icon.png</file>
+        <file>resources/icons/wrench.png</file>
+        <file>resources/icons/copy.png</file>
+        <file>resources/icons/chart.png</file>
     </qresource>
 </RCC>

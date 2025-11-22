@@ -23,19 +23,20 @@ MainWindow::MainWindow(DatabaseManager* dbManager, QWidget *parent)
     m_profilePage = new ProfilePageWidget(this);
     m_matchesPage = new MatchesPageWidget(this);
     m_settingsPage = new SettingsPageWidget(this);
+    m_adminPage = new AdminPageWidget(this);
 
     m_profilePage->setDatabaseManager(m_dbManager);
     m_settingsPage->setMainWindow(this);
     m_settingsPage->setDatabaseManager(m_dbManager);
     m_searchPage->setDatabaseManager(m_dbManager);
-
+    m_adminPage->setDatabaseManager(m_dbManager);
 
     ui->stackedWidget_Pages->addWidget(m_welcomePage);
     ui->stackedWidget_Pages->addWidget(m_searchPage);
     ui->stackedWidget_Pages->addWidget(m_profilePage);
     ui->stackedWidget_Pages->addWidget(m_matchesPage);
     ui->stackedWidget_Pages->addWidget(m_settingsPage);
-
+    ui->stackedWidget_Pages->addWidget(m_adminPage);
 
     // Налаштовуємо теми та мову
     switchTheme(false);
@@ -46,13 +47,18 @@ MainWindow::MainWindow(DatabaseManager* dbManager, QWidget *parent)
         navLayout->setContentsMargins(0, 0, 0, 0);
     }
 
-    // ФІНАЛЬНА ПЕРЕВІРКА "ПЕРШОГО ЗАПУСКУ"
+    // ПЕРЕВІРКА ПЕРШОГО ЗАПУСКУ
     UserProfile currentUser;
     m_userExists = m_dbManager->getCurrentUserProfile(currentUser);
 
     if (m_userExists) {
+        // Вантажимо налаштування
         m_settingsPage->loadCurrentSettings(currentUser);
-        UserLogger::log(Info, "User profile (ID=1) loaded.");
+
+        // Передаємо завантажений профіль сторінці профілю
+        m_profilePage->setInternalProfile(currentUser);
+
+        UserLogger::log(Info, QString("User profile (ID=%1) loaded and passed to ProfilePage.").arg(currentUser.getId()));
     } else {
         UserLogger::log(Info, "No user found. App running in 'guest' mode.");
     }
@@ -60,8 +66,11 @@ MainWindow::MainWindow(DatabaseManager* dbManager, QWidget *parent)
     ui->stackedWidget_Pages->setCurrentWidget(m_welcomePage);
     UserLogger::log(Info, "Showing Welcome Page.");
 
-
     connect(m_profilePage, &ProfilePageWidget::profileSaved, this, &MainWindow::onProfileSaved);
+    connect(m_adminPage, &AdminPageWidget::backClicked, this, [this](){
+        ui->stackedWidget_Pages->setCurrentWidget(m_settingsPage);
+    });
+    connect(m_settingsPage, &SettingsPageWidget::openAdminPanelRequested, this, &MainWindow::showAdminPage);
 }
 
 MainWindow::~MainWindow()
@@ -119,7 +128,6 @@ void MainWindow::switchLanguage(const QString& languageCode)
     }
 }
 
-
 void MainWindow::switchTheme(bool isDark)
 {
     QString themePath = isDark ? ":/resources/dark_theme.qss" : ":/resources/light_theme.qss";
@@ -141,10 +149,15 @@ void MainWindow::onProfileSaved()
     UserLogger::log(Info, "MainWindow received profileSaved signal.");
     m_userExists = true;
 
-
-    // Оновлюємо налаштування (на випадок, якщо це перший запуск)
+    // Оновлюємо налаштування (якщо це перший запуск)
     UserProfile currentUser;
     if (m_dbManager->getCurrentUserProfile(currentUser)) {
         m_settingsPage->loadCurrentSettings(currentUser);
     }
+}
+
+void MainWindow::showAdminPage() {
+    ui->stackedWidget_Pages->setCurrentWidget(m_adminPage);
+    m_adminPage->refreshTable();
+    UserLogger::log(Info, "Switched to Admin Panel.");
 }

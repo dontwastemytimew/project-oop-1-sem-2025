@@ -7,7 +7,7 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
-find_package(Qt6 COMPONENTS Core Sql Gui Widgets REQUIRED)
+find_package(Qt6 COMPONENTS Core Sql Gui Widgets Charts REQUIRED)
 
 include_directories(models core gui utils)
 
@@ -20,6 +20,7 @@ add_library(DatingAgencyLogic STATIC
         utils/UserLogger.cpp utils/UserLogger.h
         models/Preference.cpp models/Preference.h
         core/MatchEngine.cpp core/MatchEngine.h
+        core/FakeDataManager.cpp core/FakeDataManager.h
 )
 
 target_link_libraries(DatingAgencyLogic PUBLIC
@@ -37,11 +38,14 @@ add_executable(project_oop_1_sem_2025
         gui/settingspagewidget.cpp
         resources.qrc
         gui/welcomepagewidget.cpp
+        gui/adminpagewidget.cpp
+        gui/StatsDialog.cpp
 )
 target_link_libraries(project_oop_1_sem_2025 PRIVATE
         DatingAgencyLogic
         Qt6::Gui
         Qt6::Widgets
+        Qt6::Charts
 )
 
 include(FetchContent)
@@ -64,4 +68,16 @@ add_executable(dating_agency_tests
 target_link_libraries(dating_agency_tests PRIVATE
         DatingAgencyLogic
         gtest_main
+)
+
+add_executable(project_benchmark
+        tests/benchmark_main.cpp
+        utils/BenchmarkTool.h
+)
+
+target_link_libraries(project_benchmark PRIVATE
+        DatingAgencyLogic
+        Qt6::Core
+        Qt6::Sql
+        Qt6::Charts
 )

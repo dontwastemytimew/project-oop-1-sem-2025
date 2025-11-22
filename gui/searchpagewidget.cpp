@@ -3,7 +3,6 @@
 #include "Preference.h"
 #include "UserLogger.h"
 #include "profilecard.h"
-#include <QVBoxLayout>
 #include <QFormLayout>
 #include <QSpinBox>
 #include <QLineEdit>
@@ -11,29 +10,49 @@
 #include <QLabel>
 #include <QHBoxLayout>
 #include <QStackedWidget>
+#include <QComboBox>
+#include <QMessageBox>
 
 SearchPageWidget::SearchPageWidget(QWidget *parent)
 : QWidget(parent), m_dbManager(nullptr), m_currentMatchIndex(0)
 {
     // Створюємо UI для Фільтрів
     QFormLayout* filterLayout = new QFormLayout();
+
     m_minAgeSpin = new QSpinBox(this);
     m_maxAgeSpin = new QSpinBox(this);
     m_minAgeSpin->setRange(18, 99);
     m_maxAgeSpin->setRange(18, 99);
     m_maxAgeSpin->setValue(99);
 
+    // Налаштування Статі
+    m_genderCombo = new QComboBox(this);
+    m_genderCombo->addItem(tr("Не важливо"));
+    m_genderCombo->addItem(tr("Чоловік"));
+    m_genderCombo->addItem(tr("Жінка"));
+
+    // Налаштування Орієнтації
+    m_orientationCombo = new QComboBox(this);
+    m_orientationCombo->addItem(tr("Не важливо"));
+    m_orientationCombo->addItem(tr("Гетеро"));
+    m_orientationCombo->addItem(tr("Бісексуал"));
+    m_orientationCombo->addItem(tr("Гей/Лесбі"));
+
     m_cityEdit = new QLineEdit(this);
+    m_cityEdit->setPlaceholderText(tr("Введіть місто..."));
+
     m_findButton = new QPushButton(tr("Знайти пару"), this);
 
     filterLayout->addRow(tr("Мін. вік:"), m_minAgeSpin);
     filterLayout->addRow(tr("Макс. вік:"), m_maxAgeSpin);
+    filterLayout->addRow(tr("Стать:"), m_genderCombo);
+    filterLayout->addRow(tr("Орієнтація:"), m_orientationCombo);
     filterLayout->addRow(tr("Місто:"), m_cityEdit);
 
     m_resultsStack = new QStackedWidget(this);
     m_resultsStack->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
-    // Додаємо стартову "заглушку" в стопку
+    // Додаємо стартову заглушку
     QLabel* placeholder = new QLabel(tr("Натисніть 'Знайти пару', щоб побачити профілі"), this);
     placeholder->setAlignment(Qt::AlignCenter);
     m_resultsStack->addWidget(placeholder);
@@ -51,10 +70,10 @@ SearchPageWidget::SearchPageWidget(QWidget *parent)
     buttonLayout->addWidget(m_likeButton, 1);
 
     QVBoxLayout* mainLayout = new QVBoxLayout(this);
-    mainLayout->addLayout(filterLayout);  // 1. Фільтри
-    mainLayout->addWidget(m_findButton);  // 2. Кнопка "Знайти"
-    mainLayout->addWidget(m_resultsStack); // 3. Область для карток
-    mainLayout->addLayout(buttonLayout);   // 4. Кнопки "Like/Skip"
+    mainLayout->addLayout(filterLayout);
+    mainLayout->addWidget(m_findButton);
+    mainLayout->addWidget(m_resultsStack);
+    mainLayout->addLayout(buttonLayout);
 
     setLayout(mainLayout);
 
@@ -73,43 +92,43 @@ void SearchPageWidget::on_btn_Find_clicked() {
         return;
     }
 
-    // 1. Збираємо критерії з UI
-    Preference prefs(m_minAgeSpin->value(), m_maxAgeSpin->value(), m_cityEdit->text());
-    UserLogger::log(Info, "Starting search with criteria...");
+    int minAge = m_minAgeSpin->value();
+    int maxAge = m_maxAgeSpin->value();
+    QString city = m_cityEdit->text();
 
-    // 2. Отримуємо ВСІХ користувачів з БД
-    QList<UserProfile> allUsers = m_dbManager->getProfilesByCriteria(Preference());
+    QString gender = m_genderCombo->currentText();
+    QString orientation = m_orientationCombo->currentText();
 
-    // 3. Фільтруємо їх за допомогою MatchEngine і зберігаємо у m_currentMatches
-    m_currentMatches.clear();
-    for (const UserProfile& profile : allUsers) {
-        if (MatchEngine::calculateMatch(profile, prefs)) {
-            m_currentMatches.append(profile);
-        }
-    }
+    // Створюємо Preference з усіма параметрами
+    Preference prefs(minAge, maxAge, city, gender, orientation);
 
-    // 4. Відображаємо результат
+    UserLogger::log(Info, "Starting search with criteria: " + city + ", " + gender);
+
+    // Отримуємо ВІДФІЛЬТРОВАНИХ користувачів прямо з БД
+    m_currentMatches = m_dbManager->getProfilesByCriteria(prefs);
+
     UserLogger::log(Info, QString("Search complete! Found %1 matches.").arg(m_currentMatches.count()));
 
     m_currentMatchIndex = 0;
 
-    // 5. Очищуємо стару стопку віджетів
+    // Очищуємо стару стопку віджетів
     while(m_resultsStack->count() > 1) {
         QWidget* widget = m_resultsStack->widget(1);
         m_resultsStack->removeWidget(widget);
         widget->deleteLater();
     }
 
-    // 6. Показуємо перший профіль
     showNextProfile();
 }
-
 
 void SearchPageWidget::showNextProfile() {
     if (m_currentMatchIndex >= m_currentMatches.count()) {
         UserLogger::log(Info, "No more profiles to show.");
-        // Показуємо "заглушку" (вона на індексі 0)
         m_resultsStack->setCurrentIndex(0);
+
+        if (m_currentMatches.isEmpty()) {
+             QMessageBox::information(this, tr("Пошук"), tr("На жаль, нікого не знайдено за цими критеріями."));
+        }
         return;
     }
 
@@ -123,14 +142,20 @@ void SearchPageWidget::showNextProfile() {
 }
 
 void SearchPageWidget::on_Like_clicked() {
+    if (m_resultsStack->currentIndex() == 0) return;
+
     UserLogger::log(Info, "User clicked LIKE");
-    // (Тут буде логіка збереження лайку в БД)
+
+    // ТУТ У МАЙБУТНЬОМУ БУДЕ:
+    // m_dbManager->addLike(currentUser.id, targetUser.id);
 
     m_currentMatchIndex++;
     showNextProfile();
 }
 
 void SearchPageWidget::on_Skip_clicked() {
+    if (m_resultsStack->currentIndex() == 0) return;
+
     UserLogger::log(Info, "User clicked SKIP");
 
     m_currentMatchIndex++;
