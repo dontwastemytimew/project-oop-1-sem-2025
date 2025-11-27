@@ -8,33 +8,32 @@
 /**
  * @brief MatchEngine class
  *
- * клас для простого алгоритму фільтрування профілів за Preference
+ * Розрахунок сумісності профілів на основі:
+ *  - статі / орієнтації
+ *  - віку
+ *  - міста
+ *  - тегів (TODO)
+ *  - формули балів
  */
 class MatchEngine {
 public:
 
- explicit MatchEngine(DatabaseManager* dbManager);
+    explicit MatchEngine(DatabaseManager* dbManager);
 
-    /**
-     * @brief calculateMatch
-     * @param profile Профіль користувача
-     * @param prefs Критерії пошуку
-     * @return true, якщо профіль відповідає **всім** критеріям
-     */
+    /// Проста фільтрація профілів за Preference
     static bool calculateMatch(const UserProfile &profile, const Preference &prefs);
 
-    /**
-     * @brief Перевіряє сумісність двох профілів.
-     * @param p1 Перший профіль.
-     * @param p2 Другий профіль.
-     * @return true, якщо вони сумісні.
-     */
+    /// Повертає true, якщо профілі п1 і п2 відповідають один одному
     bool isCompatible(const UserProfile& p1, const UserProfile& p2) const;
 
- private:
- DatabaseManager* m_dbManager;
+    /// Обчислює сумарний бал сумісності
+    int compatibilityScore(const UserProfile& p1, const UserProfile& p2) const;
+
+    /// Обчислює % сумісності (0–100)
+    int compatibilityPercent(const UserProfile& p1, const UserProfile& p2) const;
+
+private:
+    DatabaseManager* m_dbManager;
 };
-
-
 
 #endif // MATCHENGINE_H

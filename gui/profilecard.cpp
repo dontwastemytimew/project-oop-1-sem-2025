@@ -44,15 +44,29 @@ ProfileCard::ProfileCard(QWidget* parent)
     lblCity = new QLabel(this);
     lblCity->setObjectName("cardCity");
 
+    // ★ ВІДСОТОК СУМІСНОСТІ
+    lblCompatibility = new QLabel(this);
+    lblCompatibility->setObjectName("cardCompatibility");
+    lblCompatibility->setAlignment(Qt::AlignLeft);
+    lblCompatibility->setStyleSheet(
+        "font-size: 16px; "
+        "font-weight: bold; "
+        "color: #e6399b;"   // рожевий/сердечний
+        );
+
     // БІО
     lblDescription = new QLabel(this);
     lblDescription->setObjectName("cardBio");
     lblDescription->setWordWrap(true);
     lblDescription->setAlignment(Qt::AlignTop | Qt::AlignLeft);
 
+    // Додавання в layout
     cardLayout->addWidget(lblPhoto, 0, Qt::AlignCenter);
     cardLayout->addLayout(nameAgeLayout);
     cardLayout->addWidget(lblCity);
+
+    cardLayout->addWidget(lblCompatibility);   // ★ новий елемент
+
     cardLayout->addWidget(lblDescription);
     cardLayout->addStretch();
 
@@ -66,18 +80,14 @@ void ProfileCard::setProfileData(const UserProfile& profile)
     QString photoPath = profile.getPhotoPath();
     QPixmap pixmap;
 
-    // Якщо фото існує на диску
     if (!photoPath.isEmpty() && QFile::exists(photoPath)) {
         pixmap.load(photoPath);
     }
 
-    // Якщо нема фото — ставимо дефолтну картинку
     if (pixmap.isNull()) {
-        // !!! Замінити на твоє реальне з resources.qrc
         pixmap.load(":/resources/default_avatar.png");
     }
 
-    // Якщо навіть дефолт не знайдено — текст
     if (pixmap.isNull()) {
         lblPhoto->setText("No Photo");
     } else {
@@ -94,9 +104,22 @@ void ProfileCard::setProfileData(const UserProfile& profile)
     lblName->setText(profile.getName());
     lblAge->setText(QString(", %1").arg(profile.getAge()));
 
-    // ★ МІСТО (з іконкою)
+    // ★ МІСТО
     lblCity->setText(QString("📍 %1").arg(profile.getCity()));
 
     // ★ БІО
     lblDescription->setText(profile.getBio());
+}
+
+//
+// ★ НОВИЙ МЕТОД — встановлення % сумісності
+//
+void ProfileCard::setCompatibilityPercent(int percent)
+{
+    if (percent < 0) percent = 0;
+    if (percent > 100) percent = 100;
+
+    lblCompatibility->setText(
+        QString("❤️ Ви підходите на %1%").arg(percent)
+        );
 }

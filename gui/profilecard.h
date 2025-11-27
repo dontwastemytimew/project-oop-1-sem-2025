@@ -2,6 +2,7 @@
 #define PROFILECARD_H
 
 #include <QLabel>
+#include <QWidget>
 #include "UserProfile.h"
 
 class ProfileCard : public QWidget
@@ -10,7 +11,12 @@ class ProfileCard : public QWidget
 
 public:
     explicit ProfileCard(QWidget* parent = nullptr);
+
+    /// Встановлює основні дані профілю (фото, імʼя, місто, вік, біо)
     void setProfileData(const UserProfile& profile);
+
+    /// Встановлює % сумісності (пункт 3.2)
+    void setCompatibilityPercent(int percent);
 
 private:
     QLabel* lblPhoto;
@@ -18,6 +24,9 @@ private:
     QLabel* lblAge;
     QLabel* lblCity;
     QLabel* lblDescription;
+
+    QLabel* lblCompatibility;   ///< ★ Нове поле: відсоток сумісності
 };
 
 #endif
+
