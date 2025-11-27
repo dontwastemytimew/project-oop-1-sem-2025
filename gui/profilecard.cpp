@@ -3,6 +3,7 @@
 #include <QPixmap>
 #include <QLabel>
 #include <QFrame>
+#include <QFile>
 
 ProfileCard::ProfileCard(QWidget* parent)
     : QWidget(parent)
@@ -43,7 +44,7 @@ ProfileCard::ProfileCard(QWidget* parent)
     lblCity = new QLabel(this);
     lblCity->setObjectName("cardCity");
 
-    // ОПИС
+    // БІО
     lblDescription = new QLabel(this);
     lblDescription->setObjectName("cardBio");
     lblDescription->setWordWrap(true);
@@ -61,26 +62,41 @@ ProfileCard::ProfileCard(QWidget* parent)
 
 void ProfileCard::setProfileData(const UserProfile& profile)
 {
-    // ФОТО
-    // Тут треба логіку: якщо у юзера є фото -> показати. Якщо ні -> заглушка.
-    // Поки ставимо заглушку з іконкою
-    QPixmap pixmap(":/resources/example_photo.jpg");
-    if (!pixmap.isNull()) {
-        lblPhoto->setPixmap(pixmap.scaled(lblPhoto->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
-    } else {
-        lblPhoto->setText("No Photo");
+    // ★ ФOТО ПРОФІЛЮ
+    QString photoPath = profile.getPhotoPath();
+    QPixmap pixmap;
+
+    // Якщо фото існує на диску
+    if (!photoPath.isEmpty() && QFile::exists(photoPath)) {
+        pixmap.load(photoPath);
     }
 
-    // ТЕКСТ
-    lblName->setText(profile.getName());
+    // Якщо нема фото — ставимо дефолтну картинку
+    if (pixmap.isNull()) {
+        // !!! Замінити на твоє реальне з resources.qrc
+        pixmap.load(":/resources/default_avatar.png");
+    }
 
+    // Якщо навіть дефолт не знайдено — текст
+    if (pixmap.isNull()) {
+        lblPhoto->setText("No Photo");
+    } else {
+        lblPhoto->setPixmap(
+            pixmap.scaled(
+                lblPhoto->size(),
+                Qt::KeepAspectRatio,
+                Qt::SmoothTransformation
+                )
+            );
+    }
+
+    // ★ ІМ’Я + ВІК
+    lblName->setText(profile.getName());
     lblAge->setText(QString(", %1").arg(profile.getAge()));
 
-    // Додаємо іконку локації
+    // ★ МІСТО (з іконкою)
     lblCity->setText(QString("📍 %1").arg(profile.getCity()));
 
+    // ★ БІО
     lblDescription->setText(profile.getBio());
-
-    // Якщо є стать/орієнтація, можна додати і їх
-    // lblDescription->setText(QString("%1\n\n%2, %3").arg(profile.getBio()).arg(profile.getGender()).arg(profile.getOrientation()));
 }
