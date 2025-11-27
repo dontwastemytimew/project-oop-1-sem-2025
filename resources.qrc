@@ -21,4 +21,8 @@
         <file>resources/icons/hide.png</file>
         <file>resources/icons/unhide.png</file>
     </qresource>
+    <qresource prefix="/i18n">
+        <file>i18n/app_en.qm</file>
+        <file>i18n/app_ua.qm</file>
+    </qresource>
 </RCC>
