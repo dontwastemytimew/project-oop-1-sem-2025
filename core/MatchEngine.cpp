@@ -1,7 +1,5 @@
 #include "MatchEngine.h"
 #include "UserLogger.h"
-#include "UserProfile.h"
-#include "DatabaseManager.h"
 
 MatchEngine::MatchEngine(DatabaseManager* dbManager)
     : m_dbManager(dbManager)
@@ -10,51 +8,79 @@ MatchEngine::MatchEngine(DatabaseManager* dbManager)
 
 bool MatchEngine::calculateMatch(const UserProfile &profile, const Preference &prefs)
 {
-    //перевірка мінімального віку
+    // Мінімальний вік
     if (prefs.getMinAge() != 0 && profile.getAge() < prefs.getMinAge()) {
-        UserLogger::log(Debug, "Match failed: User is too young.");
         return false;
     }
 
-    //перевірка максимального віку
+    // Максимальний вік
     if (prefs.getMaxAge() != 0 && profile.getAge() > prefs.getMaxAge()) {
-        UserLogger::log(Debug, "Match failed: User is too old.");
         return false;
     }
 
-    //перевірка міста
+    // Місто
     if (!prefs.getCity().isEmpty() && profile.getCity() != prefs.getCity()) {
-        UserLogger::log(Debug, "Match failed: City does not match.");
         return false;
     }
 
-    //якщо профіль відповідає хоча б одному критерію
-    UserLogger::log(Debug, "Match successful!");
     return true;
 }
 
-// Заглушка, яка виконує кілька перевірок для імітації роботи алгоритму
-bool MatchEngine::isCompatible(const UserProfile& p1, const UserProfile& p2) const {
-    // Не можеш бути сумісним із собою
-    if (p1.getId() == p2.getId() && p1.getId() != -1) return false;
 
-    // Якщо користувач p1 шукає інший гендер, ніж p2
-    // p1.getPreference().getGender() - кого шукає p1
-    // p2.getGender() - хто є p2
-    if (!p1.getPreference().getGender().isEmpty() &&
-        p1.getPreference().getGender() != "Не важливо" &&
-        p1.getPreference().getGender() != p2.getGender()) {
+/**
+ * @brief Повноцінна перевірка сумісності двох реальних профілів.
+ */
+bool MatchEngine::isCompatible(const UserProfile& p1, const UserProfile& p2) const
+{
+    // 1) Неможливо бути сумісним із самим собою
+    if (p1.getId() != -1 && p1.getId() == p2.getId())
         return false;
-        }
 
-    // Перевірка віку
-    if (p2.getAge() < p1.getPreference().getMinAge() || p2.getAge() > p1.getPreference().getMaxAge()) {
+    const Preference& pref = p1.getPreference();
+
+    // 2) Перевірка гендеру
+    if (!pref.getGender().isEmpty() &&
+        pref.getGender() != "Не важливо" &&
+        pref.getGender() != p2.getGender())
+    {
         return false;
     }
 
-    // Додаткова важка операція для навантаження CPU
-    double score = (double)p1.getAge() * 0.5 + (double)p2.getAge() * 0.5;
+    // 3) Перевірка орієнтації
+    // p1 орієнтований на ...
+    // p2 має відповідати
+    if (p1.getOrientation() == "Гетеро") {
+        // p1 шукає протилежну стать
+        if (p1.getGender() == p2.getGender()) return false;
+    }
+    else if (p1.getOrientation() == "Гей/Лесбі") {
+        // p1 шукає тільки свій гендер
+        if (p1.getGender() != p2.getGender()) return false;
+    }
+    else if (p1.getOrientation() == "Бісексуал") {
+        // ок, всі підходять
+    }
 
-    // Якщо пройшли всі фільтри, вважаємо сумісним
-    return score > 20.0;
+    // 4) Перевірка віку p2 у межах вподобань p1
+    if ((pref.getMinAge() != 0 && p2.getAge() < pref.getMinAge()) ||
+        (pref.getMaxAge() != 0 && p2.getAge() > pref.getMaxAge()))
+    {
+        return false;
+    }
+
+    // 5) Перевірка міста (не обов'язкова)
+    if (!pref.getCity().isEmpty() &&
+        pref.getCity() != "Не важливо" &&
+        pref.getCity() != p2.getCity())
+    {
+        return false;
+    }
+
+    // 6) TODO: додати теги (tags)
+    // Коли у UserProfile з'явиться поле tags:
+    //
+    // int shared = countSharedTags(p1.getTags(), p2.getTags());
+    // if (shared < 1) return false;
+
+    return true;
 }
