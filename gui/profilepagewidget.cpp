@@ -1,20 +1,16 @@
 #include "profilepagewidget.h"
 #include "ui_ProfilePageWidget.h"
 
-#include "UserLogger.h"
-#include "UserProfile.h"
-#include "ContactInfo.h"
-
-#include <QFileDialog>
 #include <QMessageBox>
-#include <QSettings>
-#include <QDir>
+#include <QFileDialog>
 #include <QPixmap>
+#include <QDir>
+#include <QSettings>
+#include <QCompleter>
 
 ProfilePageWidget::ProfilePageWidget(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::ProfilePageWidget)
-    , m_dbManager(nullptr)
 {
     ui->setupUi(this);
 
@@ -22,12 +18,11 @@ ProfilePageWidget::ProfilePageWidget(QWidget *parent)
     connect(ui->choosePhotoButton, &QPushButton::clicked,
             this, &ProfilePageWidget::onChoosePhoto);
 
-    // Кнопка збереження профілю
+    // Кнопка збереження
     connect(ui->saveButton, &QPushButton::clicked,
             this, &ProfilePageWidget::on_btn_SaveProfile_clicked);
 
-    // Початкове порожнє фото
-    ui->photoLabel->setPixmap(QPixmap());
+    ui->photoLabel->setPixmap(QPixmap()); // очищення фото
 }
 
 ProfilePageWidget::~ProfilePageWidget() {
@@ -36,14 +31,36 @@ ProfilePageWidget::~ProfilePageWidget() {
 
 void ProfilePageWidget::setDatabaseManager(DatabaseManager* dbManager) {
     m_dbManager = dbManager;
+
+    // ★ AUTOCOMPLETE міст
+    setupCityAutocomplete();
+
+    // Завантажити поточного користувача
     loadCurrentProfile();
 }
 
+void ProfilePageWidget::setupCityAutocomplete() {
+    if (!m_dbManager)
+        return;
+
+    QStringList cities = m_dbManager->getAllCities();
+    if (cities.isEmpty())
+        return;
+
+    QCompleter* completer = new QCompleter(cities, this);
+
+    completer->setCaseSensitivity(Qt::CaseInsensitive);  // регістр неважливий
+    completer->setFilterMode(Qt::MatchContains);         // містить у середині
+    completer->setCompletionMode(QCompleter::PopupCompletion);
+
+    ui->cityEdit->setCompleter(completer);
+}
+
 void ProfilePageWidget::loadCurrentProfile() {
-    if (!m_dbManager) return;
+    if (!m_dbManager)
+        return;
 
     if (m_dbManager->getCurrentUserProfile(m_currentUser)) {
-
         ui->nameEdit->setText(m_currentUser.getName());
         ui->ageSpinBox->setValue(m_currentUser.getAge());
         ui->cityEdit->setText(m_currentUser.getCity());
@@ -53,8 +70,8 @@ void ProfilePageWidget::loadCurrentProfile() {
         ui->genderCombo->setCurrentText(m_currentUser.getGender());
         ui->orientationCombo->setCurrentText(m_currentUser.getOrientation());
 
-        // ★ Завантажити фото
         m_photoPath = m_currentUser.getPhotoPath();
+
         if (!m_photoPath.isEmpty()) {
             QPixmap pix(m_photoPath);
             if (!pix.isNull()) {
@@ -70,7 +87,6 @@ void ProfilePageWidget::loadCurrentProfile() {
 }
 
 void ProfilePageWidget::onChoosePhoto() {
-
     QString fileName = QFileDialog::getOpenFileName(
         this,
         tr("Обрати фото"),
@@ -81,20 +97,16 @@ void ProfilePageWidget::onChoosePhoto() {
     if (fileName.isEmpty())
         return;
 
-    // ★ Копіюємо фото у директорію програми
     QDir dir(QCoreApplication::applicationDirPath());
     if (!dir.exists("photos"))
         dir.mkdir("photos");
 
-    QString targetPath =
-        dir.filePath("photos/" + QFileInfo(fileName).fileName());
-
-    QFile::remove(targetPath); // якщо існує — стерти
+    QString targetPath = dir.filePath("photos/" + QFileInfo(fileName).fileName());
+    QFile::remove(targetPath);
     QFile::copy(fileName, targetPath);
 
     m_photoPath = targetPath;
 
-    // ★ Показ у превʼю
     QPixmap pix(targetPath);
     if (!pix.isNull()) {
         ui->photoLabel->setPixmap(
@@ -107,11 +119,10 @@ void ProfilePageWidget::onChoosePhoto() {
 void ProfilePageWidget::on_btn_SaveProfile_clicked() {
 
     if (!m_dbManager) {
-        QMessageBox::critical(this, tr("Помилка"), tr("Помилка бази даних!"));
+        QMessageBox::critical(this, tr("Помилка"), tr("Немає зʼєднання з базою."));
         return;
     }
 
-    // Отримуємо дані з UI
     QString name = ui->nameEdit->text();
     int age = ui->ageSpinBox->value();
     QString city = ui->cityEdit->text();
@@ -122,30 +133,33 @@ void ProfilePageWidget::on_btn_SaveProfile_clicked() {
     QString orientation = ui->orientationCombo->currentText();
 
     if (name.isEmpty() || email.isEmpty() || age < 18) {
-        QMessageBox::warning(this, tr("Увага"), tr("Ім'я, Email та вік (мінімум 18) є обов'язковими!"));
+        QMessageBox::warning(this, tr("Помилка"), tr("Невірно введені дані."));
         return;
     }
 
     int currentId = m_currentUser.getId();
     int resultId = -1;
 
-    // Створюємо профіль
     UserProfile newProfile(
-        currentId, name, age, city, bio, gender, orientation, m_photoPath
+        currentId,
+        name,
+        age,
+        city,
+        bio,
+        gender,
+        orientation,
+        m_photoPath  // ★ Зберігаємо шлях до фото
         );
 
-    newProfile.setPhotoPath(m_photoPath);
     newProfile.setContactInfo(ContactInfo(phone, email));
+    newProfile.setPhotoPath(m_photoPath);
 
     if (currentId != -1) {
-        // Оновлення
-        if (m_dbManager->updateProfile(newProfile)) {
+        if (m_dbManager->updateProfile(newProfile))
             resultId = currentId;
-        }
     } else {
-        // Новий профіль
         if (m_dbManager->profileExists(email)) {
-            QMessageBox::warning(this, tr("Помилка"), tr("Профіль з таким Email вже існує."));
+            QMessageBox::warning(this, tr("Помилка"), tr("Такий email вже існує."));
             return;
         }
         resultId = m_dbManager->saveProfile(newProfile);
@@ -181,6 +195,7 @@ void ProfilePageWidget::setInternalProfile(const UserProfile& profile) {
     ui->orientationCombo->setCurrentText(profile.getOrientation());
 
     m_photoPath = profile.getPhotoPath();
+
     if (!m_photoPath.isEmpty()) {
         QPixmap pix(m_photoPath);
         ui->photoLabel->setPixmap(

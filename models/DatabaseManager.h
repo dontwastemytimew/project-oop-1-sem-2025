@@ -1,8 +1,11 @@
 #ifndef DATABASEMANAGER_H
 #define DATABASEMANAGER_H
 
+#include <QSqlDatabase>
 #include <QSqlTableModel>
 #include <QMap>
+#include <QStringList>
+
 #include "UserProfile.h"
 #include "Preference.h"
 
@@ -10,7 +13,8 @@
  * @brief Клас DatabaseManager
  *
  * Відповідає за всі операції з базою даних SQLite:
- * з'єднання, створення таблиць та повний CRUD для профілів користувачів.
+ * з'єднання, створення таблиць, CRUD операції для профілів користувачів,
+ * статистика, масове завантаження та допоміжні операції.
  */
 class DatabaseManager {
 public:
@@ -46,6 +50,12 @@ public:
 
     bool saveProfileBulk(const QList<UserProfile> &profiles);
     int countUsers();
+
+    /**
+     * @brief Повертає список усіх унікальних міст з таблиці users.
+     * Використовується для autocomplete міста у ProfilePageWidget.
+     */
+    QStringList getAllCities();   // ★ НОВИЙ МЕТОД (пункт 2.2)
 
 private:
     QSqlDatabase m_db;
