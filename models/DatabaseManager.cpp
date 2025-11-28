@@ -84,6 +84,178 @@ bool DatabaseManager::createTables() {
     return true;
 }
 
+
+// ЛАЙКИ / МЕТЧІ (оновлені)
+bool DatabaseManager::addLike(int fromUserId, int toUserId) {
+    if (fromUserId <= 0 || toUserId <= 0 || fromUserId == toUserId)
+    return false;
+
+    QSqlQuery query(m_db);
+    query.prepare("INSERT OR IGNORE INTO likes (user_id, target_id) VALUES (?, ?)");
+    query.addBindValue(fromUserId);
+    query.addBindValue(toUserId);
+
+    if (!query.exec()) {
+        UserLogger::log(Error, "addLike failed: " + query.lastError().text());
+        return false;
+    }
+
+    return true;
+}
+
+bool DatabaseManager::removeLike(int fromUserId, int toUserId) {
+    if (fromUserId <= 0 || toUserId <= 0)
+        return false;
+
+    QSqlQuery query(m_db);
+    query.prepare("DELETE FROM likes WHERE user_id=? AND target_id=?");
+    query.addBindValue(fromUserId);
+    query.addBindValue(toUserId);
+
+    if (!query.exec()) {
+        UserLogger::log(Error, "removeLike failed: " + query.lastError().text());
+        return false;
+    }
+
+    return true;
+}
+
+bool DatabaseManager::hasUserLiked(int userId, int targetId) const {
+    QSqlQuery query(m_db);
+    query.prepare("SELECT 1 FROM likes WHERE user_id=? AND target_id=?");
+    query.addBindValue(userId);
+    query.addBindValue(targetId);
+
+    if (!query.exec())
+        return false;
+
+    return query.next();
+}
+
+bool DatabaseManager::isMutualLike(int user1, int user2) const {
+    return hasUserLiked(user1, user2) && hasUserLiked(user2, user1);
+}
+
+QVector<int> DatabaseManager::getMatchesForUser(int userId) {
+    QVector<int> matches;
+    QSqlQuery query(m_db);
+
+    query.prepare(
+        "SELECT target_id FROM likes "
+        "WHERE user_id=? "
+        "AND target_id IN (SELECT user_id FROM likes WHERE target_id=?)"
+    );
+    query.addBindValue(userId);
+    query.addBindValue(userId);
+
+    if (!query.exec()) {
+        UserLogger::log(Error, "getMatchesForUser failed: " + query.lastError().text());
+        return matches;
+    }
+
+    while (query.next()) {
+        matches.append(query.value(0).toInt());
+    }
+
+    return matches;
+}
+
+QList<int> DatabaseManager::getMutualMatchIds(int currentUserId) {
+    QList<int> matchIds;
+    QSqlQuery query(m_db);
+    query.prepare(
+        "SELECT T1.target_id FROM likes AS T1 "
+        "INNER JOIN likes AS T2 ON T1.target_id = T2.user_id "
+        "WHERE T1.user_id = :currentId AND T2.target_id = :currentId"
+    );
+    query.bindValue(":currentId", currentUserId);
+
+    if (query.exec()) {
+        while (query.next()) {
+            matchIds.append(query.value(0).toInt());
+        }
+    } else {
+        UserLogger::log(Error, "Failed to get mutual match IDs: " + query.lastError().text());
+    }
+
+    return matchIds;
+}
+
+
+DatabaseManager::DatabaseManager() {
+    m_db = QSqlDatabase::addDatabase("QSQLITE");
+    m_db.setDatabaseName(DB_NAME);
+}
+
+DatabaseManager::~DatabaseManager() {
+    closeDatabase();
+}
+
+bool DatabaseManager::openDatabase() {
+    if (m_db.open()) {
+        UserLogger::log(Info, "Database connection successful.");
+        return createTables();
+    } else {
+        UserLogger::log(Critical, "Failed to connect to database: " + m_db.lastError().text());
+        return false;
+    }
+}
+
+void DatabaseManager::closeDatabase() {
+    if (m_db.isOpen()) {
+        m_db.close();
+        UserLogger::log(Info, "Database connection closed.");
+    }
+}
+
+bool DatabaseManager::createTables() {
+    QSqlQuery query;
+
+    // USERS
+    QString createUsersSql =
+        "CREATE TABLE IF NOT EXISTS users ("
+        "id INTEGER PRIMARY KEY AUTOINCREMENT, "
+        "name VARCHAR(100) NOT NULL, "
+        "age INTEGER, "
+        "city VARCHAR(100), "
+        "bio TEXT, "
+        "phone VARCHAR(20), "
+        "email VARCHAR(100),"
+        "gender VARCHAR(20),"
+        "orientation VARCHAR(20),"
+        "photo_path TEXT,"
+        "is_hidden BOOLEAN DEFAULT 0"
+        ");";
+
+    if (!query.exec(createUsersSql)) {
+        UserLogger::log(Error, "Failed to create 'users' table: " + query.lastError().text());
+        return false;
+    }
+
+    // LIKES
+    QString createLikesSql =
+        "CREATE TABLE IF NOT EXISTS likes ("
+        "id INTEGER PRIMARY KEY AUTOINCREMENT, "
+        "user_id INTEGER NOT NULL, "
+        "target_id INTEGER NOT NULL, "
+        "timestamp DATETIME DEFAULT CURRENT_TIMESTAMP, "
+        "UNIQUE(user_id, target_id)"
+        ");";
+
+    if (!query.exec(createLikesSql)) {
+        UserLogger::log(Error, "Failed to create 'likes' table: " + query.lastError().text());
+        return false;
+    }
+
+    // ІНДЕКСИ
+    query.exec("CREATE INDEX IF NOT EXISTS idx_users_age ON users(age)");
+    query.exec("CREATE INDEX IF NOT EXISTS idx_likes_user ON likes(user_id)");
+    query.exec("CREATE INDEX IF NOT EXISTS idx_likes_target ON likes(target_id)");
+
+    UserLogger::log(Info, "Tables 'users' and 'likes' verified/created successfully.");
+    return true;
+}
+
 // SAVE PROFILE
 int DatabaseManager::saveProfile(const UserProfile &profile) {
 
