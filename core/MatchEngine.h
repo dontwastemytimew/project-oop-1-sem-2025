@@ -33,6 +33,20 @@ public:
      */
     bool isCompatible(const UserProfile& p1, const UserProfile& p2) const;
 
+    /**
+     * @brief computeCompatibility
+     * Обчислює відсоток сумісності між двома профілями (0–100).
+     * Використовується тільки після проходження isCompatible().
+     */
+    int computeCompatibility(const UserProfile &a, const UserProfile &b) const;
+
+    /**
+     * @brief getSortedMatches
+     * Повертає список сумісних профілів, відсортованих за відсотком сумісності.
+     * @param userId ID користувача, для якого шукаємо пари
+     */
+    QList<QPair<UserProfile, int>> getSortedMatches(int userId) const;
+
 private:
     DatabaseManager* m_dbManager;
 };
