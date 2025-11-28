@@ -1,5 +1,7 @@
 <map id="MatchesPageWidget" name="MatchesPageWidget">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,79,160,104"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="43,5,122,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="85,44,85,79,80,79,80,44"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="34,93,189,119"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,84,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="64,40,104,91,100,94,60,43"/>
+<area shape="rect" id="Node000003" href="$classDatabaseManager.html" title="Клас DatabaseManager." alt="" coords="109,5,250,31"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="164,43,123,94,119,91,159,40"/>
 </map>

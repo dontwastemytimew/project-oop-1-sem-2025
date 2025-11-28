@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['updateprofile_0',['updateProfile',['../classDatabaseManager.html#a60c1b22b903b26b5e1847dc835cfdbe5',1,'DatabaseManager']]],
-  ['userprofile_1',['UserProfile',['../classUserProfile.html#a5165a147c3c3be8a08aed3195f06b469',1,'UserProfile']]]
+  ['removelike_0',['removeLike',['../classDatabaseManager.html#a324f03a939e99c0526a9ffd01773d874',1,'DatabaseManager']]],
+  ['run_1',['run',['../classBenchmarkTool.html#ade683eab42eb656ac2b6d387ad208bde',1,'BenchmarkTool']]]
 ];

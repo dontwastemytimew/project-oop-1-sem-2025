@@ -1,7 +1,16 @@
 <map id="SearchPageWidget" name="SearchPageWidget">
-<area shape="rect" id="Node000001" title=" " alt="" coords="40,93,183,119"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,84,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="64,40,104,91,100,94,60,43"/>
-<area shape="rect" id="Node000003" href="$classDatabaseManager.html" title="Клас DatabaseManager." alt="" coords="109,5,250,31"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="164,43,123,94,119,91,159,40"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="112,181,255,207"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,93,84,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="71,125,115,155,160,179,157,183,113,160,68,129"/>
+<area shape="rect" id="Node000003" href="$classDatabaseManager.html" title="Клас DatabaseManager." alt="" coords="111,5,253,31"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="167,43,150,79,146,98,147,118,161,153,177,180,173,183,156,155,142,119,141,98,145,77,163,41"/>
+<area shape="rect" id="Node000007" href="$classMatchEngine.html" title="MatchEngine class." alt="" coords="254,93,361,119"/>
+<area shape="poly" id="edge7_Node000007_Node000003" title=" " alt="" coords="212,36,292,91,289,95,209,41"/>
+<area shape="rect" id="Node000004" href="$classUserProfile.html" title="Клас UserProfile." alt="" coords="385,93,478,119"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="412,130,393,146,370,160,312,179,255,190,254,185,311,174,368,155,390,142,409,126"/>
+<area shape="rect" id="Node000005" href="$classContactInfo.html" title="Клас ContactInfo." alt="" coords="327,5,424,31"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="374,44,379,68,390,81,405,91,402,95,386,85,374,71,369,45"/>
+<area shape="rect" id="Node000006" href="$classPreference.html" title="Клас Preference." alt="" coords="457,5,549,31"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="494,44,476,71,450,95,446,91,472,68,490,41"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="281,129,202,183,199,179,278,124"/>
 </map>

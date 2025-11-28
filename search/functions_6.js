@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['preference_0',['Preference',['../classPreference.html#a17dda34bb452f1b0cc899aa867ecad40',1,'Preference']]],
-  ['profileexists_1',['profileExists',['../classDatabaseManager.html#ab5659aea24d72d3085bc91abfe982a3e',1,'DatabaseManager']]]
+  ['loadprofilebyemail_0',['loadProfileByEmail',['../classDatabaseManager.html#aba74d09f4893a1d39317bf43693c480b',1,'DatabaseManager']]],
+  ['log_1',['log',['../classUserLogger.html#a0b46b7418171fa636af3700203b1ca52',1,'UserLogger']]]
 ];

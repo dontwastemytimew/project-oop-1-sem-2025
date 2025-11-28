@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['run_0',['run',['../classBenchmarkTool.html#ade683eab42eb656ac2b6d387ad208bde',1,'BenchmarkTool']]]
+  ['opendatabase_0',['openDatabase',['../classDatabaseManager.html#abf0518515ed9ec59c91bd4d3a39f7319',1,'DatabaseManager']]]
 ];
