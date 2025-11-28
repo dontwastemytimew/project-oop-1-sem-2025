@@ -97,7 +97,7 @@ void ProfilePageWidget::on_btn_SaveProfile_clicked() {
     QString gender = m_genderCombo->currentText();
     QString orientation = m_orientationCombo->currentText();
 
-    // ВАЛІДАЦІЯ
+    // БАЗОВА ВАЛІДАЦІЯ
     if(name.isEmpty() || email.isEmpty() || age < 18) {
          QMessageBox::warning(this, tr("Увага"), tr("Ім'я, Email та вік (мінімум 18) є обов'язковими!"));
          return;
@@ -110,6 +110,12 @@ void ProfilePageWidget::on_btn_SaveProfile_clicked() {
     UserProfile newProfile(currentId, name, age, city, bio, gender, orientation);
     ContactInfo contacts(phone, email);
     newProfile.setContactInfo(contacts);
+
+    // ДОДАТКОВА ВАЛІДАЦІЯ ЧЕРЕЗ isValid()
+    if (!newProfile.isValid()) {
+        QMessageBox::warning(this, tr("Увага"), tr("Перевірте правильність введених даних: ім'я, місто, біо або телефон."));
+        return;
+    }
 
     // ЛОГІКА ЗБЕРЕЖЕННЯ
     if (currentId != -1) {
@@ -146,6 +152,7 @@ void ProfilePageWidget::on_btn_SaveProfile_clicked() {
         QMessageBox::critical(this, tr("Помилка"), tr("Не вдалося виконати операцію збереження профілю."));
     }
 }
+
 
 void ProfilePageWidget::setInternalProfile(const UserProfile& profile) {
     m_currentUser = profile;
