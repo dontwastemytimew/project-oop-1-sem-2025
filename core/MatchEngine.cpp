@@ -95,7 +95,7 @@ QList<QPair<UserProfile, int>> MatchEngine::getSortedMatches(int userId) const
     // 1. Отримуємо профіль поточного користувача
     UserProfile me;
     if (!m_dbManager->getCurrentUserProfile(me)) {
-        UserLogger::log(UserLogger::Error, "MatchEngine failed: Could not load current user profile.");
+        UserLogger::log(Error, "MatchEngine failed: Could not load current user profile.");
         return result;
     }
 

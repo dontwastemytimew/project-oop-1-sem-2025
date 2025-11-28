@@ -19,6 +19,8 @@ add_library(DatingAgencyLogic STATIC
         models/Preference.cpp models/Preference.h
         core/MatchEngine.cpp core/MatchEngine.h
         core/FakeDataManager.cpp core/FakeDataManager.h
+        models/ChatManager.cpp models/ChatManager.h
+        models/ChatWindow.cpp models/ChatWindow.h
 )
 
 target_link_libraries(DatingAgencyLogic PUBLIC

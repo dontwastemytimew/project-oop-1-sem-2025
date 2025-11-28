@@ -602,3 +602,65 @@ QList<UserProfile> DatabaseManager::getProfilesByIds(const QList<int> &ids) {
     }
     return profiles;
 }
+
+// для AdminPanel
+QSqlTableModel* DatabaseManager::getUsersModel(QObject* parent) {
+    QSqlTableModel* model = new QSqlTableModel(parent, m_db);
+    model->setTable("users");
+    model->setEditStrategy(QSqlTableModel::OnManualSubmit);
+
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("ID"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("Ім'я"));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("Вік"));
+    model->setHeaderData(3, Qt::Horizontal, QObject::tr("Місто"));
+    model->setHeaderData(4, Qt::Horizontal, QObject::tr("Біо"));
+    model->setHeaderData(5, Qt::Horizontal, QObject::tr("Телефон"));
+    model->setHeaderData(6, Qt::Horizontal, QObject::tr("Email"));
+    model->setHeaderData(7, Qt::Horizontal, QObject::tr("Стать"));
+    model->setHeaderData(8, Qt::Horizontal, QObject::tr("Орієнтація"));
+    model->setHeaderData(9, Qt::Horizontal, QObject::tr("Прихований"));
+
+    model->select();
+    return model;
+}
+
+// для StatsDialog
+QMap<QString, int> DatabaseManager::getGenderStatistics() {
+    QMap<QString, int> stats;
+    QSqlQuery query("SELECT gender, COUNT(*) FROM users WHERE is_hidden=0 GROUP BY gender", m_db);
+    while (query.next()) {
+        QString gender = query.value(0).toString();
+        if (gender.isEmpty()) gender = "Невідомо";
+        stats.insert(gender, query.value(1).toInt());
+    }
+    return stats;
+}
+
+// для StatsDialog
+QMap<QString, int> DatabaseManager::getCityStatistics() {
+    QMap<QString, int> stats;
+    QSqlQuery query("SELECT city, COUNT(*) FROM users WHERE is_hidden=0 GROUP BY city ORDER BY COUNT(*) DESC LIMIT 5", m_db);
+    while (query.next()) {
+        stats.insert(query.value(0).toString(), query.value(1).toInt());
+    }
+    return stats;
+}
+
+// для StatsDialog
+QMap<QString, int> DatabaseManager::getAgeStatistics() {
+    QMap<QString, int> stats;
+    stats["18-25"] = 0;
+    stats["26-35"] = 0;
+    stats["36-50"] = 0;
+    stats["50+"] = 0;
+
+    QSqlQuery query("SELECT age FROM users WHERE is_hidden=0", m_db);
+    while (query.next()) {
+        int age = query.value(0).toInt();
+        if (age <= 25) stats["18-25"]++;
+        else if (age <= 35) stats["26-35"]++;
+        else if (age <= 50) stats["36-50"]++;
+        else stats["50+"]++;
+    }
+    return stats;
+}
