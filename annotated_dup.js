@@ -2,9 +2,13 @@ var annotated_dup =
 [
     [ "AdminPageWidget", "classAdminPageWidget.html", null ],
     [ "BenchmarkTool", "classBenchmarkTool.html", null ],
+    [ "ChatManager", "classChatManager.html", null ],
+    [ "ChatMessage", "structChatMessage.html", null ],
+    [ "ChatWindow", "classChatWindow.html", null ],
     [ "ContactInfo", "classContactInfo.html", "classContactInfo" ],
     [ "DatabaseManager", "classDatabaseManager.html", "classDatabaseManager" ],
     [ "FakeDataManager", "classFakeDataManager.html", null ],
+    [ "LikesManager", "classLikesManager.html", null ],
     [ "MainWindow", "classMainWindow.html", null ],
     [ "MatchEngine", "classMatchEngine.html", "classMatchEngine" ],
     [ "MatchesPageWidget", "classMatchesPageWidget.html", null ],
@@ -14,6 +18,7 @@ var annotated_dup =
     [ "SearchPageWidget", "classSearchPageWidget.html", "classSearchPageWidget" ],
     [ "SettingsPageWidget", "classSettingsPageWidget.html", null ],
     [ "StatsDialog", "classStatsDialog.html", null ],
+    [ "TagManager", "classTagManager.html", null ],
     [ "UserLogger", "classUserLogger.html", null ],
     [ "UserProfile", "classUserProfile.html", "classUserProfile" ],
     [ "WelcomePageWidget", "classWelcomePageWidget.html", null ]

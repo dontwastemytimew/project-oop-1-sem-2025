@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['welcomepagewidget_0',['WelcomePageWidget',['../classWelcomePageWidget.html',1,'']]]
+  ['tagmanager_0',['TagManager',['../classTagManager.html',1,'']]]
 ];

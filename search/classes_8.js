@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['userlogger_0',['UserLogger',['../classUserLogger.html',1,'']]],
-  ['userprofile_1',['UserProfile',['../classUserProfile.html',1,'']]]
+  ['searchpagewidget_0',['SearchPageWidget',['../classSearchPageWidget.html',1,'']]],
+  ['settingspagewidget_1',['SettingsPageWidget',['../classSettingsPageWidget.html',1,'']]],
+  ['statsdialog_2',['StatsDialog',['../classStatsDialog.html',1,'']]]
 ];

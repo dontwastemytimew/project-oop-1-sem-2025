@@ -13,7 +13,8 @@ var searchData=
   ['setpreference_10',['setPreference',['../classUserProfile.html#a42716f5a43f6a57b54af3a00076e4e98',1,'UserProfile']]],
   ['setprofiledata_11',['setProfileData',['../classProfileCard.html#a4d5e9e5fd52ec97ef17f3469309d78c7',1,'ProfileCard']]],
   ['setprofilehidden_12',['setProfileHidden',['../classDatabaseManager.html#aaafec4dfbc1a791a3cefab8488fe62f6',1,'DatabaseManager']]],
-  ['settingspagewidget_13',['SettingsPageWidget',['../classSettingsPageWidget.html',1,'']]],
-  ['showmatchpopup_14',['showMatchPopup',['../classSearchPageWidget.html#a9b7ce3a6fadcb217680b03c363b9b811',1,'SearchPageWidget']]],
-  ['statsdialog_15',['StatsDialog',['../classStatsDialog.html',1,'']]]
+  ['settags_13',['setTags',['../classUserProfile.html#a9e4466ef0a9582a9b50883e87c63ba4c',1,'UserProfile']]],
+  ['settingspagewidget_14',['SettingsPageWidget',['../classSettingsPageWidget.html',1,'']]],
+  ['showmatchpopup_15',['showMatchPopup',['../classSearchPageWidget.html#a9b7ce3a6fadcb217680b03c363b9b811',1,'SearchPageWidget']]],
+  ['statsdialog_16',['StatsDialog',['../classStatsDialog.html',1,'']]]
 ];

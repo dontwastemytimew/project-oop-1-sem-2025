@@ -12,5 +12,6 @@ var searchData=
   ['setpreference_9',['setPreference',['../classUserProfile.html#a42716f5a43f6a57b54af3a00076e4e98',1,'UserProfile']]],
   ['setprofiledata_10',['setProfileData',['../classProfileCard.html#a4d5e9e5fd52ec97ef17f3469309d78c7',1,'ProfileCard']]],
   ['setprofilehidden_11',['setProfileHidden',['../classDatabaseManager.html#aaafec4dfbc1a791a3cefab8488fe62f6',1,'DatabaseManager']]],
-  ['showmatchpopup_12',['showMatchPopup',['../classSearchPageWidget.html#a9b7ce3a6fadcb217680b03c363b9b811',1,'SearchPageWidget']]]
+  ['settags_12',['setTags',['../classUserProfile.html#a9e4466ef0a9582a9b50883e87c63ba4c',1,'UserProfile']]],
+  ['showmatchpopup_13',['showMatchPopup',['../classSearchPageWidget.html#a9b7ce3a6fadcb217680b03c363b9b811',1,'SearchPageWidget']]]
 ];
