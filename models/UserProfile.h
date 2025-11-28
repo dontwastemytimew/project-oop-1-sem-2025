@@ -1,6 +1,8 @@
 #ifndef USERPROFILE_H
 #define USERPROFILE_H
 
+#include <QString>
+#include <QStringList>
 #include "ContactInfo.h"
 #include "Preference.h"
 
@@ -27,7 +29,7 @@ public:
     UserProfile(int id = -1, const QString &name = "", int age = 0,
                 const QString &city = "", const QString &bio = "",
                 const QString &gender = "", const QString &orientation = "",
-                const QString &photoPath = "");
+                const QString &photoPath = ""); 
 
     // --- Геттери ---
 
@@ -36,23 +38,8 @@ public:
     int getAge() const;
     QString getCity() const;
     QString getBio() const;
-
-    /**
-     * @brief Повертає стать користувача.
-     * @return Рядок із назвою статі.
-     */
     QString getGender() const;
-
-    /**
-     * @brief Повертає орієнтацію користувача.
-     * @return Рядок із назвою орієнтації.
-     */
     QString getOrientation() const;
-
-    /**
-     * @brief Повертає об'єкт контактної інформації.
-     * @return Об'єкт ContactInfo.
-     */
     ContactInfo getContactInfo() const;
 
     /**
@@ -66,6 +53,11 @@ public:
      * @return Об'єкт Preference.
      */
     Preference getPreference() const;
+
+    /**
+     * @brief Повертає список тегів/інтересів користувача.
+     */
+    QStringList getTags() const { return m_tags; }
 
     // --- Сеттери ---
 
@@ -100,30 +92,31 @@ public:
      */
     void setPreference(const Preference &prefs);
 
+    /**
+     * @brief Встановлює теги/інтереси користувача.
+     */
+    void setTags(const QStringList& tags) { m_tags = tags; }
+
+    /**
+     * @brief Перевіряє коректність введених користувачем даних.
+     * @return true, якщо дані валідні
+     */
+    bool isValid() const;
+
 private:
-    /// Унікальний ID користувача
     int m_id;
-    /// Ім'я користувача.
     QString m_name;
-    /// Вік користувача.
     int m_age;
-    /// Місто користувача.
     QString m_city;
-    /// Біографія користувача.
     QString m_bio;
-    /// Стать користувача.
     QString m_gender;
-    /// Сексуальна орієнтація.
     QString m_orientation;
 
-    /// Вбудований об'єкт для зберігання контактів (Композиція).
     ContactInfo m_contactInfo;
-
-    /// Збережені критерії пошуку (вік, місто, інтереси тощо)
     Preference m_preferences;
 
-    /// Шлях до фото користувача
-    QString m_photoPath;
+    QStringList m_tags; // <-- ЗМІННА ДЛЯ ТЕГІВ
+    QString m_photoPath; // <-- ЗМІННА ДЛЯ ФОТОГРАФІЙ
 };
 
 #endif // USERPROFILE_H

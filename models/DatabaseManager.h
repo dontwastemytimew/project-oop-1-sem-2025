@@ -119,7 +119,6 @@ public:
      */
     QSqlTableModel* getUsersModel(QObject* parent = nullptr);
 
-    // --- Статистика ---
 
     /**
      * @brief Отримує статистику кількості користувачів по містах (Top-5).
@@ -150,6 +149,13 @@ public:
      */
     int countUsers();
 
+    /**
+     * @brief Отримує список усіх унікальних міст з профілів.
+     * @return QStringList унікальних назв міст.
+     */
+    QStringList getAllCities(); // <--- МЕТОД З ОБОХ БЛОКІВ
+
+    
     /**
      * @brief Додає лайк від одного користувача іншому.
      * @return true, якщо операція успішна.
@@ -193,11 +199,6 @@ public:
      */
     QList<UserProfile> getProfilesByIds(const QList<int> &ids);
 
-    /**
-     * @brief Отримує список усіх унікальних міст з профілів.
-     * @return QStringList унікальних назв міст.
-     */
-    QStringList getAllCities();
 
 private:
     QSqlDatabase m_db;

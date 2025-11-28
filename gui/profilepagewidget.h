@@ -26,11 +26,12 @@ public:
 
     private slots:
         void on_btn_SaveProfile_clicked();
-    void onChoosePhoto();
+        void onChoosePhoto(); // <-- Слот для вибору фото
 
 private:
     DatabaseManager* m_dbManager;
     UserProfile m_currentUser;
+
     QString m_photoPath;
     QLineEdit* m_nameEdit;
     QSpinBox* m_ageSpinBox;
@@ -40,9 +41,11 @@ private:
     QLineEdit* m_emailEdit;
     QComboBox* m_genderCombo;
     QComboBox* m_orientationCombo;
-    QLabel* m_photoLabel; // <-- Поле для відображення фото
-    QPushButton* m_choosePhotoButton; // <-- Кнопка "Обрати фото"
+    QLabel* m_photoLabel; 
+    QPushButton* m_choosePhotoButton;
     QPushButton* m_saveButton;
+    
+    // --- ПРИВАТНІ МЕТОДИ ---
     void setupCityAutocomplete(); // <-- Метод для автодоповнення
 };
 

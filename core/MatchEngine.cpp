@@ -3,80 +3,73 @@
 #include "UserProfile.h"
 #include <QtMath>
 #include <QSettings>
+#include <QList>
+#include <algorithm>
 
 MatchEngine::MatchEngine(DatabaseManager* dbManager)
     : m_dbManager(dbManager)
 {
 }
 
-// Видаляємо стару calculateMatch, оскільки функціонал перенесено в SQL та compatibilityScore.
-// bool MatchEngine::calculateMatch(const UserProfile &profile, const Preference &prefs)
-// {
-//     if (prefs.getMinAge() != 0 && profile.getAge() < prefs.getMinAge())
-//         return false;
-//
-//     if (prefs.getMaxAge() != 0 && profile.getAge() > prefs.getMaxAge())
-//         return false;
-//
-//     if (!prefs.getCity().isEmpty() && profile.getCity() != prefs.getCity())
-//         return false;
-//
-//     return true;
-// }
+bool MatchEngine::isCompatible(const UserProfile& p1, const UserProfile& p2) const
+{
+    // 1. Не можеш бути сумісним із собою
+    if (p1.getId() == p2.getId() && p1.getId() != -1)
+        return false;
 
-/**
- * @brief Основний алгоритм сумісності
- *
- * Формула:
- * +30       — збіг міста
- * +20       — різниця у віці < 2
- * +10       — бонус за близький вік (до 5 років)
- * -1000     — якщо гендер/орієнтація несумісні
- */
+    // 2. Якщо несумісність критична (орієнтація/стать)
+    if (compatibilityScore(p1, p2) < 0) {
+        return false;
+    }
+
+    // 3. Перевірка сумісності за відсотком (УМОВНИЙ ПОРІГ 60%)
+    int percent = compatibilityPercent(p1, p2);
+
+    return percent >= 60;
+}
+
 int MatchEngine::compatibilityScore(const UserProfile& p1, const UserProfile& p2) const
 {
     int score = 0;
 
-    // ПЕРЕВІРКА КРИТИЧНОЇ НЕСУМІСНОСТІ (Орієнтація)
-    // p1 - той, хто шукає; p2 - знайдений профіль
-    if (p1.getOrientation() == "Гетеро") {
-        if (p1.getGender() == p2.getGender()) {
-            return -1000;
-        }
-    }
-    else if (p1.getOrientation() == "Гей/Лесбі") {
-        if (p1.getGender() != p2.getGender()) {
-            return -1000;
-        }
-    }
-    // "Бісексуал" та "Інше" вважаються сумісними з усіма гендерами.
+    // КРИТИЧНА НЕСУМІСНІСТЬ
 
-    // --- БАЛАНСУЮЧІ БАЛИ ---
+    // Гетеро (p1) шукає протилежну стать
+    if (p1.getOrientation() == "Гетеро" && p1.getGender() == p2.getGender()) {
+        return -1000;
+    }
+    // Гей/Лесбі (p1) шукає ту ж саму стать
+    else if (p1.getOrientation() == "Гей/Лесбі" && p1.getGender() != p2.getGender()) {
+        return -1000;
+    }
+    // Бісексуал та Інше завжди сумісні.
 
-    // Місто (+30 балів)
+    // БАЛИ ЗА КРИТЕРІЯМ
+
+    // Місто (+20 балів)
     if (!p1.getCity().isEmpty() && p1.getCity() == p2.getCity()) {
-        score += 30;
-    }
-
-    // Різниця у віці < 2 років (+20 балів)
-    int ageDiff = qAbs(p1.getAge() - p2.getAge());
-    if (ageDiff <= 2) {
         score += 20;
     }
 
-    // Проста бонусна логіка: Близькість віку (+10..1 балів)
-    if (ageDiff <= 5) {
-        score += (10 - ageDiff);
+    // Вік (різниця < 3 років = +20 балів)
+    int ageDiff = qAbs(p1.getAge() - p2.getAge());
+    if (ageDiff <= 2) {
+        score += 20;
+    } else if (ageDiff < 6) {
+        score += 10; // Бонус за близький вік
     }
 
-    // 5. Теги (TODO): Коли реалізуєте, додайте +10 за збіг
+    // Теги (TODO): Логіка з тегами тут не може бути реалізована без getTags().
+
+    // Біо (+5 балів за наявність)
+    if (!p1.getBio().isEmpty() && !p2.getBio().isEmpty()) {
+        score += 5;
+    }
 
     return score;
 }
 
-/**
- * @brief Повертає % сумісності (0–100)
- */
+
 int MatchEngine::compatibilityPercent(const UserProfile& p1, const UserProfile& p2) const
 {
     int score = compatibilityScore(p1, p2);
@@ -84,9 +77,8 @@ int MatchEngine::compatibilityPercent(const UserProfile& p1, const UserProfile& 
     if (score < 0)
         return 0;
 
-    // Максимальний бал (30 місто + 20 вік + 10 бонус = 60)
-    // Якщо буде реалізовано 5 інтересів (+50), то max = 110.
-    const int MAX_SCORE = 60;
+    // Максимальний бал (20 місто + 20 вік <2 + 10 вік <6 + 5 біо = 55)
+    const int MAX_SCORE = 55;
 
     int percent = qFloor((score * 100.0) / MAX_SCORE);
 
@@ -95,24 +87,37 @@ int MatchEngine::compatibilityPercent(const UserProfile& p1, const UserProfile& 
     return percent;
 }
 
-/**
- * @brief Повертає true, якщо вони подолали базові бар’єри
- *
- * Цю функцію використовує DatabaseManager для початкової SQL-фільтрації.
- */
-bool MatchEngine::isCompatible(const UserProfile& p1, const UserProfile& p2) const
-{
-    // Не можеш бути сумісним із собою
-    if (p1.getId() == p2.getId() && p1.getId() != -1)
-        return false;
 
-    // Якщо несумісність критична (-1000), то відсоток буде 0
-    if (compatibilityScore(p1, p2) < 0) {
-        return false;
+QList<QPair<UserProfile, int>> MatchEngine::getSortedMatches(int userId) const
+{
+    QList<QPair<UserProfile, int>> result;
+
+    // 1. Отримуємо профіль поточного користувача
+    UserProfile me;
+    if (!m_dbManager->getCurrentUserProfile(me)) {
+        UserLogger::log(UserLogger::Error, "MatchEngine failed: Could not load current user profile.");
+        return result;
     }
 
-    // Перевірка сумісності за відсотком (УМОВНИЙ ПОРІГ 60%)
-    int percent = compatibilityPercent(p1, p2);
+    // 2. Отримуємо список ID, з якими стався взаємний лайк
+    QList<int> matchIds = m_dbManager->getMutualMatchIds(userId);
+    if (matchIds.isEmpty()) return result;
 
-    return percent >= 60;
+    // 3. Завантажуємо повні профілі цих ID
+    QList<UserProfile> matchedUsers = m_dbManager->getProfilesByIds(matchIds);
+
+    // 4. Обчислюємо Score для кожного і додаємо до списку
+    for (const UserProfile& target : matchedUsers)
+    {
+        int percent = compatibilityPercent(me, target);
+        result.append({target, percent});
+    }
+
+    // 5. Сортування (від найбільшого відсотка до найменшого)
+    std::sort(result.begin(), result.end(),
+              [](const auto& a, const auto& b){
+                  return a.second > b.second;
+              });
+
+    return result;
 }
