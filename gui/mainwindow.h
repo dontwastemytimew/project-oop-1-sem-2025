@@ -10,16 +10,11 @@
 #include "welcomepagewidget.h"
 #include "adminpagewidget.h"
 #include <QButtonGroup>
+#include "settingspagewidget.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
-
-class SearchPageWidget;
-class ProfilePageWidget;
-class MatchesPageWidget;
-class SettingsPageWidget;
-class WelcomePageWidget;
 
 class MainWindow : public QMainWindow {
     Q_OBJECT
@@ -32,7 +27,7 @@ public:
     void switchTheme(bool isDark);
     void showAdminPage();
 
-    private slots:
+private slots:
     void on_btn_Search_clicked();
     void on_btn_Profile_clicked();
     void on_btn_Matches_clicked();

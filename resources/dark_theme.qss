@@ -406,3 +406,75 @@ QLabel#cardBio {
     font-size: 14px;
     color: #cccccc;
 }
+
+/* --- СТИЛІ КАРТКИ ПРОФІЛЮ (ТЕМНА ТЕМА) --- */
+
+/* Контейнер картки */
+QFrame#cardFrame {
+    background-color: #252526; /* Трохи світліше за фон вікна */
+    border-radius: 12px;
+    border: 1px solid #444444;
+}
+
+/* ★ Заголовок (Ім'я, Вік) */
+QLabel#cardName {
+    font-size: 26px;
+    font-weight: bold;
+    color: #FFFFFF;
+    padding-top: 10px;
+}
+QLabel#cardAge {
+    font-size: 26px;
+    font-weight: normal;
+    color: #DDDDDD;
+}
+
+/* ★ Сумісність (%) - Рожевий/Фіолетовий текст */
+QLabel#cardCompatibility {
+    font-size: 16px;
+    font-weight: bold;
+    color: #9932CC; /* Фіолетовий, щоб виділявся на темному */
+    padding-top: 5px;
+    padding-bottom: 5px;
+    qproperty-pixmap: url(:/resources/icons/heart_white.png);
+}
+
+/* Місто */
+QLabel#cardCity {
+    font-size: 14px;
+    color: #AAAAAA;
+    padding-bottom: 10px;
+}
+
+/* Фото Placeholder */
+QLabel#cardPhoto {
+    border-radius: 10px;
+    background-color: #333333;
+}
+
+/* --- СТИЛІ СТОРІНКИ МЕТЧІВ --- */
+
+/* Заголовок Сторінки Метчів */
+QLabel#matchesTitleLabel {
+    font-size: 22pt;
+    font-weight: bold;
+    color: #9932CC; /* Світло-фіолетовий */
+    padding: 10px;
+
+    /* ★ ЗАМІНА ЕМОДЗІ НА ІКОНКУ СЕРЦЯ */
+    qproperty-pixmap: url(:/resources/icons/heart_white.png); /* Біле сердечко для темної теми */
+    qproperty-alignment: AlignHCenter;
+}
+
+/* Список Метчів (Елементи) */
+QListWidget#matchesListWidget {
+    background-color: #2D2D2D;
+    color: #F0F0F0;
+    border: 1px solid #444444;
+    border-radius: 8px;
+    font-size: 16px;
+}
+QListWidget#matchesListWidget::item {
+    padding: 8px;
+    qproperty-iconSize: 50px 50px;
+}

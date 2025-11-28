@@ -10,7 +10,6 @@ set(CMAKE_AUTOUIC ON)
 find_package(Qt6 COMPONENTS Core Sql Gui Widgets Charts REQUIRED)
 
 include_directories(models core gui utils)
-
 include_directories(. models core gui utils)
 
 add_library(DatingAgencyLogic STATIC
@@ -26,6 +25,8 @@ add_library(DatingAgencyLogic STATIC
 target_link_libraries(DatingAgencyLogic PUBLIC
         Qt6::Core
         Qt6::Sql
+        Qt6::Widgets
+        Qt6::Charts
 )
 
 add_executable(project_oop_1_sem_2025
@@ -41,15 +42,22 @@ add_executable(project_oop_1_sem_2025
         gui/adminpagewidget.cpp
         gui/StatsDialog.cpp
 )
+
 target_link_libraries(project_oop_1_sem_2025 PRIVATE
         DatingAgencyLogic
+
+        # --- ЯВНО ПЕРЕЛІЧУЄМО ВСІ ЗАЛЕЖНОСТІ, ЯКІ ВИКОРИСТОВУЮТЬСЯ ---
+        # Це вирішує "undefined reference" для всіх функцій DatabaseManager
+
+        Qt6::Sql        # (Для getUsersModel, getGenderStatistics і т.д.)
+        Qt6::Charts     # (Для StatsDialog)
+        Qt6::Widgets    # (Для QSqlTableModel)
         Qt6::Gui
-        Qt6::Widgets
-        Qt6::Charts
+        Qt6::Core
+        # -------------------------------------------------------------
 )
 
 include(FetchContent)
-
 
 FetchContent_Declare(
         googletest
@@ -62,11 +70,13 @@ include(GoogleTest)
 add_executable(dating_agency_tests
         tests/tests_main.cpp
         tests/DatabaseManagerTests.cpp
+        tests/matchengine_tests.cpp
 )
-
 
 target_link_libraries(dating_agency_tests PRIVATE
         DatingAgencyLogic
+        Qt6::Core
+        Qt6::Sql
         gtest_main
 )
 

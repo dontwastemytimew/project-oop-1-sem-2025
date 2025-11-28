@@ -4,37 +4,41 @@
 #include "Preference.h"
 #include "UserProfile.h"
 #include "DatabaseManager.h"
+#include <QtMath>
 
 /**
  * @brief MatchEngine class
  *
- * клас для простого алгоритму фільтрування профілів за Preference
+ * Розрахунок сумісності профілів на основі:
+ *  - статі / орієнтації
+ *  - віку
+ *  - міста
+ *  - тегів (TODO)
+ *  - формули балів
  */
 class MatchEngine {
 public:
 
- explicit MatchEngine(DatabaseManager* dbManager);
+    explicit MatchEngine(DatabaseManager* dbManager);
 
     /**
-     * @brief calculateMatch
-     * @param profile Профіль користувача
-     * @param prefs Критерії пошуку
-     * @return true, якщо профіль відповідає **всім** критеріям
-     */
-    static bool calculateMatch(const UserProfile &profile, const Preference &prefs);
-
-    /**
-     * @brief Перевіряє сумісність двох профілів.
-     * @param p1 Перший профіль.
-     * @param p2 Другий профіль.
-     * @return true, якщо вони сумісні.
-     */
+      * @brief Перевіряє сумісність двох профілів.
+      * @return true, якщо вони подолали базові бар'єри (наприклад, 60%).
+      */
     bool isCompatible(const UserProfile& p1, const UserProfile& p2) const;
 
- private:
- DatabaseManager* m_dbManager;
+    /**
+     * @brief Обчислює сумарний бал сумісності (напр., 50 балів).
+     */
+    int compatibilityScore(const UserProfile& p1, const UserProfile& p2) const;
+
+    /**
+     * @brief Обчислює % сумісності (0–100).
+     */
+    int compatibilityPercent(const UserProfile& p1, const UserProfile& p2) const;
+
+private:
+    DatabaseManager* m_dbManager;
 };
-
-
 
 #endif // MATCHENGINE_H
