@@ -2,46 +2,44 @@
 #define SEARCHPAGEWIDGET_H
 
 #include <QWidget>
-#include <QList>
+#include <QVector>
 #include "DatabaseManager.h"
 #include "UserProfile.h"
+#include "profilecard.h"
 
-class QSpinBox;
-class QLineEdit;
-class QPushButton;
-class QStackedWidget;
-class QComboBox;
+namespace Ui {
+class SearchPageWidget;
+}
 
-class SearchPageWidget : public QWidget {
+class SearchPageWidget : public QWidget
+{
     Q_OBJECT
+
 public:
     explicit SearchPageWidget(QWidget *parent = nullptr);
+    ~SearchPageWidget();
 
     void setDatabaseManager(DatabaseManager* dbManager);
+    void loadProfiles();
 
-    private slots:
-        void on_btn_Find_clicked();
+signals:
+    void matchFound(int userId, int targetId);   // ★ новий сигнал (для 4.4)
+
+private slots:
     void on_Like_clicked();
     void on_Skip_clicked();
 
 private:
-    DatabaseManager* m_dbManager;
+    Ui::SearchPageWidget *ui;
+    DatabaseManager* m_dbManager = nullptr;
 
-    void showNextProfile();
+    QVector<UserProfile> m_profiles;
+    int m_index = 0;
 
-    QSpinBox* m_minAgeSpin;
-    QSpinBox* m_maxAgeSpin;
-    QLineEdit* m_cityEdit;
-    QPushButton* m_findButton;
+    UserProfile m_currentUser;
 
-    QStackedWidget* m_resultsStack;
-    QPushButton* m_likeButton;
-    QPushButton* m_skipButton;
-
-    QList<UserProfile> m_currentMatches;
-    int m_currentMatchIndex;
-    QComboBox* m_genderCombo;
-    QComboBox* m_orientationCombo;
+    void showCurrentProfile();
+    void showMatchPopup(const UserProfile& target);
 };
 
 #endif // SEARCHPAGEWIDGET_H

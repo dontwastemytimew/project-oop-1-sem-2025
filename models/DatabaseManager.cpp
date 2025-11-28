@@ -36,6 +36,9 @@ void DatabaseManager::closeDatabase() {
 bool DatabaseManager::createTables() {
     QSqlQuery query;
 
+    //
+    // ---- USERS ----
+    //
     QString createUsersSql =
         "CREATE TABLE IF NOT EXISTS users ("
         "id INTEGER PRIMARY KEY AUTOINCREMENT, "
@@ -47,7 +50,7 @@ bool DatabaseManager::createTables() {
         "email VARCHAR(100),"
         "gender VARCHAR(20),"
         "orientation VARCHAR(20),"
-        "photo_path TEXT,"               -- ★ Поле фото
+        "photo_path TEXT,"
         "is_hidden BOOLEAN DEFAULT 0"
         ");";
 
@@ -56,10 +59,34 @@ bool DatabaseManager::createTables() {
         return false;
     }
 
-    UserLogger::log(Info, "Table 'users' verified/created successfully.");
+    //
+    // ---- LIKES (пункт 4.1) ----
+    //
+    QString createLikesSql =
+        "CREATE TABLE IF NOT EXISTS likes ("
+        "id INTEGER PRIMARY KEY AUTOINCREMENT, "
+        "user_id INTEGER NOT NULL, "
+        "target_id INTEGER NOT NULL, "
+        "timestamp DATETIME DEFAULT CURRENT_TIMESTAMP, "
+        "UNIQUE(user_id, target_id)"
+        ");";
+
+    if (!query.exec(createLikesSql)) {
+        UserLogger::log(Error, "Failed to create 'likes' table: " + query.lastError().text());
+        return false;
+    }
+
+    // Індекси для швидкої роботи
+    query.exec("CREATE INDEX IF NOT EXISTS idx_likes_user ON likes(user_id)");
+    query.exec("CREATE INDEX IF NOT EXISTS idx_likes_target ON likes(target_id)");
+
+    UserLogger::log(Info, "Tables 'users' and 'likes' verified/created successfully.");
     return true;
 }
 
+//
+// ---- SAVE PROFILE ----
+//
 int DatabaseManager::saveProfile(const UserProfile &profile) {
 
     if (profile.getName().isEmpty()) {
@@ -99,7 +126,7 @@ int DatabaseManager::saveProfile(const UserProfile &profile) {
     query.addBindValue(profile.getContactInfo().getEmail());
     query.addBindValue(profile.getGender());
     query.addBindValue(profile.getOrientation());
-    query.addBindValue(profile.getPhotoPath());   // ★ Додавання фото
+    query.addBindValue(profile.getPhotoPath());
 
     if (!query.exec()) {
         UserLogger::log(Error, "Failed to save profile: " + query.lastError().text());
@@ -119,6 +146,9 @@ int DatabaseManager::saveProfile(const UserProfile &profile) {
     return newId;
 }
 
+//
+// ---- LOAD PROFILE BY EMAIL ----
+//
 bool DatabaseManager::loadProfileByEmail(const QString &email, UserProfile &profile) {
 
     QSqlQuery query;
@@ -149,7 +179,6 @@ bool DatabaseManager::loadProfileByEmail(const QString &email, UserProfile &prof
     profile.setContactInfo(contacts);
 
     UserLogger::log(Info, "Profile loaded for: " + profile.getName());
-
     return true;
 }
 
@@ -163,6 +192,9 @@ bool DatabaseManager::profileExists(const QString &email) const {
     return query.next();
 }
 
+//
+// ---- UPDATE PROFILE ----
+//
 bool DatabaseManager::updateProfile(const UserProfile &profile) {
 
     if (profile.getId() == -1) {
@@ -191,7 +223,7 @@ bool DatabaseManager::updateProfile(const UserProfile &profile) {
     query.addBindValue(profile.getContactInfo().getEmail());
     query.addBindValue(profile.getGender());
     query.addBindValue(profile.getOrientation());
-    query.addBindValue(profile.getPhotoPath());      // ★ Оновлюємо фото
+    query.addBindValue(profile.getPhotoPath());
     query.addBindValue(profile.getId());
 
     if (!query.exec()) {
@@ -226,6 +258,9 @@ bool DatabaseManager::setProfileHidden(int profileId, bool isHidden) {
     return query.exec();
 }
 
+//
+// ---- LOAD CURRENT USER ----
+//
 bool DatabaseManager::getCurrentUserProfile(UserProfile &profile) {
 
     QSettings settings("DatingAgency", "TitleApp");
@@ -257,6 +292,9 @@ bool DatabaseManager::getCurrentUserProfile(UserProfile &profile) {
     return true;
 }
 
+//
+// ---- GET ALL PROFILES ----
+//
 QList<UserProfile> DatabaseManager::getAllProfiles() {
     QList<UserProfile> profiles;
 
@@ -290,6 +328,9 @@ QList<UserProfile> DatabaseManager::getAllProfiles() {
     return profiles;
 }
 
+//
+// ---- FILTER BY PREFERENCES ----
+//
 QList<UserProfile> DatabaseManager::getProfilesByCriteria(const Preference &prefs) {
     QList<UserProfile> profiles;
     QSqlQuery query(m_db);
@@ -359,6 +400,9 @@ int DatabaseManager::countUsers() {
     return 0;
 }
 
+//
+// ---- BULK INSERT ----
+//
 bool DatabaseManager::saveProfileBulk(const QList<UserProfile> &profiles) {
 
     if (!m_db.transaction())
@@ -394,10 +438,9 @@ bool DatabaseManager::saveProfileBulk(const QList<UserProfile> &profiles) {
 }
 
 //
-// ★★★ НОВИЙ МЕТОД — ДЛЯ AUTOCOMPLETE МІСТ
+// ---- AUTOCOMPLETE МІСТ ----
 //
 QStringList DatabaseManager::getAllCities() {
-
     QStringList cities;
     QSqlQuery query(m_db);
 
@@ -416,4 +459,85 @@ QStringList DatabaseManager::getAllCities() {
     }
 
     return cities;
+}
+
+//
+// =====================================================================
+// ★★★ LIKES / MATCHES
+// =====================================================================
+//
+
+bool DatabaseManager::addLike(int userId, int targetId) {
+    if (userId <= 0 || targetId <= 0 || userId == targetId)
+        return false;
+
+    QSqlQuery query(m_db);
+
+    query.prepare("INSERT OR IGNORE INTO likes (user_id, target_id) VALUES (?, ?)");
+    query.addBindValue(userId);
+    query.addBindValue(targetId);
+
+    if (!query.exec()) {
+        UserLogger::log(Error, "addLike failed: " + query.lastError().text());
+        return false;
+    }
+
+    return true;
+}
+
+bool DatabaseManager::removeLike(int userId, int targetId) {
+    QSqlQuery query(m_db);
+
+    query.prepare("DELETE FROM likes WHERE user_id=? AND target_id=?");
+    query.addBindValue(userId);
+    query.addBindValue(targetId);
+
+    return query.exec();
+}
+
+bool DatabaseManager::hasUserLiked(int userId, int targetId) const {
+    QSqlQuery query(m_db);
+
+    query.prepare("SELECT 1 FROM likes WHERE user_id=? AND target_id=?");
+    query.addBindValue(userId);
+    query.addBindValue(targetId);
+
+    if (!query.exec())
+        return false;
+
+    return query.next();
+}
+
+bool DatabaseManager::isMutualLike(int userId, int targetId) const {
+    if (!hasUserLiked(userId, targetId))
+        return false;
+
+    if (!hasUserLiked(targetId, userId))
+        return false;
+
+    return true;
+}
+
+QList<int> DatabaseManager::getMatches(int userId) const {
+    QList<int> result;
+    QSqlQuery query(m_db);
+
+    QString sql =
+        "SELECT target_id "
+        "FROM likes "
+        "WHERE user_id=? "
+        "AND target_id IN (SELECT user_id FROM likes WHERE target_id=?)";
+
+    query.prepare(sql);
+    query.addBindValue(userId);
+    query.addBindValue(userId);
+
+    if (!query.exec())
+        return result;
+
+    while (query.next()) {
+        result.append(query.value(0).toInt());
+    }
+
+    return result;
 }

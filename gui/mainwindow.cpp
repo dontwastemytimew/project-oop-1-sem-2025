@@ -38,7 +38,7 @@ MainWindow::MainWindow(DatabaseManager* dbManager, QWidget *parent)
     ui->stackedWidget_Pages->addWidget(m_settingsPage);
     ui->stackedWidget_Pages->addWidget(m_adminPage);
 
-    // Налаштовуємо теми та мову
+    // Тема + мова
     switchTheme(false);
     switchLanguage("ua");
 
@@ -47,18 +47,21 @@ MainWindow::MainWindow(DatabaseManager* dbManager, QWidget *parent)
         navLayout->setContentsMargins(0, 0, 0, 0);
     }
 
-    // ПЕРЕВІРКА ПЕРШОГО ЗАПУСКУ
+    // Перевіряємо, чи є збережений користувач
     UserProfile currentUser;
     m_userExists = m_dbManager->getCurrentUserProfile(currentUser);
 
     if (m_userExists) {
-        // Вантажимо налаштування
+        // Завантажуємо налаштування
         m_settingsPage->loadCurrentSettings(currentUser);
-
-        // Передаємо завантажений профіль сторінці профілю
         m_profilePage->setInternalProfile(currentUser);
 
-        UserLogger::log(Info, QString("User profile (ID=%1) loaded and passed to ProfilePage.").arg(currentUser.getId()));
+        UserLogger::log(Info, QString("User profile (ID=%1) loaded and passed to ProfilePage.")
+                                  .arg(currentUser.getId()));
+
+        //  ОНОВЛЕННЯ: передаємо MatchesPage userId + DB
+        m_matchesPage->setDatabaseManager(m_dbManager);
+        m_matchesPage->setCurrentUserId(currentUser.getId());
     } else {
         UserLogger::log(Info, "No user found. App running in 'guest' mode.");
     }
@@ -66,11 +69,19 @@ MainWindow::MainWindow(DatabaseManager* dbManager, QWidget *parent)
     ui->stackedWidget_Pages->setCurrentWidget(m_welcomePage);
     UserLogger::log(Info, "Showing Welcome Page.");
 
-    connect(m_profilePage, &ProfilePageWidget::profileSaved, this, &MainWindow::onProfileSaved);
+    //  ОНОВЛЕННЯ: підключаємо MATCH сигнал
+    connect(m_searchPage, &SearchPageWidget::matchFound,
+            m_matchesPage, &MatchesPageWidget::onMatchCreated);
+
+    connect(m_profilePage, &ProfilePageWidget::profileSaved,
+            this, &MainWindow::onProfileSaved);
+
     connect(m_adminPage, &AdminPageWidget::backClicked, this, [this](){
         ui->stackedWidget_Pages->setCurrentWidget(m_settingsPage);
     });
-    connect(m_settingsPage, &SettingsPageWidget::openAdminPanelRequested, this, &MainWindow::showAdminPage);
+
+    connect(m_settingsPage, &SettingsPageWidget::openAdminPanelRequested,
+            this, &MainWindow::showAdminPage);
 }
 
 MainWindow::~MainWindow()
@@ -81,37 +92,36 @@ MainWindow::~MainWindow()
 void MainWindow::on_btn_Search_clicked()
 {
     if (!m_userExists) {
-        UserLogger::log(Warning, "User tried to Search without profile.");
         QMessageBox::warning(this, tr("Профіль не знайдено"),
                              tr("Будь ласка, спочатку створіть свій профіль на сторінці 'Профіль'."));
         return;
     }
+
     ui->stackedWidget_Pages->setCurrentWidget(m_searchPage);
-    UserLogger::log(Info, "User switched to Search Page");
 }
 
 void MainWindow::on_btn_Profile_clicked()
 {
     ui->stackedWidget_Pages->setCurrentWidget(m_profilePage);
-    UserLogger::log(Info, "User switched to Profile Page");
 }
 
 void MainWindow::on_btn_Matches_clicked()
 {
     if (!m_userExists) {
-        UserLogger::log(Warning, "User tried to view Matches without profile.");
         QMessageBox::warning(this, tr("Профіль не знайдено"),
                              tr("У вас не може бути метчів, доки ви не створите профіль."));
         return;
     }
+
+    //  перезавантажуємо список на випадок нових матчів
+    m_matchesPage->reloadMatches();
+
     ui->stackedWidget_Pages->setCurrentWidget(m_matchesPage);
-    UserLogger::log(Info, "User switched to Matches Page");
 }
 
 void MainWindow::on_btn_Settings_clicked()
 {
     ui->stackedWidget_Pages->setCurrentWidget(m_settingsPage);
-    UserLogger::log(Info, "User switched to Settings Page");
 }
 
 void MainWindow::switchLanguage(const QString& languageCode)
@@ -121,10 +131,6 @@ void MainWindow::switchLanguage(const QString& languageCode)
     QString path = ":/translations/app_" + languageCode + ".qm";
     if (m_translator.load(path)) {
         qApp->installTranslator(&m_translator);
-        UserLogger::log(Info, "Language switched to: " + languageCode);
-    } else {
-        UserLogger::log(Warning, "Failed to load translation file: " + path);
-        qApp->removeTranslator(&m_translator);
     }
 }
 
@@ -137,21 +143,23 @@ void MainWindow::switchTheme(bool isDark)
         QString styleSheet = QTextStream(&styleFile).readAll();
         qApp->setStyleSheet(styleSheet);
         styleFile.close();
-        UserLogger::log(Info, QString("Theme switched to: %1").arg(isDark ? "Dark" : "Light"));
-    } else {
-        UserLogger::log(Warning, "Failed to load theme file: " + themePath);
     }
+
     m_settingsPage->updateThemeIcon(isDark);
 }
 
 void MainWindow::onProfileSaved()
 {
-    UserLogger::log(Info, "MainWindow received profileSaved signal.");
-    m_userExists = true;
-
-    // Оновлюємо налаштування (якщо це перший запуск)
     UserProfile currentUser;
+
     if (m_dbManager->getCurrentUserProfile(currentUser)) {
+
+        m_userExists = true;
+
+        //  ВАЖЛИВО: передаємо userId в MatchesPage тільки після реєстрації
+        m_matchesPage->setDatabaseManager(m_dbManager);
+        m_matchesPage->setCurrentUserId(currentUser.getId());
+
         m_settingsPage->loadCurrentSettings(currentUser);
     }
 }
@@ -159,5 +167,4 @@ void MainWindow::onProfileSaved()
 void MainWindow::showAdminPage() {
     ui->stackedWidget_Pages->setCurrentWidget(m_adminPage);
     m_adminPage->refreshTable();
-    UserLogger::log(Info, "Switched to Admin Panel.");
 }

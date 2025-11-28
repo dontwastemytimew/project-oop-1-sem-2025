@@ -13,8 +13,11 @@
  * @brief Клас DatabaseManager
  *
  * Відповідає за всі операції з базою даних SQLite:
- * з'єднання, створення таблиць, CRUD операції для профілів користувачів,
- * статистика, масове завантаження та допоміжні операції.
+ * - з'єднання
+ * - створення таблиць
+ * - CRUD операції
+ * - статистика
+ * - лайки/метчі
  */
 class DatabaseManager {
 public:
@@ -25,11 +28,6 @@ public:
     void closeDatabase();
     bool createTables();
 
-    /**
-     * @brief Зберігає новий профіль у БД.
-     * Підтримує збереження всіх основних полів, включно з photo_path.
-     * @return ID нового профілю або -1 у випадку помилки.
-     */
     int saveProfile(const UserProfile &profile);
 
     bool loadProfileByEmail(const QString &email, UserProfile &profile);
@@ -51,11 +49,18 @@ public:
     bool saveProfileBulk(const QList<UserProfile> &profiles);
     int countUsers();
 
-    /**
-     * @brief Повертає список усіх унікальних міст з таблиці users.
-     * Використовується для autocomplete міста у ProfilePageWidget.
-     */
-    QStringList getAllCities();   // ★ НОВИЙ МЕТОД (пункт 2.2)
+    QStringList getAllCities();
+
+    //
+    // ★★★ LIKES / MATCHES
+    //
+    bool addLike(int userId, int targetId);
+    bool removeLike(int userId, int targetId);
+
+    bool hasUserLiked(int userId, int targetId) const;
+    bool isMutualLike(int userId, int targetId) const;
+
+    QList<int> getMatches(int userId) const;
 
 private:
     QSqlDatabase m_db;
