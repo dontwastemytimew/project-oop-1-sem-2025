@@ -156,48 +156,30 @@ public:
     QStringList getAllCities(); // <--- МЕТОД З ОБОХ БЛОКІВ
 
     
-    /**
-     * @brief Додає лайк від одного користувача іншому.
-     * @return true, якщо операція успішна.
-     */
-    bool addLike(int userId, int targetId);
+   // Метчі і лайки
 
     /**
-     * @brief Видаляє лайк.
-     * @return true, якщо операція успішна.
+     * @brief Додає лайк між користувачами.
+     * @param fromUserId — хто лайкає
+     * @param toUserId — кого лайкають
+     * @return true, якщо лайк додано або вже існує, false у разі помилки
      */
-    bool removeLike(int userId, int targetId);
+    bool addLike(int fromUserId, int toUserId);
 
     /**
-     * @brief Перевіряє, чи користувач лайкнув цільовий профіль.
+     * @brief Перевіряє, чи два користувачі лайкнули одне одного.
+     * @param user1
+     * @param user2
+     * @return true, якщо лайк взаємний
      */
-    bool hasUserLiked(int userId, int targetId) const;
-
+    bool isMutualLike(int user1, int user2);
+    
     /**
-     * @brief Перевіряє, чи лайки є взаємними (Match).
+     * @brief Повертає список ID користувачів, з якими є взаємний лайк.
+     * @param userId
+     * @return QVector<int> зі списком матчів
      */
-    bool isMutualLike(int userId, int targetId) const;
-
-    /**
-     * @brief Отримує список ID профілів, які лайкнув поточний користувач.
-     * @param userId ID поточного користувача.
-     * @return Список ID цільових профілів.
-     */
-    QList<int> getMatches(int userId) const;
-
-    /**
-     * @brief Отримує список ID профілів, з якими відбувся взаємний лайк (Метч).
-     * @param currentUserId ID поточного користувача.
-     * @return Список ID, які лайкнули нас у відповідь.
-     */
-    QList<int> getMutualMatchIds(int currentUserId);
-
-    /**
-     * @brief Отримує повні профілі за списком їхніх ID.
-     * @param ids Список ID для пошуку.
-     * @return Список об'єктів UserProfile.
-     */
-    QList<UserProfile> getProfilesByIds(const QList<int> &ids);
+    QVector<int> getMatchesForUser(int userId);
 
 
 private:
