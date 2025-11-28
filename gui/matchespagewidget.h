@@ -6,10 +6,8 @@
 #include <QListWidget>
 #include "UserProfile.h"
 #include "DatabaseManager.h"
+#include <QLabel>
 
-namespace Ui {
-class MatchesPageWidget;
-}
 
 class MatchesPageWidget : public QWidget
 {
@@ -22,17 +20,16 @@ public:
     void setDatabaseManager(DatabaseManager* db);
     void setCurrentUserId(int id);
 
-public slots:
-    void reloadMatches();            //  оновити метчі
-    void onMatchCreated(int userId, int targetId);  //  викликається зі SearchPage
+    public slots:
+        void reloadMatches();
+    void onMatchCreated(int userId, int targetId);
 
 private:
-    Ui::MatchesPageWidget *ui;
 
     DatabaseManager* m_db = nullptr;
     int m_currentUserId = -1;
-
-    QListWidget* m_list;  // список метчів
+    QLabel* m_titleLabel;
+    QListWidget* m_list;
 };
 
 #endif // MATCHESPAGEWIDGET_H

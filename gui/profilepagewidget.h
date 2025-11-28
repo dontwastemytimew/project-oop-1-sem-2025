@@ -5,32 +5,45 @@
 #include "DatabaseManager.h"
 #include "UserProfile.h"
 
-namespace Ui {
-class ProfilePageWidget;
-}
+class QLineEdit;
+class QSpinBox;
+class QTextEdit;
+class QPushButton;
+class QComboBox;
+class QLabel;
 
 class ProfilePageWidget : public QWidget {
     Q_OBJECT
 public:
     explicit ProfilePageWidget(QWidget *parent = nullptr);
-    ~ProfilePageWidget();
 
     void setDatabaseManager(DatabaseManager* dbManager);
     void loadCurrentProfile();
     void setInternalProfile(const UserProfile& profile);
 
-signals:
-    void profileSaved();
+    signals:
+        void profileSaved();
 
-private slots:
-    void on_btn_SaveProfile_clicked();
+    private slots:
+        void on_btn_SaveProfile_clicked();
     void onChoosePhoto();
 
 private:
-    Ui::ProfilePageWidget *ui;
     DatabaseManager* m_dbManager;
     UserProfile m_currentUser;
     QString m_photoPath;
+    QLineEdit* m_nameEdit;
+    QSpinBox* m_ageSpinBox;
+    QLineEdit* m_cityEdit;
+    QTextEdit* m_bioEdit;
+    QLineEdit* m_phoneEdit;
+    QLineEdit* m_emailEdit;
+    QComboBox* m_genderCombo;
+    QComboBox* m_orientationCombo;
+    QLabel* m_photoLabel; // <-- Поле для відображення фото
+    QPushButton* m_choosePhotoButton; // <-- Кнопка "Обрати фото"
+    QPushButton* m_saveButton;
+    void setupCityAutocomplete(); // <-- Метод для автодоповнення
 };
 
 #endif // PROFILEPAGEWIDGET_H

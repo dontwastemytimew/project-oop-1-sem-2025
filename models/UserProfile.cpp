@@ -1,5 +1,6 @@
 #include "UserProfile.h"
 #include "Preference.h"
+#include "ContactInfo.h"
 
 UserProfile::UserProfile(int id, const QString &name, int age,
                          const QString &city, const QString &bio,
@@ -13,9 +14,10 @@ UserProfile::UserProfile(int id, const QString &name, int age,
     m_gender(gender),
     m_orientation(orientation),
     m_preferences(),
-    m_photoPath(photoPath)
+    m_photoPath(photoPath),
+    m_contactInfo()
 {
-    // m_contactInfo створюється конструктором за замовчуванням
+
 }
 
 // --- Геттери ---

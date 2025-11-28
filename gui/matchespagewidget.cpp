@@ -1,27 +1,26 @@
 #include "matchespagewidget.h"
-#include "ui_matchespagewidget.h"
 #include <QVBoxLayout>
 #include <QLabel>
+#include <QListWidget>
 #include <QListWidgetItem>
 #include <QPixmap>
+#include <QIcon>
+#include <QApplication>
+#include <QDebug>
 
 MatchesPageWidget::MatchesPageWidget(QWidget *parent)
     : QWidget(parent)
-    , ui(new Ui::MatchesPageWidget)
 {
-    ui->setupUi(this);
-
     QVBoxLayout* layout = new QVBoxLayout(this);
 
-    QLabel* title = new QLabel("💞 Ваші метчі", this);
+    QLabel* title = new QLabel(tr("Ваші метчі"), this);
+    title->setObjectName("matchesTitleLabel");
     title->setAlignment(Qt::AlignCenter);
-    title->setStyleSheet("font-size: 22px; font-weight: bold; margin: 10px;");
     layout->addWidget(title);
 
     // Список
     m_list = new QListWidget(this);
-    m_list->setIconSize(QSize(64, 64));
-    m_list->setStyleSheet("font-size: 16px;");
+    m_list->setObjectName("matchesListWidget");
     layout->addWidget(m_list);
 
     setLayout(layout);
@@ -29,7 +28,6 @@ MatchesPageWidget::MatchesPageWidget(QWidget *parent)
 
 MatchesPageWidget::~MatchesPageWidget()
 {
-    delete ui;
 }
 
 void MatchesPageWidget::setDatabaseManager(DatabaseManager* db)

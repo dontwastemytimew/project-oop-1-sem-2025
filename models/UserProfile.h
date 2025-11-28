@@ -37,8 +37,22 @@ public:
     QString getCity() const;
     QString getBio() const;
 
+    /**
+     * @brief Повертає стать користувача.
+     * @return Рядок із назвою статі.
+     */
     QString getGender() const;
+
+    /**
+     * @brief Повертає орієнтацію користувача.
+     * @return Рядок із назвою орієнтації.
+     */
     QString getOrientation() const;
+
+    /**
+     * @brief Повертає об'єкт контактної інформації.
+     * @return Об'єкт ContactInfo.
+     */
     ContactInfo getContactInfo() const;
 
     /**
@@ -48,7 +62,8 @@ public:
     QString getPhotoPath() const;
 
     /**
-     * @brief Повертає об'єкт налаштувань пошуку.
+     * @brief Повертає збережені критерії пошуку користувача.
+     * @return Об'єкт Preference.
      */
     Preference getPreference() const;
 
@@ -59,9 +74,19 @@ public:
     void setAge(int newAge);
     void setCity(const QString &newCity);
     void setBio(const QString &newBio);
-    void setGender(const QString &gender);
-    void setOrientation(const QString &orientation);
     void setContactInfo(const ContactInfo &info);
+
+    /**
+     * @brief Встановлює стать користувача.
+     * @param gender Нова стать.
+     */
+    void setGender(const QString &gender);
+
+    /**
+     * @brief Встановлює орієнтацію користувача.
+     * @param orientation Нова орієнтація.
+     */
+    void setOrientation(const QString &orientation);
 
     /**
      * @brief Встановлює шлях до фото.
@@ -71,18 +96,27 @@ public:
 
     /**
      * @brief Встановлює критерії пошуку профілю.
+     * @param prefs Об'єкт Preference.
      */
     void setPreference(const Preference &prefs);
 
 private:
+    /// Унікальний ID користувача
     int m_id;
+    /// Ім'я користувача.
     QString m_name;
+    /// Вік користувача.
     int m_age;
+    /// Місто користувача.
     QString m_city;
+    /// Біографія користувача.
     QString m_bio;
+    /// Стать користувача.
     QString m_gender;
+    /// Сексуальна орієнтація.
     QString m_orientation;
 
+    /// Вбудований об'єкт для зберігання контактів (Композиція).
     ContactInfo m_contactInfo;
 
     /// Збережені критерії пошуку (вік, місто, інтереси тощо)

@@ -25,6 +25,8 @@ add_library(DatingAgencyLogic STATIC
 target_link_libraries(DatingAgencyLogic PUBLIC
         Qt6::Core
         Qt6::Sql
+        Qt6::Widgets
+        Qt6::Charts
 )
 
 add_executable(project_oop_1_sem_2025
@@ -43,9 +45,16 @@ add_executable(project_oop_1_sem_2025
 
 target_link_libraries(project_oop_1_sem_2025 PRIVATE
         DatingAgencyLogic
+
+        # --- ЯВНО ПЕРЕЛІЧУЄМО ВСІ ЗАЛЕЖНОСТІ, ЯКІ ВИКОРИСТОВУЮТЬСЯ ---
+        # Це вирішує "undefined reference" для всіх функцій DatabaseManager
+
+        Qt6::Sql        # (Для getUsersModel, getGenderStatistics і т.д.)
+        Qt6::Charts     # (Для StatsDialog)
+        Qt6::Widgets    # (Для QSqlTableModel)
         Qt6::Gui
-        Qt6::Widgets
-        Qt6::Charts
+        Qt6::Core
+        # -------------------------------------------------------------
 )
 
 include(FetchContent)

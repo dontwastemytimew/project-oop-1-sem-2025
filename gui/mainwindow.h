@@ -10,6 +10,7 @@
 #include "welcomepagewidget.h"
 #include "adminpagewidget.h"
 #include <QButtonGroup>
+#include "settingspagewidget.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

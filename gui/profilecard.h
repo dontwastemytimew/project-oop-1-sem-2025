@@ -5,6 +5,10 @@
 #include <QWidget>
 #include "UserProfile.h"
 
+/**
+ * @brief ProfileCard class
+ * * Віджет для відображення профілю користувача (використовується на сторінці пошуку).
+ */
 class ProfileCard : public QWidget
 {
     Q_OBJECT
@@ -15,7 +19,7 @@ public:
     /// Встановлює основні дані профілю (фото, імʼя, місто, вік, біо)
     void setProfileData(const UserProfile& profile);
 
-    /// Встановлює % сумісності (пункт 3.2)
+    /// Встановлює % сумісності
     void setCompatibilityPercent(int percent);
 
 private:
@@ -24,9 +28,7 @@ private:
     QLabel* lblAge;
     QLabel* lblCity;
     QLabel* lblDescription;
-
-    QLabel* lblCompatibility;   ///< ★ Нове поле: відсоток сумісності
+    QLabel* lblCompatibility;   ///< Відсоток сумісності
 };
 
 #endif
-

@@ -6,39 +6,57 @@
 #include "DatabaseManager.h"
 #include "UserProfile.h"
 #include "profilecard.h"
+#include "MatchEngine.h"
 
-namespace Ui {
-class SearchPageWidget;
-}
+class QSpinBox;
+class QLineEdit;
+class QPushButton;
+class QStackedWidget;
+class QComboBox;
 
-class SearchPageWidget : public QWidget
-{
+class SearchPageWidget : public QWidget {
     Q_OBJECT
-
 public:
     explicit SearchPageWidget(QWidget *parent = nullptr);
     ~SearchPageWidget();
 
     void setDatabaseManager(DatabaseManager* dbManager);
-    void loadProfiles();
 
-signals:
-    void matchFound(int userId, int targetId);   // ★ новий сигнал (для 4.4)
+    /**
+     * @brief Встановлює дані поточного користувача. Викликається при старті додатку.
+     */
+    void setCurrentUser(const UserProfile& profile);
 
-private slots:
+
+    signals:
+        void matchFound(int userId, int targetId);
+
+    private slots:
+        void on_btn_Find_clicked();
     void on_Like_clicked();
     void on_Skip_clicked();
 
 private:
-    Ui::SearchPageWidget *ui;
     DatabaseManager* m_dbManager = nullptr;
-
-    QVector<UserProfile> m_profiles;
-    int m_index = 0;
-
+    QSpinBox* m_minAgeSpin;
+    QSpinBox* m_maxAgeSpin;
+    QLineEdit* m_cityEdit;
+    QPushButton* m_findButton;
+    QComboBox* m_genderCombo;
+    QComboBox* m_orientationCombo;
+    QStackedWidget* m_resultsStack;
+    QPushButton* m_likeButton;
+    QPushButton* m_skipButton;
+    QVector<UserProfile> m_currentMatches;
+    int m_currentMatchIndex = 0;
     UserProfile m_currentUser;
+    MatchEngine *m_matchEngine;
+    void showNextProfile();
 
-    void showCurrentProfile();
+    /**
+     * @brief Показує спливаюче вікно про Match.
+     * @param target Профіль, з яким відбувся метч.
+     */
     void showMatchPopup(const UserProfile& target);
 };
 

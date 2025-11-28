@@ -36,9 +36,7 @@ void DatabaseManager::closeDatabase() {
 bool DatabaseManager::createTables() {
     QSqlQuery query;
 
-    //
-    // ---- USERS ----
-    //
+    // USERS
     QString createUsersSql =
         "CREATE TABLE IF NOT EXISTS users ("
         "id INTEGER PRIMARY KEY AUTOINCREMENT, "
@@ -59,9 +57,7 @@ bool DatabaseManager::createTables() {
         return false;
     }
 
-    //
-    // ---- LIKES (пункт 4.1) ----
-    //
+    // LIKES (Зв'язок)
     QString createLikesSql =
         "CREATE TABLE IF NOT EXISTS likes ("
         "id INTEGER PRIMARY KEY AUTOINCREMENT, "
@@ -76,7 +72,8 @@ bool DatabaseManager::createTables() {
         return false;
     }
 
-    // Індекси для швидкої роботи
+    // ІНДЕКСИ
+    query.exec("CREATE INDEX IF NOT EXISTS idx_users_age ON users(age)");
     query.exec("CREATE INDEX IF NOT EXISTS idx_likes_user ON likes(user_id)");
     query.exec("CREATE INDEX IF NOT EXISTS idx_likes_target ON likes(target_id)");
 
@@ -84,25 +81,11 @@ bool DatabaseManager::createTables() {
     return true;
 }
 
-//
-// ---- SAVE PROFILE ----
-//
+// SAVE PROFILE
 int DatabaseManager::saveProfile(const UserProfile &profile) {
 
-    if (profile.getName().isEmpty()) {
-        UserLogger::log(Warning, "Save failed: Name cannot be empty.");
-        return -1;
-    }
-    if (profile.getContactInfo().getEmail().isEmpty()) {
-        UserLogger::log(Warning, "Save failed: Email cannot be empty.");
-        return -1;
-    }
-    if (!profile.getContactInfo().getEmail().contains('@')) {
-        UserLogger::log(Warning, "Save failed: Invalid email.");
-        return -1;
-    }
-    if (profile.getAge() < 18) {
-        UserLogger::log(Warning, "Save failed: Age must be >=18.");
+    if (profile.getName().isEmpty() || profile.getContactInfo().getEmail().isEmpty() || !profile.getContactInfo().getEmail().contains('@') || profile.getAge() < 18) {
+        UserLogger::log(Warning, "Save failed: Invalid or missing required fields.");
         return -1;
     }
 
@@ -146,22 +129,14 @@ int DatabaseManager::saveProfile(const UserProfile &profile) {
     return newId;
 }
 
-//
-// ---- LOAD PROFILE BY EMAIL ----
-//
+// LOAD PROFILE BY EMAIL
 bool DatabaseManager::loadProfileByEmail(const QString &email, UserProfile &profile) {
-
     QSqlQuery query;
     query.prepare("SELECT * FROM users WHERE email = ?");
     query.addBindValue(email);
 
-    if (!query.exec()) {
-        UserLogger::log(Error, "Select by email failed: " + query.lastError().text());
-        return false;
-    }
-
-    if (!query.next())
-        return false;
+    if (!query.exec()) { UserLogger::log(Error, "Select by email failed: " + query.lastError().text()); return false; }
+    if (!query.next()) return false;
 
     profile.setId(query.value("id").toInt());
     profile.setName(query.value("name").toString());
@@ -170,13 +145,12 @@ bool DatabaseManager::loadProfileByEmail(const QString &email, UserProfile &prof
     profile.setBio(query.value("bio").toString());
     profile.setGender(query.value("gender").toString());
     profile.setOrientation(query.value("orientation").toString());
-    profile.setPhotoPath(query.value("photo_path").toString());
+    profile.setPhotoPath(query.value("photo_path").toString()); // <-- ЗЧИТУЄМО ФОТО
 
-    ContactInfo contacts(
+    profile.setContactInfo(ContactInfo(
         query.value("phone").toString(),
         query.value("email").toString()
-        );
-    profile.setContactInfo(contacts);
+        ));
 
     UserLogger::log(Info, "Profile loaded for: " + profile.getName());
     return true;
@@ -186,15 +160,11 @@ bool DatabaseManager::profileExists(const QString &email) const {
     QSqlQuery query;
     query.prepare("SELECT id FROM users WHERE email=?");
     query.addBindValue(email);
-
     if (!query.exec()) return false;
-
     return query.next();
 }
 
-//
-// ---- UPDATE PROFILE ----
-//
+// UPDATE PROFILE
 bool DatabaseManager::updateProfile(const UserProfile &profile) {
 
     if (profile.getId() == -1) {
@@ -208,7 +178,6 @@ bool DatabaseManager::updateProfile(const UserProfile &profile) {
     }
 
     QSqlQuery query;
-
     query.prepare(
         "UPDATE users SET "
         "name=?, age=?, city=?, bio=?, phone=?, email=?, gender=?, orientation=?, photo_path=? "
@@ -243,24 +212,41 @@ bool DatabaseManager::updateProfile(const UserProfile &profile) {
 }
 
 bool DatabaseManager::deleteProfile(int profileId) {
+    if (profileId <= 0) return false;
+    if (!m_db.transaction()) return false;
+
     QSqlQuery query;
     query.prepare("DELETE FROM users WHERE id=?");
     query.addBindValue(profileId);
 
-    return query.exec();
+    if (query.exec()) {
+        m_db.commit();
+        return true;
+    } else {
+        m_db.rollback();
+        return false;
+    }
 }
 
 bool DatabaseManager::setProfileHidden(int profileId, bool isHidden) {
+    if (profileId <= 0) return false;
+    if (!m_db.transaction()) return false;
+
     QSqlQuery query;
     query.prepare("UPDATE users SET is_hidden=? WHERE id=?");
     query.addBindValue(isHidden);
     query.addBindValue(profileId);
-    return query.exec();
+
+    if (query.exec()) {
+        m_db.commit();
+        return true;
+    } else {
+        m_db.rollback();
+        return false;
+    }
 }
 
-//
-// ---- LOAD CURRENT USER ----
-//
+// LOAD CURRENT USER
 bool DatabaseManager::getCurrentUserProfile(UserProfile &profile) {
 
     QSettings settings("DatingAgency", "TitleApp");
@@ -292,9 +278,7 @@ bool DatabaseManager::getCurrentUserProfile(UserProfile &profile) {
     return true;
 }
 
-//
-// ---- GET ALL PROFILES ----
-//
+// GET ALL PROFILES
 QList<UserProfile> DatabaseManager::getAllProfiles() {
     QList<UserProfile> profiles;
 
@@ -328,9 +312,7 @@ QList<UserProfile> DatabaseManager::getAllProfiles() {
     return profiles;
 }
 
-//
-// ---- FILTER BY PREFERENCES ----
-//
+//  FILTER BY PREFERENCES
 QList<UserProfile> DatabaseManager::getProfilesByCriteria(const Preference &prefs) {
     QList<UserProfile> profiles;
     QSqlQuery query(m_db);
@@ -400,9 +382,7 @@ int DatabaseManager::countUsers() {
     return 0;
 }
 
-//
-// ---- BULK INSERT ----
-//
+// BULK INSERT
 bool DatabaseManager::saveProfileBulk(const QList<UserProfile> &profiles) {
 
     if (!m_db.transaction())
@@ -437,9 +417,7 @@ bool DatabaseManager::saveProfileBulk(const QList<UserProfile> &profiles) {
     return m_db.commit();
 }
 
-//
-// ---- AUTOCOMPLETE МІСТ ----
-//
+// AUTOCOMPLETE МІСТ
 QStringList DatabaseManager::getAllCities() {
     QStringList cities;
     QSqlQuery query(m_db);
@@ -461,38 +439,58 @@ QStringList DatabaseManager::getAllCities() {
     return cities;
 }
 
-//
-// =====================================================================
-// ★★★ LIKES / MATCHES
-// =====================================================================
-//
-
+// LIKES / MATCHES
 bool DatabaseManager::addLike(int userId, int targetId) {
-    if (userId <= 0 || targetId <= 0 || userId == targetId)
-        return false;
+    if (userId <= 0 || targetId <= 0 || userId == targetId) return false;
+    if (!m_db.transaction()) return false;
 
     QSqlQuery query(m_db);
-
     query.prepare("INSERT OR IGNORE INTO likes (user_id, target_id) VALUES (?, ?)");
     query.addBindValue(userId);
     query.addBindValue(targetId);
 
-    if (!query.exec()) {
+    if (query.exec()) {
+        m_db.commit();
+        return true;
+    } else {
+        m_db.rollback();
         UserLogger::log(Error, "addLike failed: " + query.lastError().text());
         return false;
     }
-
-    return true;
 }
 
 bool DatabaseManager::removeLike(int userId, int targetId) {
+    if (userId <= 0 || targetId <= 0) {
+        UserLogger::log(Warning, "RemoveLike failed: Invalid user IDs.");
+        return false;
+    }
+
+    if (!m_db.transaction()) {
+        UserLogger::log(Error, "RemoveLike: Failed to start transaction.");
+        return false;
+    }
+
     QSqlQuery query(m_db);
 
     query.prepare("DELETE FROM likes WHERE user_id=? AND target_id=?");
     query.addBindValue(userId);
     query.addBindValue(targetId);
 
-    return query.exec();
+    if (query.exec()) {
+        if (m_db.commit()) {
+            UserLogger::log(Info, QString("Like removed: User %1 removed like from Target %2.")
+                                .arg(userId).arg(targetId));
+            return true;
+        } else {
+            UserLogger::log(Error, "RemoveLike: Failed to commit transaction.");
+            m_db.rollback();
+            return false;
+        }
+    } else {
+        UserLogger::log(Error, "RemoveLike failed: " + query.lastError().text());
+        m_db.rollback();
+        return false;
+    }
 }
 
 bool DatabaseManager::hasUserLiked(int userId, int targetId) const {
@@ -540,4 +538,127 @@ QList<int> DatabaseManager::getMatches(int userId) const {
     }
 
     return result;
+}
+
+// Знаходить взаємні лайки
+QList<int> DatabaseManager::getMutualMatchIds(int currentUserId) {
+    QList<int> matchIds;
+    QSqlQuery query;
+    query.prepare(
+        "SELECT T1.target_id FROM likes AS T1 "
+        "INNER JOIN likes AS T2 ON T1.target_id = T2.user_id "
+        "WHERE T1.user_id = :currentId AND T2.target_id = :currentId"
+    );
+    query.bindValue(":currentId", currentUserId);
+
+    if (query.exec()) {
+        while (query.next()) {
+            matchIds.append(query.value(0).toInt());
+        }
+    } else {
+        UserLogger::log(Error, "Failed to get mutual match IDs: " + query.lastError().text());
+    }
+    return matchIds;
+}
+
+// Завантажує профілі за списком ID
+QList<UserProfile> DatabaseManager::getProfilesByIds(const QList<int> &ids) {
+    QList<UserProfile> profiles;
+    if (ids.isEmpty()) return profiles;
+
+    QSqlQuery query;
+    QString idList = "(";
+    for (int i = 0; i < ids.size(); ++i) {
+        idList += "?";
+        if (i < ids.size() - 1) idList += ",";
+    }
+    idList += ")";
+
+    query.prepare("SELECT * FROM users WHERE id IN " + idList);
+
+    for (int id : ids) {
+        query.addBindValue(id);
+    }
+
+    if (query.exec()) {
+        while (query.next()) {
+            UserProfile profile;
+            // ... (Потрібна логіка зчитування всіх полів, як у loadProfileByEmail)
+            profile.setId(query.value("id").toInt());
+            profile.setName(query.value("name").toString());
+            profile.setAge(query.value("age").toInt());
+            profile.setCity(query.value("city").toString());
+            profile.setBio(query.value("bio").toString());
+            profile.setGender(query.value("gender").toString());
+            profile.setOrientation(query.value("orientation").toString());
+            profile.setContactInfo(ContactInfo(query.value("phone").toString(), query.value("email").toString()));
+
+            profiles.append(profile);
+        }
+    } else {
+        UserLogger::log(Error, "Failed to get profiles by IDs: " + query.lastError().text());
+    }
+    return profiles;
+}
+
+// для AdminPanel
+QSqlTableModel* DatabaseManager::getUsersModel(QObject* parent) {
+    QSqlTableModel* model = new QSqlTableModel(parent, m_db);
+    model->setTable("users");
+    model->setEditStrategy(QSqlTableModel::OnManualSubmit);
+
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("ID"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("Ім'я"));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("Вік"));
+    model->setHeaderData(3, Qt::Horizontal, QObject::tr("Місто"));
+    model->setHeaderData(4, Qt::Horizontal, QObject::tr("Біо"));
+    model->setHeaderData(5, Qt::Horizontal, QObject::tr("Телефон"));
+    model->setHeaderData(6, Qt::Horizontal, QObject::tr("Email"));
+    model->setHeaderData(7, Qt::Horizontal, QObject::tr("Стать"));
+    model->setHeaderData(8, Qt::Horizontal, QObject::tr("Орієнтація"));
+    model->setHeaderData(9, Qt::Horizontal, QObject::tr("Прихований"));
+
+    model->select();
+    return model;
+}
+
+// для StatsDialog
+QMap<QString, int> DatabaseManager::getGenderStatistics() {
+    QMap<QString, int> stats;
+    QSqlQuery query("SELECT gender, COUNT(*) FROM users WHERE is_hidden=0 GROUP BY gender", m_db);
+    while (query.next()) {
+        QString gender = query.value(0).toString();
+        if (gender.isEmpty()) gender = "Невідомо";
+        stats.insert(gender, query.value(1).toInt());
+    }
+    return stats;
+}
+
+// для StatsDialog
+QMap<QString, int> DatabaseManager::getCityStatistics() {
+    QMap<QString, int> stats;
+    QSqlQuery query("SELECT city, COUNT(*) FROM users WHERE is_hidden=0 GROUP BY city ORDER BY COUNT(*) DESC LIMIT 5", m_db);
+    while (query.next()) {
+        stats.insert(query.value(0).toString(), query.value(1).toInt());
+    }
+    return stats;
+}
+
+// для StatsDialog
+QMap<QString, int> DatabaseManager::getAgeStatistics() {
+    QMap<QString, int> stats;
+    stats["18-25"] = 0;
+    stats["26-35"] = 0;
+    stats["36-50"] = 0;
+    stats["50+"] = 0;
+
+    QSqlQuery query("SELECT age FROM users WHERE is_hidden=0", m_db);
+    while (query.next()) {
+        int age = query.value(0).toInt();
+        if (age <= 25) stats["18-25"]++;
+        else if (age <= 35) stats["26-35"]++;
+        else if (age <= 50) stats["36-50"]++;
+        else stats["50+"]++;
+    }
+    return stats;
 }

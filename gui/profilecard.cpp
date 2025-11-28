@@ -25,7 +25,6 @@ ProfileCard::ProfileCard(QWidget* parent)
     lblPhoto->setObjectName("cardPhoto");
     lblPhoto->setAlignment(Qt::AlignCenter);
     lblPhoto->setFixedSize(250, 250);
-    lblPhoto->setStyleSheet("background-color: #cccccc; border-radius: 10px;");
 
     // ІМ'Я та ВІК
     QHBoxLayout* nameAgeLayout = new QHBoxLayout();
@@ -44,15 +43,9 @@ ProfileCard::ProfileCard(QWidget* parent)
     lblCity = new QLabel(this);
     lblCity->setObjectName("cardCity");
 
-    // ★ ВІДСОТОК СУМІСНОСТІ
+    // ВІДСОТОК СУМІСНОСТІ
     lblCompatibility = new QLabel(this);
     lblCompatibility->setObjectName("cardCompatibility");
-    lblCompatibility->setAlignment(Qt::AlignLeft);
-    lblCompatibility->setStyleSheet(
-        "font-size: 16px; "
-        "font-weight: bold; "
-        "color: #e6399b;"   // рожевий/сердечний
-        );
 
     // БІО
     lblDescription = new QLabel(this);
@@ -60,13 +53,10 @@ ProfileCard::ProfileCard(QWidget* parent)
     lblDescription->setWordWrap(true);
     lblDescription->setAlignment(Qt::AlignTop | Qt::AlignLeft);
 
-    // Додавання в layout
     cardLayout->addWidget(lblPhoto, 0, Qt::AlignCenter);
     cardLayout->addLayout(nameAgeLayout);
+    cardLayout->addWidget(lblCompatibility);
     cardLayout->addWidget(lblCity);
-
-    cardLayout->addWidget(lblCompatibility);   // ★ новий елемент
-
     cardLayout->addWidget(lblDescription);
     cardLayout->addStretch();
 
@@ -76,7 +66,7 @@ ProfileCard::ProfileCard(QWidget* parent)
 
 void ProfileCard::setProfileData(const UserProfile& profile)
 {
-    // ★ ФOТО ПРОФІЛЮ
+    // ФOТО ПРОФІЛЮ
     QString photoPath = profile.getPhotoPath();
     QPixmap pixmap;
 
@@ -85,11 +75,11 @@ void ProfileCard::setProfileData(const UserProfile& profile)
     }
 
     if (pixmap.isNull()) {
-        pixmap.load(":/resources/default_avatar.png");
+        pixmap.load(":/resources/icons/default_avatar.png");
     }
 
     if (pixmap.isNull()) {
-        lblPhoto->setText("No Photo");
+        lblPhoto->setText(tr("Немає фото"));
     } else {
         lblPhoto->setPixmap(
             pixmap.scaled(
@@ -100,26 +90,21 @@ void ProfileCard::setProfileData(const UserProfile& profile)
             );
     }
 
-    // ★ ІМ’Я + ВІК
+    // ТЕКСТ
     lblName->setText(profile.getName());
     lblAge->setText(QString(", %1").arg(profile.getAge()));
 
-    // ★ МІСТО
     lblCity->setText(QString("📍 %1").arg(profile.getCity()));
 
-    // ★ БІО
     lblDescription->setText(profile.getBio());
 }
 
-//
-// ★ НОВИЙ МЕТОД — встановлення % сумісності
-//
 void ProfileCard::setCompatibilityPercent(int percent)
 {
     if (percent < 0) percent = 0;
     if (percent > 100) percent = 100;
 
     lblCompatibility->setText(
-        QString("❤️ Ви підходите на %1%").arg(percent)
+        tr("Сумісність: %1%").arg(percent)
         );
 }

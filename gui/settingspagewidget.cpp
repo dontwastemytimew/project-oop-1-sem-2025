@@ -45,12 +45,10 @@ SettingsPageWidget::SettingsPageWidget(QWidget *parent)
 
     setLayout(mainLayout);
 
-    // Створюємо кнопку
     m_btnOpenAdmin = new QPushButton(tr("Панель Адміністратора"), this);
     m_btnOpenAdmin->setObjectName("settingsAdminBtn");
 
-    // Додаємо її в layout (наприклад, в самий низ)
-    mainLayout->addStretch(); // Пружинка, щоб притиснути кнопку до низу
+    mainLayout->addStretch();
     mainLayout->addWidget(m_btnOpenAdmin);
 
     connect(m_btnOpenAdmin, &QPushButton::clicked, this, &SettingsPageWidget::onAdminBtnClicked);
@@ -135,5 +133,5 @@ void SettingsPageWidget::on_deleteClicked() {
 
 void SettingsPageWidget::onAdminBtnClicked() {
     UserLogger::log(Info, "User requested Admin Panel from Settings.");
-    emit openAdminPanelRequested(); // Посилаємо сигнал батьку (MainWindow)
+    emit openAdminPanelRequested();
 }
