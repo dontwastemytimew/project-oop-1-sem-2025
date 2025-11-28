@@ -7,10 +7,30 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
-find_package(Qt6 COMPONENTS Core Sql Gui Widgets Charts REQUIRED)
+find_package(Qt6 COMPONENTS Core Sql Gui Widgets Charts LinguistTools REQUIRED)
 
 include_directories(models core gui utils)
 include_directories(. models core gui utils)
+
+
+file(GLOB TS_SOURCES
+        "core/*.cpp"
+        "gui/*.cpp"
+        "gui/*.h"
+        "models/*.cpp"
+        "models/*.h"
+        "utils/*.cpp"
+        "utils/*.h"
+        "main.cpp"
+)
+
+qt_add_translations(project_oop_1_sem_2025
+        QM_FILES_OUTPUT_DIR "${CMAKE_BINARY_DIR}/i18n"
+        TS_FILES
+            i18n/app_ua.ts
+            i18n/app_en.ts
+)
+
 
 add_library(DatingAgencyLogic STATIC
         models/DatabaseManager.cpp models/DatabaseManager.h
@@ -45,17 +65,16 @@ add_executable(project_oop_1_sem_2025
 
 target_link_libraries(project_oop_1_sem_2025 PRIVATE
         DatingAgencyLogic
-
-        # --- ЯВНО ПЕРЕЛІЧУЄМО ВСІ ЗАЛЕЖНОСТІ, ЯКІ ВИКОРИСТОВУЮТЬСЯ ---
-        # Це вирішує "undefined reference" для всіх функцій DatabaseManager
-
-        Qt6::Sql        # (Для getUsersModel, getGenderStatistics і т.д.)
-        Qt6::Charts     # (Для StatsDialog)
-        Qt6::Widgets    # (Для QSqlTableModel)
+      
         Qt6::Gui
+        Qt6::Widgets
+        Qt6::Charts
+        Qt6::Sql
         Qt6::Core
-        # -------------------------------------------------------------
+        
+        ${project_oop_1_sem_2025_TRANSLATION_FILES}
 )
+
 
 include(FetchContent)
 

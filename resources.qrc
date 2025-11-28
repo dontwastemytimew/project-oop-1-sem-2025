@@ -23,4 +23,8 @@
 <!--        <file>resources/icons/heart_red.png</file>-->
 <!--        <file>resources/icons/default_avatar.png</file>-->
     </qresource>
+    <qresource prefix="/i18n">
+        <file>i18n/app_en.qm</file>
+        <file>i18n/app_ua.qm</file>
+    </qresource>
 </RCC>
