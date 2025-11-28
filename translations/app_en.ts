@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="en_US" sourcelanguage="uk_UA">
+<TS version="2.1">
 <context>
     <name>AdminPageWidget</name>
     <message>
@@ -113,23 +113,23 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="19"/>
+        <location filename="../gui/mainwindow.cpp" line="20"/>
         <source>project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="85"/>
-        <location filename="../gui/mainwindow.cpp" line="103"/>
+        <location filename="../gui/mainwindow.cpp" line="101"/>
+        <location filename="../gui/mainwindow.cpp" line="119"/>
         <source>Профіль не знайдено</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="86"/>
+        <location filename="../gui/mainwindow.cpp" line="102"/>
         <source>Будь ласка, спочатку створіть свій профіль на сторінці &apos;Профіль&apos;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="104"/>
+        <location filename="../gui/mainwindow.cpp" line="120"/>
         <source>У вас не може бути метчів, доки ви не створите профіль.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -137,139 +137,173 @@
 <context>
     <name>MatchesPageWidget</name>
     <message>
-        <location filename="../gui/matchespagewidget.cpp" line="8"/>
-        <source>Сторінка МЕТЧІВ (Matches)</source>
+        <location filename="../gui/matchespagewidget.cpp" line="16"/>
+        <source>Ваші метчі</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ProfileCard</name>
+    <message>
+        <location filename="../gui/profilecard.cpp" line="82"/>
+        <source>Немає фото</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/profilecard.cpp" line="108"/>
+        <source>Сумісність: %1%</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>ProfilePageWidget</name>
     <message>
-        <location filename="../gui/profilepagewidget.cpp" line="31"/>
-        <source>Не вказано</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/profilepagewidget.cpp" line="31"/>
-        <source>Чоловік</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/profilepagewidget.cpp" line="31"/>
-        <source>Жінка</source>
+        <location filename="../gui/profilepagewidget.cpp" line="28"/>
+        <source>Фото</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/profilepagewidget.cpp" line="35"/>
-        <source>Гетеро</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/profilepagewidget.cpp" line="35"/>
-        <source>Бісексуал</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/profilepagewidget.cpp" line="35"/>
-        <source>Гей/Лесбі</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/profilepagewidget.cpp" line="35"/>
-        <source>Інше</source>
+        <location filename="../gui/profilepagewidget.cpp" line="139"/>
+        <source>Обрати фото</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/profilepagewidget.cpp" line="37"/>
+        <source>Фото:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/profilepagewidget.cpp" line="51"/>
+        <source>Не вказано</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/profilepagewidget.cpp" line="51"/>
+        <source>Чоловік</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/profilepagewidget.cpp" line="51"/>
+        <source>Жінка</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/profilepagewidget.cpp" line="55"/>
+        <source>Гетеро</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/profilepagewidget.cpp" line="55"/>
+        <source>Бісексуал</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/profilepagewidget.cpp" line="55"/>
+        <source>Гей/Лесбі</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/profilepagewidget.cpp" line="55"/>
+        <source>Інше</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/profilepagewidget.cpp" line="57"/>
         <source>Зберегти профіль</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/profilepagewidget.cpp" line="39"/>
+        <location filename="../gui/profilepagewidget.cpp" line="60"/>
         <source>Ім&apos;я:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/profilepagewidget.cpp" line="40"/>
+        <location filename="../gui/profilepagewidget.cpp" line="61"/>
         <source>Вік:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/profilepagewidget.cpp" line="41"/>
+        <location filename="../gui/profilepagewidget.cpp" line="62"/>
         <source>Місто:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/profilepagewidget.cpp" line="42"/>
+        <location filename="../gui/profilepagewidget.cpp" line="63"/>
         <source>Email:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/profilepagewidget.cpp" line="43"/>
+        <location filename="../gui/profilepagewidget.cpp" line="64"/>
         <source>Телефон:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/profilepagewidget.cpp" line="44"/>
+        <location filename="../gui/profilepagewidget.cpp" line="65"/>
         <source>Стать:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/profilepagewidget.cpp" line="45"/>
+        <location filename="../gui/profilepagewidget.cpp" line="66"/>
         <source>Орієнтація:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/profilepagewidget.cpp" line="46"/>
+        <location filename="../gui/profilepagewidget.cpp" line="67"/>
         <source>Про себе:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/profilepagewidget.cpp" line="76"/>
-        <location filename="../gui/profilepagewidget.cpp" line="142"/>
-        <location filename="../gui/profilepagewidget.cpp" line="162"/>
+        <location filename="../gui/profilepagewidget.cpp" line="130"/>
+        <location filename="../gui/profilepagewidget.cpp" line="224"/>
+        <location filename="../gui/profilepagewidget.cpp" line="257"/>
         <source>Оновити профіль</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/profilepagewidget.cpp" line="86"/>
-        <location filename="../gui/profilepagewidget.cpp" line="123"/>
-        <location filename="../gui/profilepagewidget.cpp" line="146"/>
+        <location filename="../gui/profilepagewidget.cpp" line="141"/>
+        <source>Зображення (*.png *.jpg *.jpeg)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/profilepagewidget.cpp" line="171"/>
+        <location filename="../gui/profilepagewidget.cpp" line="206"/>
+        <location filename="../gui/profilepagewidget.cpp" line="228"/>
         <source>Помилка</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/profilepagewidget.cpp" line="86"/>
+        <location filename="../gui/profilepagewidget.cpp" line="171"/>
         <source>Помилка бази даних! Спробуйте перезапустити.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/profilepagewidget.cpp" line="102"/>
+        <location filename="../gui/profilepagewidget.cpp" line="187"/>
         <source>Увага</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/profilepagewidget.cpp" line="102"/>
+        <location filename="../gui/profilepagewidget.cpp" line="187"/>
         <source>Ім&apos;я, Email та вік (мінімум 18) є обов&apos;язковими!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/profilepagewidget.cpp" line="123"/>
+        <location filename="../gui/profilepagewidget.cpp" line="206"/>
         <source>Профіль з таким Email вже існує.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/profilepagewidget.cpp" line="140"/>
+        <location filename="../gui/profilepagewidget.cpp" line="222"/>
         <source>Успіх</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/profilepagewidget.cpp" line="140"/>
+        <location filename="../gui/profilepagewidget.cpp" line="222"/>
         <source>Профіль успішно збережено!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/profilepagewidget.cpp" line="146"/>
+        <location filename="../gui/profilepagewidget.cpp" line="228"/>
         <source>Не вдалося виконати операцію збереження профілю.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -277,18 +311,18 @@
 <context>
     <name>SearchPageWidget</name>
     <message>
-        <location filename="../gui/searchpagewidget.cpp" line="30"/>
+        <location filename="../gui/searchpagewidget.cpp" line="31"/>
         <location filename="../gui/searchpagewidget.cpp" line="36"/>
         <source>Не важливо</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/searchpagewidget.cpp" line="31"/>
+        <location filename="../gui/searchpagewidget.cpp" line="32"/>
         <source>Чоловік</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/searchpagewidget.cpp" line="32"/>
+        <location filename="../gui/searchpagewidget.cpp" line="33"/>
         <source>Жінка</source>
         <translation type="unfinished"></translation>
     </message>
@@ -313,57 +347,78 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/searchpagewidget.cpp" line="44"/>
+        <location filename="../gui/searchpagewidget.cpp" line="43"/>
         <source>Знайти пару</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/searchpagewidget.cpp" line="46"/>
+        <location filename="../gui/searchpagewidget.cpp" line="45"/>
         <source>Мін. вік:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/searchpagewidget.cpp" line="47"/>
+        <location filename="../gui/searchpagewidget.cpp" line="46"/>
         <source>Макс. вік:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/searchpagewidget.cpp" line="48"/>
+        <location filename="../gui/searchpagewidget.cpp" line="47"/>
         <source>Стать:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/searchpagewidget.cpp" line="49"/>
+        <location filename="../gui/searchpagewidget.cpp" line="48"/>
         <source>Орієнтація:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/searchpagewidget.cpp" line="50"/>
+        <location filename="../gui/searchpagewidget.cpp" line="49"/>
         <source>Місто:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/searchpagewidget.cpp" line="56"/>
+        <location filename="../gui/searchpagewidget.cpp" line="54"/>
         <source>Натисніть &apos;Знайти пару&apos;, щоб побачити профілі</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/searchpagewidget.cpp" line="60"/>
+        <location filename="../gui/searchpagewidget.cpp" line="58"/>
         <source> Like</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/searchpagewidget.cpp" line="64"/>
+        <location filename="../gui/searchpagewidget.cpp" line="61"/>
         <source> Skip</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/searchpagewidget.cpp" line="130"/>
+        <location filename="../gui/searchpagewidget.cpp" line="95"/>
+        <source>🎉 У вас метч!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/searchpagewidget.cpp" line="97"/>
+        <source>Ви та %1 вподобали один одного!
+Тепер можете знайти цього користувача у МЕТЧАХ.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/searchpagewidget.cpp" line="106"/>
+        <source>Помилка</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/searchpagewidget.cpp" line="106"/>
+        <source>Профіль не завантажено. Створіть профіль.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/searchpagewidget.cpp" line="147"/>
         <source>Пошук</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/searchpagewidget.cpp" line="130"/>
+        <location filename="../gui/searchpagewidget.cpp" line="147"/>
         <source>На жаль, нікого не знайдено за цими критеріями.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -406,28 +461,28 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/settingspagewidget.cpp" line="49"/>
+        <location filename="../gui/settingspagewidget.cpp" line="48"/>
         <source>Панель Адміністратора</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/settingspagewidget.cpp" line="116"/>
+        <location filename="../gui/settingspagewidget.cpp" line="114"/>
         <source>Видалити акаунт</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/settingspagewidget.cpp" line="117"/>
+        <location filename="../gui/settingspagewidget.cpp" line="115"/>
         <source>ВИ ВПЕВНЕНІ?
 Вся інформація (профіль, матчі, лайки) буде видалена НАЗАВЖДИ!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/settingspagewidget.cpp" line="123"/>
+        <location filename="../gui/settingspagewidget.cpp" line="121"/>
         <source>Успіх</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/settingspagewidget.cpp" line="123"/>
+        <location filename="../gui/settingspagewidget.cpp" line="121"/>
         <source>Ваш акаунт видалено.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -452,7 +507,7 @@
     <message>
         <location filename="../gui/StatsDialog.cpp" line="24"/>
         <source>Вік</source>
-        <translation>Age</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/StatsDialog.cpp" line="112"/>

@@ -10,6 +10,8 @@
 #include <QFile>
 #include <QTextStream>
 #include <QMessageBox>
+#include <QCoreApplication>
+#include <QDir>
 
 MainWindow::MainWindow(DatabaseManager* dbManager, QWidget *parent)
     : QMainWindow(parent)
@@ -137,12 +139,17 @@ void MainWindow::switchLanguage(const QString& languageCode)
 {
     qApp->removeTranslator(&m_translator);
 
-    QString path = ":/translations/app_" + languageCode + ".qm";
+    QString appDir = QCoreApplication::applicationDirPath();
+
+    QString path = appDir + "/translations/app_" + languageCode + ".qm";
+
+    UserLogger::log(Info, "Looking for translation at: " + path);
+
     if (m_translator.load(path)) {
         qApp->installTranslator(&m_translator);
         UserLogger::log(Info, "Language switched to: " + languageCode);
     } else {
-        UserLogger::log(Warning, "Failed to load translation file: " + path);
+        UserLogger::log(Warning, "Failed to load translation file. Path: " + path);
     }
 }
 
