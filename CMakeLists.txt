@@ -10,7 +10,6 @@ set(CMAKE_AUTOUIC ON)
 find_package(Qt6 COMPONENTS Core Sql Gui Widgets Charts REQUIRED)
 
 include_directories(models core gui utils)
-
 include_directories(. models core gui utils)
 
 add_library(DatingAgencyLogic STATIC
@@ -41,6 +40,7 @@ add_executable(project_oop_1_sem_2025
         gui/adminpagewidget.cpp
         gui/StatsDialog.cpp
 )
+
 target_link_libraries(project_oop_1_sem_2025 PRIVATE
         DatingAgencyLogic
         Qt6::Gui
@@ -49,7 +49,6 @@ target_link_libraries(project_oop_1_sem_2025 PRIVATE
 )
 
 include(FetchContent)
-
 
 FetchContent_Declare(
         googletest
@@ -62,11 +61,13 @@ include(GoogleTest)
 add_executable(dating_agency_tests
         tests/tests_main.cpp
         tests/DatabaseManagerTests.cpp
+        tests/matchengine_tests.cpp
 )
-
 
 target_link_libraries(dating_agency_tests PRIVATE
         DatingAgencyLogic
+        Qt6::Core
+        Qt6::Sql
         gtest_main
 )
 

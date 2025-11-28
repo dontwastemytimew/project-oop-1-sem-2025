@@ -3,6 +3,7 @@
 #include <QPixmap>
 #include <QLabel>
 #include <QFrame>
+#include <QFile>
 
 ProfileCard::ProfileCard(QWidget* parent)
     : QWidget(parent)
@@ -43,15 +44,29 @@ ProfileCard::ProfileCard(QWidget* parent)
     lblCity = new QLabel(this);
     lblCity->setObjectName("cardCity");
 
-    // ОПИС
+    // ★ ВІДСОТОК СУМІСНОСТІ
+    lblCompatibility = new QLabel(this);
+    lblCompatibility->setObjectName("cardCompatibility");
+    lblCompatibility->setAlignment(Qt::AlignLeft);
+    lblCompatibility->setStyleSheet(
+        "font-size: 16px; "
+        "font-weight: bold; "
+        "color: #e6399b;"   // рожевий/сердечний
+        );
+
+    // БІО
     lblDescription = new QLabel(this);
     lblDescription->setObjectName("cardBio");
     lblDescription->setWordWrap(true);
     lblDescription->setAlignment(Qt::AlignTop | Qt::AlignLeft);
 
+    // Додавання в layout
     cardLayout->addWidget(lblPhoto, 0, Qt::AlignCenter);
     cardLayout->addLayout(nameAgeLayout);
     cardLayout->addWidget(lblCity);
+
+    cardLayout->addWidget(lblCompatibility);   // ★ новий елемент
+
     cardLayout->addWidget(lblDescription);
     cardLayout->addStretch();
 
@@ -61,26 +76,50 @@ ProfileCard::ProfileCard(QWidget* parent)
 
 void ProfileCard::setProfileData(const UserProfile& profile)
 {
-    // ФОТО
-    // Тут треба логіку: якщо у юзера є фото -> показати. Якщо ні -> заглушка.
-    // Поки ставимо заглушку з іконкою
-    QPixmap pixmap(":/resources/example_photo.jpg");
-    if (!pixmap.isNull()) {
-        lblPhoto->setPixmap(pixmap.scaled(lblPhoto->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
-    } else {
-        lblPhoto->setText("No Photo");
+    // ★ ФOТО ПРОФІЛЮ
+    QString photoPath = profile.getPhotoPath();
+    QPixmap pixmap;
+
+    if (!photoPath.isEmpty() && QFile::exists(photoPath)) {
+        pixmap.load(photoPath);
     }
 
-    // ТЕКСТ
-    lblName->setText(profile.getName());
+    if (pixmap.isNull()) {
+        pixmap.load(":/resources/default_avatar.png");
+    }
 
+    if (pixmap.isNull()) {
+        lblPhoto->setText("No Photo");
+    } else {
+        lblPhoto->setPixmap(
+            pixmap.scaled(
+                lblPhoto->size(),
+                Qt::KeepAspectRatio,
+                Qt::SmoothTransformation
+                )
+            );
+    }
+
+    // ★ ІМ’Я + ВІК
+    lblName->setText(profile.getName());
     lblAge->setText(QString(", %1").arg(profile.getAge()));
 
-    // Додаємо іконку локації
+    // ★ МІСТО
     lblCity->setText(QString("📍 %1").arg(profile.getCity()));
 
+    // ★ БІО
     lblDescription->setText(profile.getBio());
+}
 
-    // Якщо є стать/орієнтація, можна додати і їх
-    // lblDescription->setText(QString("%1\n\n%2, %3").arg(profile.getBio()).arg(profile.getGender()).arg(profile.getOrientation()));
+//
+// ★ НОВИЙ МЕТОД — встановлення % сумісності
+//
+void ProfileCard::setCompatibilityPercent(int percent)
+{
+    if (percent < 0) percent = 0;
+    if (percent > 100) percent = 100;
+
+    lblCompatibility->setText(
+        QString("❤️ Ви підходите на %1%").arg(percent)
+        );
 }

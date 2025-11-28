@@ -1,22 +1,215 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
-    <author/>
-    <comment/>
-    <exportmacro/>
-    <class>ProfilePageWidget</class>
-    <widget class="QWidget" name="ProfilePageWidget">
-        <property name="geometry">
-            <rect>
-                <x>0</x>
-                <y>0</y>
-                <width>400</width>
-                <height>300</height>
-            </rect>
+ <class>ProfilePageWidget</class>
+ <widget class="QWidget" name="ProfilePageWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>500</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Профіль</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <layout class="QFormLayout" name="formLayout">
+     <!-- Фото -->
+     <item row="0" column="0">
+      <widget class="QLabel" name="photoTextLabel">
+       <property name="text">
+        <string>Фото:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLabel" name="photoLabel">
+       <property name="minimumSize">
+        <size>
+         <width>120</width>
+         <height>120</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>120</width>
+         <height>120</height>
+        </size>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::Box</enum>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="text">
+        <string>Фото</string>
+       </property>
+      </widget>
+     </item>
+
+     <item row="1" column="1">
+      <widget class="QPushButton" name="choosePhotoButton">
+       <property name="text">
+        <string>Обрати фото</string>
+       </property>
+      </widget>
+     </item>
+
+     <!-- Ім'я -->
+     <item row="2" column="0">
+      <widget class="QLabel" name="nameLabel">
+       <property name="text">
+        <string>Ім'я:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QLineEdit" name="nameEdit"/>
+     </item>
+
+     <!-- Вік -->
+     <item row="3" column="0">
+      <widget class="QLabel" name="ageLabel">
+       <property name="text">
+        <string>Вік:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="1">
+      <widget class="QSpinBox" name="ageSpinBox">
+       <property name="minimum">
+        <number>18</number>
+       </property>
+       <property name="maximum">
+        <number>99</number>
+       </property>
+      </widget>
+     </item>
+
+     <!-- Місто -->
+     <item row="4" column="0">
+      <widget class="QLabel" name="cityLabel">
+       <property name="text">
+        <string>Місто:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="1">
+      <widget class="QLineEdit" name="cityEdit"/>
+     </item>
+
+     <!-- Email -->
+     <item row="5" column="0">
+      <widget class="QLabel" name="emailLabel">
+       <property name="text">
+        <string>Email:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="1">
+      <widget class="QLineEdit" name="emailEdit"/>
+     </item>
+
+     <!-- Телефон -->
+     <item row="6" column="0">
+      <widget class="QLabel" name="phoneLabel">
+       <property name="text">
+        <string>Телефон:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="1">
+      <widget class="QLineEdit" name="phoneEdit"/>
+     </item>
+
+     <!-- Стать -->
+     <item row="7" column="0">
+      <widget class="QLabel" name="genderLabel">
+       <property name="text">
+        <string>Стать:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="7" column="1">
+      <widget class="QComboBox" name="genderCombo">
+       <item>
+        <property name="text">
+         <string>Не вказано</string>
         </property>
-        <property name="windowTitle">
-            <string>ProfilePageWidget</string>
+       </item>
+       <item>
+        <property name="text">
+         <string>Чоловік</string>
         </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Жінка</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+
+     <!-- Орієнтація -->
+     <item row="8" column="0">
+      <widget class="QLabel" name="orientationLabel">
+       <property name="text">
+        <string>Орієнтація:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="8" column="1">
+      <widget class="QComboBox" name="orientationCombo">
+       <item>
+        <property name="text">
+         <string>Гетеро</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Бісексуал</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Гей/Лесбі</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Інше</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+
+     <!-- Про себе -->
+     <item row="9" column="0">
+      <widget class="QLabel" name="bioLabel">
+       <property name="text">
+        <string>Про себе:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="9" column="1">
+      <widget class="QTextEdit" name="bioEdit"/>
+     </item>
+    </layout>
+   </item>
+
+   <!-- Кнопка збереження -->
+   <item>
+    <widget class="QPushButton" name="saveButton">
+     <property name="text">
+      <string>Зберегти профіль</string>
+     </property>
     </widget>
-    <pixmapfunction/>
-    <connections/>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
 </ui>
