@@ -76,11 +76,22 @@ bool MatchEngine::isCompatible(const UserProfile& p1, const UserProfile& p2) con
         return false;
     }
 
-    // 6) TODO: додати теги (tags)
-    // Коли у UserProfile з'явиться поле tags:
-    //
-    // int shared = countSharedTags(p1.getTags(), p2.getTags());
-    // if (shared < 1) return false;
+// 6) Перевірка тегів (спільних інтересів)
+const QStringList& tags1 = p1.getTags(); 
+const QStringList& tags2 = p2.getTags();
+
+int sharedTags = 0;
+for (const QString& tag : tags1) {
+    if (tags2.contains(tag)) {
+        sharedTags++;
+    }
+}
+
+// Вимога: хоча б один спільний тег
+if (sharedTags < 1) {
+    return false;
+}
+
 
     return true;
 }
