@@ -27,96 +27,49 @@ public:
                 const QString &gender = "", const QString &orientation = "");
 
     // --- Геттери ---
-
     int getId() const;
     QString getName() const;
     int getAge() const;
     QString getCity() const;
     QString getBio() const;
-
-    /**
-     * @brief Повертає стать користувача.
-     * @return Рядок із назвою статі.
-     */
     QString getGender() const;
-
-    /**
-     * @brief Повертає орієнтацію користувача.
-     * @return Рядок із назвою орієнтації.
-     */
     QString getOrientation() const;
+    ContactInfo getContactInfo() const;
+    Preference getPreference() const;
 
     /**
-     * @brief Повертає об'єкт контактної інформації.
-     * @return Об'єкт ContactInfo, що містить телефон та email.
+     * @brief Повертає список тегів користувача.
      */
-    ContactInfo getContactInfo() const;
+    QStringList getTags() const { return m_tags; }
 
     // --- Сеттери ---
-
     void setId(int newId);
     void setName(const QString &newName);
     void setAge(int newAge);
     void setCity(const QString &newCity);
     void setBio(const QString &newBio);
-
-    /**
-     * @brief Встановлює стать користувача.
-     * @param gender Нова стать.
-     */
     void setGender(const QString &gender);
-
-    /**
-     * @brief Встановлює орієнтацію користувача.
-     * @param orientation Нова орієнтація.
-     */
     void setOrientation(const QString &orientation);
+    void setContactInfo(const ContactInfo &info);
+    void setPreference(const Preference& prefs);
 
     /**
-     * @brief Встановлює контактну інформацію для профілю.
-     * @param info Об'єкт ContactInfo.
+     * @brief Встановлює список тегів користувача.
      */
-    void setContactInfo(const ContactInfo &info);
-
- /**
-     * @brief Повертає збережені критерії пошуку користувача.
-     * @return Об'єкт Preference.
-     */
- Preference getPreference() const;
-
- /**
-  * @brief Встановлює критерії пошуку для профілю.
-  * Це потрібно для логіки MatchEngine.
-  * @param prefs Об'єкт Preference.
-  */
- void setPreference(const Preference& prefs);
+    void setTags(const QStringList& tags) { m_tags = tags; }
 
 private:
-    /// Унікальний ID користувача
     int m_id;
-
-    /// Ім'я користувача.
     QString m_name;
-
-    /// Вік користувача.
     int m_age;
-
-    /// Місто користувача.
     QString m_city;
-
-    /// Біографія користувача.
     QString m_bio;
-
-    /// Стать користувача.
     QString m_gender;
-
-    /// Сексуальна орієнтація.
     QString m_orientation;
-
-    /// Вбудований об'єкт для зберігання контактів (Композиція).
     ContactInfo m_contactInfo;
+    Preference m_preferences;
 
- Preference m_preferences;
+    QStringList m_tags;  // <- нове поле для тегів
 };
 
-#endif //USERPROFILE_H
+#endif // USERPROFILE_H
