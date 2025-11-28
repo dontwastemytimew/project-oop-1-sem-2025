@@ -20,6 +20,8 @@
         <file>resources/icons/chart.png</file>
         <file>resources/icons/hide.png</file>
         <file>resources/icons/unhide.png</file>
+<!--        <file>resources/icons/heart_red.png</file>-->
+<!--        <file>resources/icons/default_avatar.png</file>-->
     </qresource>
     <qresource prefix="/i18n">
         <file>i18n/app_en.qm</file>
