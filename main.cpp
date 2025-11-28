@@ -3,6 +3,8 @@
 #include "DatabaseManager.h"
 #include "mainwindow.h"
 #include "BenchmarkTool.h"
+#include "ChatWindow.h"
+#include "ChatManager.h"
 
 
 int main(int argc, char *argv[]) {
@@ -35,6 +37,11 @@ int main(int argc, char *argv[]) {
     UserLogger::log(Info, "Initializing MainWindow...");
     MainWindow w(&dbManager);
     w.show();
+
+    ChatManager chatManager;
+    ChatWindow *chat = new ChatWindow(1, 2, &chatManager);
+    chat->show();
+
 
     // --- КІНЕЦЬ БЕНЧМАРКУ ЗАПУСКУ ---
     // qInfo() << "--- STARTUP BENCHMARK ---";
