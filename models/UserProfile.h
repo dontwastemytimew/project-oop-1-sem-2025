@@ -12,16 +12,7 @@
  */
 class UserProfile {
 public:
-    /**
-     * @brief Конструктор UserProfile.
-     * @param id Унікальний ідентифікатор (за замовчуванням -1, що означає "новий профіль").
-     * @param name Ім'я користувача.
-     * @param age Вік користувача.
-     * @param city Місто проживання.
-     * @param bio Коротка біографія або опис.
-     * @param gender Стать користувача (напр., "Чоловік", "Жінка").
-     * @param orientation Сексуальна орієнтація (напр., "Гетеро", "Бісексуал").
-     */
+
     UserProfile(int id = -1, const QString &name = "", int age = 0,
                 const QString &city = "", const QString &bio = "",
                 const QString &gender = "", const QString &orientation = "");
@@ -37,9 +28,6 @@ public:
     ContactInfo getContactInfo() const;
     Preference getPreference() const;
 
-    /**
-     * @brief Повертає список тегів користувача.
-     */
     QStringList getTags() const { return m_tags; }
 
     // --- Сеттери ---
@@ -53,10 +41,13 @@ public:
     void setContactInfo(const ContactInfo &info);
     void setPreference(const Preference& prefs);
 
-    /**
-     * @brief Встановлює список тегів користувача.
-     */
     void setTags(const QStringList& tags) { m_tags = tags; }
+
+    /**
+     * @brief Перевіряє коректність введених користувачем даних.
+     * @return true, якщо дані валідні
+     */
+    bool isValid() const;
 
 private:
     int m_id;
@@ -68,8 +59,7 @@ private:
     QString m_orientation;
     ContactInfo m_contactInfo;
     Preference m_preferences;
-
-    QStringList m_tags;  // <- нове поле для тегів
+    QStringList m_tags;
 };
 
 #endif // USERPROFILE_H
