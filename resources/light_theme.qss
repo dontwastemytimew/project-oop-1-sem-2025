@@ -376,3 +376,75 @@ QLabel#cardBio {
     color: #444444;
     line-height: 1.4;
 }
+
+/* --- СТИЛІ КАРТКИ ПРОФІЛЮ (СВІТЛА ТЕМА) --- */
+
+/* Контейнер картки */
+QFrame#cardFrame {
+    background-color: #ffffff;
+    border-radius: 12px;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Легка тінь */
+}
+
+/* Заголовок (Ім'я, Вік) */
+QLabel#cardName {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333333;
+    padding-top: 10px;
+}
+QLabel#cardAge {
+    font-size: 24px;
+    font-weight: normal;
+    color: #333333;
+}
+
+/* Сумісність (%) - Рожевий текст */
+QLabel#cardCompatibility {
+    font-size: 16px;
+    font-weight: bold;
+    color: #E91E63; /* Яскраво-рожевий */
+    padding-top: 5px;
+    padding-bottom: 5px;
+    qproperty-pixmap: url(:/resources/icons/heart_red.png);
+}
+
+/* Місто */
+QLabel#cardCity {
+    font-size: 14px;
+    color: #666666;
+    padding-bottom: 10px;
+}
+
+/* Фото Placeholder */
+QLabel#cardPhoto {
+    border-radius: 10px;
+    background-color: #F0F0F0;
+}
+
+/* --- СТИЛІ СТОРІНКИ МЕТЧІВ --- */
+
+/* Заголовок Сторінки Метчів */
+QLabel#matchesTitleLabel {
+    font-size: 22pt;
+    font-weight: bold;
+    color: #4A148C; /* Фіолетовий */
+    padding: 10px;
+
+    /* ★ ЗАМІНА ЕМОДЗІ НА ІКОНКУ СЕРЦЯ */
+    qproperty-pixmap: url(:/resources/icons/heart_red.png);
+    qproperty-alignment: AlignHCenter; /* Вирівнювання піксмапу */
+}
+
+/* Список Метчів (Елементи) */
+QListWidget#matchesListWidget {
+    border: 1px solid #cccccc;
+    border-radius: 8px;
+    font-size: 16px;
+}
+QListWidget#matchesListWidget::item {
+    padding: 8px;
+    /* Розмір іконки */
+    qproperty-iconSize: 50px 50px;
+}

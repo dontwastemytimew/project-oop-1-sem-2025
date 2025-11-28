@@ -32,8 +32,7 @@ int MatchEngine::compatibilityScore(const UserProfile& p1, const UserProfile& p2
 {
     int score = 0;
 
-    // --- 1. КРИТИЧНА НЕСУМІСНІСТЬ (Завжди перша перевірка) ---
-    // Це логіка з вашого коду, яка є коректною:
+    // КРИТИЧНА НЕСУМІСНІСТЬ
 
     // Гетеро (p1) шукає протилежну стать
     if (p1.getOrientation() == "Гетеро" && p1.getGender() == p2.getGender()) {
@@ -45,27 +44,25 @@ int MatchEngine::compatibilityScore(const UserProfile& p1, const UserProfile& p2
     }
     // Бісексуал та Інше завжди сумісні.
 
-    // --- 2. БАЛИ ЗА КРИТЕРІЯМИ ---
+    // БАЛИ ЗА КРИТЕРІЯМ
 
-    // Місто (+30 балів / +20 балів з її коду)
-    if (p1.getCity() == p2.getCity()) {
-        score += 20; // Беремо 20 балів з її коду
+    // Місто (+20 балів)
+    if (!p1.getCity().isEmpty() && p1.getCity() == p2.getCity()) {
+        score += 20;
     }
 
     // Вік (різниця < 3 років = +20 балів)
     int ageDiff = qAbs(p1.getAge() - p2.getAge());
     if (ageDiff <= 2) {
-        score += 20; // Її логіка
+        score += 20;
     } else if (ageDiff < 6) {
-        score += 10; // Її логіка (якщо різниця < 6)
+        score += 10; // Бонус за близький вік
     }
 
     // Теги (TODO): Логіка з тегами тут не може бути реалізована без getTags().
-    // Ми тимчасово ігноруємо цей пункт, але він повинен бути доданий, коли з'явиться getTags().
 
-    // Біо
+    // Біо (+5 балів за наявність)
     if (!p1.getBio().isEmpty() && !p2.getBio().isEmpty()) {
-        // Залишимо це як заглушку, що дає +10 балів за наявність біо.
         score += 5;
     }
 

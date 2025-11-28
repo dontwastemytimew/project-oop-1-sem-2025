@@ -25,17 +25,20 @@ ProfilePageWidget::ProfilePageWidget(QWidget *parent)
 {
     QFormLayout* formLayout = new QFormLayout();
 
+    // --- 1. СТВОРЕННЯ ФОТО-СЕКЦІЇ ---
     m_photoLabel = new QLabel(tr("Фото"), this);
     m_photoLabel->setFixedSize(120, 120);
     m_photoLabel->setFrameShape(QFrame::Box);
     m_photoLabel->setAlignment(Qt::AlignCenter);
-    m_photoLabel->setPixmap(QPixmap());
+    m_photoLabel->setPixmap(QPixmap()); // Очищення
 
     m_choosePhotoButton = new QPushButton(tr("Обрати фото"), this);
 
+    // Додаємо фото у форму
     formLayout->addRow(tr("Фото:"), m_photoLabel);
     formLayout->addRow(new QLabel(this), m_choosePhotoButton);
 
+    // --- 2. Створення інших віджетів ---
     m_nameEdit = new QLineEdit(this);
     m_ageSpinBox = new QSpinBox(this);
     m_ageSpinBox->setRange(18, 99);
@@ -49,6 +52,7 @@ ProfilePageWidget::ProfilePageWidget(QWidget *parent)
     m_orientationCombo->addItems({tr("Гетеро"), tr("Бісексуал"), tr("Гей/Лесбі"), tr("Інше")});
     m_saveButton = new QPushButton(tr("Зберегти профіль"), this);
 
+    // --- 3. Додавання решти рядків у форму ---
     formLayout->addRow(tr("Ім'я:"), m_nameEdit);
     formLayout->addRow(tr("Вік:"), m_ageSpinBox);
     formLayout->addRow(tr("Місто:"), m_cityEdit);
@@ -64,7 +68,7 @@ ProfilePageWidget::ProfilePageWidget(QWidget *parent)
     setLayout(mainLayout);
 
     connect(m_saveButton, &QPushButton::clicked, this, &ProfilePageWidget::on_btn_SaveProfile_clicked);
-    connect(m_choosePhotoButton, &QPushButton::clicked, this, &ProfilePageWidget::onChoosePhoto); // <-- ПІДКЛЮЧЕННЯ ФОТО
+    connect(m_choosePhotoButton, &QPushButton::clicked, this, &ProfilePageWidget::onChoosePhoto);
     m_photoPath = "";
 }
 
@@ -100,6 +104,32 @@ void ProfilePageWidget::loadCurrentProfile() {
     }
 }
 
+void ProfilePageWidget::onChoosePhoto() {
+    QString fileName = QFileDialog::getOpenFileName(
+        this,
+        tr("Обрати фото"),
+        "",
+        tr("Зображення (*.png *.jpg *.jpeg)")
+        );
+
+    if (fileName.isEmpty()) return;
+
+    QDir dir(QCoreApplication::applicationDirPath());
+    if (!dir.exists("photos")) dir.mkdir("photos");
+
+    QString targetPath = dir.filePath("photos/" + QFileInfo(fileName).fileName());
+    QFile::remove(targetPath);
+    QFile::copy(fileName, targetPath);
+
+    m_photoPath = targetPath;
+
+    QPixmap pix(targetPath);
+    if (!pix.isNull()) {
+        m_photoLabel->setPixmap(
+            pix.scaled(m_photoLabel->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    }
+}
+
 void ProfilePageWidget::on_btn_SaveProfile_clicked() {
     UserLogger::log(Info, "Save Profile button clicked.");
 
@@ -125,31 +155,38 @@ void ProfilePageWidget::on_btn_SaveProfile_clicked() {
     int currentId = m_currentUser.getId();
     int resultId = -1;
 
+    // ВИКОРИСТОВУЄМО ПОВНИЙ КОНСТРУКТОР З ФОТО
     UserProfile newProfile(
         currentId, name, age, city, bio, gender, orientation,
-        m_photoPath
+        m_photoPath 
     );
     ContactInfo contacts(phone, email);
     newProfile.setContactInfo(contacts);
 
     if (currentId != -1) {
+        // ОНОВЛЕННЯ
         if (m_dbManager->updateProfile(newProfile)) resultId = currentId;
     } else {
+        // СТВОРЕННЯ
         if (m_dbManager->profileExists(email)) {
             QMessageBox::warning(this, tr("Помилка"), tr("Профіль з таким Email вже існує."));
             return;
         }
-        resultId = m_dbManager->saveProfile(newProfile); // Повертає ID
+        resultId = m_dbManager->saveProfile(newProfile); 
     }
 
+    // ФІНАЛІЗАЦІЯ І СИНХРОНІЗАЦІЯ СЕСІЇ
     if (resultId > 0) {
+        newProfile.setId(resultId);
         m_currentUser = newProfile;
-        m_currentUser.setId(resultId);
 
         QSettings settings("DatingAgency", "TitleApp");
         settings.setValue("current_user_id", resultId);
 
+        // ЛОГ ЗБЕРЕЖЕННЯ
+        UserLogger::log(Info, QString("DEBUG SAVE SUCCESS: ID %1 saved to QSettings.").arg(resultId));
         UserLogger::log(Info, QString("Profile saved/updated successfully. New Session ID: %1").arg(resultId));
+        
         QMessageBox::information(this, tr("Успіх"), tr("Профіль успішно збережено!"));
 
         m_saveButton->setText(tr("Оновити профіль"));
@@ -173,6 +210,7 @@ void ProfilePageWidget::setInternalProfile(const UserProfile& profile) {
     m_genderCombo->setCurrentText(m_currentUser.getGender());
     m_orientationCombo->setCurrentText(m_currentUser.getOrientation());
 
+    // ВІДОБРАЖЕННЯ ФОТО
     m_photoPath = profile.getPhotoPath();
 
     if (!m_photoPath.isEmpty()) {
@@ -190,30 +228,4 @@ void ProfilePageWidget::setInternalProfile(const UserProfile& profile) {
 
     m_saveButton->setText(tr("Оновити профіль"));
     UserLogger::log(Info, "ProfilePage: Internal state updated from MainWindow.");
-}
-
-void ProfilePageWidget::onChoosePhoto() {
-    QString fileName = QFileDialog::getOpenFileName(
-        this,
-        tr("Обрати фото"),
-        "",
-        tr("Зображення (*.png *.jpg *.jpeg)")
-        );
-
-    if (fileName.isEmpty()) return;
-
-    QDir dir(QCoreApplication::applicationDirPath());
-    if (!dir.exists("photos")) dir.mkdir("photos");
-
-    QString targetPath = dir.filePath("photos/" + QFileInfo(fileName).fileName());
-    QFile::remove(targetPath);
-    QFile::copy(fileName, targetPath);
-
-    m_photoPath = targetPath;
-
-    QPixmap pix(targetPath);
-    if (!pix.isNull()) {
-        m_photoLabel->setPixmap(
-            pix.scaled(m_photoLabel->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
-    }
 }

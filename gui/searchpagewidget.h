@@ -2,9 +2,11 @@
 #define SEARCHPAGEWIDGET_H
 
 #include <QWidget>
-#include <QList>
+#include <QVector>
 #include "DatabaseManager.h"
 #include "UserProfile.h"
+#include "profilecard.h"
+#include "MatchEngine.h"
 
 class QSpinBox;
 class QLineEdit;
@@ -16,8 +18,18 @@ class SearchPageWidget : public QWidget {
     Q_OBJECT
 public:
     explicit SearchPageWidget(QWidget *parent = nullptr);
+    ~SearchPageWidget();
 
     void setDatabaseManager(DatabaseManager* dbManager);
+
+    /**
+     * @brief Встановлює дані поточного користувача. Викликається при старті додатку.
+     */
+    void setCurrentUser(const UserProfile& profile);
+
+
+    signals:
+        void matchFound(int userId, int targetId);
 
     private slots:
         void on_btn_Find_clicked();
@@ -25,23 +37,27 @@ public:
     void on_Skip_clicked();
 
 private:
-    DatabaseManager* m_dbManager;
-
-    void showNextProfile();
-
+    DatabaseManager* m_dbManager = nullptr;
     QSpinBox* m_minAgeSpin;
     QSpinBox* m_maxAgeSpin;
     QLineEdit* m_cityEdit;
     QPushButton* m_findButton;
-
+    QComboBox* m_genderCombo;
+    QComboBox* m_orientationCombo;
     QStackedWidget* m_resultsStack;
     QPushButton* m_likeButton;
     QPushButton* m_skipButton;
+    QVector<UserProfile> m_currentMatches;
+    int m_currentMatchIndex = 0;
+    UserProfile m_currentUser;
+    MatchEngine *m_matchEngine;
+    void showNextProfile();
 
-    QList<UserProfile> m_currentMatches;
-    int m_currentMatchIndex;
-    QComboBox* m_genderCombo;
-    QComboBox* m_orientationCombo;
+    /**
+     * @brief Показує спливаюче вікно про Match.
+     * @param target Профіль, з яким відбувся метч.
+     */
+    void showMatchPopup(const UserProfile& target);
 };
 
 #endif // SEARCHPAGEWIDGET_H

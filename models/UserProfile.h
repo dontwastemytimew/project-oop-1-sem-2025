@@ -29,7 +29,7 @@ public:
     UserProfile(int id = -1, const QString &name = "", int age = 0,
                 const QString &city = "", const QString &bio = "",
                 const QString &gender = "", const QString &orientation = "",
-                const QString &photoPath = ""); // <-- ФУНКЦІОНАЛ ФОТО ПОВЕРНУТО
+                const QString &photoPath = ""); 
 
     // --- Геттери ---
 
@@ -38,30 +38,15 @@ public:
     int getAge() const;
     QString getCity() const;
     QString getBio() const;
-
-    /**
-     * @brief Повертає стать користувача.
-     * @return Рядок із назвою статі.
-     */
     QString getGender() const;
-
-    /**
-     * @brief Повертає орієнтацію користувача.
-     * @return Рядок із назвою орієнтації.
-     */
     QString getOrientation() const;
-
-    /**
-     * @brief Повертає об'єкт контактної інформації.
-     * @return Об'єкт ContactInfo.
-     */
     ContactInfo getContactInfo() const;
 
     /**
      * @brief Повертає шлях до фото профілю.
      * @return Рядок із шляхом до фото.
      */
-    QString getPhotoPath() const; // <-- ФУНКЦІОНАЛ ФОТО ПОВЕРНУТО
+    QString getPhotoPath() const;
 
     /**
      * @brief Повертає збережені критерії пошуку користувача.

@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "DatabaseManager.h"
+#include "UserProfile.h"
 
 class QLineEdit;
 class QSpinBox;
@@ -25,10 +26,13 @@ public:
 
     private slots:
         void on_btn_SaveProfile_clicked();
+        void onChoosePhoto(); // <-- Слот для вибору фото
 
 private:
     DatabaseManager* m_dbManager;
     UserProfile m_currentUser;
+
+    QString m_photoPath;
     QLineEdit* m_nameEdit;
     QSpinBox* m_ageSpinBox;
     QLineEdit* m_cityEdit;
@@ -37,12 +41,12 @@ private:
     QLineEdit* m_emailEdit;
     QComboBox* m_genderCombo;
     QComboBox* m_orientationCombo;
-    QPushButton* m_saveButton;
-    QLabel* m_photoLabel;
+    QLabel* m_photoLabel; 
     QPushButton* m_choosePhotoButton;
-    QString m_photoPath;
-    void setupCityAutocomplete();
-    void onChoosePhoto();
+    QPushButton* m_saveButton;
+    
+    // --- ПРИВАТНІ МЕТОДИ ---
+    void setupCityAutocomplete(); // <-- Метод для автодоповнення
 };
 
 #endif // PROFILEPAGEWIDGET_H

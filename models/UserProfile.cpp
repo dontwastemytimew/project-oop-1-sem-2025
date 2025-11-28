@@ -10,8 +10,10 @@ UserProfile::UserProfile(int id, const QString &name, int age,
                          const QString &photoPath)
     : m_id(id), m_name(name), m_age(age), m_city(city), m_bio(bio),
     m_gender(gender), m_orientation(orientation),
-    m_preferences(), m_photoPath(photoPath)
+    m_preferences(), m_photoPath(photoPath),
+    m_contactInfo()
 {
+    // m_tags буде ініціалізовано за замовчуванням
 }
 
 // --- Геттери ---
@@ -24,7 +26,7 @@ QString UserProfile::getBio() const { return m_bio; }
 QString UserProfile::getGender() const { return m_gender; }
 QString UserProfile::getOrientation() const { return m_orientation; }
 ContactInfo UserProfile::getContactInfo() const { return m_contactInfo; }
-QString UserProfile::getPhotoPath() const { return m_photoPath; } // <-- ФОТО ПОВЕРНЕНО
+QString UserProfile::getPhotoPath() const { return m_photoPath; }
 Preference UserProfile::getPreference() const { return m_preferences; }
 
 // --- Сеттери ---
@@ -36,9 +38,11 @@ void UserProfile::setBio(const QString &newBio) { m_bio = newBio; }
 void UserProfile::setGender(const QString &gender) { m_gender = gender; }
 void UserProfile::setOrientation(const QString &orientation) { m_orientation = orientation; }
 void UserProfile::setContactInfo(const ContactInfo &info) { m_contactInfo = info; }
-void UserProfile::setPhotoPath(const QString &path) { m_photoPath = path; } // <-- ФОТО ПОВЕРНЕНО
-void UserProfile::setPreference(const Preference& prefs) { m_preferences = prefs; }
+void UserProfile::setPhotoPath(const QString &path) { m_photoPath = path; }
+void UserProfile::setPreference(const Preference &prefs) { m_preferences = prefs; }
 
+
+// --- ВАЛІДАЦІЯ ПРОФІЛЮ ---
 bool UserProfile::isValid() const
 {
     // 1. Перевірка імені
