@@ -139,6 +139,12 @@ public:
      */
  int countUsers();
 
+ /**
+     * @brief Отримує список усіх унікальних міст з профілів.
+     * @return QStringList унікальних назв міст.
+     */
+ QStringList getAllCities();
+
 
 private:
     /// Об'єкт з'єднання з базою даних Qt.

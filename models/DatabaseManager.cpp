@@ -511,3 +511,17 @@ int DatabaseManager::countUsers() {
     }
     return 0;
 }
+
+QStringList DatabaseManager::getAllCities() {
+    QStringList cities;
+    QSqlQuery query("SELECT DISTINCT city FROM users WHERE city IS NOT NULL AND city != '' ORDER BY city", m_db);
+
+    if (query.exec()) {
+        while (query.next()) {
+            cities.append(query.value(0).toString());
+        }
+    } else {
+        UserLogger::log(Error, "Failed to retrieve cities list: " + query.lastError().text());
+    }
+    return cities;
+}

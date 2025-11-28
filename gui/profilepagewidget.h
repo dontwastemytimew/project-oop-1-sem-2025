@@ -9,6 +9,7 @@ class QSpinBox;
 class QTextEdit;
 class QPushButton;
 class QComboBox;
+class QLabel;
 
 class ProfilePageWidget : public QWidget {
     Q_OBJECT
@@ -37,6 +38,11 @@ private:
     QComboBox* m_genderCombo;
     QComboBox* m_orientationCombo;
     QPushButton* m_saveButton;
+    QLabel* m_photoLabel;
+    QPushButton* m_choosePhotoButton;
+    QString m_photoPath;
+    void setupCityAutocomplete();
+    void onChoosePhoto();
 };
 
 #endif // PROFILEPAGEWIDGET_H

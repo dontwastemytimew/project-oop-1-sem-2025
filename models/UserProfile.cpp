@@ -1,15 +1,20 @@
 #include "UserProfile.h"
 #include "Preference.h"
-#include <QRegExp>
+#include "ContactInfo.h"
+#include <QRegularExpression>
+#include <QtMath>
 
 UserProfile::UserProfile(int id, const QString &name, int age,
                          const QString &city, const QString &bio,
-                         const QString &gender, const QString &orientation)
+                         const QString &gender, const QString &orientation,
+                         const QString &photoPath)
     : m_id(id), m_name(name), m_age(age), m_city(city), m_bio(bio),
-      m_gender(gender), m_orientation(orientation), m_preferences()
+    m_gender(gender), m_orientation(orientation),
+    m_preferences(), m_photoPath(photoPath)
 {
-    // m_contactInfo буде створено автоматично конструктором за замовчуванням
 }
+
+// --- Геттери ---
 
 int UserProfile::getId() const { return m_id; }
 QString UserProfile::getName() const { return m_name; }
@@ -19,7 +24,10 @@ QString UserProfile::getBio() const { return m_bio; }
 QString UserProfile::getGender() const { return m_gender; }
 QString UserProfile::getOrientation() const { return m_orientation; }
 ContactInfo UserProfile::getContactInfo() const { return m_contactInfo; }
+QString UserProfile::getPhotoPath() const { return m_photoPath; } // <-- ФОТО ПОВЕРНЕНО
+Preference UserProfile::getPreference() const { return m_preferences; }
 
+// --- Сеттери ---
 void UserProfile::setId(int newId) { m_id = newId; }
 void UserProfile::setName(const QString &newName) { m_name = newName; }
 void UserProfile::setAge(int newAge) { m_age = newAge; }
@@ -28,11 +36,8 @@ void UserProfile::setBio(const QString &newBio) { m_bio = newBio; }
 void UserProfile::setGender(const QString &gender) { m_gender = gender; }
 void UserProfile::setOrientation(const QString &orientation) { m_orientation = orientation; }
 void UserProfile::setContactInfo(const ContactInfo &info) { m_contactInfo = info; }
-Preference UserProfile::getPreference() const { return m_preferences; }
+void UserProfile::setPhotoPath(const QString &path) { m_photoPath = path; } // <-- ФОТО ПОВЕРНЕНО
 void UserProfile::setPreference(const Preference& prefs) { m_preferences = prefs; }
-
-
-// ВАЛІДАЦІЯ ПРОФІЛЮ
 
 bool UserProfile::isValid() const
 {
@@ -40,8 +45,8 @@ bool UserProfile::isValid() const
     if (m_name.trimmed().length() < 2)
         return false;
 
-    QRegExp nameRegex("^[A-Za-zА-Яа-яІіЇїЄє' -]+$");
-    if (!nameRegex.exactMatch(m_name.trimmed()))
+    QRegularExpression nameRegex("^[A-Za-zА-Яа-яІіЇїЄє' -]+$");
+    if (!nameRegex.match(m_name.trimmed()).hasMatch())
         return false;
 
     // 2. Вік
@@ -57,9 +62,9 @@ bool UserProfile::isValid() const
         return false;
 
     // 5. Телефон
-    QRegExp phoneRegex("^\\+?[0-9]{10,15}$");
-    if (!m_contactInfo.phone().isEmpty() &&
-        !phoneRegex.exactMatch(m_contactInfo.phone()))
+    QRegularExpression phoneRegex("^\\+?[0-9]{10,15}$");
+    if (!m_contactInfo.getPhone().isEmpty() &&
+        !phoneRegex.match(m_contactInfo.getPhone()).hasMatch())
     {
         return false;
     }

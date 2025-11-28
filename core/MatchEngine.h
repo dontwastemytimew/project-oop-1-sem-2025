@@ -4,51 +4,47 @@
 #include "Preference.h"
 #include "UserProfile.h"
 #include "DatabaseManager.h"
+#include <QtMath>
+#include <QList>
 
 /**
  * @brief MatchEngine class
  *
- * Клас, що відповідає за алгоритм перевірки сумісності профілів
- * та базове фільтрування за налаштуваннями користувача (Preference).
+ * Розрахунок сумісності профілів на основі:
+ * - статі / орієнтації
+ * - віку
+ * - міста
+ * - формули балів
  */
 class MatchEngine {
 public:
 
-    explicit MatchEngine(DatabaseManager* dbManager);
+ explicit MatchEngine(DatabaseManager* dbManager);
 
-    /**
-     * @brief calculateMatch
-     * @param profile Профіль користувача
-     * @param prefs Критерії пошуку
-     * @return true, якщо профіль відповідає усім критеріям
-     */
-    static bool calculateMatch(const UserProfile &profile, const Preference &prefs);
+ /**
+  * @brief Перевіряє сумісність двох профілів.
+  * @return true, якщо вони подолали базові бар'єри (наприклад, 60%).
+  */
+ bool isCompatible(const UserProfile& p1, const UserProfile& p2) const;
 
-    /**
-     * @brief isCompatible
-     * Перевіряє сумісність двох реальних профілів.
-     * @param p1 Перший профіль (користувач, що шукає)
-     * @param p2 Другий профіль (кандидат)
-     * @return true, якщо профілі сумісні
-     */
-    bool isCompatible(const UserProfile& p1, const UserProfile& p2) const;
+ /**
+  * @brief Обчислює сумарний бал сумісності (напр., 50 балів).
+  */
+ int compatibilityScore(const UserProfile& p1, const UserProfile& p2) const;
 
-    /**
-     * @brief computeCompatibility
-     * Обчислює відсоток сумісності між двома профілями (0–100).
-     * Використовується тільки після проходження isCompatible().
-     */
-    int computeCompatibility(const UserProfile &a, const UserProfile &b) const;
+ /**
+  * @brief Обчислює % сумісності (0–100).
+  */
+ int compatibilityPercent(const UserProfile& p1, const UserProfile& p2) const;
 
-    /**
-     * @brief getSortedMatches
-     * Повертає список сумісних профілів, відсортованих за відсотком сумісності.
-     * @param userId ID користувача, для якого шукаємо пари
-     */
-    QList<QPair<UserProfile, int>> getSortedMatches(int userId) const;
+ /**
+  * @brief Повертає список сумісних профілів, відсортованих за відсотком сумісності.
+  * @param userId ID користувача, для якого шукаємо пари.
+  */
+ QList<QPair<UserProfile, int>> getSortedMatches(int userId) const;
 
 private:
-    DatabaseManager* m_dbManager;
+ DatabaseManager* m_dbManager;
 };
 
 #endif // MATCHENGINE_H
