@@ -1,11 +1,9 @@
 #include "matchespagewidget.h"
 #include <QVBoxLayout>
 #include <QLabel>
-#include <QListWidget>
 #include <QListWidgetItem>
 #include <QPixmap>
 #include <QIcon>
-#include <QApplication>
 #include <QDebug>
 
 MatchesPageWidget::MatchesPageWidget(QWidget *parent)
@@ -24,11 +22,12 @@ MatchesPageWidget::MatchesPageWidget(QWidget *parent)
     layout->addWidget(m_list);
 
     setLayout(layout);
+
+    connect(m_list, &QListWidget::itemClicked,
+            this, &MatchesPageWidget::onMatchClicked);
 }
 
-MatchesPageWidget::~MatchesPageWidget()
-{
-}
+MatchesPageWidget::~MatchesPageWidget() {}
 
 void MatchesPageWidget::setDatabaseManager(DatabaseManager* db)
 {
@@ -48,10 +47,7 @@ void MatchesPageWidget::reloadMatches()
 
     m_list->clear();
 
-    // отримуємо ID матчів
     QList<int> matchIds = m_db->getMatches(m_currentUserId);
-
-    // для кожного ID — повний профіль
     QList<UserProfile> allProfiles = m_db->getAllProfiles();
 
     for (int matchId : matchIds)
@@ -61,6 +57,7 @@ void MatchesPageWidget::reloadMatches()
             if (p.getId() == matchId)
             {
                 QListWidgetItem* item = new QListWidgetItem(m_list);
+
                 item->setText(QString("%1, %2 років\n%3")
                                   .arg(p.getName())
                                   .arg(p.getAge())
@@ -72,6 +69,10 @@ void MatchesPageWidget::reloadMatches()
                     pix.load(":/resources/default_avatar.png");
 
                 item->setIcon(QIcon(pix));
+
+                // Зберігаємо userId у елементі
+                item->setData(Qt::UserRole, p.getId());
+                item->setData(Qt::UserRole + 1, p.getName());
 
                 m_list->addItem(item);
                 break;
@@ -92,5 +93,29 @@ void MatchesPageWidget::onMatchCreated(int userId, int targetId)
     Q_UNUSED(userId)
     Q_UNUSED(targetId)
 
-    reloadMatches();   //  автоматично оновити список
+    reloadMatches();
+}
+
+void MatchesPageWidget::setChatManager(ChatManager* chatManager)
+{
+    m_chatManager = chatManager;
+}
+
+// Відкриття чату
+void MatchesPageWidget::onMatchClicked(QListWidgetItem* item)
+{
+    if (!m_chatManager)
+        return;
+
+    if (item->flags() == Qt::NoItemFlags)
+        return;  // Порожній запис "немає метчів"
+
+    int targetId = item->data(Qt::UserRole).toInt();
+    QString targetName = item->data(Qt::UserRole + 1).toString();
+
+    if (targetId <= 0)
+        return;
+
+    // Відкриваємо чат
+    m_chatManager->openChat(m_currentUserId, targetId, targetName);
 }
