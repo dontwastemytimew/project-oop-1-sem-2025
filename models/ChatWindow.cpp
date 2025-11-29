@@ -1,50 +1,64 @@
 #include "ChatWindow.h"
 #include <QVBoxLayout>
 #include <QHBoxLayout>
+#include <QTimer>
+#include <QScrollBar>
+#include <QTime>
+#include <QRandomGenerator>
 
-ChatWindow::ChatWindow(int userId, int targetId, ChatManager *chatMgr, QWidget *parent)
-    : QWidget(parent), m_userId(userId), m_targetId(targetId), m_chatMgr(chatMgr) {
+ChatWindow::ChatWindow(const UserProfile& matchProfile, ChatManager* chatManager, QWidget *parent)
+    : QDialog(parent), m_matchProfile(matchProfile), m_chatManager(chatManager)
+{
+    setWindowTitle(tr("Чат з %1").arg(m_matchProfile.getName()));
+    resize(400, 500);
 
-    messageList = new QListWidget(this);
-    inputField = new QLineEdit(this);
-    sendButton = new QPushButton("Відправити", this);
+    QVBoxLayout* mainLayout = new QVBoxLayout(this);
 
-    QVBoxLayout *mainLayout = new QVBoxLayout(this);
-    mainLayout->addWidget(messageList);
+    m_chatArea = new QTextEdit(this);
+    m_chatArea->setReadOnly(true);
 
-    QHBoxLayout *inputLayout = new QHBoxLayout();
-    inputLayout->addWidget(inputField);
-    inputLayout->addWidget(sendButton);
+    m_inputField = new QLineEdit(this);
+    m_sendButton = new QPushButton(tr("Відправити"), this);
+
+    QHBoxLayout* inputLayout = new QHBoxLayout();
+    inputLayout->addWidget(m_inputField);
+    inputLayout->addWidget(m_sendButton);
+
+    mainLayout->addWidget(m_chatArea);
     mainLayout->addLayout(inputLayout);
 
-    connect(sendButton, &QPushButton::clicked, this, &ChatWindow::sendMessage);
-
-    refreshMessages();
+    // Підключення кнопки та Enter
+    connect(m_sendButton, &QPushButton::clicked, this, &ChatWindow::sendMessage);
+    connect(m_inputField, &QLineEdit::returnPressed, this, &ChatWindow::sendMessage);
 }
 
-void ChatWindow::sendMessage() {
-    QString text = inputField->text().trimmed();
-    if (text.isEmpty()) return;
+void ChatWindow::sendMessage()
+{
+    QString message = m_inputField->text().trimmed();
+    if (message.isEmpty()) return;
 
-    // Надіслати повідомлення користувача
-    m_chatMgr->sendMessage(m_userId, m_targetId, text);
+    // Додаємо своє повідомлення
+    m_chatArea->append(QString("<b>Ви:</b> %1").arg(message));
+    m_inputField->clear();
+    m_chatArea->verticalScrollBar()->setValue(m_chatArea->verticalScrollBar()->maximum());
 
-    // Відповідь бота
-    QString botReply = m_chatMgr->getBotReply();
-    m_chatMgr->sendMessage(m_targetId, m_userId, botReply);
+    // Надсилаємо у ChatManager
+    if (m_chatManager)
+        m_chatManager->sendMessage(0, m_matchProfile.getId(), message); // 0 — це тимчасово currentUserId, можна замінити
 
-    inputField->clear();
-    refreshMessages();
+    // Затримка бот-відповіді
+    QTimer::singleShot(1000, this, &ChatWindow::botReply);
 }
 
-void ChatWindow::refreshMessages() {
-    messageList->clear();
-    QList<ChatMessage> messages = m_chatMgr->getMessages(m_userId, m_targetId);
+void ChatWindow::botReply()
+{
+    QStringList replies = {"Привіт!", "Як справи?", "Цікаво!", "Розкажи більше...", "😊"};
+    int idx = QRandomGenerator::global()->bounded(replies.size());
 
-    for (const ChatMessage &msg : messages) {
-        QString display = QString("%1: %2")
-                          .arg(msg.fromUserId == m_userId ? "Ви" : "Користувач")
-                          .arg(msg.message);
-        messageList->addItem(display);
-    }
+    m_chatArea->append(QString("<b>%1:</b> %2").arg(m_matchProfile.getName()).arg(replies[idx]));
+    m_chatArea->verticalScrollBar()->setValue(m_chatArea->verticalScrollBar()->maximum());
+
+    // Надсилаємо у ChatManager
+    if (m_chatManager)
+        m_chatManager->sendMessage(m_matchProfile.getId(), 0, replies[idx]); // 0 — currentUserId
 }
