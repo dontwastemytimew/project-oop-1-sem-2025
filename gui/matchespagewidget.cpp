@@ -101,21 +101,26 @@ void MatchesPageWidget::setChatManager(ChatManager* chatManager)
     m_chatManager = chatManager;
 }
 
-// Відкриття чату
 void MatchesPageWidget::onMatchClicked(QListWidgetItem* item)
 {
-    if (!m_chatManager)
-        return;
+    if (!m_db || !m_chatManager) return;
 
-    if (item->flags() == Qt::NoItemFlags)
-        return;  // Порожній запис "немає метчів"
+    // Визначаємо ID матчу по тексту 
+    QString name = item->text().split(",").first(); // перше слово — ім'я
 
-    int targetId = item->data(Qt::UserRole).toInt();
-    QString targetName = item->data(Qt::UserRole + 1).toString();
-
-    if (targetId <= 0)
-        return;
+    // Шукаємо профіль користувача по імені
+    UserProfile matchProfile;
+    QList<UserProfile> allProfiles = m_db->getAllProfiles();
+    for (const UserProfile& p : allProfiles)
+    {
+        if (p.getName() == name)
+        {
+            matchProfile = p;
+            break;
+        }
+    }
 
     // Відкриваємо чат
-    m_chatManager->openChat(m_currentUserId, targetId, targetName);
+    ChatWindow* chat = new ChatWindow(matchProfile, m_chatManager, this);
+    chat->exec(); // як діалог
 }
