@@ -14,6 +14,8 @@
 #include <QStackedWidget>
 #include <QMessageBox>
 #include <QVector>
+#include <QCompleter>
+#include <QStringList>
 
 SearchPageWidget::SearchPageWidget(QWidget *parent)
 : QWidget(parent)
@@ -86,6 +88,8 @@ void SearchPageWidget::setDatabaseManager(DatabaseManager* dbManager) {
 
     // Ініціалізуємо MatchEngine, як тільки отримуємо доступ до БД
     m_matchEngine = new MatchEngine(m_dbManager);
+
+    setupCityAutocomplete();
 }
 
 void SearchPageWidget::showMatchPopup(const UserProfile& target)
@@ -102,46 +106,47 @@ void SearchPageWidget::showMatchPopup(const UserProfile& target)
 
 // ЛОГІКА ПОШУКУ
 void SearchPageWidget::on_btn_Find_clicked() {
+    // 1. ПЕРЕВІРКА СЕСІЇ
     if (!m_dbManager || m_currentUser.getId() == -1) {
-        QMessageBox::critical(this, tr("Помилка"), tr("Профіль не завантажено. Створіть профіль."));
+        QMessageBox::critical(this, tr("Профіль не завантажено"), tr("Профіль не завантажено. Створіть профіль."));
         return;
     }
 
-    //Збираємо критерії
+    // 2. ЗБІР КРИТЕРІЇВ З UI
     Preference prefs(m_minAgeSpin->value(), m_maxAgeSpin->value(), m_cityEdit->text(),
                       m_genderCombo->currentText(), m_orientationCombo->currentText());
 
-    // Отримуємо ВІДФІЛЬТРОВАНІ профілі з БД
-    QList<UserProfile> dbResults = m_dbManager->getProfilesByCriteria(prefs);
+    // 3. ВИКЛИК БАЗИ ДАНИХ
+    QList<UserProfile> dbResults = m_dbManager->getProfilesByCriteria(prefs, m_currentUser.getId());
 
-    // Фільтруємо за складною логікою MatchEngine
+    // 4. ФІЛЬТРАЦІЯ
     m_currentMatches.clear();
     for (const UserProfile& profile : dbResults) {
-        // Перевіряємо, що це не ми самі, і що сумісність > 60%
-        if (m_currentUser.getId() != profile.getId() && m_matchEngine->isCompatible(m_currentUser, profile)) {
+
+
+        if (m_matchEngine->isCompatible(m_currentUser, profile)) {
             m_currentMatches.append(profile);
         }
     }
 
-    UserLogger::log(Info, QString("Search complete! Found %1 matches after compatibility check.").arg(m_currentMatches.count()));
+    UserLogger::log(Info, QString("Search complete! Found %1 matches after compatibility check.")
+                           .arg(m_currentMatches.count()));
 
     m_currentMatchIndex = 0;
 
-    // Очищуємо стару стопку карток
     while(m_resultsStack->count() > 1) {
         QWidget* widget = m_resultsStack->widget(1);
         m_resultsStack->removeWidget(widget);
         widget->deleteLater();
     }
 
-    // Показуємо перший профіль
     showNextProfile();
 }
 
 void SearchPageWidget::showNextProfile() {
     if (m_currentMatchIndex >= m_currentMatches.count()) {
         UserLogger::log(Info, "No more profiles to show.");
-        m_resultsStack->setCurrentIndex(0); // Заглушка
+        m_resultsStack->setCurrentIndex(0);
 
         if (m_currentMatches.isEmpty()) {
              QMessageBox::information(this, tr("Пошук"), tr("На жаль, нікого не знайдено за цими критеріями."));
@@ -170,19 +175,20 @@ void SearchPageWidget::on_Like_clicked() {
     int userId = m_currentUser.getId();
     int targetId = target.getId();
 
-    // Додаємо лайк у БД (Метод повинен бути реалізований у DatabaseManager)
+    // 1. Додаємо лайк у БД
     m_dbManager->addLike(userId, targetId);
     UserLogger::log(Info, QString("User %1 liked target %2.").arg(userId).arg(targetId));
 
-    // Перевіряємо взаємний метч
+    // 2. Перевіряємо взаємний метч
     if (m_dbManager->isMutualLike(userId, targetId)) {
         showMatchPopup(target);
         emit matchFound(userId, targetId);
     }
 
-    m_currentMatchIndex++;
-    if (m_currentMatchIndex >= m_currentMatches.size())
-        m_currentMatchIndex = 0;
+    // 3. ВИДАЛЯЄМО ПОТОЧНИЙ ПРОФІЛЬ З ПУЛУ
+    if (m_currentMatches.size() > m_currentMatchIndex) {
+        m_currentMatches.removeAt(m_currentMatchIndex);
+    }
 
     showNextProfile();
 }
@@ -192,9 +198,10 @@ void SearchPageWidget::on_Skip_clicked() {
 
     UserLogger::log(Info, "User clicked SKIP");
 
-    m_currentMatchIndex++;
-    if (m_currentMatchIndex >= m_currentMatches.size())
-        m_currentMatchIndex = 0;
+    // 1. ВИДАЛЯЄМО ПОТОЧНИЙ ПРОФІЛЬ З ПУЛУ
+    if (m_currentMatches.size() > m_currentMatchIndex) {
+        m_currentMatches.removeAt(m_currentMatchIndex);
+    }
 
     showNextProfile();
 }
@@ -203,3 +210,23 @@ void SearchPageWidget::on_Skip_clicked() {
     void SearchPageWidget::setCurrentUser(const UserProfile& profile) {
         m_currentUser = profile;
     }
+
+void SearchPageWidget::setupCityAutocomplete() {
+    if (!m_dbManager) return;
+
+    // Отримуємо список міст
+    QStringList cities = m_dbManager->getAllCities();
+
+    if (cities.isEmpty()) return;
+
+    QCompleter* completer = new QCompleter(cities, this);
+
+    completer->setFilterMode(Qt::MatchContains);
+    completer->setCaseSensitivity(Qt::CaseInsensitive);
+
+    m_cityEdit->setCompleter(completer);
+}
+
+int SearchPageWidget::getCurrentUserId() const {
+    return m_currentUser.getId();
+}

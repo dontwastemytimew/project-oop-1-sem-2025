@@ -17,12 +17,12 @@ bool MatchEngine::isCompatible(const UserProfile& p1, const UserProfile& p2) con
     if (p1.getId() == p2.getId() && p1.getId() != -1)
         return false;
 
-    // 2. Якщо несумісність критична (орієнтація/стать)
+    // 2. Критична несумісність (орієнтація/гендер)
     if (compatibilityScore(p1, p2) < 0) {
         return false;
     }
 
-    // 3. Перевірка сумісності за відсотком (УМОВНИЙ ПОРІГ 60%)
+    // 3. ПОРІГ 60%
     int percent = compatibilityPercent(p1, p2);
 
     return percent >= 60;

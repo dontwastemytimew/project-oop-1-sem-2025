@@ -1,6 +1,6 @@
 #include "matchespagewidget.h"
-#include "DatabaseManager.h" // Потрібен
-#include "chatwindow.h"      // <-- ДОДАНО: Для відкриття вікна чату
+#include "DatabaseManager.h"
+#include "chatwindow.h"
 #include <QVBoxLayout>
 #include <QLabel>
 #include <QListWidget>
@@ -8,7 +8,7 @@
 #include <QPixmap>
 #include <QIcon>
 #include <QDebug>
-#include <QApplication> // Для Q_UNUSED, якщо не використовується
+#include <QApplication>
 
 MatchesPageWidget::MatchesPageWidget(QWidget *parent)
     : QWidget(parent)
@@ -31,8 +31,6 @@ MatchesPageWidget::MatchesPageWidget(QWidget *parent)
 }
 
 MatchesPageWidget::~MatchesPageWidget() {
-    // Якщо всі віджети створюються з parent=this (як у вашому випадку),
-    // вони видаляться автоматично. Тут нічого не потрібно.
 }
 
 void MatchesPageWidget::setDatabaseManager(DatabaseManager* db)
@@ -53,10 +51,10 @@ void MatchesPageWidget::reloadMatches()
 
     m_list->clear();
 
-    // 1. Отримуємо ID тих, з ким є взаємний лайк (оптимізований SQL)
+    // 1. Отримуємо ID тих, з ким є взаємний лайк
     QList<int> matchIds = m_db->getMutualMatchIds(m_currentUserId);
 
-    // 2. Отримуємо повні профілі за списком ID (оптимізований SQL)
+    // 2. Отримуємо повні профілі за списком ID
     QList<UserProfile> matchProfiles = m_db->getProfilesByIds(matchIds);
 
     for (const UserProfile& p : matchProfiles)
@@ -69,14 +67,14 @@ void MatchesPageWidget::reloadMatches()
                           .arg(tr("років"))
                           .arg(p.getCity()));
 
-        // Фото (якщо є)
+        // Фото
         QPixmap pix(p.getPhotoPath());
         if (pix.isNull())
             pix.load(":/resources/default_avatar.png");
 
         item->setIcon(QIcon(pix.scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation)));
 
-        // Зберігаємо ID у елементі (КЛЮЧОВА ЗМІННА ДЛЯ onMatchClicked)
+        // Зберігаємо ID у елементі
         item->setData(Qt::UserRole, p.getId());
 
         m_list->addItem(item);
@@ -103,23 +101,21 @@ void MatchesPageWidget::setChatManager(ChatManager* chatManager)
     m_chatManager = chatManager;
 }
 
-// ОПТИМІЗОВАНА ФУНКЦІЯ КЛІКУ ДЛЯ ВІДКРИТТЯ ЧАТУ
 void MatchesPageWidget::onMatchClicked(QListWidgetItem* item)
 {
     if (!m_db || !m_chatManager) return;
 
-    // 1. ЗЧИТУЄМО ID ІЗ ЗБЕРЕЖЕНИХ ДАНИХ (UserRole)
+    // 1. ЗЧИТУЄМО ID ІЗ ЗБЕРЕЖЕНИХ ДАНИХ
     int matchId = item->data(Qt::UserRole).toInt();
 
     if (matchId <= 0) return;
 
-    // 2. Завантажуємо повний профіль для чату, використовуючи loadProfileById
+    // 2. Завантажуємо повний профіль для чату
     UserProfile matchProfile;
 
-    // МЕТОД LOADPROFILEBYID БУВ ДОДАНИЙ В DatabaseManager
     if (m_db->loadProfileById(matchId, matchProfile))
     {
-        // 3. Відкриваємо чат (завдання №17)
+        // 3. Відкриваємо чат
         // ChatWindow* chat = new ChatWindow(matchProfile, m_chatManager, this);
         // chat->exec();
         qDebug() << "Opening chat with:" << matchProfile.getName();

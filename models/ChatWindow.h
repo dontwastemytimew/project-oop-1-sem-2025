@@ -13,7 +13,6 @@ class ChatWindow : public QDialog
     Q_OBJECT
 
 public:
-    // --- ФІКС #1: Додано параметр currentUserId ---
     explicit ChatWindow(const UserProfile& matchProfile, ChatManager* chatManager, int currentUserId, QWidget *parent = nullptr);
 
     private slots:
@@ -21,7 +20,6 @@ public:
     void botReply();
 
 private:
-    // --- ФІКС #2: Додано оголошення методу loadHistory ---
     void loadHistory();
 
 private:

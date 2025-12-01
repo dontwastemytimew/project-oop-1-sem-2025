@@ -5,8 +5,8 @@
 #include "UserProfile.h"
 #include "DatabaseManager.h"
 #include <QtMath>
-#include <QList> // Для QList<QPair>
-#include <algorithm> // Для std::sort
+#include <QList>
+#include <algorithm>
 
 /**
  * @brief MatchEngine class

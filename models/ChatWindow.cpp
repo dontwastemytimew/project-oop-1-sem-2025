@@ -1,12 +1,11 @@
 #include "ChatWindow.h"
 #include <QVBoxLayout>
 #include <QHBoxLayout>
-#include <QTimer> // <-- Потрібно додати в includes
-#include <QScrollBar> // <-- Потрібно додати в includes
-#include <QRandomGenerator> // <-- Потрібно додати в includes
-#include <QDebug> // Для виведення логів
+#include <QTimer>
+#include <QScrollBar>
+#include <QRandomGenerator>
+#include <QDebug>
 
-// Тимчасово приймаємо 3 параметри (вам потрібно оновити .h)
 ChatWindow::ChatWindow(const UserProfile& matchProfile, ChatManager* chatManager, int currentUserId, QWidget *parent)
     : QDialog(parent), m_matchProfile(matchProfile), m_chatManager(chatManager), m_currentUserId(currentUserId)
 {
@@ -31,7 +30,6 @@ ChatWindow::ChatWindow(const UserProfile& matchProfile, ChatManager* chatManager
     connect(m_sendButton, &QPushButton::clicked, this, &ChatWindow::sendMessage);
     connect(m_inputField, &QLineEdit::returnPressed, this, &ChatWindow::sendMessage);
 
-    // --- КРИТИЧНО: ЗАВАНТАЖЕННЯ ІСТОРІЇ ПРИ ВІДКРИТТІ ---
     loadHistory();
 }
 
@@ -62,7 +60,7 @@ void ChatWindow::sendMessage()
     QString message = m_inputField->text().trimmed();
     if (message.isEmpty()) return;
 
-    // 1. Додаємо своє повідомлення (використовуємо m_currentUserId)
+    // 1. Додаємо своє повідомлення
     m_chatArea->append(QString("<b>%1:</b> %2").arg(tr("Ви")).arg(message));
     m_inputField->clear();
 
@@ -78,14 +76,11 @@ void ChatWindow::botReply()
 {
     if (!m_chatManager) return;
 
-    // 1. ВИКОРИСТАННЯ ЦЕНТРАЛІЗОВАНОЇ ЛОГІКИ БОТА
     QString botMessage = m_chatManager->getBotReply();
 
-    // 2. Додаємо відповідь
     m_chatArea->append(QString("<b>%1:</b> %2").arg(m_matchProfile.getName()).arg(botMessage));
-    m_chatArea->verticalScrollBar()->setValue(m_chatArea->verticalScrollBar()->maximum());
 
-    // 3. Надсилаємо у ChatManager (логіка: бот відправляє юзеру)
+    m_chatArea->verticalScrollBar()->setValue(m_chatArea->verticalScrollBar()->maximum());
     if (m_chatManager)
         m_chatManager->sendMessage(m_matchProfile.getId(), m_currentUserId, botMessage);
 }

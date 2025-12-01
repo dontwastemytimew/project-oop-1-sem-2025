@@ -19,7 +19,7 @@ MainWindow::MainWindow(DatabaseManager* dbManager, QWidget *parent)
     , m_dbManager(dbManager) {
 
     ui->setupUi(this);
-    setWindowTitle(tr("project"));
+    setWindowTitle(tr("Match++"));
 
     // Ініціалізація сторінок
     m_welcomePage = new WelcomePageWidget(this);
@@ -93,6 +93,9 @@ MainWindow::MainWindow(DatabaseManager* dbManager, QWidget *parent)
     // ЗВ'ЯЗОК МІЖ ПОШУКОМ І МЕТЧАМИ
     connect(m_searchPage, &SearchPageWidget::matchFound,
             m_matchesPage, &MatchesPageWidget::onMatchCreated);
+
+    connect(m_settingsPage, &SettingsPageWidget::accountDeleted,
+            this, &MainWindow::onAccountDeleted);
 }
 
 MainWindow::~MainWindow()
@@ -181,10 +184,11 @@ void MainWindow::onProfileSaved()
 
         m_userExists = true;
 
-        // Передаємо userId в MatchesPage тільки після реєстрації
+        m_searchPage->setCurrentUser(currentUser);
+
         m_matchesPage->setDatabaseManager(m_dbManager);
         m_matchesPage->setCurrentUserId(currentUser.getId());
-        m_searchPage->setCurrentUser(currentUser);
+
         m_settingsPage->loadCurrentSettings(currentUser);
 
         UserLogger::log(Info, "MainWindow received profileSaved signal. Session established.");
@@ -195,4 +199,14 @@ void MainWindow::showAdminPage() {
     ui->stackedWidget_Pages->setCurrentWidget(m_adminPage);
     m_adminPage->refreshTable();
     UserLogger::log(Info, "Switched to Admin Panel.");
+}
+
+void MainWindow::onAccountDeleted() {
+    m_userExists = false;
+
+    ui->stackedWidget_Pages->setCurrentWidget(m_welcomePage);
+
+    m_profilePage->clearFields();
+
+    UserLogger::log(Info, "Account deleted. Switching to Welcome Page.");
 }

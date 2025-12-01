@@ -9,6 +9,7 @@
 #include <QIcon>
 #include <QMessageBox>
 #include <QApplication>
+#include <QSettings>
 
 SettingsPageWidget::SettingsPageWidget(QWidget *parent) 
     : QWidget(parent), m_mainWindow(nullptr), m_isDarkTheme(false)
@@ -119,10 +120,9 @@ void SettingsPageWidget::on_deleteClicked() {
         if (m_dbManager->deleteProfile(m_currentProfileId)) {
             UserLogger::log(Info, "Profile deleted successfully.");
             QMessageBox::information(this, tr("Успіх"), tr("Ваш акаунт видалено."));
-
-            // TODO: Потрібно "розлогінити" юзера
-            // (напр., закрити додаток або перекинути на сторінку "Створити Профіль")
-            qApp->quit(); // Найпростіший варіант - закрити додаток
+            QSettings settings("DatingAgency", "TitleApp");
+            settings.remove("current_user_id");
+            accountDeleted();
         } else {
             UserLogger::log(Error, "Failed to delete profile from DB.");
         }

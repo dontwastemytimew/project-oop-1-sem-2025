@@ -21,6 +21,11 @@ public:
     void loadCurrentProfile();
     void setInternalProfile(const UserProfile& profile);
 
+    /**
+     * @brief Очищає всі поля форми після видалення профілю.
+     */
+    void clearFields();
+
     signals:
         void profileSaved();
 

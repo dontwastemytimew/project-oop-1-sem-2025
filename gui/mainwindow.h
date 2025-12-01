@@ -34,6 +34,7 @@ private slots:
     void on_btn_Matches_clicked();
     void on_btn_Settings_clicked();
     void onProfileSaved();
+    void onAccountDeleted();
 
 private:
     Ui::MainWindow *ui;

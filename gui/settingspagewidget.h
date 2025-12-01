@@ -21,6 +21,8 @@ public:
 
     signals:
     void openAdminPanelRequested();
+        void accountDeleted();
+
 
     private slots:
         void on_languageChanged(int index);

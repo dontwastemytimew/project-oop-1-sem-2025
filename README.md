@@ -1,12 +1,85 @@
-# Dating Agency Desktop App
+#  Match++: Desktop Dating Agency
 
-A desktop application built with C++ and Qt for a software engineering course project. It simulates a local dating agency, allowing users to create profiles, set preferences, and find matches based on a compatibility algorithm.
+Кросплатформний настільний додаток, створений на C++ та фреймворку Qt 6, призначений для симуляції функціоналу сучасної платформи знайомств. Проєкт зосереджений на надійному керуванні даними, ефективних алгоритмах зіставлення та професійній архітектурі.
 
-## Features implemented (Valeriia's part)
+## Архітектура та Технології
 
-- Profile photo import and avatar display in profile and match cards.
-- City autocomplete in profile editor (Qt QCompleter).
-- Compatibility percentage shown on match cards based on city, age and interests.
-- Persistent likes and matches stored in the database, matches page shows mutual likes.
-- Doxygen comments added for core logic headers (UserProfile, DatabaseManager, MatchEngine).
-- GoogleTest unit tests for compatibility logic.
+| Компонент | Технологія                  |
+| :--- |:----------------------------|
+| **Фреймворк** | Qt 6 (Widgets, Qt Charts)   |
+| **Мова** | C++17                       |
+| **Система збірки** | CMake                       |
+| **База даних** | SQLite (через QSqlDatabase) |
+| **Структура** | Core / Models / GUI / Utils |
+
+---
+
+## Основні Функції
+
+### User Experience (UX)
+* **Інтерфейс одного вікна:** Навігація між сторінками (Профіль, Пошук, Метчі) відбувається без перезавантаження, за допомогою `QStackedWidget`.
+* **Сесія:** Надійне керування сесією користувача через `QSettings`.
+* **Теми:** Перемикання світлої/темної теми за допомогою QSS.
+
+### Пошук та Зіставлення
+* **Розширений Фільтр:** Пошук за віком, містом, статтю та орієнтацією.
+* **Автодоповнення Міст:** "Розумне" введення міст за допомогою `QCompleter`, що використовує наявні дані з БД.
+* **Картка Профілю:** Динамічне відображення даних та відсотка сумісності.
+* **Бальна Система:** Реалізований алгоритм `MatchEngine::compatibilityScore` для оцінки сумісності на основі віку та міста.
+* **Simulated Chat:** Можливість клікнути на метч і відкрити вікно чату із заглушкою та випадковими відповідями бота.
+
+---
+
+## Додаткові фічі
+
+
+* **1. Панель Адміністратора:**
+    * Повний CRUD-інтерфейс для керування користувачами.
+    * Генерація 10,000+ фейкових профілів для тестування навантаження.
+    * **Аналітика (Qt Charts):** Візуалізація статистики (розподіл за віком, містами, статтю).
+* **2. Бенчмаркінг:**
+    * Вимірювання швидкості критичних операцій (наприклад, INSERT/SELECT, швидкість MatchEngine) за допомогою `QElapsedTimer`.
+    * Порівняльний тест **SQL-фільтрації** vs. **C++ In-memory фільтрації**.
+* **3. Інтернаціоналізація (i18n):**
+    * Повна підтримка **Української** та **Англійської** мов через `QTranslator` та `Qt Linguist`.
+* **4. Модульне Тестування (Unit Tests):**
+    * Тести для `DatabaseManager` та `MatchEngine` (використовується Google Test).
+* **5. Логер (UserLogger):**
+    * Кастомний клас для фіксації критичних подій, помилок та дій користувача.
+* **6. Документація:**
+    * Повна документація коду (Doxygen) з автоматичним розгортанням на GitHub Pages.
+
+---
+
+## Як Запустити Проєкт (CLion / CMake)
+
+1.  **Клонування репозиторію:**
+    ```bash
+    git clone [посилання на репозиторій]
+    cd project-oop-1-sem-2025
+    ```
+
+2.  **Завантаження залежностей:**
+    Проєкт використовує `FetchContent` для автоматичного завантаження Google Test.
+
+3.  **Збірка:**
+    Використовуйте стандартний процес збірки CMake (CLion, VS Code або термінал):
+    ```bash
+    cmake -S . -B build
+    cmake --build build
+    ```
+
+4.  **Запуск Бенчмарків (Окремо):**
+    ```bash
+    cmake --build build --target project_benchmark
+    ./build/project_benchmark.exe
+    ```
+
+---
+
+## Посилання
+
+| Ресурс | Адреса |
+| :--- | :--- |
+| **Документація (Doxygen)** | [Майбутнє посилання на GitHub Pages] |
+| **Відеодемонстрація** | [Майбутнє посилання на YouTube] |

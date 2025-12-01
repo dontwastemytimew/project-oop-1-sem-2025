@@ -27,6 +27,11 @@ public:
      */
     void setCurrentUser(const UserProfile& profile);
 
+    /**
+     * @brief Повертає ID поточного користувача.
+     */
+    int getCurrentUserId() const;
+
 
     signals:
         void matchFound(int userId, int targetId);
@@ -58,6 +63,7 @@ private:
      * @param target Профіль, з яким відбувся метч.
      */
     void showMatchPopup(const UserProfile& target);
+    void setupCityAutocomplete();
 };
 
 #endif // SEARCHPAGEWIDGET_H

@@ -180,7 +180,7 @@ void ProfilePageWidget::on_btn_SaveProfile_clicked() {
         newProfile.setId(resultId);
         m_currentUser = newProfile;
 
-        QSettings settings("DatingAgency", "TitleApp");
+        QSettings settings("DatingAgency", "Match++");
         settings.setValue("current_user_id", resultId);
 
         // ЛОГ ЗБЕРЕЖЕННЯ
@@ -228,4 +228,24 @@ void ProfilePageWidget::setInternalProfile(const UserProfile& profile) {
 
     m_saveButton->setText(tr("Оновити профіль"));
     UserLogger::log(Info, "ProfilePage: Internal state updated from MainWindow.");
+}
+
+void ProfilePageWidget::clearFields() {
+    m_nameEdit->clear();
+    m_cityEdit->clear();
+    m_bioEdit->clear();
+    m_phoneEdit->clear();
+    m_emailEdit->clear();
+
+    m_ageSpinBox->setValue(18);
+
+    m_genderCombo->setCurrentIndex(0);
+    m_orientationCombo->setCurrentIndex(0);
+
+    m_currentUser.setId(-1);
+    m_photoPath = "";
+    m_photoLabel->clear();
+    m_photoLabel->setText(tr("Фото"));
+
+    m_saveButton->setText(tr("Зберегти профіль"));
 }

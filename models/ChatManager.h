@@ -13,7 +13,7 @@ struct ChatMessage {
     QDateTime timestamp;
 };
 
-class ChatManager : public QObject { // <--- ФІКС #1: УСПАДКОВУЄМОСЯ ВІД QObject
+class ChatManager : public QObject {
     Q_OBJECT
 
 public:
@@ -24,7 +24,7 @@ public:
     // Отримати історію повідомлень між двома користувачами
     QList<ChatMessage> getMessages(int userId, int targetId) const;
 
-    // Отримати відповідь бота (заглушка)
+    // Отримати відповідь бота
     QString getBotReply() const;
 
 private:

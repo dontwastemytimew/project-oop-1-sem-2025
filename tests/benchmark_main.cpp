@@ -86,6 +86,37 @@ void runDatabaseBenchmark(DatabaseManager* dbManager) {
     qDebug() << "==================================================";
 }
 
+void testLikesLogic(DatabaseManager* dbManager) {
+    if (!dbManager) return;
+
+    qDebug() << "--- TESTING LIKES LOGIC ---";
+
+    UserProfile u1, u2;
+    u1.setId(1);
+    u2.setId(2);
+
+    dbManager->removeLike(1, 2);
+    dbManager->removeLike(2, 1);
+
+    // 2. Юзер 1 лайкає Юзера 2 (u1 -> u2)
+    dbManager->addLike(u1.getId(), u2.getId());
+
+    // 3. ПЕРЕВІРКА: Юзер 1 лайкнув Юзера 2? (Має бути true)
+    qDebug() << "1 liked 2 (expected: true):" << dbManager->hasUserLiked(1, 2);
+
+    // 4. Юзер 2 лайкає Юзера 1 (u2 -> u1) - Взаємний лайк
+    dbManager->addLike(u2.getId(), u1.getId());
+
+    // 5. ПЕРЕВІРКА: Чи є Метч? (Має бути true)
+    qDebug() << "Mutual Match (expected: true):" << dbManager->isMutualLike(1, 2);
+
+    // 6. ПЕРЕВІРКА: Список Метчів для Юзера 1
+    QList<int> matches = dbManager->getMutualMatchIds(1);
+    qDebug() << "Matches found for 1 (expected: true):" << matches.contains(2);
+
+    qDebug() << "--- LIKES LOGIC TEST COMPLETE ---";
+}
+
 int main(int argc, char *argv[]) {
     QCoreApplication::setOrganizationName("DatingAgency");
     QCoreApplication::setApplicationName("TitleApp");
@@ -115,6 +146,8 @@ int main(int argc, char *argv[]) {
     }
 
     runDatabaseBenchmark(&dbManager);
+    testLikesLogic(&dbManager);
+
 
     return 0;
 }

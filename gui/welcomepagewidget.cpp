@@ -9,7 +9,7 @@ WelcomePageWidget::WelcomePageWidget(QWidget *parent) : QWidget(parent)
     QVBoxLayout* mainLayout = new QVBoxLayout(this);
     mainLayout->setContentsMargins(50, 50, 50, 50);
 
-    QLabel* titleLabel = new QLabel(tr("Вітаємо у Title!"), this);
+    QLabel* titleLabel = new QLabel(tr("Вітаємо у Match++!"), this);
     titleLabel->setObjectName("welcomeTitle");
     titleLabel->setAlignment(Qt::AlignCenter);
 

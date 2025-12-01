@@ -43,7 +43,7 @@ public:
     bool setProfileHidden(int profileId, bool isHidden);
 
     // --- Отримання Профілів ---
-    QList<UserProfile> getProfilesByCriteria(const Preference &prefs);
+ QList<UserProfile> getProfilesByCriteria(const Preference &prefs, int currentUserId);
     QList<UserProfile> getAllProfiles();
     QList<UserProfile> getProfilesByIds(const QList<int> &ids);
     QStringList getAllCities();
@@ -89,6 +89,9 @@ public:
      * @return true, якщо профіль знайдено.
      */
  bool getCurrentUserProfile(UserProfile &profile);
+
+ void saveCurrentUserId(int userId);
+ int loadCurrentUserId() const;
 
 private:
     QSqlDatabase m_db;

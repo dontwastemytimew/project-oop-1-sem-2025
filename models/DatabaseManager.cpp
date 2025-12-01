@@ -85,11 +85,11 @@ bool DatabaseManager::createTables() {
 }
 
 
-// ЛАЙКИ / МЕТЧІ (оновлені)
+// ЛАЙКИ / МЕТЧІ
 bool DatabaseManager::addLike(int userId, int targetId) {
     if (userId <= 0 || targetId <= 0 || userId == targetId) return false;
 
-    if (!m_db.transaction()) { // <--- ТРАНЗАКЦІЯ ДОДАНО
+    if (!m_db.transaction()) {
         UserLogger::log(Error, "AddLike: Failed to start transaction.");
         return false;
     }
@@ -315,7 +315,7 @@ bool DatabaseManager::setProfileHidden(int profileId, bool isHidden) {
 
 // LOAD CURRENT USER
 bool DatabaseManager::getCurrentUserProfile(UserProfile &profile) {
-    QSettings settings("DatingAgency", "TitleApp");
+    QSettings settings("DatingAgency", "Match++");
 
     int id = settings.value("current_user_id", -1).toInt();
     if (id == -1) return false;
@@ -378,12 +378,16 @@ QList<UserProfile> DatabaseManager::getAllProfiles() {
 }
 
 // FILTER BY PREFERENCES
-QList<UserProfile> DatabaseManager::getProfilesByCriteria(const Preference &prefs) {
+QList<UserProfile> DatabaseManager::getProfilesByCriteria(const Preference &prefs, int currentUserId) {
     QList<UserProfile> profiles;
     QSqlQuery query(m_db);
 
-    QString sql = "SELECT * FROM users WHERE is_hidden = 0";
+    // Додаємо AND id != :currentId для виключення себе
+    QString sql = "SELECT * FROM users WHERE is_hidden = 0 AND id != :currentUserId";
     QMap<QString, QVariant> bind;
+
+    // Прив'язуємо ID користувача
+    bind[":currentUserId"] = currentUserId;
 
     if (prefs.getMinAge() > 0) {
         sql += " AND age >= :minAge";
@@ -556,8 +560,6 @@ bool DatabaseManager::loadProfileById(int userId, UserProfile& profile)
     }
 
     if (query.next()) {
-        // Зчитування відбувається так само, як у loadProfileByEmail, але тут
-        // ми використовуємо загальні індекси та імена полів
         profile.setId(query.value("id").toInt());
         profile.setName(query.value("name").toString());
         profile.setAge(query.value("age").toInt());
@@ -667,7 +669,7 @@ QList<UserProfile> DatabaseManager::getProfilesByIds(const QList<int> &ids) {
         while (query.next()) {
             UserProfile profile;
 
-            // Зчитування всіх полів (аналогічно getCurrentUserProfile)
+            // Зчитування всіх полів
             profile.setId(query.value("id").toInt());
             profile.setName(query.value("name").toString());
             profile.setAge(query.value("age").toInt());
@@ -688,4 +690,18 @@ QList<UserProfile> DatabaseManager::getProfilesByIds(const QList<int> &ids) {
         UserLogger::log(Error, "Failed to get profiles by IDs: " + query.lastError().text());
     }
     return profiles;
+}
+
+void DatabaseManager::saveCurrentUserId(int userId) {
+    QSettings settings("DatingAgency", "Match++");
+    settings.setValue("currentUserId", userId);
+    settings.sync();
+    UserLogger::log(Info, "Saved current user ID to QSettings: " + QString::number(userId));
+}
+
+int DatabaseManager::loadCurrentUserId() const {
+    QSettings settings("DatingAgency", "Match++");
+    int userId = settings.value("currentUserId", -1).toInt();
+    UserLogger::log(Info, "Loaded current user ID from QSettings: " + QString::number(userId));
+    return userId;
 }
