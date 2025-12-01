@@ -84,6 +84,70 @@ bool DatabaseManager::createTables() {
     return true;
 }
 
+
+// ЛАЙКИ / МЕТЧІ (оновлені)
+bool DatabaseManager::addLike(int userId, int targetId) {
+    if (userId <= 0 || targetId <= 0 || userId == targetId) return false;
+
+    if (!m_db.transaction()) { // <--- ТРАНЗАКЦІЯ ДОДАНО
+        UserLogger::log(Error, "AddLike: Failed to start transaction.");
+        return false;
+    }
+
+    QSqlQuery query(m_db);
+    query.prepare("INSERT OR IGNORE INTO likes (user_id, target_id) VALUES (?, ?)");
+    query.addBindValue(userId);
+    query.addBindValue(targetId);
+
+    if (query.exec()) {
+        m_db.commit();
+        return true;
+    } else {
+        m_db.rollback();
+        UserLogger::log(Error, "addLike failed: " + query.lastError().text());
+        return false;
+    }
+}
+
+
+bool DatabaseManager::hasUserLiked(int userId, int targetId) const {
+    QSqlQuery query(m_db);
+    query.prepare("SELECT 1 FROM likes WHERE user_id=? AND target_id=?");
+    query.addBindValue(userId);
+    query.addBindValue(targetId);
+
+    if (!query.exec())
+        return false;
+
+    return query.next();
+}
+
+bool DatabaseManager::isMutualLike(int user1, int user2) const {
+    return hasUserLiked(user1, user2) && hasUserLiked(user2, user1);
+}
+
+QList<int> DatabaseManager::getMutualMatchIds(int currentUserId) {
+    QList<int> matchIds;
+    QSqlQuery query(m_db);
+    query.prepare(
+        "SELECT T1.target_id FROM likes AS T1 "
+        "INNER JOIN likes AS T2 ON T1.target_id = T2.user_id "
+        "WHERE T1.user_id = :currentId AND T2.target_id = :currentId"
+    );
+    query.bindValue(":currentId", currentUserId);
+
+    if (query.exec()) {
+        while (query.next()) {
+            matchIds.append(query.value(0).toInt());
+        }
+    } else {
+        UserLogger::log(Error, "Failed to get mutual match IDs: " + query.lastError().text());
+    }
+
+    return matchIds;
+}
+
+
 // SAVE PROFILE
 int DatabaseManager::saveProfile(const UserProfile &profile) {
 
@@ -440,39 +504,18 @@ QStringList DatabaseManager::getAllCities() {
     return cities;
 }
 
-// LIKES / MATCHES
-bool DatabaseManager::addLike(int userId, int targetId) {
-    if (userId <= 0 || targetId <= 0 || userId == targetId) return false;
-    if (!m_db.transaction()) return false;
-
-    QSqlQuery query(m_db);
-    query.prepare("INSERT OR IGNORE INTO likes (user_id, target_id) VALUES (?, ?)");
-    query.addBindValue(userId);
-    query.addBindValue(targetId);
-
-    if (query.exec()) {
-        m_db.commit();
-        return true;
-    } else {
-        m_db.rollback();
-        UserLogger::log(Error, "addLike failed: " + query.lastError().text());
-        return false;
-    }
-}
-
 bool DatabaseManager::removeLike(int userId, int targetId) {
     if (userId <= 0 || targetId <= 0) {
         UserLogger::log(Warning, "RemoveLike failed: Invalid user IDs.");
         return false;
     }
 
-    if (!m_db.transaction()) {
+    if (!m_db.transaction()) { // <--- ТРАНЗАКЦІЯ ДОДАНО
         UserLogger::log(Error, "RemoveLike: Failed to start transaction.");
         return false;
     }
 
     QSqlQuery query(m_db);
-
     query.prepare("DELETE FROM likes WHERE user_id=? AND target_id=?");
     query.addBindValue(userId);
     query.addBindValue(targetId);
@@ -494,114 +537,48 @@ bool DatabaseManager::removeLike(int userId, int targetId) {
     }
 }
 
-bool DatabaseManager::hasUserLiked(int userId, int targetId) const {
+
+bool DatabaseManager::loadProfileById(int userId, UserProfile& profile)
+{
+    if (!m_db.isOpen()) {
+        qDebug() << "Database not open. Cannot load profile by ID.";
+        return false;
+    }
+
     QSqlQuery query(m_db);
+    // ВИПРАВЛЕНО: Таблиця users, ключ id, прибрано неіснуючий 'password'
+    query.prepare("SELECT * FROM users WHERE id = :id");
+    query.bindValue(":id", userId);
 
-    query.prepare("SELECT 1 FROM likes WHERE user_id=? AND target_id=?");
-    query.addBindValue(userId);
-    query.addBindValue(targetId);
-
-    if (!query.exec())
+    if (!query.exec()) {
+        qDebug() << "loadProfileById failed:" << query.lastError().text();
         return false;
-
-    return query.next();
-}
-
-bool DatabaseManager::isMutualLike(int userId, int targetId) const {
-    if (!hasUserLiked(userId, targetId))
-        return false;
-
-    if (!hasUserLiked(targetId, userId))
-        return false;
-
-    return true;
-}
-
-QList<int> DatabaseManager::getMatches(int userId) const {
-    QList<int> result;
-    QSqlQuery query(m_db);
-
-    QString sql =
-        "SELECT target_id "
-        "FROM likes "
-        "WHERE user_id=? "
-        "AND target_id IN (SELECT user_id FROM likes WHERE target_id=?)";
-
-    query.prepare(sql);
-    query.addBindValue(userId);
-    query.addBindValue(userId);
-
-    if (!query.exec())
-        return result;
-
-    while (query.next()) {
-        result.append(query.value(0).toInt());
     }
 
-    return result;
+    if (query.next()) {
+        // Зчитування відбувається так само, як у loadProfileByEmail, але тут
+        // ми використовуємо загальні індекси та імена полів
+        profile.setId(query.value("id").toInt());
+        profile.setName(query.value("name").toString());
+        profile.setAge(query.value("age").toInt());
+        profile.setCity(query.value("city").toString());
+        profile.setBio(query.value("bio").toString());
+        profile.setGender(query.value("gender").toString());
+        profile.setOrientation(query.value("orientation").toString());
+        profile.setPhotoPath(query.value("photo_path").toString());
+
+        profile.setContactInfo(ContactInfo(
+            query.value("phone").toString(),
+            query.value("email").toString()
+        ));
+
+        return true;
+    }
+
+    qDebug() << "loadProfileById: No profile found for ID" << userId;
+    return false;
 }
 
-// Знаходить взаємні лайки
-QList<int> DatabaseManager::getMutualMatchIds(int currentUserId) {
-    QList<int> matchIds;
-    QSqlQuery query;
-    query.prepare(
-        "SELECT T1.target_id FROM likes AS T1 "
-        "INNER JOIN likes AS T2 ON T1.target_id = T2.user_id "
-        "WHERE T1.user_id = :currentId AND T2.target_id = :currentId"
-    );
-    query.bindValue(":currentId", currentUserId);
-
-    if (query.exec()) {
-        while (query.next()) {
-            matchIds.append(query.value(0).toInt());
-        }
-    } else {
-        UserLogger::log(Error, "Failed to get mutual match IDs: " + query.lastError().text());
-    }
-    return matchIds;
-}
-
-// Завантажує профілі за списком ID
-QList<UserProfile> DatabaseManager::getProfilesByIds(const QList<int> &ids) {
-    QList<UserProfile> profiles;
-    if (ids.isEmpty()) return profiles;
-
-    QSqlQuery query;
-    QString idList = "(";
-    for (int i = 0; i < ids.size(); ++i) {
-        idList += "?";
-        if (i < ids.size() - 1) idList += ",";
-    }
-    idList += ")";
-
-    query.prepare("SELECT * FROM users WHERE id IN " + idList);
-
-    for (int id : ids) {
-        query.addBindValue(id);
-    }
-
-    if (query.exec()) {
-        while (query.next()) {
-            UserProfile profile;
-            profile.setId(query.value("id").toInt());
-            profile.setName(query.value("name").toString());
-            profile.setAge(query.value("age").toInt());
-            profile.setCity(query.value("city").toString());
-            profile.setBio(query.value("bio").toString());
-            profile.setGender(query.value("gender").toString());
-            profile.setOrientation(query.value("orientation").toString());
-            profile.setPhotoPath(query.value("photo_path").toString());
-
-            profile.setContactInfo(ContactInfo(query.value("phone").toString(), query.value("email").toString()));
-
-            profiles.append(profile);
-        }
-    } else {
-        UserLogger::log(Error, "Failed to get profiles by IDs: " + query.lastError().text());
-    }
-    return profiles;
-}
 
 // для AdminPanel
 QSqlTableModel* DatabaseManager::getUsersModel(QObject* parent) {
@@ -663,4 +640,52 @@ QMap<QString, int> DatabaseManager::getAgeStatistics() {
         else stats["50+"]++;
     }
     return stats;
+}
+
+// Реалізація getProfilesByIds: Завантажує профілі за списком ID
+QList<UserProfile> DatabaseManager::getProfilesByIds(const QList<int> &ids) {
+    QList<UserProfile> profiles;
+    if (ids.isEmpty()) return profiles;
+
+    QSqlQuery query;
+    // Створення рядка "id IN (?, ?, ?...)" для ефективного SQL-запиту
+    QString idList = "(";
+    for (int i = 0; i < ids.size(); ++i) {
+        idList += "?";
+        if (i < ids.size() - 1) idList += ",";
+    }
+    idList += ")";
+
+    query.prepare("SELECT * FROM users WHERE id IN " + idList);
+
+    // Додаємо ID як bindValue
+    for (int id : ids) {
+        query.addBindValue(id);
+    }
+
+    if (query.exec()) {
+        while (query.next()) {
+            UserProfile profile;
+
+            // Зчитування всіх полів (аналогічно getCurrentUserProfile)
+            profile.setId(query.value("id").toInt());
+            profile.setName(query.value("name").toString());
+            profile.setAge(query.value("age").toInt());
+            profile.setCity(query.value("city").toString());
+            profile.setBio(query.value("bio").toString());
+            profile.setGender(query.value("gender").toString());
+            profile.setOrientation(query.value("orientation").toString());
+            profile.setPhotoPath(query.value("photo_path").toString());
+
+            profile.setContactInfo(ContactInfo(
+                query.value("phone").toString(),
+                query.value("email").toString()
+            ));
+
+            profiles.append(profile);
+        }
+    } else {
+        UserLogger::log(Error, "Failed to get profiles by IDs: " + query.lastError().text());
+    }
+    return profiles;
 }

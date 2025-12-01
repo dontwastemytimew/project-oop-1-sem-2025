@@ -2,7 +2,9 @@
 #include <QString>
 #include <QList>
 #include <QMap>
+#include <QObject>
 #include <QDateTime>
+#include "DatabaseManager.h"
 
 struct ChatMessage {
     int fromUserId;
@@ -11,10 +13,11 @@ struct ChatMessage {
     QDateTime timestamp;
 };
 
-class ChatManager {
-public:
-    ChatManager();
+class ChatManager : public QObject { // <--- ФІКС #1: УСПАДКОВУЄМОСЯ ВІД QObject
+    Q_OBJECT
 
+public:
+    explicit ChatManager(DatabaseManager* dbManager, QObject* parent = nullptr);
     // Надіслати повідомлення від користувача
     void sendMessage(int fromUserId, int toUserId, const QString &message);
 
@@ -30,4 +33,6 @@ private:
 
     // Заготовки для бот-відповідей
     QList<QString> botReplies;
+
+    DatabaseManager* m_dbManager;
 };

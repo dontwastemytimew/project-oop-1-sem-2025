@@ -28,6 +28,8 @@ MainWindow::MainWindow(DatabaseManager* dbManager, QWidget *parent)
     m_matchesPage = new MatchesPageWidget(this);
     m_settingsPage = new SettingsPageWidget(this);
     m_adminPage = new AdminPageWidget(this);
+    m_chatManager = new ChatManager(m_dbManager, this);
+
 
     // Додавання до StackedWidget
     ui->stackedWidget_Pages->addWidget(m_welcomePage);
@@ -36,6 +38,7 @@ MainWindow::MainWindow(DatabaseManager* dbManager, QWidget *parent)
     ui->stackedWidget_Pages->addWidget(m_matchesPage);
     ui->stackedWidget_Pages->addWidget(m_settingsPage);
     ui->stackedWidget_Pages->addWidget(m_adminPage);
+    m_matchesPage->setChatManager(m_chatManager);
 
     // Налаштування тем та мови
     switchTheme(false);

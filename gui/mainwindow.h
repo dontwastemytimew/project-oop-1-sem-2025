@@ -11,6 +11,7 @@
 #include "adminpagewidget.h"
 #include <QButtonGroup>
 #include "settingspagewidget.h"
+#include "ChatManager.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -45,6 +46,7 @@ private:
     QTranslator m_translator;
     SettingsPageWidget *m_settingsPage;
     QButtonGroup *m_navButtonGroup;
+    ChatManager* m_chatManager;
     bool m_userExists;
     AdminPageWidget* m_adminPage;
 };
