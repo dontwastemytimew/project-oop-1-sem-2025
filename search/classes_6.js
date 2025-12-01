@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['mainwindow_0',['MainWindow',['../classMainWindow.html',1,'']]],
-  ['matchengine_1',['MatchEngine',['../classMatchEngine.html',1,'']]],
-  ['matchespagewidget_2',['MatchesPageWidget',['../classMatchesPageWidget.html',1,'']]]
+  ['preference_0',['Preference',['../classPreference.html',1,'']]],
+  ['profilecard_1',['ProfileCard',['../classProfileCard.html',1,'']]],
+  ['profilepagewidget_2',['ProfilePageWidget',['../classProfilePageWidget.html',1,'']]]
 ];

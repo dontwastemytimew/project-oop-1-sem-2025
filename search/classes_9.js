@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['tagmanager_0',['TagManager',['../classTagManager.html',1,'']]]
+  ['userlogger_0',['UserLogger',['../classUserLogger.html',1,'']]],
+  ['userprofile_1',['UserProfile',['../classUserProfile.html',1,'']]]
 ];

@@ -8,7 +8,6 @@ var annotated_dup =
     [ "ContactInfo", "classContactInfo.html", "classContactInfo" ],
     [ "DatabaseManager", "classDatabaseManager.html", "classDatabaseManager" ],
     [ "FakeDataManager", "classFakeDataManager.html", null ],
-    [ "LikesManager", "classLikesManager.html", null ],
     [ "MainWindow", "classMainWindow.html", null ],
     [ "MatchEngine", "classMatchEngine.html", "classMatchEngine" ],
     [ "MatchesPageWidget", "classMatchesPageWidget.html", null ],

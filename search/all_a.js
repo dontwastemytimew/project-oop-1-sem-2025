@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['opendatabase_0',['openDatabase',['../classDatabaseManager.html#abf0518515ed9ec59c91bd4d3a39f7319',1,'DatabaseManager']]]
+  ['preference_0',['preference',['../classPreference.html',1,'Preference'],['../classPreference.html#a17dda34bb452f1b0cc899aa867ecad40',1,'Preference::Preference()']]],
+  ['profilecard_1',['ProfileCard',['../classProfileCard.html',1,'']]],
+  ['profilepagewidget_2',['ProfilePageWidget',['../classProfilePageWidget.html',1,'']]]
 ];

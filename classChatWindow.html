@@ -104,7 +104,7 @@ Inheritance diagram for ChatWindow:</div>
 <div class="center"><img src="classChatWindow__inherit__graph.png" border="0" usemap="#aChatWindow_inherit__map" alt="Inheritance graph"/></div>
 <map name="aChatWindow_inherit__map" id="aChatWindow_inherit__map">
 <area shape="rect" title=" " alt="" coords="5,79,109,104"/>
-<area shape="rect" title=" " alt="" coords="18,5,97,31"/>
+<area shape="rect" title=" " alt="" coords="20,5,95,31"/>
 <area shape="poly" title=" " alt="" coords="60,44,60,79,55,79,55,44"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
@@ -113,52 +113,65 @@ Collaboration diagram for ChatWindow:</div>
 <div class="dyncontent">
 <div class="center"><img src="classChatWindow__coll__graph.png" border="0" usemap="#aChatWindow_coll__map" alt="Collaboration graph"/></div>
 <map name="aChatWindow_coll__map" id="aChatWindow_coll__map">
-<area shape="rect" title=" " alt="" coords="51,93,155,119"/>
-<area shape="rect" title=" " alt="" coords="5,5,84,31"/>
-<area shape="poly" title=" " alt="" coords="63,41,97,91,93,94,58,44"/>
-<area shape="rect" href="classChatManager.html" title=" " alt="" coords="109,5,218,31"/>
-<area shape="poly" title=" " alt="" coords="149,44,114,94,110,91,145,41"/>
+<area shape="rect" title=" " alt="" coords="121,181,225,207"/>
+<area shape="rect" title=" " alt="" coords="34,93,109,119"/>
+<area shape="poly" title=" " alt="" coords="97,126,160,179,157,183,94,130"/>
+<area shape="rect" href="classUserProfile.html" title="Клас UserProfile." alt="" coords="133,93,226,119"/>
+<area shape="poly" title=" " alt="" coords="178,133,177,143,175,181,170,181,171,142,173,132"/>
+<area shape="rect" href="classContactInfo.html" title="Клас ContactInfo." alt="" coords="5,5,103,31"/>
+<area shape="poly" title=" " alt="" coords="64,43,80,67,105,84,133,94,132,99,103,88,76,71,59,45"/>
+<area shape="rect" href="classPreference.html" title="Клас Preference." alt="" coords="136,5,228,31"/>
+<area shape="poly" title=" " alt="" coords="184,45,182,93,177,93,179,44"/>
+<area shape="rect" href="classChatManager.html" title=" " alt="" coords="255,93,365,119"/>
+<area shape="poly" title=" " alt="" coords="302,133,282,159,255,176,226,186,224,181,253,171,279,155,298,130"/>
+<area shape="rect" title=" " alt="" coords="270,5,345,31"/>
+<area shape="poly" title=" " alt="" coords="311,44,312,93,307,93,305,45"/>
+<area shape="rect" href="classDatabaseManager.html" title="Клас DatabaseManager." alt="" coords="369,5,510,31"/>
+<area shape="poly" title=" " alt="" coords="412,40,329,95,326,91,409,36"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a3fe5a50bc2d1b7efeaffcaaa02ae19d7" id="r_a3fe5a50bc2d1b7efeaffcaaa02ae19d7"><td class="memItemLeft" align="right" valign="top"><a id="a3fe5a50bc2d1b7efeaffcaaa02ae19d7" name="a3fe5a50bc2d1b7efeaffcaaa02ae19d7"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>ChatWindow</b> (int userId, int targetId, <a class="el" href="classChatManager.html">ChatManager</a> *chatMgr, QWidget *parent=nullptr)</td></tr>
-<tr class="separator:a3fe5a50bc2d1b7efeaffcaaa02ae19d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a633dfdd5bae626504b5a809fa33dfb32" id="r_a633dfdd5bae626504b5a809fa33dfb32"><td class="memItemLeft" align="right" valign="top"><a id="a633dfdd5bae626504b5a809fa33dfb32" name="a633dfdd5bae626504b5a809fa33dfb32"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>ChatWindow</b> (const <a class="el" href="classUserProfile.html">UserProfile</a> &amp;matchProfile, <a class="el" href="classChatManager.html">ChatManager</a> *chatManager, int currentUserId, QWidget *parent=nullptr)</td></tr>
+<tr class="separator:a633dfdd5bae626504b5a809fa33dfb32"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-slots" name="pri-slots"></a>
 Private Slots</h2></td></tr>
 <tr class="memitem:a571243c1857f45f5f582684d597cd498" id="r_a571243c1857f45f5f582684d597cd498"><td class="memItemLeft" align="right" valign="top"><a id="a571243c1857f45f5f582684d597cd498" name="a571243c1857f45f5f582684d597cd498"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>sendMessage</b> ()</td></tr>
 <tr class="separator:a571243c1857f45f5f582684d597cd498"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab16e5755db1c5f73531476a8b418fe31" id="r_ab16e5755db1c5f73531476a8b418fe31"><td class="memItemLeft" align="right" valign="top"><a id="ab16e5755db1c5f73531476a8b418fe31" name="ab16e5755db1c5f73531476a8b418fe31"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>botReply</b> ()</td></tr>
+<tr class="separator:ab16e5755db1c5f73531476a8b418fe31"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
-<tr class="memitem:a5ae484fe5b07b95fbdd15164a3590b43" id="r_a5ae484fe5b07b95fbdd15164a3590b43"><td class="memItemLeft" align="right" valign="top"><a id="a5ae484fe5b07b95fbdd15164a3590b43" name="a5ae484fe5b07b95fbdd15164a3590b43"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>refreshMessages</b> ()</td></tr>
-<tr class="separator:a5ae484fe5b07b95fbdd15164a3590b43"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb5101b31051de1552c6334ac76a2784" id="r_adb5101b31051de1552c6334ac76a2784"><td class="memItemLeft" align="right" valign="top"><a id="adb5101b31051de1552c6334ac76a2784" name="adb5101b31051de1552c6334ac76a2784"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>loadHistory</b> ()</td></tr>
+<tr class="separator:adb5101b31051de1552c6334ac76a2784"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:a7ed55aeec6a05f42ab109170adeee12b" id="r_a7ed55aeec6a05f42ab109170adeee12b"><td class="memItemLeft" align="right" valign="top"><a id="a7ed55aeec6a05f42ab109170adeee12b" name="a7ed55aeec6a05f42ab109170adeee12b"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>m_userId</b></td></tr>
-<tr class="separator:a7ed55aeec6a05f42ab109170adeee12b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae99b7fbbe93e2fbed80e1468ff313611" id="r_ae99b7fbbe93e2fbed80e1468ff313611"><td class="memItemLeft" align="right" valign="top"><a id="ae99b7fbbe93e2fbed80e1468ff313611" name="ae99b7fbbe93e2fbed80e1468ff313611"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>m_targetId</b></td></tr>
-<tr class="separator:ae99b7fbbe93e2fbed80e1468ff313611"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0801a3fc7feed81d2aa12cca919929c1" id="r_a0801a3fc7feed81d2aa12cca919929c1"><td class="memItemLeft" align="right" valign="top"><a id="a0801a3fc7feed81d2aa12cca919929c1" name="a0801a3fc7feed81d2aa12cca919929c1"></a>
-<a class="el" href="classChatManager.html">ChatManager</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>m_chatMgr</b></td></tr>
-<tr class="separator:a0801a3fc7feed81d2aa12cca919929c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a65335752fdec6a5084ca76a7b663dda4" id="r_a65335752fdec6a5084ca76a7b663dda4"><td class="memItemLeft" align="right" valign="top"><a id="a65335752fdec6a5084ca76a7b663dda4" name="a65335752fdec6a5084ca76a7b663dda4"></a>
-QListWidget *&#160;</td><td class="memItemRight" valign="bottom"><b>messageList</b></td></tr>
-<tr class="separator:a65335752fdec6a5084ca76a7b663dda4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aac441dc49ea666a143b9ccdcc068ece0" id="r_aac441dc49ea666a143b9ccdcc068ece0"><td class="memItemLeft" align="right" valign="top"><a id="aac441dc49ea666a143b9ccdcc068ece0" name="aac441dc49ea666a143b9ccdcc068ece0"></a>
-QLineEdit *&#160;</td><td class="memItemRight" valign="bottom"><b>inputField</b></td></tr>
-<tr class="separator:aac441dc49ea666a143b9ccdcc068ece0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5ad871d79bd5cb1f6bd258f2a4b73c62" id="r_a5ad871d79bd5cb1f6bd258f2a4b73c62"><td class="memItemLeft" align="right" valign="top"><a id="a5ad871d79bd5cb1f6bd258f2a4b73c62" name="a5ad871d79bd5cb1f6bd258f2a4b73c62"></a>
-QPushButton *&#160;</td><td class="memItemRight" valign="bottom"><b>sendButton</b></td></tr>
-<tr class="separator:a5ad871d79bd5cb1f6bd258f2a4b73c62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb5e6149870b72e67e232d15d94a58cd" id="r_abb5e6149870b72e67e232d15d94a58cd"><td class="memItemLeft" align="right" valign="top"><a id="abb5e6149870b72e67e232d15d94a58cd" name="abb5e6149870b72e67e232d15d94a58cd"></a>
+<a class="el" href="classUserProfile.html">UserProfile</a>&#160;</td><td class="memItemRight" valign="bottom"><b>m_matchProfile</b></td></tr>
+<tr class="separator:abb5e6149870b72e67e232d15d94a58cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc1ec88f6d3a1af826f952a5f9bdc7b7" id="r_afc1ec88f6d3a1af826f952a5f9bdc7b7"><td class="memItemLeft" align="right" valign="top"><a id="afc1ec88f6d3a1af826f952a5f9bdc7b7" name="afc1ec88f6d3a1af826f952a5f9bdc7b7"></a>
+<a class="el" href="classChatManager.html">ChatManager</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>m_chatManager</b></td></tr>
+<tr class="separator:afc1ec88f6d3a1af826f952a5f9bdc7b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef10c401dab2d802d68793b1b4931f50" id="r_aef10c401dab2d802d68793b1b4931f50"><td class="memItemLeft" align="right" valign="top"><a id="aef10c401dab2d802d68793b1b4931f50" name="aef10c401dab2d802d68793b1b4931f50"></a>
+QTextEdit *&#160;</td><td class="memItemRight" valign="bottom"><b>m_chatArea</b></td></tr>
+<tr class="separator:aef10c401dab2d802d68793b1b4931f50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f62e84d5ca7aaf18c1a3d564c8eeee5" id="r_a1f62e84d5ca7aaf18c1a3d564c8eeee5"><td class="memItemLeft" align="right" valign="top"><a id="a1f62e84d5ca7aaf18c1a3d564c8eeee5" name="a1f62e84d5ca7aaf18c1a3d564c8eeee5"></a>
+QLineEdit *&#160;</td><td class="memItemRight" valign="bottom"><b>m_inputField</b></td></tr>
+<tr class="separator:a1f62e84d5ca7aaf18c1a3d564c8eeee5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af091176975306866afd0abde7acbaf6f" id="r_af091176975306866afd0abde7acbaf6f"><td class="memItemLeft" align="right" valign="top"><a id="af091176975306866afd0abde7acbaf6f" name="af091176975306866afd0abde7acbaf6f"></a>
+QPushButton *&#160;</td><td class="memItemRight" valign="bottom"><b>m_sendButton</b></td></tr>
+<tr class="separator:af091176975306866afd0abde7acbaf6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a250057fbf227ad1184a8e37d0a37c6ef" id="r_a250057fbf227ad1184a8e37d0a37c6ef"><td class="memItemLeft" align="right" valign="top"><a id="a250057fbf227ad1184a8e37d0a37c6ef" name="a250057fbf227ad1184a8e37d0a37c6ef"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>m_currentUserId</b></td></tr>
+<tr class="separator:a250057fbf227ad1184a8e37d0a37c6ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>models/<a class="el" href="ChatWindow_8h_source.html">ChatWindow.h</a></li>
