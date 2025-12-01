@@ -38,9 +38,16 @@ int main(int argc, char *argv[]) {
     MainWindow w(&dbManager);
     w.show();
 
-    ChatManager chatManager;
-    ChatWindow *chat = new ChatWindow(1, 2, &chatManager);
-    chat->show();
+    // Для тестування ChatWindow, ми повинні створити об'єкт UserProfile.
+    // Це ТИМЧАСОВИЙ тестовий код, який не повинен бути у фінальній версії.
+
+    /*
+    // Щоб протестувати ChatWindow, вам потрібно:
+    UserProfile testProfile; // Створити об'єкт
+    // (Потрібно заповнити його даними, наприклад, loadProfileById(2, testProfile) )
+    // ChatWindow *chat = new ChatWindow(testProfile, &chatManager, 1);
+    // chat->exec();
+    */
 
 
     // --- КІНЕЦЬ БЕНЧМАРКУ ЗАПУСКУ ---

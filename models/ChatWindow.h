@@ -13,11 +13,16 @@ class ChatWindow : public QDialog
     Q_OBJECT
 
 public:
-    explicit ChatWindow(const UserProfile& matchProfile, ChatManager* chatManager, QWidget *parent = nullptr);
+    // --- ФІКС #1: Додано параметр currentUserId ---
+    explicit ChatWindow(const UserProfile& matchProfile, ChatManager* chatManager, int currentUserId, QWidget *parent = nullptr);
 
-private slots:
-    void sendMessage();
+    private slots:
+        void sendMessage();
     void botReply();
+
+private:
+    // --- ФІКС #2: Додано оголошення методу loadHistory ---
+    void loadHistory();
 
 private:
     UserProfile m_matchProfile;
@@ -26,6 +31,7 @@ private:
     QTextEdit* m_chatArea;
     QLineEdit* m_inputField;
     QPushButton* m_sendButton;
+    int m_currentUserId;
 };
 
 #endif // CHATWINDOW_H
