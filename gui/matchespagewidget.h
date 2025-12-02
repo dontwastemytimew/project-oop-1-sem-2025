@@ -9,6 +9,9 @@
 #include <QLabel>
 #include "ChatManager.h"
 
+class QLineEdit;
+class QListWidget;
+class QSortFilterProxyModel;
 
 class MatchesPageWidget : public QWidget
 {
@@ -28,6 +31,7 @@ public:
 
     private slots:
         void onMatchClicked(QListWidgetItem* item);
+    void onSearchTextChanged(const QString& text);
 
     signals:
     void openChatRequested(int targetUserId);
@@ -39,6 +43,7 @@ private:
     QLabel* m_titleLabel;
     QListWidget* m_list;
     ChatManager* m_chatManager;
+    QLineEdit* m_searchField;
 };
 
 #endif // MATCHESPAGEWIDGET_H

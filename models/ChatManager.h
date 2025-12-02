@@ -4,14 +4,9 @@
 #include <QMap>
 #include <QObject>
 #include <QDateTime>
-#include "DatabaseManager.h"
+#include "ChatStructures.h"
 
-struct ChatMessage {
-    int fromUserId;
-    int toUserId;
-    QString message;
-    QDateTime timestamp;
-};
+class DatabaseManager;
 
 class ChatManager : public QObject {
     Q_OBJECT
@@ -28,9 +23,6 @@ public:
     QString getBotReply() const;
 
 private:
-    // Зберігаємо повідомлення локально у пам'яті 
-    QMap<QPair<int,int>, QList<ChatMessage>> chatHistory;
-
     // Заготовки для бот-відповідей
     QList<QString> botReplies;
 

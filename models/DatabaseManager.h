@@ -5,9 +5,11 @@
 #include <QSqlTableModel>
 #include <QMap>
 #include <QStringList>
-
 #include "UserProfile.h"
 #include "Preference.h"
+#include "ChatPageWidget.h"
+#include "ChatManager.h"
+#include "ChatStructures.h"
 
 /**
  * @brief Клас DatabaseManager
@@ -109,6 +111,22 @@ public:
      * @return true, якщо операція успішна.
      */
  bool removeAllTags(int userId);
+
+ /**
+     * @brief Зберігає повідомлення чату в БД.
+     */
+ bool saveChatMessage(const ChatMessage& message);
+
+ /**
+     * @brief Завантажує історію чату між двома користувачами.
+     */
+ QList<ChatMessage> loadChatHistory(int user1Id, int user2Id);
+
+ /**
+     * @brief Отримує час останнього повідомлення між двома користувачами.
+     * @return QDateTime часу останнього повідомлення.
+     */
+ QDateTime getChatLastTimestamp(int user1Id, int user2Id) const;
 
 private:
     QSqlDatabase m_db;

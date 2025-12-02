@@ -75,6 +75,23 @@ bool DatabaseManager::createTables() {
         return false;
     }
 
+    // CHAT MESSAGES
+    QString createChatSql =
+        "CREATE TABLE IF NOT EXISTS chat_messages ("
+        "id INTEGER PRIMARY KEY AUTOINCREMENT, "
+        "user_id INTEGER NOT NULL, "
+        "target_id INTEGER NOT NULL, "
+        "message TEXT NOT NULL, "
+        "timestamp DATETIME NOT NULL"
+        ");";
+
+    if (!query.exec(createChatSql)) {
+        UserLogger::log(Error, "Failed to create 'chat_messages' table: " + query.lastError().text());
+        return false;
+    }
+
+    query.exec("CREATE INDEX IF NOT EXISTS idx_chat_users ON chat_messages(user_id, target_id, timestamp)");
+
     // USER TAGS
     QString createTagsSql =
         "CREATE TABLE IF NOT EXISTS user_tags ("
@@ -810,4 +827,74 @@ bool DatabaseManager::addMatch(int userId, int targetId) {
         return true;
     }
     return false;
+}
+
+bool DatabaseManager::saveChatMessage(const ChatMessage& message) {
+    if (!m_db.transaction()) return false;
+
+    QSqlQuery query;
+    query.prepare("INSERT INTO chat_messages (user_id, target_id, message, timestamp) "
+                  "VALUES (?, ?, ?, ?)");
+    query.addBindValue(message.fromUserId);
+    query.addBindValue(message.toUserId);
+    query.addBindValue(message.message);
+    query.addBindValue(message.timestamp);
+
+    if (query.exec()) {
+        m_db.commit();
+        return true;
+    } else {
+        m_db.rollback();
+        UserLogger::log(Error, "Failed to save chat message: " + query.lastError().text());
+        return false;
+    }
+}
+
+QList<ChatMessage> DatabaseManager::loadChatHistory(int user1Id, int user2Id) {
+    QList<ChatMessage> history;
+    QSqlQuery query;
+
+    // Зчитуємо повідомлення, де відправник: 1->2 АБО 2->1. Сортуємо за часом.
+    query.prepare("SELECT user_id, target_id, message, timestamp FROM chat_messages "
+                  "WHERE (user_id = ? AND target_id = ?) OR (user_id = ? AND target_id = ?) "
+                  "ORDER BY timestamp ASC");
+
+    // Прив'язка 1->2 та 2->1
+    query.addBindValue(user1Id);
+    query.addBindValue(user2Id);
+    query.addBindValue(user2Id);
+    query.addBindValue(user1Id);
+
+    if (query.exec()) {
+        while (query.next()) {
+            ChatMessage msg;
+            msg.fromUserId = query.value(0).toInt();
+            msg.toUserId = query.value(1).toInt();
+            msg.message = query.value(2).toString();
+            msg.timestamp = query.value(3).toDateTime();
+            history.append(msg);
+        }
+    } else {
+        UserLogger::log(Error, "Failed to load chat history: " + query.lastError().text());
+    }
+    return history;
+}
+
+QDateTime DatabaseManager::getChatLastTimestamp(int user1Id, int user2Id) const {
+    QSqlQuery query(m_db);
+
+    query.prepare(
+        "SELECT MAX(timestamp) FROM chat_messages "
+        "WHERE (user_id = ? AND target_id = ?) OR (user_id = ? AND target_id = ?)"
+    );
+
+    query.addBindValue(user1Id);
+    query.addBindValue(user2Id);
+    query.addBindValue(user2Id);
+    query.addBindValue(user1Id);
+
+    if (query.exec() && query.next()) {
+        return query.value(0).toDateTime();
+    }
+    return QDateTime();
 }
