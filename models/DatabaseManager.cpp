@@ -75,7 +75,21 @@ bool DatabaseManager::createTables() {
         return false;
     }
 
-    // ІНДЕКСИ
+    // USER TAGS
+    QString createTagsSql =
+        "CREATE TABLE IF NOT EXISTS user_tags ("
+        "user_id INTEGER NOT NULL, "
+        "tag VARCHAR(50) NOT NULL, "
+        "PRIMARY KEY (user_id, tag),"
+        "FOREIGN KEY (user_id) REFERENCES users(id)"
+        ");";
+
+    if (!query.exec(createTagsSql)) {
+        UserLogger::log(Error, "Failed to create 'user_tags' table.");
+        return false;
+    }
+
+    query.exec("CREATE INDEX IF NOT EXISTS idx_tags_user ON user_tags(user_id)");
     query.exec("CREATE INDEX IF NOT EXISTS idx_users_age ON users(age)");
     query.exec("CREATE INDEX IF NOT EXISTS idx_likes_user ON likes(user_id)");
     query.exec("CREATE INDEX IF NOT EXISTS idx_likes_target ON likes(target_id)");
@@ -704,4 +718,63 @@ int DatabaseManager::loadCurrentUserId() const {
     int userId = settings.value("currentUserId", -1).toInt();
     UserLogger::log(Info, "Loaded current user ID from QSettings: " + QString::number(userId));
     return userId;
+}
+
+bool DatabaseManager::addTag(int userId, const QString& tag)
+{
+    if (userId <= 0 || tag.isEmpty()) return false;
+
+    if (!m_db.transaction()) return false;
+
+    QSqlQuery query;
+    query.prepare("INSERT OR IGNORE INTO user_tags (user_id, tag) VALUES (?, ?)");
+    query.addBindValue(userId);
+    query.addBindValue(tag);
+
+    if (!query.exec()) {
+        m_db.rollback();
+        UserLogger::log(Error, "Failed to add tag: " + query.lastError().text());
+        return false;
+    }
+
+    return m_db.commit();
+}
+
+bool DatabaseManager::removeTag(int userId, const QString& tag)
+{
+    if (userId <= 0 || tag.isEmpty()) return false;
+
+    // --- КРИТИЧНИЙ ФІКС: ДОДАНО ТРАНЗАКЦІЮ ---
+    if (!m_db.transaction()) return false;
+
+    QSqlQuery query;
+    query.prepare("DELETE FROM user_tags WHERE user_id = ? AND tag = ?");
+    query.addBindValue(userId);
+    query.addBindValue(tag);
+
+    if (!query.exec()) {
+        m_db.rollback();
+        UserLogger::log(Error, "Failed to remove tag: " + query.lastError().text());
+        return false;
+    }
+
+    return m_db.commit(); // <-- COMMIT
+}
+
+QList<QString> DatabaseManager::getTagsForUser(int userId) const
+{
+    QList<QString> tags;
+    QSqlQuery query(m_db); // Використовуйте конструктор з m_db для const-методу
+    query.prepare("SELECT tag FROM user_tags WHERE user_id = ?");
+    query.addBindValue(userId);
+
+    if (!query.exec()) {
+        UserLogger::log(Error, "Failed to get tags for user: " + query.lastError().text());
+        return tags;
+    }
+
+    while (query.next()) {
+        tags.append(query.value(0).toString());
+    }
+    return tags;
 }

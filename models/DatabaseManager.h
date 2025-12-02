@@ -91,7 +91,11 @@ public:
  bool getCurrentUserProfile(UserProfile &profile);
 
  void saveCurrentUserId(int userId);
+
  int loadCurrentUserId() const;
+ bool addTag(int userId, const QString& tag);
+ bool removeTag(int userId, const QString& tag);
+ QList<QString> getTagsForUser(int userId) const;
 
 private:
     QSqlDatabase m_db;
