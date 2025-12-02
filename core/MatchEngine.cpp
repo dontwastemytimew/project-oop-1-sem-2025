@@ -22,10 +22,10 @@ bool MatchEngine::isCompatible(const UserProfile& p1, const UserProfile& p2) con
         return false;
     }
 
-    // 3. ПОРІГ 60%
-    int percent = compatibilityPercent(p1, p2);
+    int score = compatibilityScore(p1, p2);
 
-    return percent >= 60;
+    // Визначаємо, чи сумісність > 0. Це дозволить профілям з 1% сумісності відображатися.
+    return score > 0;
 }
 
 int MatchEngine::compatibilityScore(const UserProfile& p1, const UserProfile& p2) const
@@ -87,8 +87,8 @@ int MatchEngine::compatibilityPercent(const UserProfile& p1, const UserProfile& 
     if (score < 0)
         return 0;
 
-    // Максимальний бал (20 місто + 20 вік <2 + 10 вік <6 + 5 біо = 55)
-    const int MAX_SCORE = 55;
+    // Максимальний бал (20 місто + 20 вік <2 + 5 біо + 50 теги (5*10) = 95)
+    const int MAX_SCORE = 95;
 
     int percent = qFloor((score * 100.0) / MAX_SCORE);
 

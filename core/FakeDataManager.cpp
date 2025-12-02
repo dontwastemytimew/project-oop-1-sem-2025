@@ -41,11 +41,23 @@ void FakeDataManager::generateTestUsers(DatabaseManager* dbManager, int count) {
         ContactInfo contacts(phone, email);
         profile.setContactInfo(contacts);
 
-        // Зберігаємо в БД
-        if (dbManager->saveProfile(profile)) {
+        int newId = dbManager->saveProfile(profile);
+
+        if (newId > 0) {
+
+            QList<QString> tags = generateRandomTags();
+            for (const QString& tag : tags) {
+                dbManager->addTag(newId, tag);
+            }
+
+            if (QRandomGenerator::global()->bounded(100) < 50) {
+                dbManager->addLike(newId, 1);
+            }
+
             successCount++;
         }
     }
+
 
     UserLogger::log(Info, QString("Successfully generated %1 out of %2 users.").arg(successCount).arg(count));
 }
@@ -140,4 +152,40 @@ QList<UserProfile> FakeDataManager::generateList(int count) {
     }
 
     return profiles;
+}
+
+QList<QString> FakeDataManager::generateRandomTags() {
+    static const QVector<QString> availableTags = {
+        "Кіно", "IT", "Подорожі", "Спорт", "Кулінарія",
+        "Коти", "Собаки", "Книги", "Музика", "Велосипед",
+        "Настільні ігри", "Кава"
+    };
+
+    QList<QString> tags;
+    int numTags = QRandomGenerator::global()->bounded(2, 6); // 2 to 5 tags
+
+    QList<int> indices;
+    while (indices.size() < numTags) {
+        int index = QRandomGenerator::global()->bounded(availableTags.size());
+        if (!indices.contains(index)) {
+            indices.append(index);
+            tags.append(availableTags[index]);
+        }
+    }
+    return tags;
+}
+
+void FakeDataManager::seedTags(DatabaseManager* dbManager) {
+    if (!dbManager) return;
+
+    QList<UserProfile> allUsers = dbManager->getAllProfiles();
+
+    for (const auto& user : allUsers) {
+        QList<QString> tags = generateRandomTags();
+
+        for (const QString& tag : tags) {
+            dbManager->addTag(user.getId(), tag);
+        }
+    }
+    UserLogger::log(Info, "Tags successfully seeded for all generated users.");
 }

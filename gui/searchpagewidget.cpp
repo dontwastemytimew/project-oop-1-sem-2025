@@ -16,6 +16,7 @@
 #include <QVector>
 #include <QCompleter>
 #include <QStringList>
+#include <algorithm>
 
 SearchPageWidget::SearchPageWidget(QWidget *parent)
 : QWidget(parent)
@@ -96,7 +97,7 @@ void SearchPageWidget::showMatchPopup(const UserProfile& target)
 {
     QMessageBox msg;
     msg.setIcon(QMessageBox::Information);
-    msg.setWindowTitle(tr("🎉 У вас метч!"));
+    msg.setWindowTitle(tr("У вас метч!"));
     msg.setText(
         tr("Ви та %1 вподобали один одного!\n"
            "Тепер можете знайти цього користувача у МЕТЧАХ.").arg(target.getName())
@@ -119,18 +120,32 @@ void SearchPageWidget::on_btn_Find_clicked() {
     // 3. ВИКЛИК БАЗИ ДАНИХ
     QList<UserProfile> dbResults = m_dbManager->getProfilesByCriteria(prefs, m_currentUser.getId());
 
-    // 4. ФІЛЬТРАЦІЯ
-    m_currentMatches.clear();
-    for (const UserProfile& profile : dbResults) {
+    // 4. ФІЛЬТРАЦІЯ, ОЦІНКА ТА СОРТУВАННЯ
+    QList<QPair<UserProfile, int>> ratedMatches;
 
+    for (UserProfile profile : dbResults) {
+
+        QList<QString> tags = m_dbManager->getTagsForUser(profile.getId());
+        profile.setTags(tags);
 
         if (m_matchEngine->isCompatible(m_currentUser, profile)) {
-            m_currentMatches.append(profile);
+            int compatibility = m_matchEngine->compatibilityPercent(m_currentUser, profile);
+            ratedMatches.append({profile, compatibility});
         }
     }
 
-    UserLogger::log(Info, QString("Search complete! Found %1 matches after compatibility check.")
-                           .arg(m_currentMatches.count()));
+    // Сортування: від найбільшого відсотка до найменшого
+    std::sort(ratedMatches.begin(), ratedMatches.end(),
+              [](const QPair<UserProfile, int>& a, const QPair<UserProfile, int>& b){
+                  return a.second > b.second;
+              });
+
+    m_currentMatches.clear();
+    for (const auto& pair : ratedMatches) {
+        m_currentMatches.append(pair.first);
+    }
+
+    UserLogger::log(Info, QString("Search complete! Found %1 matches, sorted by score.").arg(m_currentMatches.count()));
 
     m_currentMatchIndex = 0;
 
@@ -169,27 +184,28 @@ void SearchPageWidget::showNextProfile() {
 }
 
 void SearchPageWidget::on_Like_clicked() {
-    if (m_resultsStack->currentIndex() == 0) return;
-
-    UserProfile target = m_currentMatches.at(m_currentMatchIndex);
-    int userId = m_currentUser.getId();
-    int targetId = target.getId();
-
-    // 1. Додаємо лайк у БД
-    m_dbManager->addLike(userId, targetId);
-    UserLogger::log(Info, QString("User %1 liked target %2.").arg(userId).arg(targetId));
-
-    // 2. Перевіряємо взаємний метч
-    if (m_dbManager->isMutualLike(userId, targetId)) {
-        showMatchPopup(target);
-        emit matchFound(userId, targetId);
+    if (m_currentMatches.isEmpty() || m_currentMatchIndex >= m_currentMatches.count()) {
+        return;
     }
 
-    // 3. ВИДАЛЯЄМО ПОТОЧНИЙ ПРОФІЛЬ З ПУЛУ
-    if (m_currentMatches.size() > m_currentMatchIndex) {
-        m_currentMatches.removeAt(m_currentMatchIndex);
+    UserProfile targetProfile = m_currentMatches.at(m_currentMatchIndex);
+    int currentUserId = m_currentUser.getId();
+    int targetId = targetProfile.getId();
+
+    m_dbManager->addLike(currentUserId, targetId);
+
+    if (m_dbManager->hasUserLiked(targetId, currentUserId)) {
+
+        if (m_dbManager->addMatch(currentUserId, targetId)) {
+            QMessageBox::information(this, tr("Ура! Метч!"),
+                                     tr("Ви сподобалися одне одному! Тепер ви можете спілкуватися."));
+            emit matchFound(currentUserId, targetId);
+        } else {
+            UserLogger::log(Error, "Failed to record mutual match in DB.");
+        }
     }
 
+    m_currentMatchIndex++;
     showNextProfile();
 }
 
@@ -198,7 +214,6 @@ void SearchPageWidget::on_Skip_clicked() {
 
     UserLogger::log(Info, "User clicked SKIP");
 
-    // 1. ВИДАЛЯЄМО ПОТОЧНИЙ ПРОФІЛЬ З ПУЛУ
     if (m_currentMatches.size() > m_currentMatchIndex) {
         m_currentMatches.removeAt(m_currentMatchIndex);
     }

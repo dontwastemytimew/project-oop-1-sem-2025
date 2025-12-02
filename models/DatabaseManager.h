@@ -68,6 +68,13 @@ public:
      */
     bool removeLike(int fromUserId, int toUserId);
 
+
+ /**
+  * @brief Фіксує взаємний метч у базі даних (якщо потрібно).
+  * @return true, якщо запис успішно додано.
+  */
+ bool addMatch(int userId, int targetId);
+
     /**
      * @brief Перевіряє, чи користувач лайкнув цільовий профіль.
      */

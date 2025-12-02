@@ -407,7 +407,6 @@ QLabel#cardCompatibility {
     color: #E91E63; /* Яскраво-рожевий */
     padding-top: 5px;
     padding-bottom: 5px;
-    qproperty-pixmap: url(:/resources/icons/heart_red.png);
 }
 
 /* Місто */

@@ -802,3 +802,12 @@ bool DatabaseManager::removeAllTags(int userId) {
         return false;
     }
 }
+
+
+bool DatabaseManager::addMatch(int userId, int targetId) {
+    if (isMutualLike(userId, targetId)) {
+        UserLogger::log(Info, QString("MATCH recorded for U%1 and T%2.").arg(userId).arg(targetId));
+        return true;
+    }
+    return false;
+}

@@ -27,6 +27,8 @@ private:
     static QString generatePhone();
     static QString getRandomMaleName();
     static QString getRandomFemaleName();
+    static QList<QString> generateRandomTags();
+    static void seedTags(DatabaseManager* dbManager);
 };
 
 #endif // FAKEDATAMANAGER_H

@@ -28,7 +28,8 @@ private:
     QLabel* lblAge;
     QLabel* lblCity;
     QLabel* lblDescription;
-    QLabel* lblCompatibility;   ///< Відсоток сумісності
+    QLabel* lblCompatibility;
+    QLabel* lblTags;
 };
 
 #endif
