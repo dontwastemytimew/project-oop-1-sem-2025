@@ -19,6 +19,8 @@
 #include <QCoreApplication>
 #include <QFileInfo>
 #include <QFrame>
+#include <QStringList>
+#include <QRegularExpression>
 
 ProfilePageWidget::ProfilePageWidget(QWidget *parent)
     : QWidget(parent), m_dbManager(nullptr)
@@ -51,6 +53,8 @@ ProfilePageWidget::ProfilePageWidget(QWidget *parent)
     m_orientationCombo = new QComboBox(this);
     m_orientationCombo->addItems({tr("Гетеро"), tr("Бісексуал"), tr("Гей/Лесбі"), tr("Інше")});
     m_saveButton = new QPushButton(tr("Зберегти профіль"), this);
+    m_tagsEdit = new QLineEdit(this);
+    m_tagsEdit->setPlaceholderText(tr("Введіть теги через кому: Спорт, Кіно, IT..."));
 
     // --- 3. Додавання решти рядків у форму ---
     formLayout->addRow(tr("Ім'я:"), m_nameEdit);
@@ -60,6 +64,7 @@ ProfilePageWidget::ProfilePageWidget(QWidget *parent)
     formLayout->addRow(tr("Телефон:"), m_phoneEdit);
     formLayout->addRow(tr("Стать:"), m_genderCombo);
     formLayout->addRow(tr("Орієнтація:"), m_orientationCombo);
+    formLayout->addRow(tr("Інтереси (Теги):"), m_tagsEdit);
     formLayout->addRow(tr("Про себе:"), m_bioEdit);
 
     QVBoxLayout* mainLayout = new QVBoxLayout();
@@ -138,55 +143,72 @@ void ProfilePageWidget::on_btn_SaveProfile_clicked() {
         return;
     }
 
+    // ЗБІР ТА ВАЛІДАЦІЯ ДАНИХ
     QString name = m_nameEdit->text();
     int age = m_ageSpinBox->value();
-    QString city = m_cityEdit->text();
-    QString bio = m_bioEdit->toPlainText();
     QString email = m_emailEdit->text();
     QString phone = m_phoneEdit->text();
+    QString city = m_cityEdit->text();
+    QString bio = m_bioEdit->toPlainText();
     QString gender = m_genderCombo->currentText();
     QString orientation = m_orientationCombo->currentText();
+    QString tagsString = m_tagsEdit->text().trimmed();
 
-    if(name.isEmpty() || email.isEmpty() || age < 18) {
-         QMessageBox::warning(this, tr("Увага"), tr("Ім'я, Email та вік (мінімум 18) є обов'язковими!"));
-         return;
+    // Валідація
+    QRegularExpression nameRegex("^[\\p{L}\\s\\-]+$");
+    QRegularExpression phoneRegex("^\\+?[0-9\\s\\-()]{7,20}$");
+    if (name.isEmpty() || email.isEmpty() || age < 18) {
+        QMessageBox::warning(this, tr("Увага"), tr("Ім'я, Email та вік (мінімум 18) є обов'язковими!"));
+        return;
+    }
+    if (!nameRegex.match(name).hasMatch()) {
+        QMessageBox::warning(this, tr("Увага"), tr("Ім'я може містити лише букви та пробіли."));
+        return;
+    }
+    if (!phone.isEmpty() && !phoneRegex.match(phone).hasMatch()) {
+        QMessageBox::warning(this, tr("Увага"), tr("Невірний формат телефону. Використовуйте тільки цифри та +."));
+        return;
     }
 
     int currentId = m_currentUser.getId();
     int resultId = -1;
 
-    // ВИКОРИСТОВУЄМО ПОВНИЙ КОНСТРУКТОР З ФОТО
     UserProfile newProfile(
-        currentId, name, age, city, bio, gender, orientation,
-        m_photoPath 
+        currentId, name, age, city, bio, gender, orientation, m_photoPath
     );
     ContactInfo contacts(phone, email);
     newProfile.setContactInfo(contacts);
 
+    // ЛОГІКА ЗБЕРЕЖЕННЯ
     if (currentId != -1) {
-        // ОНОВЛЕННЯ
         if (m_dbManager->updateProfile(newProfile)) resultId = currentId;
     } else {
-        // СТВОРЕННЯ
         if (m_dbManager->profileExists(email)) {
             QMessageBox::warning(this, tr("Помилка"), tr("Профіль з таким Email вже існує."));
             return;
         }
-        resultId = m_dbManager->saveProfile(newProfile); 
+        resultId = m_dbManager->saveProfile(newProfile);
     }
 
-    // ФІНАЛІЗАЦІЯ І СИНХРОНІЗАЦІЯ СЕСІЇ
     if (resultId > 0) {
         newProfile.setId(resultId);
         m_currentUser = newProfile;
 
+        if (m_dbManager) {
+            m_dbManager->removeAllTags(resultId);
+
+            if (!tagsString.isEmpty()) {
+                QStringList tags = tagsString.split(",", Qt::SkipEmptyParts);
+                for (const QString& tag : tags) {
+                    m_dbManager->addTag(resultId, tag.trimmed());
+                }
+            }
+        }
+
         QSettings settings("DatingAgency", "Match++");
         settings.setValue("current_user_id", resultId);
 
-        // ЛОГ ЗБЕРЕЖЕННЯ
-        UserLogger::log(Info, QString("DEBUG SAVE SUCCESS: ID %1 saved to QSettings.").arg(resultId));
-        UserLogger::log(Info, QString("Profile saved/updated successfully. New Session ID: %1").arg(resultId));
-        
+        UserLogger::log(Info, QString("Profile saved/updated successfully. ID: %1").arg(resultId));
         QMessageBox::information(this, tr("Успіх"), tr("Профіль успішно збережено!"));
 
         m_saveButton->setText(tr("Оновити профіль"));

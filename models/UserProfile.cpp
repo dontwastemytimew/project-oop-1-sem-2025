@@ -11,9 +11,8 @@ UserProfile::UserProfile(int id, const QString &name, int age,
     : m_id(id), m_name(name), m_age(age), m_city(city), m_bio(bio),
     m_gender(gender), m_orientation(orientation),
     m_preferences(), m_photoPath(photoPath),
-    m_contactInfo()
+    m_contactInfo(), m_tags()
 {
-    // m_tags буде ініціалізовано за замовчуванням
 }
 
 // --- Геттери ---
@@ -74,4 +73,12 @@ bool UserProfile::isValid() const
     }
 
     return true;
+}
+
+QList<QString> UserProfile::getTags() const {
+    return m_tags;
+}
+
+void UserProfile::setTags(const QList<QString> &tags) {
+    m_tags = tags;
 }

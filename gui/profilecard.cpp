@@ -53,20 +53,34 @@ ProfileCard::ProfileCard(QWidget* parent)
     lblDescription->setWordWrap(true);
     lblDescription->setAlignment(Qt::AlignTop | Qt::AlignLeft);
 
+    lblTags = new QLabel(this);
+    lblTags->setObjectName("tagsLabel");
+    lblTags->setWordWrap(true);
+    lblTags->setTextInteractionFlags(Qt::TextSelectableByMouse);
+
+
+    // 1. Фото та Ім'я/Вік
     cardLayout->addWidget(lblPhoto, 0, Qt::AlignCenter);
     cardLayout->addLayout(nameAgeLayout);
+
+    // 2. Сумісність та Місто
     cardLayout->addWidget(lblCompatibility);
     cardLayout->addWidget(lblCity);
+
+    // 3. ТЕГИ
+    cardLayout->addWidget(lblTags);
+
+    // 4. Біо
     cardLayout->addWidget(lblDescription);
     cardLayout->addStretch();
 
     mainLayout->addWidget(cardFrame);
+
     setLayout(mainLayout);
 }
 
 void ProfileCard::setProfileData(const UserProfile& profile)
 {
-    // ФOТО ПРОФІЛЮ
     QString photoPath = profile.getPhotoPath();
     QPixmap pixmap;
 
@@ -86,17 +100,28 @@ void ProfileCard::setProfileData(const UserProfile& profile)
                 lblPhoto->size(),
                 Qt::KeepAspectRatio,
                 Qt::SmoothTransformation
-                )
-            );
+            )
+        );
     }
 
-    // ТЕКСТ
     lblName->setText(profile.getName());
     lblAge->setText(QString(", %1").arg(profile.getAge()));
 
     lblCity->setText(QString("📍 %1").arg(profile.getCity()));
 
     lblDescription->setText(profile.getBio());
+
+    QList<QString> tags = profile.getTags();
+    QString tagsText;
+
+    if (!tags.isEmpty()) {
+        tagsText = "#" + tags.join(" #");
+        lblTags->setVisible(true);
+    } else {
+        lblTags->setVisible(false);
+    }
+
+    lblTags->setText(tagsText);
 }
 
 void ProfileCard::setCompatibilityPercent(int percent)

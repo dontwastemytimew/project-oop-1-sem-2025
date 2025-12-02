@@ -68,6 +68,13 @@ public:
      */
     bool removeLike(int fromUserId, int toUserId);
 
+
+ /**
+  * @brief Фіксує взаємний метч у базі даних (якщо потрібно).
+  * @return true, якщо запис успішно додано.
+  */
+ bool addMatch(int userId, int targetId);
+
     /**
      * @brief Перевіряє, чи користувач лайкнув цільовий профіль.
      */
@@ -91,7 +98,17 @@ public:
  bool getCurrentUserProfile(UserProfile &profile);
 
  void saveCurrentUserId(int userId);
+
  int loadCurrentUserId() const;
+ bool addTag(int userId, const QString& tag);
+ bool removeTag(int userId, const QString& tag);
+ QList<QString> getTagsForUser(int userId) const;
+
+ /**
+     * @brief Видаляє всі теги для даного користувача.
+     * @return true, якщо операція успішна.
+     */
+ bool removeAllTags(int userId);
 
 private:
     QSqlDatabase m_db;

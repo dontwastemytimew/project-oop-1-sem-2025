@@ -52,6 +52,7 @@ private:
     
     // --- ПРИВАТНІ МЕТОДИ ---
     void setupCityAutocomplete(); // <-- Метод для автодоповнення
+    QLineEdit* m_tagsEdit;
 };
 
 #endif // PROFILEPAGEWIDGET_H

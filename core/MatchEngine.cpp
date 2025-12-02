@@ -22,10 +22,10 @@ bool MatchEngine::isCompatible(const UserProfile& p1, const UserProfile& p2) con
         return false;
     }
 
-    // 3. ПОРІГ 60%
-    int percent = compatibilityPercent(p1, p2);
+    int score = compatibilityScore(p1, p2);
 
-    return percent >= 60;
+    // Визначаємо, чи сумісність > 0. Це дозволить профілям з 1% сумісності відображатися.
+    return score > 0;
 }
 
 int MatchEngine::compatibilityScore(const UserProfile& p1, const UserProfile& p2) const
@@ -59,11 +59,21 @@ int MatchEngine::compatibilityScore(const UserProfile& p1, const UserProfile& p2
         score += 10; // Бонус за близький вік
     }
 
-    // Теги (TODO): Логіка з тегами тут не може бути реалізована без getTags().
-
     // Біо (+5 балів за наявність)
     if (!p1.getBio().isEmpty() && !p2.getBio().isEmpty()) {
         score += 5;
+    }
+
+    // ЗБІГ ТЕГІВ (+10 за тег)
+    if (m_dbManager) {
+        QList<QString> p1Tags = m_dbManager->getTagsForUser(p1.getId());
+        QList<QString> p2Tags = m_dbManager->getTagsForUser(p2.getId());
+
+        for (const QString& tag : p1Tags) {
+            if (p2Tags.contains(tag)) {
+                score += 10; // +10 балів за збіг інтересу
+            }
+        }
     }
 
     return score;
@@ -77,8 +87,8 @@ int MatchEngine::compatibilityPercent(const UserProfile& p1, const UserProfile& 
     if (score < 0)
         return 0;
 
-    // Максимальний бал (20 місто + 20 вік <2 + 10 вік <6 + 5 біо = 55)
-    const int MAX_SCORE = 55;
+    // Максимальний бал (20 місто + 20 вік <2 + 5 біо + 50 теги (5*10) = 95)
+    const int MAX_SCORE = 95;
 
     int percent = qFloor((score * 100.0) / MAX_SCORE);
 
