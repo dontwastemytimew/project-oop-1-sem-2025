@@ -4,7 +4,6 @@
 #include "UserLogger.h"
 #include "profilecard.h"
 #include <QComboBox>
-#include <QVBoxLayout>
 #include <QFormLayout>
 #include <QSpinBox>
 #include <QLineEdit>
@@ -71,7 +70,12 @@ SearchPageWidget::SearchPageWidget(QWidget *parent)
     QVBoxLayout* mainLayout = new QVBoxLayout(this);
     mainLayout->addLayout(filterLayout);
     mainLayout->addWidget(m_findButton);
-    mainLayout->addWidget(m_resultsStack);
+
+    QHBoxLayout* cardCenterLayout = new QHBoxLayout();
+    cardCenterLayout->addStretch();
+    cardCenterLayout->addWidget(m_resultsStack);
+    cardCenterLayout->addStretch();
+    mainLayout->addLayout(cardCenterLayout);
     mainLayout->addLayout(buttonLayout);
 
     setLayout(mainLayout);
@@ -87,7 +91,6 @@ SearchPageWidget::~SearchPageWidget() {
 void SearchPageWidget::setDatabaseManager(DatabaseManager* dbManager) {
     m_dbManager = dbManager;
 
-    // Ініціалізуємо MatchEngine, як тільки отримуємо доступ до БД
     m_matchEngine = new MatchEngine(m_dbManager);
 
     setupCityAutocomplete();
