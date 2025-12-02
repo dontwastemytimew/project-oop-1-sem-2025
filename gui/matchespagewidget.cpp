@@ -1,6 +1,6 @@
 #include "matchespagewidget.h"
 #include "DatabaseManager.h"
-#include "chatwindow.h"
+#include "ChatPageWidget.h"
 #include <QVBoxLayout>
 #include <QLabel>
 #include <QListWidget>
@@ -105,23 +105,11 @@ void MatchesPageWidget::onMatchClicked(QListWidgetItem* item)
 {
     if (!m_db || !m_chatManager) return;
 
-    // 1. ЗЧИТУЄМО ID ІЗ ЗБЕРЕЖЕНИХ ДАНИХ
     int matchId = item->data(Qt::UserRole).toInt();
 
     if (matchId <= 0) return;
 
-    // 2. Завантажуємо повний профіль для чату
-    UserProfile matchProfile;
+    qDebug() << "Requesting chat page for match ID:" << matchId;
 
-    if (m_db->loadProfileById(matchId, matchProfile))
-    {
-        // 3. Відкриваємо чат
-        // ChatWindow* chat = new ChatWindow(matchProfile, m_chatManager, this);
-        // chat->exec();
-        qDebug() << "Opening chat with:" << matchProfile.getName();
-        // ТУТ ПОТРІБНО ДОДАТИ РЕАЛІЗАЦІЮ ЧАТУ
-
-    } else {
-        qWarning() << "Could not load profile for match ID:" << matchId;
-    }
+    emit openChatRequested(matchId);
 }

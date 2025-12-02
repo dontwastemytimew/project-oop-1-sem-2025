@@ -1,4 +1,4 @@
-#include "ChatWindow.h"
+#include "ChatPageWidget.h"
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QTimer>
@@ -6,11 +6,13 @@
 #include <QRandomGenerator>
 #include <QDebug>
 
-ChatWindow::ChatWindow(const UserProfile& matchProfile, ChatManager* chatManager, int currentUserId, QWidget *parent)
-    : QDialog(parent), m_matchProfile(matchProfile), m_chatManager(chatManager), m_currentUserId(currentUserId)
+ChatPageWidget::ChatPageWidget(const UserProfile& matchProfile, ChatManager* chatManager, int currentUserId, QWidget *parent)
+    : QWidget(parent),
+    m_matchProfile(matchProfile),
+    m_chatManager(chatManager),
+    m_currentUserId(currentUserId)
 {
     setWindowTitle(tr("Чат з %1").arg(m_matchProfile.getName()));
-    resize(400, 500);
 
     QVBoxLayout* mainLayout = new QVBoxLayout(this);
 
@@ -27,13 +29,13 @@ ChatWindow::ChatWindow(const UserProfile& matchProfile, ChatManager* chatManager
     mainLayout->addWidget(m_chatArea);
     mainLayout->addLayout(inputLayout);
 
-    connect(m_sendButton, &QPushButton::clicked, this, &ChatWindow::sendMessage);
-    connect(m_inputField, &QLineEdit::returnPressed, this, &ChatWindow::sendMessage);
+    connect(m_sendButton, &QPushButton::clicked, this, &ChatPageWidget::sendMessage);
+    connect(m_inputField, &QLineEdit::returnPressed, this, &ChatPageWidget::sendMessage);
 
     loadHistory();
 }
 
-void ChatWindow::loadHistory()
+void ChatPageWidget::loadHistory()
 {
     if (!m_chatManager) return;
 
@@ -55,7 +57,7 @@ void ChatWindow::loadHistory()
 }
 
 
-void ChatWindow::sendMessage()
+void ChatPageWidget::sendMessage()
 {
     QString message = m_inputField->text().trimmed();
     if (message.isEmpty()) return;
@@ -69,10 +71,10 @@ void ChatWindow::sendMessage()
         m_chatManager->sendMessage(m_currentUserId, m_matchProfile.getId(), message);
 
     // 3. Затримка бот-відповіді
-    QTimer::singleShot(1000, this, &ChatWindow::botReply);
+    QTimer::singleShot(1000, this, &ChatPageWidget::botReply);
 }
 
-void ChatWindow::botReply()
+void ChatPageWidget::botReply()
 {
     if (!m_chatManager) return;
 
@@ -83,4 +85,13 @@ void ChatWindow::botReply()
     m_chatArea->verticalScrollBar()->setValue(m_chatArea->verticalScrollBar()->maximum());
     if (m_chatManager)
         m_chatManager->sendMessage(m_matchProfile.getId(), m_currentUserId, botMessage);
+}
+
+void ChatPageWidget::setMatchProfile(const UserProfile& matchProfile, int currentUserId) {
+
+    m_matchProfile = matchProfile;
+    m_currentUserId = currentUserId;
+
+    setWindowTitle(tr("Чат з %1").arg(m_matchProfile.getName()));
+    loadHistory();
 }

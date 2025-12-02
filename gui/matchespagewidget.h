@@ -29,6 +29,8 @@ public:
     private slots:
         void onMatchClicked(QListWidgetItem* item);
 
+    signals:
+    void openChatRequested(int targetUserId);
 
 private:
 

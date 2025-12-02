@@ -144,10 +144,10 @@ void ProfilePageWidget::on_btn_SaveProfile_clicked() {
     }
 
     // ЗБІР ТА ВАЛІДАЦІЯ ДАНИХ
-    QString name = m_nameEdit->text();
+    QString name = m_nameEdit->text().trimmed();
     int age = m_ageSpinBox->value();
     QString email = m_emailEdit->text();
-    QString phone = m_phoneEdit->text();
+    QString phone = m_phoneEdit->text().trimmed();
     QString city = m_cityEdit->text();
     QString bio = m_bioEdit->toPlainText();
     QString gender = m_genderCombo->currentText();
@@ -155,18 +155,23 @@ void ProfilePageWidget::on_btn_SaveProfile_clicked() {
     QString tagsString = m_tagsEdit->text().trimmed();
 
     // Валідація
-    QRegularExpression nameRegex("^[\\p{L}\\s\\-]+$");
+    QRegularExpression nameRegex("^[\\p{L}][\\p{L}\\s\\-']{0,48}[\\p{L}]$");
+    QRegularExpression emailRegex("^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$");
     QRegularExpression phoneRegex("^\\+?[0-9\\s\\-()]{7,20}$");
-    if (name.isEmpty() || email.isEmpty() || age < 18) {
+    if(name.isEmpty() || email.isEmpty() || age < 18) {
         QMessageBox::warning(this, tr("Увага"), tr("Ім'я, Email та вік (мінімум 18) є обов'язковими!"));
         return;
     }
     if (!nameRegex.match(name).hasMatch()) {
-        QMessageBox::warning(this, tr("Увага"), tr("Ім'я може містити лише букви та пробіли."));
+        QMessageBox::warning(this, tr("Увага"), tr("Ім'я може містити лише букви, пробіли, дефіси та апострофи."));
+        return;
+    }
+    if (!emailRegex.match(email).hasMatch()) {
+        QMessageBox::warning(this, tr("Увага"), tr("Невірний формат електронної пошти."));
         return;
     }
     if (!phone.isEmpty() && !phoneRegex.match(phone).hasMatch()) {
-        QMessageBox::warning(this, tr("Увага"), tr("Невірний формат телефону. Використовуйте тільки цифри та +."));
+        QMessageBox::warning(this, tr("Увага"), tr("Невірний формат телефону. Використовуйте тільки цифри та '+'."));
         return;
     }
 

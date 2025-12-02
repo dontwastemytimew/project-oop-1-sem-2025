@@ -3,7 +3,7 @@
 #include "DatabaseManager.h"
 #include "mainwindow.h"
 #include "BenchmarkTool.h"
-#include "ChatWindow.h"
+#include "ChatPageWidget.h"
 #include "ChatManager.h"
 
 
@@ -15,7 +15,7 @@ int main(int argc, char *argv[]) {
     // ---------------------------------------------
 
     QCoreApplication::setOrganizationName("DatingAgency");
-    QCoreApplication::setApplicationName("TitleApp");
+    QCoreApplication::setApplicationName("Match++");
 
     QApplication a(argc, argv);
 

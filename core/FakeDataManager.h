@@ -17,6 +17,11 @@ public:
      */
     static QList<UserProfile> generateList(int count);
 
+    /**
+     * @brief Створює випадкові зворотні лайки для поточного користувача.
+     */
+    static void seedReverseLikes(DatabaseManager* dbManager, int currentUserId, int count = 50);
+
 
 private:
     // Допоміжні методи для генерації випадкових даних

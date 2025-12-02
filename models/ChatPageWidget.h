@@ -7,13 +7,19 @@
 #include <QPushButton>
 #include "UserProfile.h"
 #include "ChatManager.h"
+#include <QWidget>
 
-class ChatWindow : public QDialog
+class ChatPageWidget : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit ChatWindow(const UserProfile& matchProfile, ChatManager* chatManager, int currentUserId, QWidget *parent = nullptr);
+    explicit ChatPageWidget(const UserProfile& matchProfile, ChatManager* chatManager, int currentUserId, QWidget *parent = nullptr);
+
+    /**
+      * @brief Оновлює профіль користувача та завантажує історію нового чату.
+      */
+    void setMatchProfile(const UserProfile& matchProfile, int currentUserId);
 
     private slots:
         void sendMessage();

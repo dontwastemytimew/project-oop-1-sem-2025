@@ -108,6 +108,13 @@
            </widget>
           </item>
           <item>
+           <widget class="QPushButton" name="btn_Exit">
+            <property name="text">
+             <string>Вихід</string>
+            </property>
+           </widget>
+          </item>
+          <item>
            <spacer name="verticalSpacer_2">
             <property name="orientation">
              <enum>Qt::Vertical</enum>

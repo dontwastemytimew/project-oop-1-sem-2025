@@ -88,7 +88,7 @@ int MatchEngine::compatibilityPercent(const UserProfile& p1, const UserProfile& 
         return 0;
 
     // Максимальний бал (20 місто + 20 вік <2 + 5 біо + 50 теги (5*10) = 95)
-    const int MAX_SCORE = 95;
+    const int MAX_SCORE = 105;
 
     int percent = qFloor((score * 100.0) / MAX_SCORE);
 

@@ -189,3 +189,24 @@ void FakeDataManager::seedTags(DatabaseManager* dbManager) {
     }
     UserLogger::log(Info, "Tags successfully seeded for all generated users.");
 }
+
+void FakeDataManager::seedReverseLikes(DatabaseManager* dbManager, int currentUserId, int count) {
+    if (!dbManager || currentUserId <= 0) return;
+
+    QList<UserProfile> allUsers = dbManager->getAllProfiles();
+
+    int profilesToProcess = qMin(count, allUsers.size());
+
+    for (int i = 0; i < profilesToProcess; ++i) {
+        int targetId = allUsers[i].getId();
+
+        if (targetId == currentUserId || dbManager->hasUserLiked(targetId, currentUserId)) continue;
+
+        // 50% шанс зворотного лайку
+        if (QRandomGenerator::global()->bounded(100) < 50) {
+            // Згенерований профіль (targetId) лайкає нас (currentUserId)
+            dbManager->addLike(targetId, currentUserId);
+        }
+    }
+    UserLogger::log(Info, QString("Seeding complete. %1 profiles checked for reverse like.").arg(profilesToProcess));
+}
