@@ -62,7 +62,7 @@
           <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
            <widget class="QLabel" name="label_AppTitle">
             <property name="text">
-             <string>App Title</string>
+             <string>Match++</string>
             </property>
            </widget>
           </item>
