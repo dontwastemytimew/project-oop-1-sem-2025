@@ -17,7 +17,6 @@ var annotated_dup =
     [ "SearchPageWidget", "classSearchPageWidget.html", "classSearchPageWidget" ],
     [ "SettingsPageWidget", "classSettingsPageWidget.html", null ],
     [ "StatsDialog", "classStatsDialog.html", null ],
-    [ "TagManager", "classTagManager.html", null ],
     [ "UserLogger", "classUserLogger.html", null ],
     [ "UserProfile", "classUserProfile.html", "classUserProfile" ],
     [ "WelcomePageWidget", "classWelcomePageWidget.html", null ]

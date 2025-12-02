@@ -26,7 +26,6 @@ var hierarchy =
       [ "SettingsPageWidget", "classSettingsPageWidget.html", null ],
       [ "WelcomePageWidget", "classWelcomePageWidget.html", null ]
     ] ],
-    [ "TagManager", "classTagManager.html", null ],
     [ "UserLogger", "classUserLogger.html", null ],
     [ "UserProfile", "classUserProfile.html", null ]
 ];

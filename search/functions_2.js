@@ -10,5 +10,5 @@ var searchData=
   ['getphotopath_7',['getPhotoPath',['../classUserProfile.html#a3c54aad74d112eced705616707fd84de',1,'UserProfile']]],
   ['getpreference_8',['getPreference',['../classUserProfile.html#a24390e88969a6487ddfb2eb31d418a69',1,'UserProfile']]],
   ['getsortedmatches_9',['getSortedMatches',['../classMatchEngine.html#a4129c1ba749e508c5177adbbe648107d',1,'MatchEngine']]],
-  ['gettags_10',['getTags',['../classUserProfile.html#a68fabc6adfabc455164cb945e9418ba1',1,'UserProfile']]]
+  ['gettags_10',['getTags',['../classUserProfile.html#aee223cacd6c673455cdea6216ec8179c',1,'UserProfile']]]
 ];
