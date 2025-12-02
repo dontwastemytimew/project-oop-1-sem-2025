@@ -59,11 +59,21 @@ int MatchEngine::compatibilityScore(const UserProfile& p1, const UserProfile& p2
         score += 10; // Бонус за близький вік
     }
 
-    // Теги (TODO): Логіка з тегами тут не може бути реалізована без getTags().
-
     // Біо (+5 балів за наявність)
     if (!p1.getBio().isEmpty() && !p2.getBio().isEmpty()) {
         score += 5;
+    }
+
+    // ЗБІГ ТЕГІВ (+10 за тег)
+    if (m_dbManager) {
+        QList<QString> p1Tags = m_dbManager->getTagsForUser(p1.getId());
+        QList<QString> p2Tags = m_dbManager->getTagsForUser(p2.getId());
+
+        for (const QString& tag : p1Tags) {
+            if (p2Tags.contains(tag)) {
+                score += 10; // +10 балів за збіг інтересу
+            }
+        }
     }
 
     return score;

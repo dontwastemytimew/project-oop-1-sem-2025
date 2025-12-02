@@ -778,3 +778,27 @@ QList<QString> DatabaseManager::getTagsForUser(int userId) const
     }
     return tags;
 }
+
+bool DatabaseManager::removeAllTags(int userId) {
+    if (userId <= 0) return false;
+
+    if (!m_db.transaction()) return false;
+
+    QSqlQuery query;
+    query.prepare("DELETE FROM user_tags WHERE user_id = ?");
+    query.addBindValue(userId);
+
+    if (query.exec()) {
+        if (m_db.commit()) {
+            UserLogger::log(Info, QString("All tags removed for User ID %1.").arg(userId));
+            return true;
+        } else {
+            m_db.rollback();
+            return false;
+        }
+    } else {
+        UserLogger::log(Error, "Failed to remove all tags: " + query.lastError().text());
+        m_db.rollback();
+        return false;
+    }
+}

@@ -97,6 +97,12 @@ public:
  bool removeTag(int userId, const QString& tag);
  QList<QString> getTagsForUser(int userId) const;
 
+ /**
+     * @brief Видаляє всі теги для даного користувача.
+     * @return true, якщо операція успішна.
+     */
+ bool removeAllTags(int userId);
+
 private:
     QSqlDatabase m_db;
     const QString DB_NAME = "dating_agency.db";
