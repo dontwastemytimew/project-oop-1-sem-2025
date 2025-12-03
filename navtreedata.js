@@ -45,7 +45,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "ChatManager_8h_source.html",
-"classSettingsPageWidget.html#a6ec5688861544334ce92012157cac77c"
+"classSettingsPageWidget.html#a5461b70b09975a84f33f34824d9b860e"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

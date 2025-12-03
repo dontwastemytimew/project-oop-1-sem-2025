@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['як_20запустити_20проєкт_20clion_20cmake_0',['Як Запустити Проєкт (CLion / CMake)',['../index.html#autotoc_md12',1,'']]]
+  ['унікальна_20стилізація_20інтерфейсу_20ide_20theme_0',['Унікальна Стилізація Інтерфейсу (IDE Theme)',['../index.html#autotoc_md3',1,'']]]
 ];

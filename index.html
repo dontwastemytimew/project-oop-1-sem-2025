@@ -112,16 +112,19 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 <td class="markdownTableBodyLeft"><b>Структура</b>   </td><td class="markdownTableBodyLeft">Core / Models / GUI / Utils   </td></tr>
 </table>
 <hr  />
-<h1><a class="anchor" id="autotoc_md3"></a>
+ <h2><a class="anchor" id="autotoc_md3"></a>
+Унікальна Стилізація Інтерфейсу (IDE Theme)</h2>
+<p>Головною особливістю UX/UI проєкту є стилізація під середовище розробки <code>Visual Studio Code (Dark+)</code> та класичний <code>C++ код</code>. Це підкреслює аудиторію та назву додатку **(Match++)**.</p>
+<h1><a class="anchor" id="autotoc_md4"></a>
 Основні Функції</h1>
-<h2><a class="anchor" id="autotoc_md4"></a>
+<h2><a class="anchor" id="autotoc_md5"></a>
 User Experience (UX)</h2>
 <ul>
 <li><b>Інтерфейс одного вікна:</b> Навігація між сторінками (Профіль, Пошук, Метчі) відбувається без перезавантаження, за допомогою <code>QStackedWidget</code>.</li>
 <li><b>Сесія:</b> Надійне керування сесією користувача через <code>QSettings</code>.</li>
 <li><b>Теми:</b> Перемикання світлої/темної теми за допомогою QSS.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md5"></a>
+<h2><a class="anchor" id="autotoc_md6"></a>
 Пошук та Зіставлення</h2>
 <ul>
 <li><b>Розширений Фільтр:</b> Пошук за віком, містом, статтю та орієнтацією.</li>
@@ -131,7 +134,7 @@ User Experience (UX)</h2>
 <li><b>Simulated Chat:</b> Можливість клікнути на метч і відкрити вікно чату із заглушкою та випадковими відповідями бота.</li>
 </ul>
 <hr  />
-<h1><a class="anchor" id="autotoc_md7"></a>
+<h1><a class="anchor" id="autotoc_md8"></a>
 Додаткові фічі</h1>
 <ul>
 <li><b>1. Панель Адміністратора:</b><ul>
@@ -158,10 +161,10 @@ User Experience (UX)</h2>
 </li>
 </ul>
 <hr  />
-<h1><a class="anchor" id="autotoc_md9"></a>
+<h1><a class="anchor" id="autotoc_md10"></a>
 Аналіз Продуктивності (Benchmarks)</h1>
 <p>Для виявлення вузьких місць було проведено навантажувальне тестування за допомогою бібліотеки <b>Google Benchmark</b>.</p>
-<h2><a class="anchor" id="autotoc_md10"></a>
+<h2><a class="anchor" id="autotoc_md11"></a>
 Ключові результати (CPU: 3.3 GHz)</h2>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -180,7 +183,7 @@ User Experience (UX)</h2>
 <td class="markdownTableBodyLeft"><b>Копіювання об'єктів</b>   </td><td class="markdownTableBodyLeft"><code>16 ns</code>   </td><td class="markdownTableBodyLeft">Механізм <b>Implicit Sharing</b> у Qt робить передачу об'єктів <code><a class="el" href="classUserProfile.html" title="Основна модель даних профілю користувача.">UserProfile</a></code> майже "безкоштовною" для пам'яті.   </td></tr>
 </table>
 <hr  />
-<h1><a class="anchor" id="autotoc_md12"></a>
+<h1><a class="anchor" id="autotoc_md13"></a>
 Як Запустити Проєкт (CLion / CMake)</h1>
 <ol type="1">
 <li><b>Клонування репозиторію:</b> <code>bash git clone [посилання на репозиторій] cd project-oop-1-sem-2025 </code></li>
@@ -189,13 +192,13 @@ User Experience (UX)</h2>
 <li><b>Запуск Бенчмарків:</b> Щоб відтворити результати тестування продуктивності: <code>bash cmake --build build --target project_benchmark ./build/project_benchmark.exe </code></li>
 </ol>
 <hr  />
-<h1><a class="anchor" id="autotoc_md14"></a>
+<h1><a class="anchor" id="autotoc_md15"></a>
 Посилання</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadLeft">Ресурс   </th><th class="markdownTableHeadLeft">Адреса    </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyLeft"><b>Документація (Doxygen)</b>   </td><td class="markdownTableBodyLeft">[Майбутнє посилання на GitHub Pages]    </td></tr>
+<td class="markdownTableBodyLeft"><b>Документація (Doxygen)</b>   </td><td class="markdownTableBodyLeft"><a href="https://dontwastemytimew.github.io/project-oop-1-sem-2025/">Посилання на GitHub Pages</a>    </td></tr>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyLeft"><b>Відеодемонстрація</b>   </td><td class="markdownTableBodyLeft">[Майбутнє посилання на YouTube]   </td></tr>
 </table>

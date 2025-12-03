@@ -41,5 +41,5 @@ var searchData=
   ['gettags_38',['getTags',['../classUserProfile.html#aee223cacd6c673455cdea6216ec8179c',1,'UserProfile']]],
   ['gettagsforuser_39',['getTagsForUser',['../classDatabaseManager.html#a5fb293344efb953398956384d7adaf64',1,'DatabaseManager']]],
   ['getusersmodel_40',['getUsersModel',['../classDatabaseManager.html#a1051d3800f516dbe0c3de2cd7315631c',1,'DatabaseManager']]],
-  ['ghz_41',['Ключові результати (CPU: 3.3 GHz)',['../index.html#autotoc_md10',1,'']]]
+  ['ghz_41',['Ключові результати (CPU: 3.3 GHz)',['../index.html#autotoc_md11',1,'']]]
 ];

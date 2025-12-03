@@ -93,6 +93,7 @@ $(document).ready(function(){initNavTree('classMainWindow.html',''); initResizab
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pri-slots">Private Slots</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classMainWindow-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">MainWindow Class Reference</div></div>
@@ -224,6 +225,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>on_btn_Exit_clicked</
 <tr class="memitem:ab777a8a5dc443116230605a3611244e2" id="r_ab777a8a5dc443116230605a3611244e2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#ab777a8a5dc443116230605a3611244e2">onOpenChatRequested</a> (int targetUserId)</td></tr>
 <tr class="memdesc:ab777a8a5dc443116230605a3611244e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Відкриває чат з конкретним користувачем.  <br /></td></tr>
 <tr class="separator:ab777a8a5dc443116230605a3611244e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:aebb28c98dc43836607a4054079616dab" id="r_aebb28c98dc43836607a4054079616dab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#aebb28c98dc43836607a4054079616dab">updateMenuLabels</a> ()</td></tr>
+<tr class="memdesc:aebb28c98dc43836607a4054079616dab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Оновлює тексти кнопок меню, додаючи стилізовані префікси.  <br /></td></tr>
+<tr class="separator:aebb28c98dc43836607a4054079616dab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -535,6 +542,34 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_userExists</b></td>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="aebb28c98dc43836607a4054079616dab" name="aebb28c98dc43836607a4054079616dab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aebb28c98dc43836607a4054079616dab">&#9670;&#160;</a></span>updateMenuLabels()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MainWindow::updateMenuLabels </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Оновлює тексти кнопок меню, додаючи стилізовані префікси. </p>
+<p>Використовується для створення ефекту "дерева файлів" (наприклад, "&gt; Профіль"). Викликається після перекладу інтерфейсу. </p>
 
 </div>
 </div>

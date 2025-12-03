@@ -9,6 +9,7 @@ var classMainWindow =
     [ "showAdminPage", "classMainWindow.html#a7c2f97eee4a6c8fdceef1dee552b74f7", null ],
     [ "switchLanguage", "classMainWindow.html#a8c46e71d664701ebec584cf9683b76c5", null ],
     [ "switchTheme", "classMainWindow.html#a6f05d52d2990310653a1ef9777eb2519", null ],
+    [ "updateMenuLabels", "classMainWindow.html#aebb28c98dc43836607a4054079616dab", null ],
     [ "m_adminPage", "classMainWindow.html#afffcaf23e70ffe215d398a31fea89b60", null ],
     [ "m_chatManager", "classMainWindow.html#ac53adcb90cd0930da337f48e42f7e292", null ],
     [ "m_chatPage", "classMainWindow.html#aa0f5940bb4c8e02ccf60b39f48770c53", null ],
