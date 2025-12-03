@@ -6,7 +6,7 @@ var classProfilePageWidget =
     [ "loadCurrentProfile", "classProfilePageWidget.html#aba283373c2cd155d7b1a268c7fbab7c6", null ],
     [ "on_btn_SaveProfile_clicked", "classProfilePageWidget.html#ac4dcfbafff1d5a584a03788e67c58533", null ],
     [ "onChoosePhoto", "classProfilePageWidget.html#a58258d14f2700014174d8f41c9375b80", null ],
-    [ "profileSaved", "classProfilePageWidget.html#a2b5881f2167c56282b97c5476a4e508e", null ],
+    [ "profileSaved", "classProfilePageWidget.html#ad6715d3c64f83316a297c101afb48a7d", null ],
     [ "retranslateUi", "classProfilePageWidget.html#a39dc7f800f981d53172b5a072ea567f0", null ],
     [ "setDatabaseManager", "classProfilePageWidget.html#a4d76b33f6b478d09a86f084bf158afc7", null ],
     [ "setInternalProfile", "classProfilePageWidget.html#a32112cbab2b04e3744d4e4ee7ec710c3", null ],

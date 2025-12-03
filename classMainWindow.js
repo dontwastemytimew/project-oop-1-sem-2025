@@ -5,7 +5,7 @@ var classMainWindow =
     [ "changeEvent", "classMainWindow.html#a416ae2140ac1aa9f03a6279316abdcad", null ],
     [ "onAccountDeleted", "classMainWindow.html#a04601c1b37e167201c95e8d84d3092bb", null ],
     [ "onOpenChatRequested", "classMainWindow.html#ab777a8a5dc443116230605a3611244e2", null ],
-    [ "onProfileSaved", "classMainWindow.html#a734f5e5adf3a879782ede61597f278da", null ],
+    [ "onProfileSaved", "classMainWindow.html#aaa290b93f3fdf72d25bca332d8df8a7a", null ],
     [ "showAdminPage", "classMainWindow.html#a7c2f97eee4a6c8fdceef1dee552b74f7", null ],
     [ "switchLanguage", "classMainWindow.html#a8c46e71d664701ebec584cf9683b76c5", null ],
     [ "switchTheme", "classMainWindow.html#a6f05d52d2990310653a1ef9777eb2519", null ],

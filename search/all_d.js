@@ -17,7 +17,7 @@ var searchData=
   ['onmatchclicked_14',['onMatchClicked',['../classMatchesPageWidget.html#adcb47813fcf019eabdcbfbb8fcb1fa4a',1,'MatchesPageWidget']]],
   ['onmatchcreated_15',['onMatchCreated',['../classMatchesPageWidget.html#a30fb6fca92b858fa8a5f2d39e9acf61c',1,'MatchesPageWidget']]],
   ['onopenchatrequested_16',['onOpenChatRequested',['../classMainWindow.html#ab777a8a5dc443116230605a3611244e2',1,'MainWindow']]],
-  ['onprofilesaved_17',['onProfileSaved',['../classMainWindow.html#a734f5e5adf3a879782ede61597f278da',1,'MainWindow']]],
+  ['onprofilesaved_17',['onProfileSaved',['../classMainWindow.html#aaa290b93f3fdf72d25bca332d8df8a7a',1,'MainWindow']]],
   ['onsearchtextchanged_18',['onSearchTextChanged',['../classMatchesPageWidget.html#a039179dc3bc863008f84c801d8d0b6af',1,'MatchesPageWidget']]],
   ['onstatsclicked_19',['onStatsClicked',['../classAdminPageWidget.html#ad46781efd846ab635f75f32099ffeebe',1,'AdminPageWidget']]],
   ['openadminpanelrequested_20',['openAdminPanelRequested',['../classSettingsPageWidget.html#a0442e79b4a90754fc5c3112ae1972136',1,'SettingsPageWidget']]],
