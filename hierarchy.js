@@ -11,7 +11,6 @@ var hierarchy =
     [ "MatchEngine", "classMatchEngine.html", null ],
     [ "Preference", "classPreference.html", null ],
     [ "QDialog", null, [
-      [ "ChatWindow", "classChatWindow.html", null ],
       [ "StatsDialog", "classStatsDialog.html", null ]
     ] ],
     [ "QMainWindow", null, [
@@ -22,6 +21,7 @@ var hierarchy =
     ] ],
     [ "QWidget", null, [
       [ "AdminPageWidget", "classAdminPageWidget.html", null ],
+      [ "ChatPageWidget", "classChatPageWidget.html", null ],
       [ "MatchesPageWidget", "classMatchesPageWidget.html", null ],
       [ "ProfileCard", "classProfileCard.html", null ],
       [ "ProfilePageWidget", "classProfilePageWidget.html", null ],

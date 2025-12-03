@@ -1,7 +1,7 @@
-<map id="ChatWindow" name="ChatWindow">
-<area shape="rect" id="Node000001" title=" " alt="" coords="121,181,225,207"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="34,93,109,119"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="97,126,160,179,157,183,94,130"/>
+<map id="ChatPageWidget" name="ChatPageWidget">
+<area shape="rect" id="Node000001" title=" " alt="" coords="108,181,237,207"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="29,93,108,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="95,125,160,179,157,183,91,129"/>
 <area shape="rect" id="Node000003" href="$classUserProfile.html" title="Клас UserProfile." alt="" coords="133,93,226,119"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="178,133,177,143,175,181,170,181,171,142,173,132"/>
 <area shape="rect" id="Node000004" href="$classContactInfo.html" title="Клас ContactInfo." alt="" coords="5,5,103,31"/>
@@ -9,7 +9,7 @@
 <area shape="rect" id="Node000005" href="$classPreference.html" title="Клас Preference." alt="" coords="136,5,228,31"/>
 <area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="184,45,182,93,177,93,179,44"/>
 <area shape="rect" id="Node000006" href="$classChatManager.html" title=" " alt="" coords="255,93,365,119"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="302,133,282,159,255,176,226,186,224,181,253,171,279,155,298,130"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="302,133,282,159,259,174,234,184,232,179,257,169,279,155,298,130"/>
 <area shape="rect" id="Node000007" title=" " alt="" coords="270,5,345,31"/>
 <area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="311,44,312,93,307,93,305,45"/>
 <area shape="rect" id="Node000008" href="$classDatabaseManager.html" title="Клас DatabaseManager." alt="" coords="369,5,510,31"/>

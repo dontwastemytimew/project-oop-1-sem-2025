@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Dating Agency Project: ChatWindow Class Reference</title>
+<title>Dating Agency Project: ChatPageWidget Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -63,7 +63,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('classChatWindow.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('classChatPageWidget.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -94,28 +94,28 @@ $(document).ready(function(){initNavTree('classChatWindow.html',''); initResizab
 <a href="#pri-slots">Private Slots</a> &#124;
 <a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
-<a href="classChatWindow-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">ChatWindow Class Reference</div></div>
+<a href="classChatPageWidget-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">ChatPageWidget Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
 <div class="dynheader">
-Inheritance diagram for ChatWindow:</div>
+Inheritance diagram for ChatPageWidget:</div>
 <div class="dyncontent">
-<div class="center"><img src="classChatWindow__inherit__graph.png" border="0" usemap="#aChatWindow_inherit__map" alt="Inheritance graph"/></div>
-<map name="aChatWindow_inherit__map" id="aChatWindow_inherit__map">
-<area shape="rect" title=" " alt="" coords="5,79,109,104"/>
-<area shape="rect" title=" " alt="" coords="20,5,95,31"/>
-<area shape="poly" title=" " alt="" coords="60,44,60,79,55,79,55,44"/>
+<div class="center"><img src="classChatPageWidget__inherit__graph.png" border="0" usemap="#aChatPageWidget_inherit__map" alt="Inheritance graph"/></div>
+<map name="aChatPageWidget_inherit__map" id="aChatPageWidget_inherit__map">
+<area shape="rect" title=" " alt="" coords="5,79,135,104"/>
+<area shape="rect" title=" " alt="" coords="31,5,109,31"/>
+<area shape="poly" title=" " alt="" coords="73,44,73,79,67,79,67,44"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
-Collaboration diagram for ChatWindow:</div>
+Collaboration diagram for ChatPageWidget:</div>
 <div class="dyncontent">
-<div class="center"><img src="classChatWindow__coll__graph.png" border="0" usemap="#aChatWindow_coll__map" alt="Collaboration graph"/></div>
-<map name="aChatWindow_coll__map" id="aChatWindow_coll__map">
-<area shape="rect" title=" " alt="" coords="121,181,225,207"/>
-<area shape="rect" title=" " alt="" coords="34,93,109,119"/>
-<area shape="poly" title=" " alt="" coords="97,126,160,179,157,183,94,130"/>
+<div class="center"><img src="classChatPageWidget__coll__graph.png" border="0" usemap="#aChatPageWidget_coll__map" alt="Collaboration graph"/></div>
+<map name="aChatPageWidget_coll__map" id="aChatPageWidget_coll__map">
+<area shape="rect" title=" " alt="" coords="108,181,237,207"/>
+<area shape="rect" title=" " alt="" coords="29,93,108,119"/>
+<area shape="poly" title=" " alt="" coords="95,125,160,179,157,183,91,129"/>
 <area shape="rect" href="classUserProfile.html" title="Клас UserProfile." alt="" coords="133,93,226,119"/>
 <area shape="poly" title=" " alt="" coords="178,133,177,143,175,181,170,181,171,142,173,132"/>
 <area shape="rect" href="classContactInfo.html" title="Клас ContactInfo." alt="" coords="5,5,103,31"/>
@@ -123,7 +123,7 @@ Collaboration diagram for ChatWindow:</div>
 <area shape="rect" href="classPreference.html" title="Клас Preference." alt="" coords="136,5,228,31"/>
 <area shape="poly" title=" " alt="" coords="184,45,182,93,177,93,179,44"/>
 <area shape="rect" href="classChatManager.html" title=" " alt="" coords="255,93,365,119"/>
-<area shape="poly" title=" " alt="" coords="302,133,282,159,255,176,226,186,224,181,253,171,279,155,298,130"/>
+<area shape="poly" title=" " alt="" coords="302,133,282,159,259,174,234,184,232,179,257,169,279,155,298,130"/>
 <area shape="rect" title=" " alt="" coords="270,5,345,31"/>
 <area shape="poly" title=" " alt="" coords="311,44,312,93,307,93,305,45"/>
 <area shape="rect" href="classDatabaseManager.html" title="Клас DatabaseManager." alt="" coords="369,5,510,31"/>
@@ -133,56 +133,60 @@ Collaboration diagram for ChatWindow:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a633dfdd5bae626504b5a809fa33dfb32" id="r_a633dfdd5bae626504b5a809fa33dfb32"><td class="memItemLeft" align="right" valign="top"><a id="a633dfdd5bae626504b5a809fa33dfb32" name="a633dfdd5bae626504b5a809fa33dfb32"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>ChatWindow</b> (const <a class="el" href="classUserProfile.html">UserProfile</a> &amp;matchProfile, <a class="el" href="classChatManager.html">ChatManager</a> *chatManager, int currentUserId, QWidget *parent=nullptr)</td></tr>
-<tr class="separator:a633dfdd5bae626504b5a809fa33dfb32"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5305b396929d67f6cbf9bc506950d8ad" id="r_a5305b396929d67f6cbf9bc506950d8ad"><td class="memItemLeft" align="right" valign="top"><a id="a5305b396929d67f6cbf9bc506950d8ad" name="a5305b396929d67f6cbf9bc506950d8ad"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>ChatPageWidget</b> (const <a class="el" href="classUserProfile.html">UserProfile</a> &amp;matchProfile, <a class="el" href="classChatManager.html">ChatManager</a> *chatManager, int currentUserId, QWidget *parent=nullptr)</td></tr>
+<tr class="separator:a5305b396929d67f6cbf9bc506950d8ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af08e6a479db94e3fa9011c209bf48089" id="r_af08e6a479db94e3fa9011c209bf48089"><td class="memItemLeft" align="right" valign="top"><a id="af08e6a479db94e3fa9011c209bf48089" name="af08e6a479db94e3fa9011c209bf48089"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setMatchProfile</b> (const <a class="el" href="classUserProfile.html">UserProfile</a> &amp;matchProfile, int currentUserId)</td></tr>
+<tr class="memdesc:af08e6a479db94e3fa9011c209bf48089"><td class="mdescLeft">&#160;</td><td class="mdescRight">Оновлює профіль користувача та завантажує історію нового чату. <br /></td></tr>
+<tr class="separator:af08e6a479db94e3fa9011c209bf48089"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-slots" name="pri-slots"></a>
 Private Slots</h2></td></tr>
-<tr class="memitem:a571243c1857f45f5f582684d597cd498" id="r_a571243c1857f45f5f582684d597cd498"><td class="memItemLeft" align="right" valign="top"><a id="a571243c1857f45f5f582684d597cd498" name="a571243c1857f45f5f582684d597cd498"></a>
+<tr class="memitem:ae2b03f218883a00c89a5eb6db8bf2027" id="r_ae2b03f218883a00c89a5eb6db8bf2027"><td class="memItemLeft" align="right" valign="top"><a id="ae2b03f218883a00c89a5eb6db8bf2027" name="ae2b03f218883a00c89a5eb6db8bf2027"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>sendMessage</b> ()</td></tr>
-<tr class="separator:a571243c1857f45f5f582684d597cd498"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab16e5755db1c5f73531476a8b418fe31" id="r_ab16e5755db1c5f73531476a8b418fe31"><td class="memItemLeft" align="right" valign="top"><a id="ab16e5755db1c5f73531476a8b418fe31" name="ab16e5755db1c5f73531476a8b418fe31"></a>
+<tr class="separator:ae2b03f218883a00c89a5eb6db8bf2027"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abceadb6686a68c30e2cbd23afd22c46e" id="r_abceadb6686a68c30e2cbd23afd22c46e"><td class="memItemLeft" align="right" valign="top"><a id="abceadb6686a68c30e2cbd23afd22c46e" name="abceadb6686a68c30e2cbd23afd22c46e"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>botReply</b> ()</td></tr>
-<tr class="separator:ab16e5755db1c5f73531476a8b418fe31"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:abceadb6686a68c30e2cbd23afd22c46e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
-<tr class="memitem:adb5101b31051de1552c6334ac76a2784" id="r_adb5101b31051de1552c6334ac76a2784"><td class="memItemLeft" align="right" valign="top"><a id="adb5101b31051de1552c6334ac76a2784" name="adb5101b31051de1552c6334ac76a2784"></a>
+<tr class="memitem:a9477c97c05c9df4dd12c5a96f71c96e9" id="r_a9477c97c05c9df4dd12c5a96f71c96e9"><td class="memItemLeft" align="right" valign="top"><a id="a9477c97c05c9df4dd12c5a96f71c96e9" name="a9477c97c05c9df4dd12c5a96f71c96e9"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>loadHistory</b> ()</td></tr>
-<tr class="separator:adb5101b31051de1552c6334ac76a2784"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:a9477c97c05c9df4dd12c5a96f71c96e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:abb5e6149870b72e67e232d15d94a58cd" id="r_abb5e6149870b72e67e232d15d94a58cd"><td class="memItemLeft" align="right" valign="top"><a id="abb5e6149870b72e67e232d15d94a58cd" name="abb5e6149870b72e67e232d15d94a58cd"></a>
+<tr class="memitem:a9300d037af8ecfee5b1265d3935e8e22" id="r_a9300d037af8ecfee5b1265d3935e8e22"><td class="memItemLeft" align="right" valign="top"><a id="a9300d037af8ecfee5b1265d3935e8e22" name="a9300d037af8ecfee5b1265d3935e8e22"></a>
 <a class="el" href="classUserProfile.html">UserProfile</a>&#160;</td><td class="memItemRight" valign="bottom"><b>m_matchProfile</b></td></tr>
-<tr class="separator:abb5e6149870b72e67e232d15d94a58cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afc1ec88f6d3a1af826f952a5f9bdc7b7" id="r_afc1ec88f6d3a1af826f952a5f9bdc7b7"><td class="memItemLeft" align="right" valign="top"><a id="afc1ec88f6d3a1af826f952a5f9bdc7b7" name="afc1ec88f6d3a1af826f952a5f9bdc7b7"></a>
+<tr class="separator:a9300d037af8ecfee5b1265d3935e8e22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6220d472a777cd4e3bc9cb74cfa5bae1" id="r_a6220d472a777cd4e3bc9cb74cfa5bae1"><td class="memItemLeft" align="right" valign="top"><a id="a6220d472a777cd4e3bc9cb74cfa5bae1" name="a6220d472a777cd4e3bc9cb74cfa5bae1"></a>
 <a class="el" href="classChatManager.html">ChatManager</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>m_chatManager</b></td></tr>
-<tr class="separator:afc1ec88f6d3a1af826f952a5f9bdc7b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aef10c401dab2d802d68793b1b4931f50" id="r_aef10c401dab2d802d68793b1b4931f50"><td class="memItemLeft" align="right" valign="top"><a id="aef10c401dab2d802d68793b1b4931f50" name="aef10c401dab2d802d68793b1b4931f50"></a>
+<tr class="separator:a6220d472a777cd4e3bc9cb74cfa5bae1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6af8e85eb3b2325240d7401fbb65748f" id="r_a6af8e85eb3b2325240d7401fbb65748f"><td class="memItemLeft" align="right" valign="top"><a id="a6af8e85eb3b2325240d7401fbb65748f" name="a6af8e85eb3b2325240d7401fbb65748f"></a>
 QTextEdit *&#160;</td><td class="memItemRight" valign="bottom"><b>m_chatArea</b></td></tr>
-<tr class="separator:aef10c401dab2d802d68793b1b4931f50"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1f62e84d5ca7aaf18c1a3d564c8eeee5" id="r_a1f62e84d5ca7aaf18c1a3d564c8eeee5"><td class="memItemLeft" align="right" valign="top"><a id="a1f62e84d5ca7aaf18c1a3d564c8eeee5" name="a1f62e84d5ca7aaf18c1a3d564c8eeee5"></a>
+<tr class="separator:a6af8e85eb3b2325240d7401fbb65748f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adcc32762b63e6e7b2100b4e798f49a38" id="r_adcc32762b63e6e7b2100b4e798f49a38"><td class="memItemLeft" align="right" valign="top"><a id="adcc32762b63e6e7b2100b4e798f49a38" name="adcc32762b63e6e7b2100b4e798f49a38"></a>
 QLineEdit *&#160;</td><td class="memItemRight" valign="bottom"><b>m_inputField</b></td></tr>
-<tr class="separator:a1f62e84d5ca7aaf18c1a3d564c8eeee5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af091176975306866afd0abde7acbaf6f" id="r_af091176975306866afd0abde7acbaf6f"><td class="memItemLeft" align="right" valign="top"><a id="af091176975306866afd0abde7acbaf6f" name="af091176975306866afd0abde7acbaf6f"></a>
+<tr class="separator:adcc32762b63e6e7b2100b4e798f49a38"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a7f87199ca2c32e030e71f35857e8c2" id="r_a5a7f87199ca2c32e030e71f35857e8c2"><td class="memItemLeft" align="right" valign="top"><a id="a5a7f87199ca2c32e030e71f35857e8c2" name="a5a7f87199ca2c32e030e71f35857e8c2"></a>
 QPushButton *&#160;</td><td class="memItemRight" valign="bottom"><b>m_sendButton</b></td></tr>
-<tr class="separator:af091176975306866afd0abde7acbaf6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a250057fbf227ad1184a8e37d0a37c6ef" id="r_a250057fbf227ad1184a8e37d0a37c6ef"><td class="memItemLeft" align="right" valign="top"><a id="a250057fbf227ad1184a8e37d0a37c6ef" name="a250057fbf227ad1184a8e37d0a37c6ef"></a>
+<tr class="separator:a5a7f87199ca2c32e030e71f35857e8c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06e72f35d44ae012543ba2ca11e40d0b" id="r_a06e72f35d44ae012543ba2ca11e40d0b"><td class="memItemLeft" align="right" valign="top"><a id="a06e72f35d44ae012543ba2ca11e40d0b" name="a06e72f35d44ae012543ba2ca11e40d0b"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>m_currentUserId</b></td></tr>
-<tr class="separator:a250057fbf227ad1184a8e37d0a37c6ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:a06e72f35d44ae012543ba2ca11e40d0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>models/<a class="el" href="ChatWindow_8h_source.html">ChatWindow.h</a></li>
-<li>models/<b>ChatWindow.cpp</b></li>
+<li>models/<a class="el" href="ChatPageWidget_8h_source.html">ChatPageWidget.h</a></li>
+<li>models/<b>ChatPageWidget.cpp</b></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="classChatWindow.html">ChatWindow</a></li>
+    <li class="navelem"><a class="el" href="classChatPageWidget.html">ChatPageWidget</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>

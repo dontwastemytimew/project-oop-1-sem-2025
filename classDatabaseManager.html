@@ -209,6 +209,17 @@ QList&lt; QString &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>get
 <tr class="memitem:a3c965d418abb4a94f7fc26ca700d8950" id="r_a3c965d418abb4a94f7fc26ca700d8950"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#a3c965d418abb4a94f7fc26ca700d8950">removeAllTags</a> (int userId)</td></tr>
 <tr class="memdesc:a3c965d418abb4a94f7fc26ca700d8950"><td class="mdescLeft">&#160;</td><td class="mdescRight">Видаляє всі теги для даного користувача.  <br /></td></tr>
 <tr class="separator:a3c965d418abb4a94f7fc26ca700d8950"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaabdfef39bdef87373306e636c5bf3b9" id="r_aaabdfef39bdef87373306e636c5bf3b9"><td class="memItemLeft" align="right" valign="top"><a id="aaabdfef39bdef87373306e636c5bf3b9" name="aaabdfef39bdef87373306e636c5bf3b9"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>saveChatMessage</b> (const <a class="el" href="structChatMessage.html">ChatMessage</a> &amp;message)</td></tr>
+<tr class="memdesc:aaabdfef39bdef87373306e636c5bf3b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Зберігає повідомлення чату в БД. <br /></td></tr>
+<tr class="separator:aaabdfef39bdef87373306e636c5bf3b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a14ae2d784f7117f07ba338b4cc464cf1" id="r_a14ae2d784f7117f07ba338b4cc464cf1"><td class="memItemLeft" align="right" valign="top"><a id="a14ae2d784f7117f07ba338b4cc464cf1" name="a14ae2d784f7117f07ba338b4cc464cf1"></a>
+QList&lt; <a class="el" href="structChatMessage.html">ChatMessage</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>loadChatHistory</b> (int user1Id, int user2Id)</td></tr>
+<tr class="memdesc:a14ae2d784f7117f07ba338b4cc464cf1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Завантажує історію чату між двома користувачами. <br /></td></tr>
+<tr class="separator:a14ae2d784f7117f07ba338b4cc464cf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87291e4b0b397f7917a11976342f9eea" id="r_a87291e4b0b397f7917a11976342f9eea"><td class="memItemLeft" align="right" valign="top">QDateTime&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#a87291e4b0b397f7917a11976342f9eea">getChatLastTimestamp</a> (int user1Id, int user2Id) const</td></tr>
+<tr class="memdesc:a87291e4b0b397f7917a11976342f9eea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Отримує час останнього повідомлення між двома користувачами.  <br /></td></tr>
+<tr class="separator:a87291e4b0b397f7917a11976342f9eea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -257,6 +268,37 @@ const QString&#160;</td><td class="memItemRight" valign="bottom"><b>DB_NAME</b> 
 
 <p>Фіксує взаємний метч у базі даних (якщо потрібно). </p>
 <dl class="section return"><dt>Returns</dt><dd>true, якщо запис успішно додано. </dd></dl>
+
+</div>
+</div>
+<a id="a87291e4b0b397f7917a11976342f9eea" name="a87291e4b0b397f7917a11976342f9eea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87291e4b0b397f7917a11976342f9eea">&#9670;&#160;</a></span>getChatLastTimestamp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QDateTime DatabaseManager::getChatLastTimestamp </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>user1Id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>user2Id</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Отримує час останнього повідомлення між двома користувачами. </p>
+<dl class="section return"><dt>Returns</dt><dd>QDateTime часу останнього повідомлення. </dd></dl>
 
 </div>
 </div>

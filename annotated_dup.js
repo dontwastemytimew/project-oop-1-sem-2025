@@ -4,7 +4,7 @@ var annotated_dup =
     [ "BenchmarkTool", "classBenchmarkTool.html", null ],
     [ "ChatManager", "classChatManager.html", null ],
     [ "ChatMessage", "structChatMessage.html", null ],
-    [ "ChatWindow", "classChatWindow.html", null ],
+    [ "ChatPageWidget", "classChatPageWidget.html", "classChatPageWidget" ],
     [ "ContactInfo", "classContactInfo.html", "classContactInfo" ],
     [ "DatabaseManager", "classDatabaseManager.html", "classDatabaseManager" ],
     [ "DBFixture", "classDBFixture.html", null ],
