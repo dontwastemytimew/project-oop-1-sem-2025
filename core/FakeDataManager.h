@@ -34,6 +34,7 @@ private:
     static QString getRandomFemaleName();
     static QList<QString> generateRandomTags();
     static void seedTags(DatabaseManager* dbManager);
+    static QString getRandomPhotoPath(const QString& gender);
 };
 
 #endif // FAKEDATAMANAGER_H

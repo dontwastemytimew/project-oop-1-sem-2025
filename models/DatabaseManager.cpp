@@ -414,44 +414,66 @@ QList<UserProfile> DatabaseManager::getAllProfiles() {
     return profiles;
 }
 
-// FILTER BY PREFERENCES
 QList<UserProfile> DatabaseManager::getProfilesByCriteria(const Preference &prefs, int currentUserId) {
     QList<UserProfile> profiles;
+
+    if (!m_db.isOpen()) {
+        UserLogger::log(Error, "Database is not open!");
+        return profiles;
+    }
+
     QSqlQuery query(m_db);
 
-    // Додаємо AND id != :currentId для виключення себе
+    // 1. Базовий запит: виключаємо схованих і себе
     QString sql = "SELECT * FROM users WHERE is_hidden = 0 AND id != :currentUserId";
-    QMap<QString, QVariant> bind;
 
-    // Прив'язуємо ID користувача
-    bind[":currentUserId"] = currentUserId;
-
+    // 2. Динамічне формування умов
     if (prefs.getMinAge() > 0) {
         sql += " AND age >= :minAge";
-        bind[":minAge"] = prefs.getMinAge();
     }
     if (prefs.getMaxAge() > 0) {
         sql += " AND age <= :maxAge";
-        bind[":maxAge"] = prefs.getMaxAge();
     }
+
+    // Для міста використовуємо LIKE для неточного пошуку (реєстронезалежно)
     if (!prefs.getCity().isEmpty()) {
-        sql += " AND city = :city";
-        bind[":city"] = prefs.getCity();
+        sql += " AND city LIKE :city";
     }
+
+    // Для статі: перевіряємо, що це не пустий рядок (ми передаємо "" якщо Any)
     if (!prefs.getGender().isEmpty() && prefs.getGender() != "Не важливо") {
         sql += " AND gender = :gender";
-        bind[":gender"] = prefs.getGender();
     }
+
+    // Для орієнтації
     if (!prefs.getOrientation().isEmpty() && prefs.getOrientation() != "Не важливо") {
         sql += " AND orientation = :orientation";
-        bind[":orientation"] = prefs.getOrientation();
     }
+
+    // Додаємо сортування, щоб нові були зверху (опціонально)
+    sql += " ORDER BY id DESC";
 
     query.prepare(sql);
 
-    for (auto it = bind.begin(); it != bind.end(); ++it)
-        query.bindValue(it.key(), it.value());
+    // 3. Прив'язка значень (Binding)
+    query.bindValue(":currentUserId", currentUserId);
 
+    if (prefs.getMinAge() > 0)
+        query.bindValue(":minAge", prefs.getMinAge());
+
+    if (prefs.getMaxAge() > 0)
+        query.bindValue(":maxAge", prefs.getMaxAge());
+
+    if (!prefs.getCity().isEmpty())
+        query.bindValue(":city", "%" + prefs.getCity() + "%"); // Додаємо % для пошуку підрядка
+
+    if (!prefs.getGender().isEmpty() && prefs.getGender() != "Не важливо")
+        query.bindValue(":gender", prefs.getGender());
+
+    if (!prefs.getOrientation().isEmpty() && prefs.getOrientation() != "Не важливо")
+        query.bindValue(":orientation", prefs.getOrientation());
+
+    // 4. Виконання
     if (!query.exec()) {
         UserLogger::log(Error, "Failed to filter profiles: " + query.lastError().text());
         return profiles;
@@ -460,7 +482,14 @@ QList<UserProfile> DatabaseManager::getProfilesByCriteria(const Preference &pref
     while (query.next()) {
         UserProfile profile;
 
-        profile.setId(query.value("id").toInt());
+        // ВАЖЛИВО: Переконайся, що в базі стовпець називається саме "id"
+        int id = query.value("id").toInt();
+        if (id == 0) {
+             // Якщо ID не зчитався, це проблема. Логуємо це.
+             UserLogger::log(Warning, "Warning: Read profile with ID 0. Check DB column names.");
+        }
+
+        profile.setId(id);
         profile.setName(query.value("name").toString());
         profile.setAge(query.value("age").toInt());
         profile.setCity(query.value("city").toString());

@@ -15,6 +15,7 @@
 #include <QCoreApplication>
 #include <QDir>
 #include <QEvent>
+#include <QSettings>
 
 MainWindow::MainWindow(DatabaseManager* dbManager, QWidget *parent)
     : QMainWindow(parent)
@@ -45,7 +46,9 @@ MainWindow::MainWindow(DatabaseManager* dbManager, QWidget *parent)
     m_matchesPage->setChatManager(m_chatManager);
 
     // Налаштування тем та мови
-    switchTheme(false);
+    QSettings settings("DatingAgency", "Match++");
+    bool isDarkDefault = settings.value("isDarkTheme", true).toBool();
+    switchTheme(isDarkDefault);
     switchLanguage("ua");
 
     QLayout* navLayout = ui->nav_menu->layout();

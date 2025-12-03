@@ -154,15 +154,46 @@ void SearchPageWidget::on_btn_Find_clicked() {
         return;
     }
 
+    // --- ВИПРАВЛЕНА ЛОГІКА ФІЛЬТРАЦІЇ ---
+
+    // 1. Отримуємо "код" вибору (any, male, female), а не перекладений текст
+    QString genderData = m_genderCombo->currentData().toString();
+    QString genderDB;
+
+    // Перетворюємо код на те, що записано в Базі Даних (FakeDataManager пише українською)
+    if (genderData == "male") {
+        genderDB = "Чоловік";
+    } else if (genderData == "female") {
+        genderDB = "Жінка";
+    } else {
+        genderDB = ""; // "any" -> пустий рядок (означає "не фільтрувати за статтю")
+    }
+
+    // 2. Те саме для орієнтації
+    QString orientData = m_orientationCombo->currentData().toString();
+    QString orientDB;
+
+    if (orientData == "hetero") {
+        orientDB = "Гетеро";
+    } else if (orientData == "bi") {
+        orientDB = "Бісексуал";
+    } else if (orientData == "gay") {
+        orientDB = "Гей/Лесбі";
+    } else {
+        orientDB = ""; // "any" -> пустий рядок
+    }
+
+    // 3. Формуємо критерії пошуку з правильними рядками
     Preference prefs(m_minAgeSpin->value(), m_maxAgeSpin->value(), m_cityEdit->text(),
-                      m_genderCombo->currentText(), m_orientationCombo->currentText());
+                      genderDB, orientDB);
+
+    // -------------------------------------
 
     QList<UserProfile> dbResults = m_dbManager->getProfilesByCriteria(prefs, m_currentUser.getId());
 
     QList<QPair<UserProfile, int>> ratedMatches;
 
     for (UserProfile profile : dbResults) {
-
         QList<QString> tags = m_dbManager->getTagsForUser(profile.getId());
         profile.setTags(tags);
 

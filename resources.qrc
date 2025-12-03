@@ -23,4 +23,26 @@
         <file>resources/icons/heart_red.png</file>
         <file>resources/icons/default_avatar.png</file>
     </qresource>
+    <qresource prefix="/">
+        <file>resources/fake_photos/male/m1.jpg</file>
+        <file>resources/fake_photos/male/m2.jpg</file>
+        <file>resources/fake_photos/male/m3.jpg</file>
+        <file>resources/fake_photos/male/m4.jpg</file>
+        <file>resources/fake_photos/male/m5.jpg</file>
+        <file>resources/fake_photos/male/m6.jpg</file>
+        <file>resources/fake_photos/male/m7.jpg</file>
+        <file>resources/fake_photos/male/m8.jpg</file>
+        <file>resources/fake_photos/male/m9.jpg</file>
+        <file>resources/fake_photos/male/m10.jpg</file>
+        <file>resources/fake_photos/female/f1.jpg</file>
+        <file>resources/fake_photos/female/f2.jpg</file>
+        <file>resources/fake_photos/female/f3.jpg</file>
+        <file>resources/fake_photos/female/f4.jpg</file>
+        <file>resources/fake_photos/female/f5.jpg</file>
+        <file>resources/fake_photos/female/f6.jpg</file>
+        <file>resources/fake_photos/female/f7.jpg</file>
+        <file>resources/fake_photos/female/f8.jpg</file>
+        <file>resources/fake_photos/female/f9.jpg</file>
+        <file>resources/fake_photos/female/f10.jpg</file>
+    </qresource>
 </RCC>
