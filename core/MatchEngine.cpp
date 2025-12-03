@@ -79,7 +79,6 @@ int MatchEngine::compatibilityScore(const UserProfile& p1, const UserProfile& p2
     return score;
 }
 
-
 int MatchEngine::compatibilityPercent(const UserProfile& p1, const UserProfile& p2) const
 {
     int score = compatibilityScore(p1, p2);

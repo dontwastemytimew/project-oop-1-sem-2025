@@ -6,6 +6,7 @@
 #include <QSettings>
 #include <QTranslator>
 #include <QElapsedTimer>
+#include <QIcon>
 
 
 int main(int argc, char *argv[]) {
@@ -13,6 +14,9 @@ int main(int argc, char *argv[]) {
     QCoreApplication::setApplicationName("Match++");
 
     QApplication a(argc, argv);
+
+    QIcon appIcon(":/resources/icons/logo.jpg");
+    a.setWindowIcon(appIcon);
 
     QSettings settings;
     QString langCode = settings.value("language", "ua").toString();
@@ -22,9 +26,6 @@ int main(int argc, char *argv[]) {
         translator.load(":/translations/app_" + langCode + ".qm")) {
         a.installTranslator(&translator);
         }
-
-    QElapsedTimer startupTimer;
-    startupTimer.start();
   
     UserLogger::init("app_log.txt");
     UserLogger::log(Info, "Application starting up.");

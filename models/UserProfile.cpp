@@ -2,7 +2,6 @@
 #include "Preference.h"
 #include "ContactInfo.h"
 #include <QRegularExpression>
-#include <QtMath>
 
 UserProfile::UserProfile(int id, const QString &name, int age,
                          const QString &city, const QString &bio,
@@ -41,7 +40,7 @@ void UserProfile::setPhotoPath(const QString &path) { m_photoPath = path; }
 void UserProfile::setPreference(const Preference &prefs) { m_preferences = prefs; }
 
 
-// --- ВАЛІДАЦІЯ ПРОФІЛЮ ---
+// ВАЛІДАЦІЯ ПРОФІЛЮ
 bool UserProfile::isValid() const
 {
     // 1. Перевірка імені

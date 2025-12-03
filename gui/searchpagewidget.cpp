@@ -14,7 +14,6 @@
 #include <QMessageBox>
 #include <QVector>
 #include <QCompleter>
-#include <QStringList>
 #include <algorithm>
 #include <QEvent>
 
@@ -129,9 +128,7 @@ void SearchPageWidget::retranslateUi() {
 
 void SearchPageWidget::setDatabaseManager(DatabaseManager* dbManager) {
     m_dbManager = dbManager;
-
     m_matchEngine = new MatchEngine(m_dbManager);
-
     setupCityAutocomplete();
 }
 
@@ -154,22 +151,17 @@ void SearchPageWidget::on_btn_Find_clicked() {
         return;
     }
 
-    // --- ВИПРАВЛЕНА ЛОГІКА ФІЛЬТРАЦІЇ ---
-
-    // 1. Отримуємо "код" вибору (any, male, female), а не перекладений текст
     QString genderData = m_genderCombo->currentData().toString();
     QString genderDB;
 
-    // Перетворюємо код на те, що записано в Базі Даних (FakeDataManager пише українською)
     if (genderData == "male") {
         genderDB = "Чоловік";
     } else if (genderData == "female") {
         genderDB = "Жінка";
     } else {
-        genderDB = ""; // "any" -> пустий рядок (означає "не фільтрувати за статтю")
+        genderDB = "";
     }
 
-    // 2. Те саме для орієнтації
     QString orientData = m_orientationCombo->currentData().toString();
     QString orientDB;
 
@@ -180,14 +172,11 @@ void SearchPageWidget::on_btn_Find_clicked() {
     } else if (orientData == "gay") {
         orientDB = "Гей/Лесбі";
     } else {
-        orientDB = ""; // "any" -> пустий рядок
+        orientDB = "";
     }
 
-    // 3. Формуємо критерії пошуку з правильними рядками
     Preference prefs(m_minAgeSpin->value(), m_maxAgeSpin->value(), m_cityEdit->text(),
                       genderDB, orientDB);
-
-    // -------------------------------------
 
     QList<UserProfile> dbResults = m_dbManager->getProfilesByCriteria(prefs, m_currentUser.getId());
 
@@ -270,7 +259,6 @@ void SearchPageWidget::on_Like_clicked() {
             UserLogger::log(Error, "Failed to record mutual match in DB.");
         }
     }
-
     m_currentMatchIndex++;
     showNextProfile();
 }
@@ -283,7 +271,6 @@ void SearchPageWidget::on_Skip_clicked() {
     if (m_currentMatches.size() > m_currentMatchIndex) {
         m_currentMatches.removeAt(m_currentMatchIndex);
     }
-
     showNextProfile();
 }
 

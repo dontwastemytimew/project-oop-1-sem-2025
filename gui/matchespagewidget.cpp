@@ -4,10 +4,8 @@
 #include <QVBoxLayout>
 #include <QLabel>
 #include <QListWidget>
-#include <QListWidgetItem>
 #include <QPixmap>
 #include <QIcon>
-#include <QDebug>
 #include <QApplication>
 #include <QLineEdit>
 #include <QEvent>

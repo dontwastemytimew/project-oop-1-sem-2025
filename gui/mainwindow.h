@@ -3,62 +3,136 @@
 
 #include <QMainWindow>
 #include <QTranslator>
+#include <QButtonGroup>
 #include "searchpagewidget.h"
 #include "profilepagewidget.h"
 #include "matchespagewidget.h"
 #include "DatabaseManager.h"
 #include "welcomepagewidget.h"
 #include "adminpagewidget.h"
-#include <QButtonGroup>
 #include "settingspagewidget.h"
 #include "ChatManager.h"
 
+// Forward declaration для уникнення циклічних залежностей
 class ChatPageWidget;
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
+/**
+ * @brief Головне вікно додатку Match++.
+ *
+ * Це основний контролер додатку, який відповідає за:
+ * - Ініціалізацію та компонування всіх сторінок (Search, Profile, Matches, Settings, Admin).
+ * - Навігацію між сторінками через QStackedWidget.
+ * - Управління глобальними налаштуваннями (мова, тема оформлення).
+ * - Зв'язок між компонентами (сигнали та слоти) та передачу даних (DatabaseManager, UserProfile).
+ * - Обробку життєвого циклу сесії користувача (вхід, вихід, видалення акаунту).
+ */
 class MainWindow : public QMainWindow {
     Q_OBJECT
 
 public:
+    /**
+     * @brief Конструктор MainWindow.
+     *
+     * Ініціалізує інтерфейс, створює всі сторінки, налаштовує з'єднання з базою даних,
+     * завантажує профіль поточного користувача (якщо є) та встановлює початкову тему/мову.
+     *
+     * @param dbManager Вказівник на ініціалізований менеджер бази даних.
+     * @param parent Батьківський віджет (зазвичай nullptr для головного вікна).
+     */
     explicit MainWindow(DatabaseManager* dbManager, QWidget *parent = nullptr);
+
+    /**
+     * @brief Деструктор. Звільняє пам'ять, виділену під UI та дочірні віджети.
+     */
     ~MainWindow();
 
+    /**
+     * @brief Змінює мову додатку.
+     *
+     * Завантажує відповідний файл перекладу (.qm) та оновлює тексти
+     * на всіх активних віджетах.
+     *
+     * @param languageCode Код мови ("ua" або "en").
+     */
     void switchLanguage(const QString& languageCode);
+
+    /**
+     * @brief Перемикає тему оформлення (Світла/Темна).
+     *
+     * Завантажує та застосовує відповідний QSS файл стилів до всього додатку.
+     *
+     * @param isDark true для темної теми, false для світлої.
+     */
     void switchTheme(bool isDark);
+
+    /**
+     * @brief Активує та показує Панель Адміністратора.
+     *
+     * Викликається з налаштувань. Перемикає стек віджетів на сторінку адміністрування.
+     */
     void showAdminPage();
 
-    protected:
+protected:
+    /**
+     * @brief Обробник подій зміни стану (зокрема, зміни мови).
+     * @param event Подія.
+     */
     void changeEvent(QEvent *event) override;
 
 private slots:
+    // --- Слоти навігації (кнопки меню) ---
     void on_btn_Search_clicked();
     void on_btn_Profile_clicked();
     void on_btn_Matches_clicked();
     void on_btn_Settings_clicked();
-    void onProfileSaved();
-    void onAccountDeleted();
     void on_btn_Exit_clicked();
+
+    /**
+     * @brief Слот, що викликається після успішного збереження/створення профілю.
+     *
+     * Оновлює внутрішній об'єкт m_currentProfile, активує навігацію та перемикає
+     * користувача на сторінку пошуку.
+     */
+    void onProfileSaved();
+
+    /**
+     * @brief Слот обробки видалення акаунту.
+     *
+     * Очищає сесію, скидає інтерфейс до початкового стану (сторінка вітання/створення профілю).
+     */
+    void onAccountDeleted();
+
+    /**
+     * @brief Відкриває чат з конкретним користувачем.
+     * @param targetUserId ID співрозмовника.
+     */
     void onOpenChatRequested(int targetUserId);
 
 private:
     Ui::MainWindow *ui;
 
-    WelcomePageWidget *m_welcomePage;
-    SearchPageWidget *m_searchPage;
-    ProfilePageWidget *m_profilePage;
-    MatchesPageWidget *m_matchesPage;
-    DatabaseManager* m_dbManager;
-    QTranslator m_translator;
-    SettingsPageWidget *m_settingsPage;
-    QButtonGroup *m_navButtonGroup;
-    ChatManager* m_chatManager;
-    bool m_userExists;
-    AdminPageWidget* m_adminPage;
-    ChatPageWidget *m_chatPage;
-    UserProfile m_currentProfile;
+    // --- Сторінки додатку (дочірні віджети) ---
+    WelcomePageWidget *m_welcomePage;   ///< Сторінка вітання / Входу.
+    SearchPageWidget *m_searchPage;     ///< Сторінка пошуку (свайпів).
+    ProfilePageWidget *m_profilePage;   ///< Сторінка редагування власного профілю.
+    MatchesPageWidget *m_matchesPage;   ///< Сторінка списку метчів.
+    SettingsPageWidget *m_settingsPage; ///< Сторінка налаштувань.
+    AdminPageWidget* m_adminPage;       ///< Панель адміністратора.
+    ChatPageWidget *m_chatPage;         ///< Віджет чату (відкривається окремо).
+
+    // --- Системні компоненти ---
+    DatabaseManager* m_dbManager;       ///< Менеджер бази даних.
+    QTranslator m_translator;           ///< Об'єкт для перекладу інтерфейсу.
+    ChatManager* m_chatManager;         ///< Менеджер логіки чату.
+
+    QButtonGroup *m_navButtonGroup;     ///< Група кнопок навігації (для ексклюзивного вибору).
+
+    bool m_userExists;                  ///< Прапорець: чи залогінений користувач.
+    UserProfile m_currentProfile;       ///< Дані поточного активного користувача.
 };
 
 #endif // MAINWINDOW_H

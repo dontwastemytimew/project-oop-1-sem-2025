@@ -240,7 +240,6 @@ void AdminPageWidget::onCustomContextMenu(const QPoint &pos) {
         onDeleteClicked();
     }
 }
-// test push
 
 void AdminPageWidget::toggleHiddenStatus(int row) {
     if (!m_dbManager || !m_model) return;

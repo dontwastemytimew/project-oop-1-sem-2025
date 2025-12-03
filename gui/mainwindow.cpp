@@ -16,6 +16,7 @@
 #include <QDir>
 #include <QEvent>
 #include <QSettings>
+#include <QIcon>
 
 MainWindow::MainWindow(DatabaseManager* dbManager, QWidget *parent)
     : QMainWindow(parent)
@@ -25,6 +26,9 @@ MainWindow::MainWindow(DatabaseManager* dbManager, QWidget *parent)
     ui->setupUi(this);
     setWindowTitle(tr("Match++"));
 
+    QIcon appIcon(":/resources/icons/logo.jpg");
+    this->setWindowIcon(appIcon);
+
     m_welcomePage = new WelcomePageWidget(this);
     m_searchPage = new SearchPageWidget(this);
     m_profilePage = new ProfilePageWidget(this);
@@ -33,7 +37,6 @@ MainWindow::MainWindow(DatabaseManager* dbManager, QWidget *parent)
     m_adminPage = new AdminPageWidget(this);
     m_chatManager = new ChatManager(m_dbManager, this);
     m_chatPage = new ChatPageWidget(UserProfile(), m_chatManager, -1, this);
-
 
     // Додавання до StackedWidget
     ui->stackedWidget_Pages->addWidget(m_welcomePage);
@@ -65,7 +68,6 @@ MainWindow::MainWindow(DatabaseManager* dbManager, QWidget *parent)
     m_settingsPage->setDatabaseManager(m_dbManager);
     m_adminPage->setDatabaseManager(m_dbManager);
     m_settingsPage->setMainWindow(this);
-
 
     if (m_userExists) {
         m_profilePage->setInternalProfile(m_currentProfile);

@@ -37,10 +37,7 @@ void FakeDataManager::generateTestUsers(DatabaseManager* dbManager, int count) {
         QString email = generateEmail(name);
 
         QString photoPath = getRandomPhotoPath(gender);
-
-
         UserProfile profile(-1, name, age, city, bio, gender, orientation, photoPath);
-
         ContactInfo contacts(phone, email);
         profile.setContactInfo(contacts);
 
@@ -56,12 +53,9 @@ void FakeDataManager::generateTestUsers(DatabaseManager* dbManager, int count) {
             if (QRandomGenerator::global()->bounded(100) < 50) {
                 dbManager->addLike(newId, 1);
             }
-
             successCount++;
         }
     }
-
-
     UserLogger::log(Info, QString("Successfully generated %1 out of %2 users.").arg(successCount).arg(count));
 }
 
@@ -145,12 +139,8 @@ QList<UserProfile> FakeDataManager::generateList(int count) {
         quint32 uniqueID = QRandomGenerator::global()->generate();
         QString phone = generatePhone();
         QString email = QString("test_%1@bench.com").arg(uniqueID);
-
         QString photoPath = getRandomPhotoPath(gender);
-
-
         UserProfile profile(-1, name, age, city, bio, gender, orientation, photoPath);
-
         ContactInfo contacts(phone, email);
         profile.setContactInfo(contacts);
 
@@ -219,7 +209,6 @@ void FakeDataManager::seedReverseLikes(DatabaseManager* dbManager, int currentUs
 
 QString FakeDataManager::getRandomPhotoPath(const QString& gender) {
     QString resourcePath;
-
 
     if (gender == "Чоловік" || gender == "Male") {
         resourcePath = ":/resources/fake_photos/male";
