@@ -10,6 +10,7 @@
 #include <QMessageBox>
 #include <QApplication>
 #include <QSettings>
+#include <QEvent>
 
 SettingsPageWidget::SettingsPageWidget(QWidget *parent)
     : QWidget(parent), m_mainWindow(nullptr)
@@ -165,4 +166,11 @@ void SettingsPageWidget::on_deleteClicked() {
 void SettingsPageWidget::onAdminBtnClicked() {
     UserLogger::log(Info, "User requested Admin Panel from Settings.");
     emit openAdminPanelRequested();
+}
+
+void SettingsPageWidget::changeEvent(QEvent *event) {
+    if (event->type() == QEvent::LanguageChange) {
+        retranslateUi();
+    }
+    QWidget::changeEvent(event);
 }

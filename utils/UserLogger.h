@@ -70,5 +70,3 @@ private:
 };
 
 #endif // USERLOGGER_H
-
-#endif //USERLOGGER_H

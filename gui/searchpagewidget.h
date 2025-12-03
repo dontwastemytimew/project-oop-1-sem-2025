@@ -5,6 +5,7 @@
 #include <QComboBox>
 #include <QStackedWidget>
 #include <QLabel>
+#include <QPushButton>
 #include "DatabaseManager.h"
 #include "UserProfile.h"
 #include "MatchEngine.h"
