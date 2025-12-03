@@ -7,6 +7,7 @@ var annotated_dup =
     [ "ChatWindow", "classChatWindow.html", null ],
     [ "ContactInfo", "classContactInfo.html", "classContactInfo" ],
     [ "DatabaseManager", "classDatabaseManager.html", "classDatabaseManager" ],
+    [ "DBFixture", "classDBFixture.html", null ],
     [ "FakeDataManager", "classFakeDataManager.html", null ],
     [ "MainWindow", "classMainWindow.html", null ],
     [ "MatchEngine", "classMatchEngine.html", "classMatchEngine" ],

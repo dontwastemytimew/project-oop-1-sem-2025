@@ -5,6 +5,9 @@ var hierarchy =
     [ "ContactInfo", "classContactInfo.html", null ],
     [ "DatabaseManager", "classDatabaseManager.html", null ],
     [ "FakeDataManager", "classFakeDataManager.html", null ],
+    [ "benchmark::Fixture", null, [
+      [ "DBFixture", "classDBFixture.html", null ]
+    ] ],
     [ "MatchEngine", "classMatchEngine.html", null ],
     [ "Preference", "classPreference.html", null ],
     [ "QDialog", null, [

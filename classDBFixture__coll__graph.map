@@ -1,0 +1,7 @@
+<map id="DBFixture" name="DBFixture">
+<area shape="rect" id="Node000001" title=" " alt="" coords="120,93,207,119"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,153,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="102,39,154,91,150,95,98,43"/>
+<area shape="rect" id="Node000003" href="$classDatabaseManager.html" title="Клас DatabaseManager." alt="" coords="178,5,319,31"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="229,43,177,95,173,91,225,39"/>
+</map>
