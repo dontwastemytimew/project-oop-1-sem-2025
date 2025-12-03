@@ -21,7 +21,7 @@
 #include <QFrame>
 #include <QStringList>
 #include <QRegularExpression>
-#include <QEvent> // <--- ВАЖЛИВО
+#include <QEvent>
 
 ProfilePageWidget::ProfilePageWidget(QWidget *parent)
     : QWidget(parent), m_dbManager(nullptr)
@@ -276,7 +276,7 @@ void ProfilePageWidget::on_btn_SaveProfile_clicked() {
         UserLogger::log(Info, QString("Profile saved/updated successfully. ID: %1").arg(resultId));
         QMessageBox::information(this, tr("Успіх"), tr("Профіль успішно збережено!"));
 
-        retranslateUi(); // Оновлюємо текст кнопки (Зберегти -> Оновити)
+        retranslateUi();
         emit profileSaved();
     } else {
         UserLogger::log(Error, "Failed to execute DB operation.");

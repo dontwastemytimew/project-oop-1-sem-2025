@@ -184,7 +184,6 @@ QList<int> DatabaseManager::getMutualMatchIds(int currentUserId) {
     return matchIds;
 }
 
-
 // SAVE PROFILE
 int DatabaseManager::saveProfile(const UserProfile &profile) {
 
@@ -435,12 +434,12 @@ QList<UserProfile> DatabaseManager::getProfilesByCriteria(const Preference &pref
         sql += " AND age <= :maxAge";
     }
 
-    // Для міста використовуємо LIKE для неточного пошуку (реєстронезалежно)
+    // Для міста використовуємо LIKE для неточного пошуку
     if (!prefs.getCity().isEmpty()) {
         sql += " AND city LIKE :city";
     }
 
-    // Для статі: перевіряємо, що це не пустий рядок (ми передаємо "" якщо Any)
+    // Для статі: перевіряємо, що це не пустий рядок
     if (!prefs.getGender().isEmpty() && prefs.getGender() != "Не важливо") {
         sql += " AND gender = :gender";
     }
@@ -450,12 +449,12 @@ QList<UserProfile> DatabaseManager::getProfilesByCriteria(const Preference &pref
         sql += " AND orientation = :orientation";
     }
 
-    // Додаємо сортування, щоб нові були зверху (опціонально)
+    // Додаємо сортування, щоб нові були зверху
     sql += " ORDER BY id DESC";
 
     query.prepare(sql);
 
-    // 3. Прив'язка значень (Binding)
+    // 3. Прив'язка значень
     query.bindValue(":currentUserId", currentUserId);
 
     if (prefs.getMinAge() > 0)
@@ -482,10 +481,8 @@ QList<UserProfile> DatabaseManager::getProfilesByCriteria(const Preference &pref
     while (query.next()) {
         UserProfile profile;
 
-        // ВАЖЛИВО: Переконайся, що в базі стовпець називається саме "id"
         int id = query.value("id").toInt();
         if (id == 0) {
-             // Якщо ID не зчитався, це проблема. Логуємо це.
              UserLogger::log(Warning, "Warning: Read profile with ID 0. Check DB column names.");
         }
 
@@ -580,7 +577,7 @@ bool DatabaseManager::removeLike(int userId, int targetId) {
         return false;
     }
 
-    if (!m_db.transaction()) { // <--- ТРАНЗАКЦІЯ ДОДАНО
+    if (!m_db.transaction()) {
         UserLogger::log(Error, "RemoveLike: Failed to start transaction.");
         return false;
     }
@@ -607,7 +604,6 @@ bool DatabaseManager::removeLike(int userId, int targetId) {
     }
 }
 
-
 bool DatabaseManager::loadProfileById(int userId, UserProfile& profile)
 {
     if (!m_db.isOpen()) {
@@ -616,7 +612,6 @@ bool DatabaseManager::loadProfileById(int userId, UserProfile& profile)
     }
 
     QSqlQuery query(m_db);
-    // ВИПРАВЛЕНО: Таблиця users, ключ id, прибрано неіснуючий 'password'
     query.prepare("SELECT * FROM users WHERE id = :id");
     query.bindValue(":id", userId);
 
@@ -735,7 +730,6 @@ QList<UserProfile> DatabaseManager::getProfilesByIds(const QList<int> &ids) {
         while (query.next()) {
             UserProfile profile;
 
-            // Зчитування всіх полів
             profile.setId(query.value("id").toInt());
             profile.setName(query.value("name").toString());
             profile.setAge(query.value("age").toInt());
@@ -797,7 +791,6 @@ bool DatabaseManager::removeTag(int userId, const QString& tag)
 {
     if (userId <= 0 || tag.isEmpty()) return false;
 
-    // --- КРИТИЧНИЙ ФІКС: ДОДАНО ТРАНЗАКЦІЮ ---
     if (!m_db.transaction()) return false;
 
     QSqlQuery query;
@@ -811,13 +804,13 @@ bool DatabaseManager::removeTag(int userId, const QString& tag)
         return false;
     }
 
-    return m_db.commit(); // <-- COMMIT
+    return m_db.commit();
 }
 
 QList<QString> DatabaseManager::getTagsForUser(int userId) const
 {
     QList<QString> tags;
-    QSqlQuery query(m_db); // Використовуйте конструктор з m_db для const-методу
+    QSqlQuery query(m_db);
     query.prepare("SELECT tag FROM user_tags WHERE user_id = ?");
     query.addBindValue(userId);
 
@@ -856,7 +849,6 @@ bool DatabaseManager::removeAllTags(int userId) {
     }
 }
 
-
 bool DatabaseManager::addMatch(int userId, int targetId) {
     if (isMutualLike(userId, targetId)) {
         UserLogger::log(Info, QString("MATCH recorded for U%1 and T%2.").arg(userId).arg(targetId));
@@ -890,12 +882,10 @@ QList<ChatMessage> DatabaseManager::loadChatHistory(int user1Id, int user2Id) {
     QList<ChatMessage> history;
     QSqlQuery query;
 
-    // Зчитуємо повідомлення, де відправник: 1->2 АБО 2->1. Сортуємо за часом.
     query.prepare("SELECT user_id, target_id, message, timestamp FROM chat_messages "
                   "WHERE (user_id = ? AND target_id = ?) OR (user_id = ? AND target_id = ?) "
                   "ORDER BY timestamp ASC");
 
-    // Прив'язка 1->2 та 2->1
     query.addBindValue(user1Id);
     query.addBindValue(user2Id);
     query.addBindValue(user2Id);

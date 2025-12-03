@@ -26,9 +26,6 @@ int main(int argc, char *argv[]) {
         translator.load(":/translations/app_" + langCode + ".qm")) {
         a.installTranslator(&translator);
         }
-
-    QElapsedTimer startupTimer;
-    startupTimer.start();
   
     UserLogger::init("app_log.txt");
     UserLogger::log(Info, "Application starting up.");

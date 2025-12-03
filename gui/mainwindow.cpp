@@ -38,7 +38,6 @@ MainWindow::MainWindow(DatabaseManager* dbManager, QWidget *parent)
     m_chatManager = new ChatManager(m_dbManager, this);
     m_chatPage = new ChatPageWidget(UserProfile(), m_chatManager, -1, this);
 
-
     // Додавання до StackedWidget
     ui->stackedWidget_Pages->addWidget(m_welcomePage);
     ui->stackedWidget_Pages->addWidget(m_searchPage);
@@ -69,7 +68,6 @@ MainWindow::MainWindow(DatabaseManager* dbManager, QWidget *parent)
     m_settingsPage->setDatabaseManager(m_dbManager);
     m_adminPage->setDatabaseManager(m_dbManager);
     m_settingsPage->setMainWindow(this);
-
 
     if (m_userExists) {
         m_profilePage->setInternalProfile(m_currentProfile);
