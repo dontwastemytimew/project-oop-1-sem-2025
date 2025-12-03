@@ -2,6 +2,7 @@ var classSettingsPageWidget =
 [
     [ "SettingsPageWidget", "classSettingsPageWidget.html#a081587429800b2ddbf965598120ae863", null ],
     [ "accountDeleted", "classSettingsPageWidget.html#a735ddb9deb0d1fbe99879da90b61381e", null ],
+    [ "changeEvent", "classSettingsPageWidget.html#a9a46718dcacb8622f63e3bb11aca9e7e", null ],
     [ "loadCurrentSettings", "classSettingsPageWidget.html#a04e6117882ddca1e2169d0bc4cee41e0", null ],
     [ "on_deleteClicked", "classSettingsPageWidget.html#ab036529102c043cc6c81e6e612201616", null ],
     [ "on_languageChanged", "classSettingsPageWidget.html#a6ec5688861544334ce92012157cac77c", null ],
@@ -13,13 +14,8 @@ var classSettingsPageWidget =
     [ "setDatabaseManager", "classSettingsPageWidget.html#a24574947fd2043769a71c05c676be117", null ],
     [ "setMainWindow", "classSettingsPageWidget.html#ac93b925557dffcabf2b0e00a444b44bb", null ],
     [ "updateThemeIcon", "classSettingsPageWidget.html#ade89b1e741dc0bd075dacb96202789ce", null ],
-    [ "m_btnOpenAdmin", "classSettingsPageWidget.html#a5d6e2e7be845ebad3dd64569c1f77747", null ],
     [ "m_currentProfileId", "classSettingsPageWidget.html#aae42f8a072192c79743b70873860964e", null ],
     [ "m_dbManager", "classSettingsPageWidget.html#ab3feb2614004f4656c7065a57b7cf34f", null ],
-    [ "m_deleteButton", "classSettingsPageWidget.html#a703bc6bff45d068a1622260e94ca4d59", null ],
     [ "m_isDarkTheme", "classSettingsPageWidget.html#a3f3e98ee5c30ddf029d178827f69c3ee", null ],
-    [ "m_langComboBox", "classSettingsPageWidget.html#ad7cb1415103c477b2253d53e069ed66c", null ],
-    [ "m_mainWindow", "classSettingsPageWidget.html#a75b74872d03c3f67ade75b14b34ab600", null ],
-    [ "m_pauseToggle", "classSettingsPageWidget.html#a47361b187c5e04f0ae3fe0f1c0007820", null ],
-    [ "m_themeToggle", "classSettingsPageWidget.html#a0bf34ac97e7c195aea9e6a5dedcaa552", null ]
+    [ "m_mainWindow", "classSettingsPageWidget.html#a75b74872d03c3f67ade75b14b34ab600", null ]
 ];

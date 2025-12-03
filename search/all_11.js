@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['_7edatabasemanager_0',['~DatabaseManager',['../classDatabaseManager.html#ae9b3a5da1e04fbb00faf8a034da1d063',1,'DatabaseManager']]],
-  ['_7emainwindow_1',['~MainWindow',['../classMainWindow.html#ae98d00a93bc118200eeef9f9bba1dba7',1,'MainWindow']]],
-  ['_7ematchespagewidget_2',['~MatchesPageWidget',['../classMatchesPageWidget.html#aa3d243717b654976fa31c8d02f3f99ab',1,'MatchesPageWidget']]],
-  ['_7esearchpagewidget_3',['~SearchPageWidget',['../classSearchPageWidget.html#adef3a44c94b0ecb81db9f3a264f0ed80',1,'SearchPageWidget']]]
+  ['timestamp_0',['timestamp',['../structChatMessage.html#a0c0c90c6f8737ec2e08f0999eab29a5d',1,'ChatMessage']]],
+  ['togglehiddenstatus_1',['toggleHiddenStatus',['../classAdminPageWidget.html#ab7ecb7475371100c19c73f3fb3259c7c',1,'AdminPageWidget']]],
+  ['touserid_2',['toUserId',['../structChatMessage.html#a8380f54bca6860db0edea3505e8f89f6',1,'ChatMessage']]]
 ];

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Dating Agency Project: Main Page</title>
+<title>Dating Agency Project: Match++: Desktop Dating Agency</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -88,10 +88,118 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 </div>
 </div>
 
-<div class="header">
-  <div class="headertitle"><div class="title">Dating Agency Project Documentation</div></div>
+<div><div class="header">
+  <div class="headertitle"><div class="title">Match++: Desktop Dating Agency </div></div>
 </div><!--header-->
 <div class="contents">
+<div class="textblock"><p><a class="anchor" id="md_README"></a> Кросплатформний настільний додаток, створений на C++ та фреймворку Qt 6, призначений для симуляції функціоналу сучасної платформи знайомств. Проєкт зосереджений на надійному керуванні даними, ефективних алгоритмах зіставлення та професійній архітектурі.</p>
+<h1><a class="anchor" id="autotoc_md1"></a>
+Архітектура та Технології</h1>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadLeft">Компонент   </th><th class="markdownTableHeadLeft">Технологія    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><b>Фреймворк</b>   </td><td class="markdownTableBodyLeft">Qt 6 (Widgets, Qt Charts)    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"><b>Мова</b>   </td><td class="markdownTableBodyLeft">C++17    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><b>Система збірки</b>   </td><td class="markdownTableBodyLeft">CMake    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"><b>База даних</b>   </td><td class="markdownTableBodyLeft">SQLite (через QSqlDatabase)    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><b>Тестування</b>   </td><td class="markdownTableBodyLeft">Google Test &amp; Google Benchmark    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"><b>Структура</b>   </td><td class="markdownTableBodyLeft">Core / Models / GUI / Utils   </td></tr>
+</table>
+<hr  />
+<h1><a class="anchor" id="autotoc_md3"></a>
+Основні Функції</h1>
+<h2><a class="anchor" id="autotoc_md4"></a>
+User Experience (UX)</h2>
+<ul>
+<li><b>Інтерфейс одного вікна:</b> Навігація між сторінками (Профіль, Пошук, Метчі) відбувається без перезавантаження, за допомогою <code>QStackedWidget</code>.</li>
+<li><b>Сесія:</b> Надійне керування сесією користувача через <code>QSettings</code>.</li>
+<li><b>Теми:</b> Перемикання світлої/темної теми за допомогою QSS.</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md5"></a>
+Пошук та Зіставлення</h2>
+<ul>
+<li><b>Розширений Фільтр:</b> Пошук за віком, містом, статтю та орієнтацією.</li>
+<li><b>Автодоповнення Міст:</b> "Розумне" введення міст за допомогою <code>QCompleter</code>, що використовує наявні дані з БД.</li>
+<li><b>Картка Профілю:</b> Динамічне відображення даних та відсотка сумісності.</li>
+<li><b>Бальна Система:</b> Реалізований алгоритм <code><a class="el" href="classMatchEngine.html#a91c40757d70d50f69fe549d15306a866" title="Обчислює абсолютний бал сумісності.">MatchEngine::compatibilityScore</a></code> для оцінки сумісності на основі віку та міста.</li>
+<li><b>Simulated Chat:</b> Можливість клікнути на метч і відкрити вікно чату із заглушкою та випадковими відповідями бота.</li>
+</ul>
+<hr  />
+<h1><a class="anchor" id="autotoc_md7"></a>
+Додаткові фічі</h1>
+<ul>
+<li><b>1. Панель Адміністратора:</b><ul>
+<li>Повний CRUD-інтерфейс для керування користувачами.</li>
+<li>Генерація 10,000+ фейкових профілів для тестування навантаження.</li>
+<li><b>Аналітика (Qt Charts):</b> Візуалізація статистики (розподіл за віком, містами, статтю).</li>
+</ul>
+</li>
+<li><b>2. Інтернаціоналізація (i18n):</b><ul>
+<li>Повна підтримка <b>Української</b> та <b>Англійської</b> мов через <code>QTranslator</code> та <code>Qt Linguist</code>.</li>
+</ul>
+</li>
+<li><b>3. Модульне Тестування (Unit Tests):</b><ul>
+<li>Тести для <code><a class="el" href="classDatabaseManager.html" title="Головний клас для керування базою даних (Data Access Layer).">DatabaseManager</a></code> та <code><a class="el" href="classMatchEngine.html" title="Клас для обчислення сумісності між користувачами.">MatchEngine</a></code> (використовується Google Test).</li>
+</ul>
+</li>
+<li><b>4. Логер (<a class="el" href="classUserLogger.html" title="Статичний клас-утиліта для логування подій.">UserLogger</a>):</b><ul>
+<li>Кастомний клас для фіксації критичних подій, помилок та дій користувача.</li>
+</ul>
+</li>
+<li><b>5. Документація:</b><ul>
+<li>Повна документація коду (Doxygen) з автоматичним розгортанням на GitHub Pages.</li>
+</ul>
+</li>
+</ul>
+<hr  />
+<h1><a class="anchor" id="autotoc_md9"></a>
+Аналіз Продуктивності (Benchmarks)</h1>
+<p>Для виявлення вузьких місць було проведено навантажувальне тестування за допомогою бібліотеки <b>Google Benchmark</b>.</p>
+<h2><a class="anchor" id="autotoc_md10"></a>
+Ключові результати (CPU: 3.3 GHz)</h2>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadLeft">Операція   </th><th class="markdownTableHeadLeft">Час виконання   </th><th class="markdownTableHeadLeft">Висновок та Оптимізація    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><b>Логіка матчингу (Math)</b>   </td><td class="markdownTableBodyLeft"><code>15.6 ns</code>   </td><td class="markdownTableBodyLeft">Алгоритм розрахунку сумісності надзвичайно швидкий і не потребує оптимізації.    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"><b>Вставка (Single Insert)</b>   </td><td class="markdownTableBodyLeft"><code>921 µs</code> (0.9 ms)   </td><td class="markdownTableBodyLeft">Повільно через відкриття транзакції на кожен запис.    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><b>Вставка (Bulk Insert)</b>   </td><td class="markdownTableBodyLeft"><code>3.4 µs</code> / item   </td><td class="markdownTableBodyLeft"><b>Прискорення в 270 разів</b> завдяки використанню однієї транзакції. Використовується для генерації даних.    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"><b>Пошук та Фільтрація (SQL)</b>   </td><td class="markdownTableBodyLeft"><code>230 - 500 ms</code>   </td><td class="markdownTableBodyLeft">Основне навантаження. Складні SQL-запити займають до 0.5с, що підтверджує необхідність використання асинхронності в майбутньому.    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><b>Сортування (5000 юзерів)</b>   </td><td class="markdownTableBodyLeft"><code>4.5 ms</code>   </td><td class="markdownTableBodyLeft">Сортування на стороні C++ працює швидко, пагінація на стороні клієнта допустима.    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"><b>Копіювання об'єктів</b>   </td><td class="markdownTableBodyLeft"><code>16 ns</code>   </td><td class="markdownTableBodyLeft">Механізм <b>Implicit Sharing</b> у Qt робить передачу об'єктів <code><a class="el" href="classUserProfile.html" title="Основна модель даних профілю користувача.">UserProfile</a></code> майже "безкоштовною" для пам'яті.   </td></tr>
+</table>
+<hr  />
+<h1><a class="anchor" id="autotoc_md12"></a>
+Як Запустити Проєкт (CLion / CMake)</h1>
+<ol type="1">
+<li><b>Клонування репозиторію:</b> <code>bash git clone [посилання на репозиторій] cd project-oop-1-sem-2025 </code></li>
+<li><b>Завантаження залежностей:</b> Проєкт використовує <code>FetchContent</code> для автоматичного завантаження Google Test та Google Benchmark.</li>
+<li><b>Збірка:</b> Використовуйте стандартний процес збірки CMake (CLion, VS Code або термінал): <code>bash cmake -S . -B build cmake --build build </code></li>
+<li><b>Запуск Бенчмарків:</b> Щоб відтворити результати тестування продуктивності: <code>bash cmake --build build --target project_benchmark ./build/project_benchmark.exe </code></li>
+</ol>
+<hr  />
+<h1><a class="anchor" id="autotoc_md14"></a>
+Посилання</h1>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadLeft">Ресурс   </th><th class="markdownTableHeadLeft">Адреса    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><b>Документація (Doxygen)</b>   </td><td class="markdownTableBodyLeft">[Майбутнє посилання на GitHub Pages]    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"><b>Відеодемонстрація</b>   </td><td class="markdownTableBodyLeft">[Майбутнє посилання на YouTube]   </td></tr>
+</table>
+</div></div><!-- PageDoc -->
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['databasemanager_0',['databasemanager',['../classDatabaseManager.html',1,'DatabaseManager'],['../classDatabaseManager.html#aa162d97472e6c31a4e873adda435dbb6',1,'DatabaseManager::DatabaseManager()']]],
-  ['db_5fname_1',['DB_NAME',['../classDatabaseManager.html#afa9cf4ff04b04d87e3968cd8f269c9da',1,'DatabaseManager']]],
-  ['deleteprofile_2',['deleteProfile',['../classDatabaseManager.html#abf7e5134b2bb6d1fc51b3e6cf9ebdd1d',1,'DatabaseManager']]]
+  ['backclicked_0',['backClicked',['../classAdminPageWidget.html#ab26a7383789472292fbf93bc274fce6b',1,'AdminPageWidget']]],
+  ['benchmarks_1',['Аналіз Продуктивності (Benchmarks)',['../index.html#autotoc_md9',1,'']]],
+  ['botreplies_2',['botReplies',['../classChatManager.html#a24ec191c4bd5c97dbd3b4cd3db96c022',1,'ChatManager']]],
+  ['botreply_3',['botReply',['../classChatPageWidget.html#abceadb6686a68c30e2cbd23afd22c46e',1,'ChatPageWidget']]]
 ];

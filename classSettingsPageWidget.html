@@ -92,6 +92,7 @@ $(document).ready(function(){initNavTree('classSettingsPageWidget.html',''); ini
   <div class="summary">
 <a href="#signals">Signals</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pri-slots">Private Slots</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classSettingsPageWidget-members.html">List of all members</a>  </div>
@@ -177,11 +178,11 @@ Collaboration diagram for SettingsPageWidget:</div>
 Signals</h2></td></tr>
 <tr class="memitem:a0442e79b4a90754fc5c3112ae1972136" id="r_a0442e79b4a90754fc5c3112ae1972136"><td class="memItemLeft" align="right" valign="top"><a id="a0442e79b4a90754fc5c3112ae1972136" name="a0442e79b4a90754fc5c3112ae1972136"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>openAdminPanelRequested</b> ()</td></tr>
-<tr class="memdesc:a0442e79b4a90754fc5c3112ae1972136"><td class="mdescLeft">&#160;</td><td class="mdescRight">Сигнал запиту на відкриття панелі адміністратора. Обробляється в <a class="el" href="classMainWindow.html" title="Головне вікно додатку Match++.">MainWindow</a>. <br /></td></tr>
+<tr class="memdesc:a0442e79b4a90754fc5c3112ae1972136"><td class="mdescLeft">&#160;</td><td class="mdescRight">Сигнал запиту на відкриття панелі адміністратора. <br /></td></tr>
 <tr class="separator:a0442e79b4a90754fc5c3112ae1972136"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a735ddb9deb0d1fbe99879da90b61381e" id="r_a735ddb9deb0d1fbe99879da90b61381e"><td class="memItemLeft" align="right" valign="top"><a id="a735ddb9deb0d1fbe99879da90b61381e" name="a735ddb9deb0d1fbe99879da90b61381e"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>accountDeleted</b> ()</td></tr>
-<tr class="memdesc:a735ddb9deb0d1fbe99879da90b61381e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Сигнал про те, що акаунт було успішно видалено. Використовується для виходу з системи та скидання інтерфейсу. <br /></td></tr>
+<tr class="memdesc:a735ddb9deb0d1fbe99879da90b61381e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Сигнал про те, що акаунт було успішно видалено. <br /></td></tr>
 <tr class="separator:a735ddb9deb0d1fbe99879da90b61381e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -209,17 +210,25 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>retranslateUi</b> ()<
 <tr class="memdesc:a9d4172611e1e48242bda8290e69db741"><td class="mdescLeft">&#160;</td><td class="mdescRight">Оновлює тексти інтерфейсу при зміні мови. <br /></td></tr>
 <tr class="separator:a9d4172611e1e48242bda8290e69db741"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:a9a46718dcacb8622f63e3bb11aca9e7e" id="r_a9a46718dcacb8622f63e3bb11aca9e7e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSettingsPageWidget.html#a9a46718dcacb8622f63e3bb11aca9e7e">changeEvent</a> (QEvent *event) override</td></tr>
+<tr class="memdesc:a9a46718dcacb8622f63e3bb11aca9e7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Обробник подій зміни стану віджета.  <br /></td></tr>
+<tr class="separator:a9a46718dcacb8622f63e3bb11aca9e7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-slots" name="pri-slots"></a>
 Private Slots</h2></td></tr>
-<tr class="memitem:a6ec5688861544334ce92012157cac77c" id="r_a6ec5688861544334ce92012157cac77c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSettingsPageWidget.html#a6ec5688861544334ce92012157cac77c">on_languageChanged</a> (int index)</td></tr>
-<tr class="memdesc:a6ec5688861544334ce92012157cac77c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Слот зміни мови через випадаючий список.  <br /></td></tr>
+<tr class="memitem:a6ec5688861544334ce92012157cac77c" id="r_a6ec5688861544334ce92012157cac77c"><td class="memItemLeft" align="right" valign="top"><a id="a6ec5688861544334ce92012157cac77c" name="a6ec5688861544334ce92012157cac77c"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>on_languageChanged</b> (int index)</td></tr>
+<tr class="memdesc:a6ec5688861544334ce92012157cac77c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Слот зміни мови через випадаючий список. <br /></td></tr>
 <tr class="separator:a6ec5688861544334ce92012157cac77c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5461b70b09975a84f33f34824d9b860e" id="r_a5461b70b09975a84f33f34824d9b860e"><td class="memItemLeft" align="right" valign="top"><a id="a5461b70b09975a84f33f34824d9b860e" name="a5461b70b09975a84f33f34824d9b860e"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>on_themeToggled</b> ()</td></tr>
 <tr class="memdesc:a5461b70b09975a84f33f34824d9b860e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Слот натискання кнопки перемикання теми. <br /></td></tr>
 <tr class="separator:a5461b70b09975a84f33f34824d9b860e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab036529102c043cc6c81e6e612201616" id="r_ab036529102c043cc6c81e6e612201616"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSettingsPageWidget.html#ab036529102c043cc6c81e6e612201616">on_deleteClicked</a> ()</td></tr>
-<tr class="memdesc:ab036529102c043cc6c81e6e612201616"><td class="mdescLeft">&#160;</td><td class="mdescRight">Слот натискання кнопки видалення акаунту.  <br /></td></tr>
+<tr class="memitem:ab036529102c043cc6c81e6e612201616" id="r_ab036529102c043cc6c81e6e612201616"><td class="memItemLeft" align="right" valign="top"><a id="ab036529102c043cc6c81e6e612201616" name="ab036529102c043cc6c81e6e612201616"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>on_deleteClicked</b> ()</td></tr>
+<tr class="memdesc:ab036529102c043cc6c81e6e612201616"><td class="mdescLeft">&#160;</td><td class="mdescRight">Слот натискання кнопки видалення акаунту. <br /></td></tr>
 <tr class="separator:ab036529102c043cc6c81e6e612201616"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af352b3b5159597cc3f0199f487d0db67" id="r_af352b3b5159597cc3f0199f487d0db67"><td class="memItemLeft" align="right" valign="top"><a id="af352b3b5159597cc3f0199f487d0db67" name="af352b3b5159597cc3f0199f487d0db67"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>onAdminBtnClicked</b> ()</td></tr>
@@ -238,7 +247,7 @@ Private Attributes</h2></td></tr>
 <tr class="separator:ab3feb2614004f4656c7065a57b7cf34f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aae42f8a072192c79743b70873860964e" id="r_aae42f8a072192c79743b70873860964e"><td class="memItemLeft" align="right" valign="top"><a id="aae42f8a072192c79743b70873860964e" name="aae42f8a072192c79743b70873860964e"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>m_currentProfileId</b></td></tr>
-<tr class="memdesc:aae42f8a072192c79743b70873860964e"><td class="mdescLeft">&#160;</td><td class="mdescRight">ID поточного користувача (для операцій з акаунтом). <br /></td></tr>
+<tr class="memdesc:aae42f8a072192c79743b70873860964e"><td class="mdescLeft">&#160;</td><td class="mdescRight">ID поточного користувача. <br /></td></tr>
 <tr class="separator:aae42f8a072192c79743b70873860964e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3f3e98ee5c30ddf029d178827f69c3ee" id="r_a3f3e98ee5c30ddf029d178827f69c3ee"><td class="memItemLeft" align="right" valign="top"><a id="a3f3e98ee5c30ddf029d178827f69c3ee" name="a3f3e98ee5c30ddf029d178827f69c3ee"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_isDarkTheme</b></td></tr>
@@ -246,23 +255,18 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_isDarkTheme</b></td
 <tr class="separator:a3f3e98ee5c30ddf029d178827f69c3ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad7cb1415103c477b2253d53e069ed66c" id="r_ad7cb1415103c477b2253d53e069ed66c"><td class="memItemLeft" align="right" valign="top"><a id="ad7cb1415103c477b2253d53e069ed66c" name="ad7cb1415103c477b2253d53e069ed66c"></a>
 QComboBox *&#160;</td><td class="memItemRight" valign="bottom"><b>m_langComboBox</b></td></tr>
-<tr class="memdesc:ad7cb1415103c477b2253d53e069ed66c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Вибір мови. <br /></td></tr>
 <tr class="separator:ad7cb1415103c477b2253d53e069ed66c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0bf34ac97e7c195aea9e6a5dedcaa552" id="r_a0bf34ac97e7c195aea9e6a5dedcaa552"><td class="memItemLeft" align="right" valign="top"><a id="a0bf34ac97e7c195aea9e6a5dedcaa552" name="a0bf34ac97e7c195aea9e6a5dedcaa552"></a>
 QPushButton *&#160;</td><td class="memItemRight" valign="bottom"><b>m_themeToggle</b></td></tr>
-<tr class="memdesc:a0bf34ac97e7c195aea9e6a5dedcaa552"><td class="mdescLeft">&#160;</td><td class="mdescRight">Кнопка теми. <br /></td></tr>
 <tr class="separator:a0bf34ac97e7c195aea9e6a5dedcaa552"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a47361b187c5e04f0ae3fe0f1c0007820" id="r_a47361b187c5e04f0ae3fe0f1c0007820"><td class="memItemLeft" align="right" valign="top"><a id="a47361b187c5e04f0ae3fe0f1c0007820" name="a47361b187c5e04f0ae3fe0f1c0007820"></a>
 QCheckBox *&#160;</td><td class="memItemRight" valign="bottom"><b>m_pauseToggle</b></td></tr>
-<tr class="memdesc:a47361b187c5e04f0ae3fe0f1c0007820"><td class="mdescLeft">&#160;</td><td class="mdescRight">Чекбокс приватності. <br /></td></tr>
 <tr class="separator:a47361b187c5e04f0ae3fe0f1c0007820"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a703bc6bff45d068a1622260e94ca4d59" id="r_a703bc6bff45d068a1622260e94ca4d59"><td class="memItemLeft" align="right" valign="top"><a id="a703bc6bff45d068a1622260e94ca4d59" name="a703bc6bff45d068a1622260e94ca4d59"></a>
 QPushButton *&#160;</td><td class="memItemRight" valign="bottom"><b>m_deleteButton</b></td></tr>
-<tr class="memdesc:a703bc6bff45d068a1622260e94ca4d59"><td class="mdescLeft">&#160;</td><td class="mdescRight">Кнопка видалення (червона). <br /></td></tr>
 <tr class="separator:a703bc6bff45d068a1622260e94ca4d59"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5d6e2e7be845ebad3dd64569c1f77747" id="r_a5d6e2e7be845ebad3dd64569c1f77747"><td class="memItemLeft" align="right" valign="top"><a id="a5d6e2e7be845ebad3dd64569c1f77747" name="a5d6e2e7be845ebad3dd64569c1f77747"></a>
 QPushButton *&#160;</td><td class="memItemRight" valign="bottom"><b>m_btnOpenAdmin</b></td></tr>
-<tr class="memdesc:a5d6e2e7be845ebad3dd64569c1f77747"><td class="mdescLeft">&#160;</td><td class="mdescRight">Кнопка адмін-панелі. <br /></td></tr>
 <tr class="separator:a5d6e2e7be845ebad3dd64569c1f77747"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aee679cc95c9d32a79c81a6d8cd6b9b05" id="r_aee679cc95c9d32a79c81a6d8cd6b9b05"><td class="memItemLeft" align="right" valign="top"><a id="aee679cc95c9d32a79c81a6d8cd6b9b05" name="aee679cc95c9d32a79c81a6d8cd6b9b05"></a>
 QLabel *&#160;</td><td class="memItemRight" valign="bottom"><b>m_langLabel</b></td></tr>
@@ -276,14 +280,7 @@ QLabel *&#160;</td><td class="memItemRight" valign="bottom"><b>m_accountLabel</b
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Віджет сторінки "Налаштування". </p>
-<p>Цей клас надає інтерфейс для зміни глобальних параметрів додатку та управління поточним акаунтом користувача.</p>
-<p>Основні можливості:</p><ul>
-<li>Зміна мови інтерфейсу (Українська/Англійська).</li>
-<li>Перемикання теми оформлення (Світла/Темна).</li>
-<li>"Призупинення" акаунту (приховування профілю з пошуку).</li>
-<li>Повне видалення акаунту.</li>
-<li>Доступ до Панелі Адміністратора (кнопка з'являється для всіх, але логіка може бути розширена). </li>
-</ul>
+<p>Цей клас надає інтерфейс для зміни глобальних параметрів додатку та управління поточним акаунтом користувача. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a081587429800b2ddbf965598120ae863" name="a081587429800b2ddbf965598120ae863"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a081587429800b2ddbf965598120ae863">&#9670;&#160;</a></span>SettingsPageWidget()</h2>
@@ -320,6 +317,41 @@ QLabel *&#160;</td><td class="memItemRight" valign="bottom"><b>m_accountLabel</b
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a9a46718dcacb8622f63e3bb11aca9e7e" name="a9a46718dcacb8622f63e3bb11aca9e7e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a46718dcacb8622f63e3bb11aca9e7e">&#9670;&#160;</a></span>changeEvent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SettingsPageWidget::changeEvent </td>
+          <td>(</td>
+          <td class="paramtype">QEvent *&#160;</td>
+          <td class="paramname"><em>event</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Обробник подій зміни стану віджета. </p>
+<p>Перевизначений метод для перехоплення події зміни мови (QEvent::LanguageChange). Це дозволяє сторінці миттєво оновити переклад без перезапуску.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">event</td><td>Вказівник на об'єкт події. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a04e6117882ddca1e2169d0bc4cee41e0" name="a04e6117882ddca1e2169d0bc4cee41e0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a04e6117882ddca1e2169d0bc4cee41e0">&#9670;&#160;</a></span>loadCurrentSettings()</h2>
 
@@ -337,71 +369,9 @@ QLabel *&#160;</td><td class="memItemRight" valign="bottom"><b>m_accountLabel</b
 </div><div class="memdoc">
 
 <p>Завантажує налаштування для поточного користувача. </p>
-<p>Ініціалізує стан віджетів (наприклад, чи стоїть галочка "Призупинити") на основі даних профілю. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">profile</td><td>Профіль поточного користувача. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="ab036529102c043cc6c81e6e612201616" name="ab036529102c043cc6c81e6e612201616"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab036529102c043cc6c81e6e612201616">&#9670;&#160;</a></span>on_deleteClicked</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void SettingsPageWidget::on_deleteClicked </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Слот натискання кнопки видалення акаунту. </p>
-<p>Показує діалогове вікно підтвердження. У разі згоди видаляє дані з БД та емітує сигнал <a class="el" href="classSettingsPageWidget.html#a735ddb9deb0d1fbe99879da90b61381e" title="Сигнал про те, що акаунт було успішно видалено. Використовується для виходу з системи та скидання інт...">accountDeleted()</a>. </p>
-
-</div>
-</div>
-<a id="a6ec5688861544334ce92012157cac77c" name="a6ec5688861544334ce92012157cac77c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6ec5688861544334ce92012157cac77c">&#9670;&#160;</a></span>on_languageChanged</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void SettingsPageWidget::on_languageChanged </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>index</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Слот зміни мови через випадаючий список. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">index</td><td>Індекс обраної мови у QComboBox. </td></tr>
+    <tr><td class="paramname">profile</td><td>Профіль поточного користувача. </td></tr>
   </table>
   </dd>
 </dl>
@@ -425,9 +395,9 @@ QLabel *&#160;</td><td class="memItemRight" valign="bottom"><b>m_accountLabel</b
 </div><div class="memdoc">
 
 <p>Обробляє перемикання чекбокса "Призупинити профіль". </p>
-<p>Викликає метод <a class="el" href="classDatabaseManager.html" title="Головний клас для керування базою даних (Data Access Layer).">DatabaseManager</a> для зміни статусу <code>is_hidden</code> у базі даних. </p><dl class="params"><dt>Parameters</dt><dd>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">checked</td><td>Новий стан чекбокса (true = приховати, false = показати). </td></tr>
+    <tr><td class="paramname">checked</td><td>Новий стан чекбокса. </td></tr>
   </table>
   </dd>
 </dl>
@@ -477,7 +447,7 @@ QLabel *&#160;</td><td class="memItemRight" valign="bottom"><b>m_accountLabel</b
 </div><div class="memdoc">
 
 <p>Встановлює посилання на головне вікно. </p>
-<p>Необхідно для виклику глобальних методів <a class="el" href="classMainWindow.html" title="Головне вікно додатку Match++.">MainWindow</a>, таких як switchLanguage() та switchTheme(). </p><dl class="params"><dt>Parameters</dt><dd>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">window</td><td>Вказівник на <a class="el" href="classMainWindow.html" title="Головне вікно додатку Match++.">MainWindow</a>. </td></tr>
   </table>
@@ -503,7 +473,7 @@ QLabel *&#160;</td><td class="memItemRight" valign="bottom"><b>m_accountLabel</b
 </div><div class="memdoc">
 
 <p>Оновлює іконку кнопки перемикання теми. </p>
-<p>Змінює іконку (Сонце/Місяць) залежно від поточного стану теми. </p><dl class="params"><dt>Parameters</dt><dd>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">isDark</td><td>true, якщо активна темна тема. </td></tr>
   </table>

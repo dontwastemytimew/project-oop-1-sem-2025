@@ -25,6 +25,7 @@
 var NAVTREE =
 [
   [ "Dating Agency Project", "index.html", [
+    [ "Match++: Desktop Dating Agency", "index.html", "index" ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
@@ -44,7 +45,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "ChatManager_8h_source.html",
-"classSettingsPageWidget.html#a47361b187c5e04f0ae3fe0f1c0007820"
+"classSettingsPageWidget.html#a6ec5688861544334ce92012157cac77c"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
