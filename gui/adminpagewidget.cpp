@@ -115,7 +115,7 @@ void AdminPageWidget::retranslateUi() {
         m_model->setHeaderData(6, Qt::Horizontal, "Email");
         m_model->setHeaderData(7, Qt::Horizontal, tr("Телефон"));
         m_model->setHeaderData(8, Qt::Horizontal, tr("Орієнтація"));
-        m_model->setHeaderData(9, Qt::Horizontal, tr("Прихований"));
+        m_model->setHeaderData(10, Qt::Horizontal, tr("Прихований")); // <-- ТУТ БУЛО 9, СТАЛО 10
     }
 }
 
@@ -153,8 +153,8 @@ void AdminPageWidget::refreshTable() {
 
     m_tableView->verticalHeader()->setVisible(false);
 
-    // Приховуємо колонку Bio
     m_tableView->hideColumn(4);
+    m_tableView->hideColumn(9);
 
     // Налаштування колонок
     QHeaderView* header = m_tableView->horizontalHeader();
@@ -213,7 +213,8 @@ void AdminPageWidget::onCustomContextMenu(const QPoint &pos) {
 
     QMenu contextMenu(this);
     QModelIndex sourceIndex = m_proxyModel->mapToSource(proxyIndex);
-    bool isHidden = m_model->data(m_model->index(sourceIndex.row(), 9)).toBool();
+
+    bool isHidden = m_model->data(m_model->index(sourceIndex.row(), 10)).toBool();
 
     QAction *copyAction = contextMenu.addAction(QIcon(":/resources/icons/copy.png"), tr("Копіювати Email"));
     contextMenu.addSeparator();
@@ -245,7 +246,7 @@ void AdminPageWidget::toggleHiddenStatus(int row) {
     if (!m_dbManager || !m_model) return;
 
     int userId = m_model->data(m_model->index(row, 0)).toInt();
-    bool currentHidden = m_model->data(m_model->index(row, 9)).toBool();
+    bool currentHidden = m_model->data(m_model->index(row, 10)).toBool();
     bool newHidden = !currentHidden;
 
     if (m_dbManager->setProfileHidden(userId, newHidden)) {

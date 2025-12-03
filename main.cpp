@@ -2,10 +2,10 @@
 #include "UserLogger.h"
 #include "DatabaseManager.h"
 #include "mainwindow.h"
-#include "BenchmarkTool.h"
 #include "ChatPageWidget.h"
 #include <QSettings>
 #include <QTranslator>
+#include <QElapsedTimer>
 
 
 int main(int argc, char *argv[]) {

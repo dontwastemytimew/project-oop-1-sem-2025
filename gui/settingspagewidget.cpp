@@ -12,8 +12,14 @@
 #include <QSettings>
 
 SettingsPageWidget::SettingsPageWidget(QWidget *parent)
-    : QWidget(parent), m_mainWindow(nullptr), m_isDarkTheme(false)
+    // Встановлюємо m_isDarkTheme = true за замовчуванням
+    // *АБО* зчитуємо збережені налаштування
+    : QWidget(parent), m_mainWindow(nullptr)
 {
+    // Зчитуємо тему зі збережених налаштувань (для персистентності)
+    QSettings settings("DatingAgency", "Match++");
+    m_isDarkTheme = settings.value("isDarkTheme", true).toBool(); // true - темна тема за замовчуванням
+
     QVBoxLayout* mainLayout = new QVBoxLayout(this);
     mainLayout->setContentsMargins(20, 20, 20, 20);
 
@@ -32,6 +38,10 @@ SettingsPageWidget::SettingsPageWidget(QWidget *parent)
     m_themeToggle->setCheckable(true);
     m_themeToggle->setObjectName("themeToggleButton");
     m_themeToggle->setFixedWidth(50);
+
+    // Встановлюємо початковий стан кнопки
+    m_themeToggle->setChecked(m_isDarkTheme);
+
     formLayout->addRow(m_themeLabel, m_themeToggle);
     updateThemeIcon(m_isDarkTheme);
 
@@ -79,6 +89,11 @@ void SettingsPageWidget::retranslateUi() {
 
 void SettingsPageWidget::setMainWindow(MainWindow* window) {
     m_mainWindow = window;
+
+    // Якщо головне вікно встановлено, застосовуємо тему, збережену в налаштуваннях
+    if (m_mainWindow) {
+        m_mainWindow->switchTheme(m_isDarkTheme);
+    }
 }
 
 void SettingsPageWidget::setDatabaseManager(DatabaseManager* dbManager) {
@@ -87,6 +102,7 @@ void SettingsPageWidget::setDatabaseManager(DatabaseManager* dbManager) {
 
 void SettingsPageWidget::loadCurrentSettings(const UserProfile& profile) {
     m_currentProfileId = profile.getId();
+    // Приклад: якщо ви зберігаєте налаштування теми в QSettings, а не в профілі
 }
 
 void SettingsPageWidget::on_languageChanged(int index) {
@@ -105,10 +121,16 @@ void SettingsPageWidget::on_languageChanged(int index) {
 
 void SettingsPageWidget::on_themeToggled() {
     if (!m_mainWindow) return;
-    m_isDarkTheme = !m_isDarkTheme;
+    m_isDarkTheme = m_themeToggle->isChecked();
     m_mainWindow->switchTheme(m_isDarkTheme);
     updateThemeIcon(m_isDarkTheme);
-    UserLogger::log(Info, "Theme toggled.");
+
+    // Зберігання налаштування теми
+    QSettings settings("DatingAgency", "Match++");
+    settings.setValue("isDarkTheme", m_isDarkTheme);
+
+    // ВИПРАВЛЕННЯ: Використовуємо QString::arg для конкатенації
+    UserLogger::log(Info, QString("Theme toggled. New state: %1").arg(m_isDarkTheme ? "Dark" : "Light"));
 }
 
 void SettingsPageWidget::updateThemeIcon(bool isDark) {

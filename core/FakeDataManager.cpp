@@ -3,6 +3,7 @@
 #include "UserLogger.h"
 #include <QRandomGenerator>
 #include <QVector>
+#include <QDir>
 
 void FakeDataManager::generateTestUsers(DatabaseManager* dbManager, int count) {
     if (!dbManager) return;
@@ -35,8 +36,10 @@ void FakeDataManager::generateTestUsers(DatabaseManager* dbManager, int count) {
         QString phone = generatePhone();
         QString email = generateEmail(name);
 
-        // Формуємо профіль
-        UserProfile profile(-1, name, age, city, bio, gender, orientation);
+        QString photoPath = getRandomPhotoPath(gender);
+
+
+        UserProfile profile(-1, name, age, city, bio, gender, orientation, photoPath);
 
         ContactInfo contacts(phone, email);
         profile.setContactInfo(contacts);
@@ -143,7 +146,10 @@ QList<UserProfile> FakeDataManager::generateList(int count) {
         QString phone = generatePhone();
         QString email = QString("test_%1@bench.com").arg(uniqueID);
 
-        UserProfile profile(-1, name, age, city, bio, gender, orientation);
+        QString photoPath = getRandomPhotoPath(gender);
+
+
+        UserProfile profile(-1, name, age, city, bio, gender, orientation, photoPath);
 
         ContactInfo contacts(phone, email);
         profile.setContactInfo(contacts);
@@ -209,4 +215,25 @@ void FakeDataManager::seedReverseLikes(DatabaseManager* dbManager, int currentUs
         }
     }
     UserLogger::log(Info, QString("Seeding complete. %1 profiles checked for reverse like.").arg(profilesToProcess));
+}
+
+QString FakeDataManager::getRandomPhotoPath(const QString& gender) {
+    QString resourcePath;
+
+
+    if (gender == "Чоловік" || gender == "Male") {
+        resourcePath = ":/resources/fake_photos/male";
+    } else {
+        resourcePath = ":/resources/fake_photos/female";
+    }
+
+    QDir directory(resourcePath);
+    QStringList images = directory.entryList(QStringList() << "*.jpg" << "*.png" << "*.jpeg", QDir::Files);
+
+    if (images.isEmpty()) {
+        return "";
+    }
+
+    int index = QRandomGenerator::global()->bounded(images.size());
+    return resourcePath + "/" + images[index];
 }

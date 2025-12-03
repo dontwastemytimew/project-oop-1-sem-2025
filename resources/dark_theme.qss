@@ -3,6 +3,7 @@
  * MATCH++ QSS STYLESHEET: DARK THEME (Minimalist IDE - VS Code Inspired)
  * Основний Фон: #282C34 (Насичений сіро-синій)
  * Акцент: #C678DD (Яскраво-фіолетовий)
+ * Палітра: Підсвічування Синтаксису
  * =================================================================
  */
 
@@ -190,20 +191,26 @@ QPushButton#deleteAccountButton:hover {
 }
 
 /* ---------------------------------- */
-/* СТИЛІ СТОРІНКИ ПРИВІТАННЯ */
+/* СТИЛІ СТОРІНКИ ПРИВІТАННЯ (Імітація Коду) */
 /* ---------------------------------- */
 
 QLabel#welcomeTitle {
     font-size: 28pt;
     font-weight: bold;
-    color: #C678DD; /* Фіолетовий */
+    color: #98C379; /* Зелений (як успішна компіляція) */
     padding-bottom: 10px;
     font-family: 'Consolas', 'Courier New', monospace;
+    qproperty-text: "#include <Match++>";
+    text-align: left;
 }
 
 QLabel#welcomeSubtitle {
-    font-size: 14pt;
-    color: #ABB2BF;
+    font-size: 16pt;
+    color: #61AFEF; /* Блакитний (як змінна) */
+    padding-top: 5px;
+    font-family: 'Consolas', 'Courier New', monospace;
+    qproperty-text: "MatchPlusPlus::Welcome(); // Starting...";
+    text-align: left;
 }
 
 /* ---------------------------------- */
@@ -302,7 +309,7 @@ QPushButton#settingsAdminBtn:hover {
 }
 
 QLabel#searchIconLbl {
-    image: url(:/resources/icons/search_icon_white.png); /* ПОТРІБНА БІЛА ІКОНКА */
+    image: url(:/resources/icons/search_icon_white.png);
     min-width: 24px;
     min-height: 24px;
     padding-right: 5px;
@@ -313,7 +320,7 @@ QPushButton#adminStatsBtn {
     background-color: #61AFEF;
     color: #111111;
     min-width: 100px;
-    qproperty-icon: url(:/resources/icons/chart_dark.png); /* ПОТРІБНА ТЕМНА ІКОНКА */
+    qproperty-icon: url(:/resources/icons/chart.png);
 }
 QPushButton#adminStatsBtn:hover {
     background-color: #79B8FF;
@@ -419,4 +426,22 @@ QListWidget#matchesListWidget {
 QListWidget#matchesListWidget::item {
     padding: 8px;
     qproperty-iconSize: 50px 50px;
+}
+
+/* Стиль для QTextEdit (Область відображення чату) */
+QTextEdit#chatArea {
+    background-color: #21252B;
+    border: 1px solid #4B5263;
+    color: #ABB2BF;
+    font-size: 14px;
+    font-family: 'Consolas', 'Courier New', monospace;
+}
+
+/* Стиль для QLineEdit (Поле вводу тексту в чаті) */
+QLineEdit#inputField {
+    background-color: #21252B;
+    border: 1px solid #4B5263;
+    color: #ABB2BF;
+    font-size: 14px;
+    font-family: 'Consolas', 'Courier New', monospace;
 }

@@ -1,8 +1,9 @@
 /*
  * =================================================================
- * MATCH++ QSS STYLESHEET: LIGHT THEME (Minimalist / Clean)
- * Основний Фон: #FFFFFF / #F4F6F9
+ * MATCH++ QSS STYLESHEET: LIGHT THEME (Minimalist IDE - Clean Code)
+ * Основний Фон: #F4F6F9
  * Акцент: #C678DD (Яскраво-фіолетовий)
+ * Палітра: Висока Контрастність
  * =================================================================
  */
 
@@ -16,7 +17,7 @@ QMainWindow {
 /* Стиль для бокового меню */
 QWidget#nav_menu {
     background-color: #FFFFFF; /* Білий фон */
-    border-right: 1px solid #E5E7EB; /* Тонка сіра лінія */
+    border-right: 1px solid #E5E7EB;
     padding: 5px 0;
 }
 
@@ -48,7 +49,7 @@ QWidget#nav_menu QPushButton {
 }
 
 QWidget#nav_menu QPushButton:hover {
-    background-color: #F4F6F9; /* Світло-сірий фон при наведенні */
+    background-color: #F4F6F9;
     color: #111827;
     border-left: 4px solid #D1D5DB;
 }
@@ -68,7 +69,7 @@ QStackedWidget {
     border: none;
 }
 
-/* Поля вводу */
+/* Поля вводу - ДОДАНО MONOSPACE */
 QLineEdit, QSpinBox, QTextEdit {
     border: 1px solid #D1D5DB;
     border-radius: 5px;
@@ -76,6 +77,7 @@ QLineEdit, QSpinBox, QTextEdit {
     background-color: #FFFFFF;
     font-size: 13px;
     color: #111827; /* Темний текст */
+    font-family: 'Consolas', 'Courier New', monospace;
 }
 
 QLineEdit:focus, QSpinBox:focus, QTextEdit:focus {
@@ -115,7 +117,7 @@ QPushButton:pressed {
 
 /* Кнопки Like/Skip */
 QPushButton#m_likeButton {
-    background-color: #4CAF50; /* Зелений */
+    background-color: #4CAF50;
     color: white;
     border-radius: 20px;
     min-width: 100px;
@@ -124,7 +126,7 @@ QPushButton#m_likeButton {
 QPushButton#m_likeButton:hover { background-color: #66BB6A; }
 
 QPushButton#m_skipButton {
-    background-color: #F44336; /* Червоний */
+    background-color: #F44336;
     color: white;
     border-radius: 20px;
     min-width: 100px;
@@ -144,6 +146,7 @@ QComboBox {
     background-color: #FFFFFF;
     color: #374151;
     min-width: 150px;
+    font-family: 'Consolas', 'Courier New', monospace;
 }
 QComboBox:focus { border: 1px solid #C678DD; }
 
@@ -159,7 +162,7 @@ QComboBox QAbstractItemView {
 /* Стрілка */
 QComboBox::drop-down { border: none; width: 20px; }
 QComboBox::down-arrow {
-    image: url(:/resources/icons/chevron-down.png); /* Чорна іконка */
+    image: url(:/resources/icons/chevron-down.png);
     width: 12px; height: 12px;
 }
 
@@ -179,19 +182,26 @@ QPushButton#deleteAccountButton:hover {
 }
 
 /* ---------------------------------- */
-/* СТИЛІ СТОРІНКИ ПРИВІТАННЯ */
+/* СТИЛІ СТОРІНКИ ПРИВІТАННЯ (Імітація Коду) */
 /* ---------------------------------- */
 
 QLabel#welcomeTitle {
     font-size: 28pt;
     font-weight: bold;
-    color: #C678DD;
+    color: #C678DD; /* Фіолетовий */
     padding-bottom: 10px;
+    font-family: 'Consolas', 'Courier New', monospace;
+    qproperty-text: "MatchPlusPlus::Welcome(User user_name);";
+    text-align: left;
 }
 
 QLabel#welcomeSubtitle {
-    font-size: 14pt;
-    color: #555555;
+    font-size: 16pt;
+    color: #374151; /* Темний текст */
+    padding-top: 5px;
+    font-family: 'Consolas', 'Courier New', monospace;
+    qproperty-text: "// Ready to find your perfect compilation.";
+    text-align: left;
 }
 
 /* ---------------------------------- */
@@ -230,16 +240,17 @@ QPushButton#adminDelBtn {
 }
 QPushButton#adminDelBtn:hover { background-color: #EF5350; }
 
-/* Таблиця (Світла) */
+/* Таблиця (Світла) - ДОДАНО MONOSPACE */
 QTableView#adminTable {
     background-color: #FFFFFF;
     alternate-background-color: #FAFAFB;
     gridline-color: #E5E7EB;
     color: #374151;
     border: 1px solid #D1D5DB;
+    font-family: 'Consolas', 'Courier New', monospace;
 }
 QTableView#adminTable::item:selected {
-    background-color: #E1BEE7; /* Світло-фіолетове виділення */
+    background-color: #E1BEE7;
     color: black;
 }
 QHeaderView::section {
@@ -250,7 +261,6 @@ QHeaderView::section {
     font-weight: bold;
 }
 
-/* Кнопка Адмін Налаштувань */
 QPushButton#settingsAdminBtn {
     background-color: #C678DD;
     color: white;
@@ -277,7 +287,7 @@ QPushButton#adminStatsBtn {
     background-color: #3B82F6;
     color: white;
     min-width: 100px;
-    qproperty-icon: url(:/resources/icons/chart_white.png);
+    qproperty-icon: url(:/resources/icons/chart.png);
 }
 QPushButton#adminStatsBtn:hover {
     background-color: #60A5FA;
@@ -300,7 +310,7 @@ QTabBar::tab:selected {
     color: white;
 }
 
-/* --- КАРТКА ПРОФІЛЮ (СВІТЛА ТЕМА) --- */
+/* --- КАРТКА ПРОФІЛЮ (СВІТЛА ТЕМА) - ДОДАНО MONOSPACE */
 
 QFrame#cardFrame {
     background-color: #ffffff;
@@ -313,11 +323,13 @@ QLabel#cardName {
     font-weight: bold;
     color: #1F2937;
     padding-top: 10px;
+    font-family: 'Consolas', 'Courier New', monospace;
 }
 QLabel#cardAge {
     font-size: 24px;
     font-weight: normal;
     color: #1F2937;
+    font-family: 'Consolas', 'Courier New', monospace;
 }
 
 QLabel#cardCompatibility {
@@ -326,18 +338,21 @@ QLabel#cardCompatibility {
     color: #C678DD;
     padding-top: 5px;
     padding-bottom: 5px;
+    font-family: 'Consolas', 'Courier New', monospace;
 }
 
 QLabel#cardCity {
     font-size: 14px;
     color: #6B7280;
     padding-bottom: 10px;
+    font-family: 'Consolas', 'Courier New', monospace;
 }
 
 QLabel#cardBio {
     font-size: 14px;
     color: #4B5563;
     line-height: 1.4;
+    font-family: 'Consolas', 'Courier New', monospace;
 }
 
 QLabel#cardPhoto {
@@ -345,13 +360,14 @@ QLabel#cardPhoto {
     background-color: #E5E7EB;
 }
 
-/* --- СТИЛІ СТОРІНКИ МЕТЧІВ (СВІТЛА ТЕМА) --- */
+/* --- СТИЛІ СТОРІНКИ МЕТЧІВ (СВІТЛА ТЕМА) - ДОДАНО MONOSPACE */
 
 QLabel#matchesTitleLabel {
     font-size: 20pt;
     font-weight: bold;
     color: #C678DD;
     padding: 10px 0 15px 0;
+    font-family: 'Consolas', 'Courier New', monospace;
 }
 
 QListWidget#matchesListWidget {
@@ -360,57 +376,42 @@ QListWidget#matchesListWidget {
     font-size: 16px;
     background-color: #FFFFFF;
     color: #374151;
+    font-family: 'Consolas', 'Courier New', monospace;
 }
 QListWidget#matchesListWidget::item {
     padding: 8px;
     qproperty-iconSize: 50px 50px;
+
+    /* ДОДАТКОВА СТИЛІЗАЦІЯ ЕЛЕМЕНТІВ СПИСКУ В LIGHT THEME */
+    background-color: #FFFFFF;
+    border: 1px solid #E5E7EB;
+    border-radius: 10px;
+    margin: 4px 0;
+}
+QListWidget#matchesListWidget::item:hover {
+    background-color: #F8F9FB;
+    border: 1px solid #C678DD;
+}
+QListWidget#matchesListWidget::item:selected {
+    background-color: #F3E5F5;
+    border: 2px solid #C678DD;
+    color: #1F2937;
 }
 
 /* Стиль для QTextEdit (Область відображення чату) */
 QTextEdit#chatArea {
-    /* ... інші стилі ... */
-    font-size: 14px; /* Збільшуємо шрифт для читабельності */
+    background-color: #FFFFFF;
+    border: 1px solid #D1D5DB;
+    color: #111827;
+    font-size: 14px;
+    font-family: 'Consolas', 'Courier New', monospace;
 }
 
 /* Стиль для QLineEdit (Поле вводу тексту в чаті) */
 QLineEdit#inputField {
-    /* ... інші стилі ... */
-    font-size: 14px; /* Збільшуємо шрифт */
-}
-
-/* Основний контейнер списку */
-#matchesListWidget {
-    background-color: transparent;
-    border: none;
-    outline: none;
-}
-
-/* Стиль для кожного користувача (елемента списку) */
-#matchesListWidget::item {
-    background-color: #FFFFFF;     /* Білий фон картки */
-    border: 1px solid #E0E0E0;     /* Тонка сіра рамка */
-    border-radius: 12px;           /* Заокруглені кути */
-
-    /* ВАЖЛИВО: margin робить відступи між картками */
-    margin-top: 5px;
-    margin-bottom: 5px;
-    margin-left: 10px;
-    margin-right: 10px;
-
-    padding: 10px;                 /* Відступ тексту/іконки від рамки всередині */
-    color: #333333;                /* Темно-сірий текст */
+    background-color: #FFFFFF;
+    border: 1px solid #D1D5DB;
+    color: #111827;
     font-size: 14px;
-}
-
-/* Коли наводиш мишкою */
-#matchesListWidget::item:hover {
-    background-color: #FAF5FF;     /* Дуже світлий фіолетовий фон */
-    border: 1px solid #9932CC;     /* Фіолетова рамка */
-}
-
-/* Коли елемент вибраний (натиснутий) */
-#matchesListWidget::item:selected {
-    background-color: #F3E5F5;     /* Трохи темніший фіолетовий фон */
-    border: 2px solid #9932CC;     /* Жирніша рамка */
-    color: #333333;                /* Текст залишаємо темним (щоб не ставав білим) */
+    font-family: 'Consolas', 'Courier New', monospace;
 }
