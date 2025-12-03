@@ -1,14 +1,8 @@
 var searchData=
 [
-  ['savechatmessage_0',['saveChatMessage',['../classDatabaseManager.html#aaabdfef39bdef87373306e636c5bf3b9',1,'DatabaseManager']]],
-  ['searchpagewidget_1',['SearchPageWidget',['../classSearchPageWidget.html',1,'']]],
-  ['seedreverselikes_2',['seedReverseLikes',['../classFakeDataManager.html#a7c1c31734c4f39d07318bd7684c97294',1,'FakeDataManager']]],
-  ['setcompatibilitypercent_3',['setCompatibilityPercent',['../classProfileCard.html#ac17ce8aa69ee384b2288843e6c4d6bab',1,'ProfileCard']]],
-  ['setemail_4',['setEmail',['../classContactInfo.html#a159a734b7d81d7c4ae20e8abc6eaf554',1,'ContactInfo']]],
-  ['setmatchprofile_5',['setMatchProfile',['../classChatPageWidget.html#af08e6a479db94e3fa9011c209bf48089',1,'ChatPageWidget']]],
-  ['setphone_6',['setPhone',['../classContactInfo.html#aee40d07950e2a805e4def595e72d1723',1,'ContactInfo']]],
-  ['setprofiledata_7',['setProfileData',['../classProfileCard.html#a4d5e9e5fd52ec97ef17f3469309d78c7',1,'ProfileCard']]],
-  ['settags_8',['setTags',['../classUserProfile.html#a9e4466ef0a9582a9b50883e87c63ba4c',1,'UserProfile']]],
-  ['settingspagewidget_9',['SettingsPageWidget',['../classSettingsPageWidget.html',1,'']]],
-  ['statsdialog_10',['StatsDialog',['../classStatsDialog.html',1,'']]]
+  ['preference_0',['preference',['../classPreference.html',1,'Preference'],['../classPreference.html#a17dda34bb452f1b0cc899aa867ecad40',1,'Preference::Preference()']]],
+  ['profilecard_1',['profilecard',['../classProfileCard.html',1,'ProfileCard'],['../classProfileCard.html#ab886184dc2e6500a372c80f8fb63d7e5',1,'ProfileCard::ProfileCard()']]],
+  ['profileexists_2',['profileExists',['../classDatabaseManager.html#ab5659aea24d72d3085bc91abfe982a3e',1,'DatabaseManager']]],
+  ['profilepagewidget_3',['profilepagewidget',['../classProfilePageWidget.html',1,'ProfilePageWidget'],['../classProfilePageWidget.html#a6177f789178b816ac4d99ada2c1e7c69',1,'ProfilePageWidget::ProfilePageWidget(QWidget *parent=nullptr)']]],
+  ['profilesaved_4',['profileSaved',['../classProfilePageWidget.html#a2b5881f2167c56282b97c5476a4e508e',1,'ProfilePageWidget']]]
 ];

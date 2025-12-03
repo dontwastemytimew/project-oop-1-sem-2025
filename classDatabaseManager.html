@@ -97,166 +97,207 @@ $(document).ready(function(){initNavTree('classDatabaseManager.html',''); initRe
 </div><!--header-->
 <div class="contents">
 
-<p>Клас <a class="el" href="classDatabaseManager.html" title="Клас DatabaseManager.">DatabaseManager</a>.  
+<p>Головний клас для керування базою даних (Data Access Layer).  
  <a href="classDatabaseManager.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="DatabaseManager_8h_source.html">DatabaseManager.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:abf0518515ed9ec59c91bd4d3a39f7319" id="r_abf0518515ed9ec59c91bd4d3a39f7319"><td class="memItemLeft" align="right" valign="top"><a id="abf0518515ed9ec59c91bd4d3a39f7319" name="abf0518515ed9ec59c91bd4d3a39f7319"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>openDatabase</b> ()</td></tr>
+<tr class="memitem:aa162d97472e6c31a4e873adda435dbb6" id="r_aa162d97472e6c31a4e873adda435dbb6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#aa162d97472e6c31a4e873adda435dbb6">DatabaseManager</a> ()</td></tr>
+<tr class="memdesc:aa162d97472e6c31a4e873adda435dbb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Конструктор <a class="el" href="classDatabaseManager.html" title="Головний клас для керування базою даних (Data Access Layer).">DatabaseManager</a>.  <br /></td></tr>
+<tr class="separator:aa162d97472e6c31a4e873adda435dbb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9b3a5da1e04fbb00faf8a034da1d063" id="r_ae9b3a5da1e04fbb00faf8a034da1d063"><td class="memItemLeft" align="right" valign="top"><a id="ae9b3a5da1e04fbb00faf8a034da1d063" name="ae9b3a5da1e04fbb00faf8a034da1d063"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>~DatabaseManager</b> ()</td></tr>
+<tr class="memdesc:ae9b3a5da1e04fbb00faf8a034da1d063"><td class="mdescLeft">&#160;</td><td class="mdescRight">Деструктор. Закриває з'єднання з базою даних. <br /></td></tr>
+<tr class="separator:ae9b3a5da1e04fbb00faf8a034da1d063"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf0518515ed9ec59c91bd4d3a39f7319" id="r_abf0518515ed9ec59c91bd4d3a39f7319"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#abf0518515ed9ec59c91bd4d3a39f7319">openDatabase</a> ()</td></tr>
+<tr class="memdesc:abf0518515ed9ec59c91bd4d3a39f7319"><td class="mdescLeft">&#160;</td><td class="mdescRight">Відкриває з'єднання з базою даних.  <br /></td></tr>
 <tr class="separator:abf0518515ed9ec59c91bd4d3a39f7319"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad95de729a1eba5e3dd35a8df0fb87f37" id="r_ad95de729a1eba5e3dd35a8df0fb87f37"><td class="memItemLeft" align="right" valign="top"><a id="ad95de729a1eba5e3dd35a8df0fb87f37" name="ad95de729a1eba5e3dd35a8df0fb87f37"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>closeDatabase</b> ()</td></tr>
+<tr class="memdesc:ad95de729a1eba5e3dd35a8df0fb87f37"><td class="mdescLeft">&#160;</td><td class="mdescRight">Закриває поточне з'єднання з базою даних. <br /></td></tr>
 <tr class="separator:ad95de729a1eba5e3dd35a8df0fb87f37"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a90600e6de3ad5fd99a81409054626dfa" id="r_a90600e6de3ad5fd99a81409054626dfa"><td class="memItemLeft" align="right" valign="top"><a id="a90600e6de3ad5fd99a81409054626dfa" name="a90600e6de3ad5fd99a81409054626dfa"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>createTables</b> ()</td></tr>
+<tr class="memitem:a90600e6de3ad5fd99a81409054626dfa" id="r_a90600e6de3ad5fd99a81409054626dfa"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#a90600e6de3ad5fd99a81409054626dfa">createTables</a> ()</td></tr>
+<tr class="memdesc:a90600e6de3ad5fd99a81409054626dfa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Створює необхідні таблиці та індекси, якщо вони відсутні.  <br /></td></tr>
 <tr class="separator:a90600e6de3ad5fd99a81409054626dfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7e638263a7633995dbf890d5d8dee4ec" id="r_a7e638263a7633995dbf890d5d8dee4ec"><td class="memItemLeft" align="right" valign="top"><a id="a7e638263a7633995dbf890d5d8dee4ec" name="a7e638263a7633995dbf890d5d8dee4ec"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>saveProfile</b> (const <a class="el" href="classUserProfile.html">UserProfile</a> &amp;profile)</td></tr>
+<tr class="memitem:a7e638263a7633995dbf890d5d8dee4ec" id="r_a7e638263a7633995dbf890d5d8dee4ec"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#a7e638263a7633995dbf890d5d8dee4ec">saveProfile</a> (const <a class="el" href="classUserProfile.html">UserProfile</a> &amp;profile)</td></tr>
+<tr class="memdesc:a7e638263a7633995dbf890d5d8dee4ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Зберігає нового користувача в базі даних.  <br /></td></tr>
 <tr class="separator:a7e638263a7633995dbf890d5d8dee4ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aba74d09f4893a1d39317bf43693c480b" id="r_aba74d09f4893a1d39317bf43693c480b"><td class="memItemLeft" align="right" valign="top"><a id="aba74d09f4893a1d39317bf43693c480b" name="aba74d09f4893a1d39317bf43693c480b"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>loadProfileByEmail</b> (const QString &amp;email, <a class="el" href="classUserProfile.html">UserProfile</a> &amp;profile)</td></tr>
+<tr class="memitem:aba74d09f4893a1d39317bf43693c480b" id="r_aba74d09f4893a1d39317bf43693c480b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#aba74d09f4893a1d39317bf43693c480b">loadProfileByEmail</a> (const QString &amp;email, <a class="el" href="classUserProfile.html">UserProfile</a> &amp;profile)</td></tr>
+<tr class="memdesc:aba74d09f4893a1d39317bf43693c480b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Завантажує профіль, шукаючи його за email.  <br /></td></tr>
 <tr class="separator:aba74d09f4893a1d39317bf43693c480b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a956a7b76414754b422afc507d5797e24" id="r_a956a7b76414754b422afc507d5797e24"><td class="memItemLeft" align="right" valign="top"><a id="a956a7b76414754b422afc507d5797e24" name="a956a7b76414754b422afc507d5797e24"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>loadProfileById</b> (int userId, <a class="el" href="classUserProfile.html">UserProfile</a> &amp;profile)</td></tr>
-<tr class="memdesc:a956a7b76414754b422afc507d5797e24"><td class="mdescLeft">&#160;</td><td class="mdescRight">Завантажує профіль за унікальним ID. <br /></td></tr>
+<tr class="memitem:a956a7b76414754b422afc507d5797e24" id="r_a956a7b76414754b422afc507d5797e24"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#a956a7b76414754b422afc507d5797e24">loadProfileById</a> (int userId, <a class="el" href="classUserProfile.html">UserProfile</a> &amp;profile)</td></tr>
+<tr class="memdesc:a956a7b76414754b422afc507d5797e24"><td class="mdescLeft">&#160;</td><td class="mdescRight">Завантажує профіль за унікальним ID (Primary Key).  <br /></td></tr>
 <tr class="separator:a956a7b76414754b422afc507d5797e24"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab5659aea24d72d3085bc91abfe982a3e" id="r_ab5659aea24d72d3085bc91abfe982a3e"><td class="memItemLeft" align="right" valign="top"><a id="ab5659aea24d72d3085bc91abfe982a3e" name="ab5659aea24d72d3085bc91abfe982a3e"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>profileExists</b> (const QString &amp;email) const</td></tr>
+<tr class="memitem:ab5659aea24d72d3085bc91abfe982a3e" id="r_ab5659aea24d72d3085bc91abfe982a3e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#ab5659aea24d72d3085bc91abfe982a3e">profileExists</a> (const QString &amp;email) const</td></tr>
+<tr class="memdesc:ab5659aea24d72d3085bc91abfe982a3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Перевіряє наявність профілю з вказаним email.  <br /></td></tr>
 <tr class="separator:ab5659aea24d72d3085bc91abfe982a3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a60c1b22b903b26b5e1847dc835cfdbe5" id="r_a60c1b22b903b26b5e1847dc835cfdbe5"><td class="memItemLeft" align="right" valign="top"><a id="a60c1b22b903b26b5e1847dc835cfdbe5" name="a60c1b22b903b26b5e1847dc835cfdbe5"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>updateProfile</b> (const <a class="el" href="classUserProfile.html">UserProfile</a> &amp;profile)</td></tr>
+<tr class="memitem:a60c1b22b903b26b5e1847dc835cfdbe5" id="r_a60c1b22b903b26b5e1847dc835cfdbe5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#a60c1b22b903b26b5e1847dc835cfdbe5">updateProfile</a> (const <a class="el" href="classUserProfile.html">UserProfile</a> &amp;profile)</td></tr>
+<tr class="memdesc:a60c1b22b903b26b5e1847dc835cfdbe5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Оновлює дані існуючого профілю.  <br /></td></tr>
 <tr class="separator:a60c1b22b903b26b5e1847dc835cfdbe5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abf7e5134b2bb6d1fc51b3e6cf9ebdd1d" id="r_abf7e5134b2bb6d1fc51b3e6cf9ebdd1d"><td class="memItemLeft" align="right" valign="top"><a id="abf7e5134b2bb6d1fc51b3e6cf9ebdd1d" name="abf7e5134b2bb6d1fc51b3e6cf9ebdd1d"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>deleteProfile</b> (int profileId)</td></tr>
+<tr class="memitem:abf7e5134b2bb6d1fc51b3e6cf9ebdd1d" id="r_abf7e5134b2bb6d1fc51b3e6cf9ebdd1d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#abf7e5134b2bb6d1fc51b3e6cf9ebdd1d">deleteProfile</a> (int profileId)</td></tr>
+<tr class="memdesc:abf7e5134b2bb6d1fc51b3e6cf9ebdd1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Видаляє профіль користувача.  <br /></td></tr>
 <tr class="separator:abf7e5134b2bb6d1fc51b3e6cf9ebdd1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaafec4dfbc1a791a3cefab8488fe62f6" id="r_aaafec4dfbc1a791a3cefab8488fe62f6"><td class="memItemLeft" align="right" valign="top"><a id="aaafec4dfbc1a791a3cefab8488fe62f6" name="aaafec4dfbc1a791a3cefab8488fe62f6"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>setProfileHidden</b> (int profileId, bool isHidden)</td></tr>
+<tr class="memitem:aaafec4dfbc1a791a3cefab8488fe62f6" id="r_aaafec4dfbc1a791a3cefab8488fe62f6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#aaafec4dfbc1a791a3cefab8488fe62f6">setProfileHidden</a> (int profileId, bool isHidden)</td></tr>
+<tr class="memdesc:aaafec4dfbc1a791a3cefab8488fe62f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Змінює видимість профілю у пошуку.  <br /></td></tr>
 <tr class="separator:aaafec4dfbc1a791a3cefab8488fe62f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab7085e319b21d3480ba5bbb7e2893ca8" id="r_ab7085e319b21d3480ba5bbb7e2893ca8"><td class="memItemLeft" align="right" valign="top"><a id="ab7085e319b21d3480ba5bbb7e2893ca8" name="ab7085e319b21d3480ba5bbb7e2893ca8"></a>
-QList&lt; <a class="el" href="classUserProfile.html">UserProfile</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getProfilesByCriteria</b> (const <a class="el" href="classPreference.html">Preference</a> &amp;prefs, int currentUserId)</td></tr>
+<tr class="memitem:ab7085e319b21d3480ba5bbb7e2893ca8" id="r_ab7085e319b21d3480ba5bbb7e2893ca8"><td class="memItemLeft" align="right" valign="top">QList&lt; <a class="el" href="classUserProfile.html">UserProfile</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#ab7085e319b21d3480ba5bbb7e2893ca8">getProfilesByCriteria</a> (const <a class="el" href="classPreference.html">Preference</a> &amp;prefs, int currentUserId)</td></tr>
+<tr class="memdesc:ab7085e319b21d3480ba5bbb7e2893ca8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Шукає користувачів за вказаними критеріями (фільтрами).  <br /></td></tr>
 <tr class="separator:ab7085e319b21d3480ba5bbb7e2893ca8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aedbd271211219342d5f86ebfa9b9fed7" id="r_aedbd271211219342d5f86ebfa9b9fed7"><td class="memItemLeft" align="right" valign="top"><a id="aedbd271211219342d5f86ebfa9b9fed7" name="aedbd271211219342d5f86ebfa9b9fed7"></a>
 QList&lt; <a class="el" href="classUserProfile.html">UserProfile</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getAllProfiles</b> ()</td></tr>
+<tr class="memdesc:aedbd271211219342d5f86ebfa9b9fed7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Отримує список ВСІХ профілів (для налагодження або FakeData). <br /></td></tr>
 <tr class="separator:aedbd271211219342d5f86ebfa9b9fed7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9fbee740f6c840db7f3eb0f0250fef67" id="r_a9fbee740f6c840db7f3eb0f0250fef67"><td class="memItemLeft" align="right" valign="top"><a id="a9fbee740f6c840db7f3eb0f0250fef67" name="a9fbee740f6c840db7f3eb0f0250fef67"></a>
-QList&lt; <a class="el" href="classUserProfile.html">UserProfile</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getProfilesByIds</b> (const QList&lt; int &gt; &amp;ids)</td></tr>
+<tr class="memitem:a9fbee740f6c840db7f3eb0f0250fef67" id="r_a9fbee740f6c840db7f3eb0f0250fef67"><td class="memItemLeft" align="right" valign="top">QList&lt; <a class="el" href="classUserProfile.html">UserProfile</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#a9fbee740f6c840db7f3eb0f0250fef67">getProfilesByIds</a> (const QList&lt; int &gt; &amp;ids)</td></tr>
+<tr class="memdesc:a9fbee740f6c840db7f3eb0f0250fef67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Завантажує список профілів за списком їх ID.  <br /></td></tr>
 <tr class="separator:a9fbee740f6c840db7f3eb0f0250fef67"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2e4a9bf1555ee60b2d7c5cc6e8904fc3" id="r_a2e4a9bf1555ee60b2d7c5cc6e8904fc3"><td class="memItemLeft" align="right" valign="top"><a id="a2e4a9bf1555ee60b2d7c5cc6e8904fc3" name="a2e4a9bf1555ee60b2d7c5cc6e8904fc3"></a>
 QStringList&#160;</td><td class="memItemRight" valign="bottom"><b>getAllCities</b> ()</td></tr>
+<tr class="memdesc:a2e4a9bf1555ee60b2d7c5cc6e8904fc3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Повертає список всіх унікальних міст, що є в базі. Використовується для автодоповнення (QCompleter). <br /></td></tr>
 <tr class="separator:a2e4a9bf1555ee60b2d7c5cc6e8904fc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1051d3800f516dbe0c3de2cd7315631c" id="r_a1051d3800f516dbe0c3de2cd7315631c"><td class="memItemLeft" align="right" valign="top"><a id="a1051d3800f516dbe0c3de2cd7315631c" name="a1051d3800f516dbe0c3de2cd7315631c"></a>
 QSqlTableModel *&#160;</td><td class="memItemRight" valign="bottom"><b>getUsersModel</b> (QObject *parent=nullptr)</td></tr>
+<tr class="memdesc:a1051d3800f516dbe0c3de2cd7315631c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Створює та налаштовує SQL-модель для QTableView. Дозволяє редагувати таблицю 'users' напряму в адмінці. <br /></td></tr>
 <tr class="separator:a1051d3800f516dbe0c3de2cd7315631c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f45696918e17b9eea5ef9f5b49558ea" id="r_a2f45696918e17b9eea5ef9f5b49558ea"><td class="memItemLeft" align="right" valign="top"><a id="a2f45696918e17b9eea5ef9f5b49558ea" name="a2f45696918e17b9eea5ef9f5b49558ea"></a>
-QMap&lt; QString, int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getCityStatistics</b> ()</td></tr>
+<tr class="memitem:a2f45696918e17b9eea5ef9f5b49558ea" id="r_a2f45696918e17b9eea5ef9f5b49558ea"><td class="memItemLeft" align="right" valign="top">QMap&lt; QString, int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#a2f45696918e17b9eea5ef9f5b49558ea">getCityStatistics</a> ()</td></tr>
+<tr class="memdesc:a2f45696918e17b9eea5ef9f5b49558ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Отримує статистику по містах (Топ міст).  <br /></td></tr>
 <tr class="separator:a2f45696918e17b9eea5ef9f5b49558ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab2ccbbf068f9485b1136b357788240ba" id="r_ab2ccbbf068f9485b1136b357788240ba"><td class="memItemLeft" align="right" valign="top"><a id="ab2ccbbf068f9485b1136b357788240ba" name="ab2ccbbf068f9485b1136b357788240ba"></a>
-QMap&lt; QString, int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getGenderStatistics</b> ()</td></tr>
+<tr class="memitem:ab2ccbbf068f9485b1136b357788240ba" id="r_ab2ccbbf068f9485b1136b357788240ba"><td class="memItemLeft" align="right" valign="top">QMap&lt; QString, int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#ab2ccbbf068f9485b1136b357788240ba">getGenderStatistics</a> ()</td></tr>
+<tr class="memdesc:ab2ccbbf068f9485b1136b357788240ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Отримує статистику по статі.  <br /></td></tr>
 <tr class="separator:ab2ccbbf068f9485b1136b357788240ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad5f3710d90a1b9643a2ecc6a84aed7c9" id="r_ad5f3710d90a1b9643a2ecc6a84aed7c9"><td class="memItemLeft" align="right" valign="top"><a id="ad5f3710d90a1b9643a2ecc6a84aed7c9" name="ad5f3710d90a1b9643a2ecc6a84aed7c9"></a>
-QMap&lt; QString, int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getAgeStatistics</b> ()</td></tr>
+<tr class="memitem:ad5f3710d90a1b9643a2ecc6a84aed7c9" id="r_ad5f3710d90a1b9643a2ecc6a84aed7c9"><td class="memItemLeft" align="right" valign="top">QMap&lt; QString, int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#ad5f3710d90a1b9643a2ecc6a84aed7c9">getAgeStatistics</a> ()</td></tr>
+<tr class="memdesc:ad5f3710d90a1b9643a2ecc6a84aed7c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Отримує статистику по вікових групах.  <br /></td></tr>
 <tr class="separator:ad5f3710d90a1b9643a2ecc6a84aed7c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2e53da1534ea299e924bd12427dd5277" id="r_a2e53da1534ea299e924bd12427dd5277"><td class="memItemLeft" align="right" valign="top"><a id="a2e53da1534ea299e924bd12427dd5277" name="a2e53da1534ea299e924bd12427dd5277"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>saveProfileBulk</b> (const QList&lt; <a class="el" href="classUserProfile.html">UserProfile</a> &gt; &amp;profiles)</td></tr>
+<tr class="memdesc:a2e53da1534ea299e924bd12427dd5277"><td class="mdescLeft">&#160;</td><td class="mdescRight">Масове збереження профілів (оптимізовано транзакцією). Використовується <a class="el" href="classFakeDataManager.html" title="Клас-утиліта для генерації фейкових (тестових) даних.">FakeDataManager</a> для швидкої генерації. <br /></td></tr>
 <tr class="separator:a2e53da1534ea299e924bd12427dd5277"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af7755d2dbfe9788cab93c9b6437547ba" id="r_af7755d2dbfe9788cab93c9b6437547ba"><td class="memItemLeft" align="right" valign="top"><a id="af7755d2dbfe9788cab93c9b6437547ba" name="af7755d2dbfe9788cab93c9b6437547ba"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>countUsers</b> ()</td></tr>
+<tr class="memdesc:af7755d2dbfe9788cab93c9b6437547ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Повертає загальну кількість зареєстрованих користувачів. <br /></td></tr>
 <tr class="separator:af7755d2dbfe9788cab93c9b6437547ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad2aa51b5b74616e790061f3cd325a879" id="r_ad2aa51b5b74616e790061f3cd325a879"><td class="memItemLeft" align="right" valign="top"><a id="ad2aa51b5b74616e790061f3cd325a879" name="ad2aa51b5b74616e790061f3cd325a879"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>addLike</b> (int fromUserId, int toUserId)</td></tr>
-<tr class="memdesc:ad2aa51b5b74616e790061f3cd325a879"><td class="mdescLeft">&#160;</td><td class="mdescRight">Додає лайк від одного користувача іншому. <br /></td></tr>
+<tr class="memitem:ad2aa51b5b74616e790061f3cd325a879" id="r_ad2aa51b5b74616e790061f3cd325a879"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#ad2aa51b5b74616e790061f3cd325a879">addLike</a> (int fromUserId, int toUserId)</td></tr>
+<tr class="memdesc:ad2aa51b5b74616e790061f3cd325a879"><td class="mdescLeft">&#160;</td><td class="mdescRight">Додає запис про лайк (user -&gt; target).  <br /></td></tr>
 <tr class="separator:ad2aa51b5b74616e790061f3cd325a879"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aed162acddff1f040eca0ea5ed9ae1f3e" id="r_aed162acddff1f040eca0ea5ed9ae1f3e"><td class="memItemLeft" align="right" valign="top"><a id="aed162acddff1f040eca0ea5ed9ae1f3e" name="aed162acddff1f040eca0ea5ed9ae1f3e"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>removeLike</b> (int fromUserId, int toUserId)</td></tr>
-<tr class="memdesc:aed162acddff1f040eca0ea5ed9ae1f3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Видаляє лайк. <br /></td></tr>
+<tr class="memdesc:aed162acddff1f040eca0ea5ed9ae1f3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Видаляє лайк (дизлайк / розірвання пари). <br /></td></tr>
 <tr class="separator:aed162acddff1f040eca0ea5ed9ae1f3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa9dcadf1d13a37681d6ddc75bd3ae97b" id="r_aa9dcadf1d13a37681d6ddc75bd3ae97b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#aa9dcadf1d13a37681d6ddc75bd3ae97b">addMatch</a> (int userId, int targetId)</td></tr>
-<tr class="memdesc:aa9dcadf1d13a37681d6ddc75bd3ae97b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Фіксує взаємний метч у базі даних (якщо потрібно).  <br /></td></tr>
+<tr class="memitem:aa9dcadf1d13a37681d6ddc75bd3ae97b" id="r_aa9dcadf1d13a37681d6ddc75bd3ae97b"><td class="memItemLeft" align="right" valign="top"><a id="aa9dcadf1d13a37681d6ddc75bd3ae97b" name="aa9dcadf1d13a37681d6ddc75bd3ae97b"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>addMatch</b> (int userId, int targetId)</td></tr>
+<tr class="memdesc:aa9dcadf1d13a37681d6ddc75bd3ae97b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Логує факт виникнення метчу (не створює окрему таблицю, просто лог). <br /></td></tr>
 <tr class="separator:aa9dcadf1d13a37681d6ddc75bd3ae97b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad2d3e42a94136942d593d5ced1a11691" id="r_ad2d3e42a94136942d593d5ced1a11691"><td class="memItemLeft" align="right" valign="top"><a id="ad2d3e42a94136942d593d5ced1a11691" name="ad2d3e42a94136942d593d5ced1a11691"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>hasUserLiked</b> (int userId, int targetId) const</td></tr>
-<tr class="memdesc:ad2d3e42a94136942d593d5ced1a11691"><td class="mdescLeft">&#160;</td><td class="mdescRight">Перевіряє, чи користувач лайкнув цільовий профіль. <br /></td></tr>
+<tr class="memdesc:ad2d3e42a94136942d593d5ced1a11691"><td class="mdescLeft">&#160;</td><td class="mdescRight">Перевіряє, чи ставив userId лайк користувачу targetId. <br /></td></tr>
 <tr class="separator:ad2d3e42a94136942d593d5ced1a11691"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a285b559a56e24e72d0c711ef9ad584c0" id="r_a285b559a56e24e72d0c711ef9ad584c0"><td class="memItemLeft" align="right" valign="top"><a id="a285b559a56e24e72d0c711ef9ad584c0" name="a285b559a56e24e72d0c711ef9ad584c0"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>isMutualLike</b> (int user1, int user2) const</td></tr>
-<tr class="memdesc:a285b559a56e24e72d0c711ef9ad584c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Перевіряє, чи лайки є взаємними (Match). <br /></td></tr>
+<tr class="memitem:a285b559a56e24e72d0c711ef9ad584c0" id="r_a285b559a56e24e72d0c711ef9ad584c0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#a285b559a56e24e72d0c711ef9ad584c0">isMutualLike</a> (int user1, int user2) const</td></tr>
+<tr class="memdesc:a285b559a56e24e72d0c711ef9ad584c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Перевіряє наявність взаємного лайку (Метчу).  <br /></td></tr>
 <tr class="separator:a285b559a56e24e72d0c711ef9ad584c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0cc74f243490cfe112b36095a18121b7" id="r_a0cc74f243490cfe112b36095a18121b7"><td class="memItemLeft" align="right" valign="top"><a id="a0cc74f243490cfe112b36095a18121b7" name="a0cc74f243490cfe112b36095a18121b7"></a>
-QList&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getMutualMatchIds</b> (int currentUserId)</td></tr>
-<tr class="memdesc:a0cc74f243490cfe112b36095a18121b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Отримує список ID профілів, з якими відбувся взаємний лайк (Метч). <br /></td></tr>
+<tr class="memitem:a0cc74f243490cfe112b36095a18121b7" id="r_a0cc74f243490cfe112b36095a18121b7"><td class="memItemLeft" align="right" valign="top">QList&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#a0cc74f243490cfe112b36095a18121b7">getMutualMatchIds</a> (int currentUserId)</td></tr>
+<tr class="memdesc:a0cc74f243490cfe112b36095a18121b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Знаходить ID всіх користувачів, з якими у currentUserId є метч.  <br /></td></tr>
 <tr class="separator:a0cc74f243490cfe112b36095a18121b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adc2baba3767218185bc5a7e27406f02f" id="r_adc2baba3767218185bc5a7e27406f02f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#adc2baba3767218185bc5a7e27406f02f">getCurrentUserProfile</a> (<a class="el" href="classUserProfile.html">UserProfile</a> &amp;profile)</td></tr>
-<tr class="memdesc:adc2baba3767218185bc5a7e27406f02f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Отримує поточний профіль (для симуляції "сесії").  <br /></td></tr>
+<tr class="memdesc:adc2baba3767218185bc5a7e27406f02f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Завантажує профіль поточного активного користувача.  <br /></td></tr>
 <tr class="separator:adc2baba3767218185bc5a7e27406f02f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afd77745c18e4b16cd06bdf40e85a62c2" id="r_afd77745c18e4b16cd06bdf40e85a62c2"><td class="memItemLeft" align="right" valign="top"><a id="afd77745c18e4b16cd06bdf40e85a62c2" name="afd77745c18e4b16cd06bdf40e85a62c2"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>saveCurrentUserId</b> (int userId)</td></tr>
+<tr class="memdesc:afd77745c18e4b16cd06bdf40e85a62c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Зберігає ID залогіненого користувача в налаштуваннях (QSettings). Емуляція сесії між запусками програми. <br /></td></tr>
 <tr class="separator:afd77745c18e4b16cd06bdf40e85a62c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5d352b1c3c66e5fd362894540822ece7" id="r_a5d352b1c3c66e5fd362894540822ece7"><td class="memItemLeft" align="right" valign="top"><a id="a5d352b1c3c66e5fd362894540822ece7" name="a5d352b1c3c66e5fd362894540822ece7"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>loadCurrentUserId</b> () const</td></tr>
+<tr class="memdesc:a5d352b1c3c66e5fd362894540822ece7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Зчитує збережений ID користувача з налаштувань. <br /></td></tr>
 <tr class="separator:a5d352b1c3c66e5fd362894540822ece7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7871904f42424bb9e85350d5f2c48972" id="r_a7871904f42424bb9e85350d5f2c48972"><td class="memItemLeft" align="right" valign="top"><a id="a7871904f42424bb9e85350d5f2c48972" name="a7871904f42424bb9e85350d5f2c48972"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>addTag</b> (int userId, const QString &amp;tag)</td></tr>
+<tr class="memdesc:a7871904f42424bb9e85350d5f2c48972"><td class="mdescLeft">&#160;</td><td class="mdescRight">Додає тег до профілю. <br /></td></tr>
 <tr class="separator:a7871904f42424bb9e85350d5f2c48972"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad82e6066630089cd2aa537b1f3eedd18" id="r_ad82e6066630089cd2aa537b1f3eedd18"><td class="memItemLeft" align="right" valign="top"><a id="ad82e6066630089cd2aa537b1f3eedd18" name="ad82e6066630089cd2aa537b1f3eedd18"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>removeTag</b> (int userId, const QString &amp;tag)</td></tr>
+<tr class="memdesc:ad82e6066630089cd2aa537b1f3eedd18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Видаляє конкретний тег у користувача. <br /></td></tr>
 <tr class="separator:ad82e6066630089cd2aa537b1f3eedd18"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5fb293344efb953398956384d7adaf64" id="r_a5fb293344efb953398956384d7adaf64"><td class="memItemLeft" align="right" valign="top"><a id="a5fb293344efb953398956384d7adaf64" name="a5fb293344efb953398956384d7adaf64"></a>
 QList&lt; QString &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getTagsForUser</b> (int userId) const</td></tr>
+<tr class="memdesc:a5fb293344efb953398956384d7adaf64"><td class="mdescLeft">&#160;</td><td class="mdescRight">Отримує список всіх тегів користувача. <br /></td></tr>
 <tr class="separator:a5fb293344efb953398956384d7adaf64"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3c965d418abb4a94f7fc26ca700d8950" id="r_a3c965d418abb4a94f7fc26ca700d8950"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#a3c965d418abb4a94f7fc26ca700d8950">removeAllTags</a> (int userId)</td></tr>
-<tr class="memdesc:a3c965d418abb4a94f7fc26ca700d8950"><td class="mdescLeft">&#160;</td><td class="mdescRight">Видаляє всі теги для даного користувача.  <br /></td></tr>
+<tr class="memitem:a3c965d418abb4a94f7fc26ca700d8950" id="r_a3c965d418abb4a94f7fc26ca700d8950"><td class="memItemLeft" align="right" valign="top"><a id="a3c965d418abb4a94f7fc26ca700d8950" name="a3c965d418abb4a94f7fc26ca700d8950"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>removeAllTags</b> (int userId)</td></tr>
+<tr class="memdesc:a3c965d418abb4a94f7fc26ca700d8950"><td class="mdescLeft">&#160;</td><td class="mdescRight">Видаляє ВСІ теги користувача (перед перезаписом). <br /></td></tr>
 <tr class="separator:a3c965d418abb4a94f7fc26ca700d8950"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaabdfef39bdef87373306e636c5bf3b9" id="r_aaabdfef39bdef87373306e636c5bf3b9"><td class="memItemLeft" align="right" valign="top"><a id="aaabdfef39bdef87373306e636c5bf3b9" name="aaabdfef39bdef87373306e636c5bf3b9"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>saveChatMessage</b> (const <a class="el" href="structChatMessage.html">ChatMessage</a> &amp;message)</td></tr>
-<tr class="memdesc:aaabdfef39bdef87373306e636c5bf3b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Зберігає повідомлення чату в БД. <br /></td></tr>
+<tr class="memdesc:aaabdfef39bdef87373306e636c5bf3b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Зберігає нове повідомлення в таблиці chat_messages. <br /></td></tr>
 <tr class="separator:aaabdfef39bdef87373306e636c5bf3b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a14ae2d784f7117f07ba338b4cc464cf1" id="r_a14ae2d784f7117f07ba338b4cc464cf1"><td class="memItemLeft" align="right" valign="top"><a id="a14ae2d784f7117f07ba338b4cc464cf1" name="a14ae2d784f7117f07ba338b4cc464cf1"></a>
 QList&lt; <a class="el" href="structChatMessage.html">ChatMessage</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>loadChatHistory</b> (int user1Id, int user2Id)</td></tr>
-<tr class="memdesc:a14ae2d784f7117f07ba338b4cc464cf1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Завантажує історію чату між двома користувачами. <br /></td></tr>
+<tr class="memdesc:a14ae2d784f7117f07ba338b4cc464cf1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Завантажує повну історію листування між двома користувачами. Сортує повідомлення за часом. <br /></td></tr>
 <tr class="separator:a14ae2d784f7117f07ba338b4cc464cf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a87291e4b0b397f7917a11976342f9eea" id="r_a87291e4b0b397f7917a11976342f9eea"><td class="memItemLeft" align="right" valign="top">QDateTime&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#a87291e4b0b397f7917a11976342f9eea">getChatLastTimestamp</a> (int user1Id, int user2Id) const</td></tr>
-<tr class="memdesc:a87291e4b0b397f7917a11976342f9eea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Отримує час останнього повідомлення між двома користувачами.  <br /></td></tr>
+<tr class="memitem:a87291e4b0b397f7917a11976342f9eea" id="r_a87291e4b0b397f7917a11976342f9eea"><td class="memItemLeft" align="right" valign="top"><a id="a87291e4b0b397f7917a11976342f9eea" name="a87291e4b0b397f7917a11976342f9eea"></a>
+QDateTime&#160;</td><td class="memItemRight" valign="bottom"><b>getChatLastTimestamp</b> (int user1Id, int user2Id) const</td></tr>
+<tr class="memdesc:a87291e4b0b397f7917a11976342f9eea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Отримує час останнього повідомлення в діалозі. Може використовуватись для сортування списку чатів. <br /></td></tr>
 <tr class="separator:a87291e4b0b397f7917a11976342f9eea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:aed29e9d39dba375270f94caae3b8cb8c" id="r_aed29e9d39dba375270f94caae3b8cb8c"><td class="memItemLeft" align="right" valign="top"><a id="aed29e9d39dba375270f94caae3b8cb8c" name="aed29e9d39dba375270f94caae3b8cb8c"></a>
 QSqlDatabase&#160;</td><td class="memItemRight" valign="bottom"><b>m_db</b></td></tr>
+<tr class="memdesc:aed29e9d39dba375270f94caae3b8cb8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Об'єкт підключення до бази даних Qt. <br /></td></tr>
 <tr class="separator:aed29e9d39dba375270f94caae3b8cb8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afa9cf4ff04b04d87e3968cd8f269c9da" id="r_afa9cf4ff04b04d87e3968cd8f269c9da"><td class="memItemLeft" align="right" valign="top"><a id="afa9cf4ff04b04d87e3968cd8f269c9da" name="afa9cf4ff04b04d87e3968cd8f269c9da"></a>
 const QString&#160;</td><td class="memItemRight" valign="bottom"><b>DB_NAME</b> = &quot;dating_agency.db&quot;</td></tr>
+<tr class="memdesc:afa9cf4ff04b04d87e3968cd8f269c9da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ім'я файлу бази даних SQLite. <br /></td></tr>
 <tr class="separator:afa9cf4ff04b04d87e3968cd8f269c9da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Клас <a class="el" href="classDatabaseManager.html" title="Клас DatabaseManager.">DatabaseManager</a>. </p>
-<p>Відповідає за всі операції з базою даних SQLite:</p><ul>
-<li>з'єднання</li>
-<li>створення таблиць</li>
-<li>CRUD операції</li>
-<li>статистика</li>
-<li>лайки/метчі </li>
+<div class="textblock"><p>Головний клас для керування базою даних (Data Access Layer). </p>
+<p>Цей клас інкапсулює всю логіку взаємодії з SQLite. Він відповідає за:</p><ul>
+<li>Ініціалізацію з'єднання та створення структури таблиць.</li>
+<li>CRUD операції (створення, читання, оновлення, видалення) для профілів.</li>
+<li>Пошук та фільтрацію користувачів за критеріями (вік, місто тощо).</li>
+<li>Управління соціальними функціями (лайки, перевірка метчів).</li>
+<li>Роботу з чатом (збереження та завантаження історії).</li>
+<li>Аналітику та статистику для адмін-панелі. </li>
 </ul>
-</div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="aa9dcadf1d13a37681d6ddc75bd3ae97b" name="aa9dcadf1d13a37681d6ddc75bd3ae97b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa9dcadf1d13a37681d6ddc75bd3ae97b">&#9670;&#160;</a></span>addMatch()</h2>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="aa162d97472e6c31a4e873adda435dbb6" name="aa162d97472e6c31a4e873adda435dbb6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa162d97472e6c31a4e873adda435dbb6">&#9670;&#160;</a></span>DatabaseManager()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool DatabaseManager::addMatch </td>
+          <td class="memname">DatabaseManager::DatabaseManager </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Конструктор <a class="el" href="classDatabaseManager.html" title="Головний клас для керування базою даних (Data Access Layer).">DatabaseManager</a>. </p>
+<p>Налаштовує драйвер QSQLITE та встановлює ім'я файлу бази даних (dating_agency.db). Саме з'єднання відкривається методом <a class="el" href="classDatabaseManager.html#abf0518515ed9ec59c91bd4d3a39f7319" title="Відкриває з&#39;єднання з базою даних.">openDatabase()</a>. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="ad2aa51b5b74616e790061f3cd325a879" name="ad2aa51b5b74616e790061f3cd325a879"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2aa51b5b74616e790061f3cd325a879">&#9670;&#160;</a></span>addLike()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool DatabaseManager::addLike </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>userId</em>, </td>
+          <td class="paramname"><em>fromUserId</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>targetId</em>&#160;</td>
+          <td class="paramname"><em>toUserId</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -266,39 +307,95 @@ const QString&#160;</td><td class="memItemRight" valign="bottom"><b>DB_NAME</b> 
       </table>
 </div><div class="memdoc">
 
-<p>Фіксує взаємний метч у базі даних (якщо потрібно). </p>
-<dl class="section return"><dt>Returns</dt><dd>true, якщо запис успішно додано. </dd></dl>
+<p>Додає запис про лайк (user -&gt; target). </p>
+<dl class="section return"><dt>Returns</dt><dd>true, якщо лайк успішно додано (або він вже існував). </dd></dl>
 
 </div>
 </div>
-<a id="a87291e4b0b397f7917a11976342f9eea" name="a87291e4b0b397f7917a11976342f9eea"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a87291e4b0b397f7917a11976342f9eea">&#9670;&#160;</a></span>getChatLastTimestamp()</h2>
+<a id="a90600e6de3ad5fd99a81409054626dfa" name="a90600e6de3ad5fd99a81409054626dfa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a90600e6de3ad5fd99a81409054626dfa">&#9670;&#160;</a></span>createTables()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">QDateTime DatabaseManager::getChatLastTimestamp </td>
+          <td class="memname">bool DatabaseManager::createTables </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>user1Id</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>user2Id</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> const</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Отримує час останнього повідомлення між двома користувачами. </p>
-<dl class="section return"><dt>Returns</dt><dd>QDateTime часу останнього повідомлення. </dd></dl>
+<p>Створює необхідні таблиці та індекси, якщо вони відсутні. </p>
+<p>Створює таблиці: users, likes, chat_messages, user_tags. </p><dl class="section return"><dt>Returns</dt><dd>true, якщо SQL-запити виконано успішно. </dd></dl>
+
+</div>
+</div>
+<a id="abf7e5134b2bb6d1fc51b3e6cf9ebdd1d" name="abf7e5134b2bb6d1fc51b3e6cf9ebdd1d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf7e5134b2bb6d1fc51b3e6cf9ebdd1d">&#9670;&#160;</a></span>deleteProfile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool DatabaseManager::deleteProfile </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>profileId</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Видаляє профіль користувача. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">profileId</td><td>ID профілю для видалення. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true, якщо видалення успішне. </dd></dl>
+
+</div>
+</div>
+<a id="ad5f3710d90a1b9643a2ecc6a84aed7c9" name="ad5f3710d90a1b9643a2ecc6a84aed7c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5f3710d90a1b9643a2ecc6a84aed7c9">&#9670;&#160;</a></span>getAgeStatistics()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QMap&lt; QString, int &gt; DatabaseManager::getAgeStatistics </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Отримує статистику по вікових групах. </p>
+<dl class="section return"><dt>Returns</dt><dd>Map {Діапазон віку -&gt; Кількість}. </dd></dl>
+
+</div>
+</div>
+<a id="a2f45696918e17b9eea5ef9f5b49558ea" name="a2f45696918e17b9eea5ef9f5b49558ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f45696918e17b9eea5ef9f5b49558ea">&#9670;&#160;</a></span>getCityStatistics()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QMap&lt; QString, int &gt; DatabaseManager::getCityStatistics </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Отримує статистику по містах (Топ міст). </p>
+<dl class="section return"><dt>Returns</dt><dd>Map {Назва міста -&gt; Кількість користувачів}. </dd></dl>
 
 </div>
 </div>
@@ -318,10 +415,177 @@ const QString&#160;</td><td class="memItemRight" valign="bottom"><b>DB_NAME</b> 
       </table>
 </div><div class="memdoc">
 
-<p>Отримує поточний профіль (для симуляції "сесії"). </p>
+<p>Завантажує профіль поточного активного користувача. </p>
+<p>Використовує збережений ID в QSettings для визначення "хто я". </p>
+
+</div>
+</div>
+<a id="ab2ccbbf068f9485b1136b357788240ba" name="ab2ccbbf068f9485b1136b357788240ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2ccbbf068f9485b1136b357788240ba">&#9670;&#160;</a></span>getGenderStatistics()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QMap&lt; QString, int &gt; DatabaseManager::getGenderStatistics </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Отримує статистику по статі. </p>
+<dl class="section return"><dt>Returns</dt><dd>Map {Стать -&gt; Кількість}. </dd></dl>
+
+</div>
+</div>
+<a id="a0cc74f243490cfe112b36095a18121b7" name="a0cc74f243490cfe112b36095a18121b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0cc74f243490cfe112b36095a18121b7">&#9670;&#160;</a></span>getMutualMatchIds()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QList&lt; int &gt; DatabaseManager::getMutualMatchIds </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>currentUserId</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Знаходить ID всіх користувачів, з якими у currentUserId є метч. </p>
+<p>Виконує SQL JOIN таблиці лайків самої на себе. </p><dl class="section return"><dt>Returns</dt><dd>QList&lt;int&gt; Список ID "друзів". </dd></dl>
+
+</div>
+</div>
+<a id="ab7085e319b21d3480ba5bbb7e2893ca8" name="ab7085e319b21d3480ba5bbb7e2893ca8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab7085e319b21d3480ba5bbb7e2893ca8">&#9670;&#160;</a></span>getProfilesByCriteria()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QList&lt; <a class="el" href="classUserProfile.html">UserProfile</a> &gt; DatabaseManager::getProfilesByCriteria </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classPreference.html">Preference</a> &amp;&#160;</td>
+          <td class="paramname"><em>prefs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>currentUserId</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Шукає користувачів за вказаними критеріями (фільтрами). </p>
+<p>Виключає з результатів:</p><ol type="1">
+<li>Самого користувача (currentUserId).</li>
+<li>Приховані профілі (is_hidden = 1).</li>
+</ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">profile</td><td>Посилання на об'єкт, який буде заповнено. </td></tr>
+    <tr><td class="paramname">prefs</td><td>Об'єкт з налаштуваннями фільтрації (вік, місто, стать). </td></tr>
+    <tr><td class="paramname">currentUserId</td><td>ID того, хто шукає. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>QList&lt;UserProfile&gt; Список знайдених профілів. </dd></dl>
+
+</div>
+</div>
+<a id="a9fbee740f6c840db7f3eb0f0250fef67" name="a9fbee740f6c840db7f3eb0f0250fef67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9fbee740f6c840db7f3eb0f0250fef67">&#9670;&#160;</a></span>getProfilesByIds()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QList&lt; <a class="el" href="classUserProfile.html">UserProfile</a> &gt; DatabaseManager::getProfilesByIds </td>
+          <td>(</td>
+          <td class="paramtype">const QList&lt; int &gt; &amp;&#160;</td>
+          <td class="paramname"><em>ids</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Завантажує список профілів за списком їх ID. </p>
+<p>Використовується для відображення списку "Метчів" (де ми знаємо тільки ID). Виконує запит "WHERE id IN (...)". </p>
+
+</div>
+</div>
+<a id="a285b559a56e24e72d0c711ef9ad584c0" name="a285b559a56e24e72d0c711ef9ad584c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a285b559a56e24e72d0c711ef9ad584c0">&#9670;&#160;</a></span>isMutualLike()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool DatabaseManager::isMutualLike </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>user1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>user2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Перевіряє наявність взаємного лайку (Метчу). </p>
+<dl class="section return"><dt>Returns</dt><dd>true, якщо user1 лайкнув user2, І user2 лайкнув user1. </dd></dl>
+
+</div>
+</div>
+<a id="aba74d09f4893a1d39317bf43693c480b" name="aba74d09f4893a1d39317bf43693c480b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba74d09f4893a1d39317bf43693c480b">&#9670;&#160;</a></span>loadProfileByEmail()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool DatabaseManager::loadProfileByEmail </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>email</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classUserProfile.html">UserProfile</a> &amp;&#160;</td>
+          <td class="paramname"><em>profile</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Завантажує профіль, шукаючи його за email. </p>
+<p>Використовується при авторизації або реєстрації (перевірка унікальності). </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">email</td><td>Email для пошуку. </td></tr>
+    <tr><td class="paramname">profile</td><td>Посилання на об'єкт, куди будуть записані дані. </td></tr>
   </table>
   </dd>
 </dl>
@@ -329,24 +593,174 @@ const QString&#160;</td><td class="memItemRight" valign="bottom"><b>DB_NAME</b> 
 
 </div>
 </div>
-<a id="a3c965d418abb4a94f7fc26ca700d8950" name="a3c965d418abb4a94f7fc26ca700d8950"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3c965d418abb4a94f7fc26ca700d8950">&#9670;&#160;</a></span>removeAllTags()</h2>
+<a id="a956a7b76414754b422afc507d5797e24" name="a956a7b76414754b422afc507d5797e24"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a956a7b76414754b422afc507d5797e24">&#9670;&#160;</a></span>loadProfileById()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool DatabaseManager::removeAllTags </td>
+          <td class="memname">bool DatabaseManager::loadProfileById </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>userId</em></td><td>)</td>
+          <td class="paramname"><em>userId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classUserProfile.html">UserProfile</a> &amp;&#160;</td>
+          <td class="paramname"><em>profile</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Завантажує профіль за унікальним ID (Primary Key). </p>
+<p>Найшвидший спосіб отримання даних. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">userId</td><td>ID користувача. </td></tr>
+    <tr><td class="paramname">profile</td><td>Посилання на об'єкт для запису результату. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true, якщо профіль знайдено. </dd></dl>
+
+</div>
+</div>
+<a id="abf0518515ed9ec59c91bd4d3a39f7319" name="abf0518515ed9ec59c91bd4d3a39f7319"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf0518515ed9ec59c91bd4d3a39f7319">&#9670;&#160;</a></span>openDatabase()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool DatabaseManager::openDatabase </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Видаляє всі теги для даного користувача. </p>
-<dl class="section return"><dt>Returns</dt><dd>true, якщо операція успішна. </dd></dl>
+<p>Відкриває з'єднання з базою даних. </p>
+<p>Якщо файлу не існує, він буде створений. Також викликає <a class="el" href="classDatabaseManager.html#a90600e6de3ad5fd99a81409054626dfa" title="Створює необхідні таблиці та індекси, якщо вони відсутні.">createTables()</a> для ініціалізації структури, якщо це перший запуск. </p><dl class="section return"><dt>Returns</dt><dd>true, якщо з'єднання успішне. </dd></dl>
+
+</div>
+</div>
+<a id="ab5659aea24d72d3085bc91abfe982a3e" name="ab5659aea24d72d3085bc91abfe982a3e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab5659aea24d72d3085bc91abfe982a3e">&#9670;&#160;</a></span>profileExists()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool DatabaseManager::profileExists </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>email</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Перевіряє наявність профілю з вказаним email. </p>
+<dl class="section return"><dt>Returns</dt><dd>true, якщо email вже зайнятий. </dd></dl>
+
+</div>
+</div>
+<a id="a7e638263a7633995dbf890d5d8dee4ec" name="a7e638263a7633995dbf890d5d8dee4ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e638263a7633995dbf890d5d8dee4ec">&#9670;&#160;</a></span>saveProfile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int DatabaseManager::saveProfile </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classUserProfile.html">UserProfile</a> &amp;&#160;</td>
+          <td class="paramname"><em>profile</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Зберігає нового користувача в базі даних. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">profile</td><td>Об'єкт з даними користувача. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>int ID новоствореного запису або -1 у разі помилки. </dd></dl>
+
+</div>
+</div>
+<a id="aaafec4dfbc1a791a3cefab8488fe62f6" name="aaafec4dfbc1a791a3cefab8488fe62f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaafec4dfbc1a791a3cefab8488fe62f6">&#9670;&#160;</a></span>setProfileHidden()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool DatabaseManager::setProfileHidden </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>profileId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>isHidden</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Змінює видимість профілю у пошуку. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">profileId</td><td>ID користувача. </td></tr>
+    <tr><td class="paramname">isHidden</td><td>true - приховати (пауза), false - показувати. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true, якщо статус змінено. </dd></dl>
+
+</div>
+</div>
+<a id="a60c1b22b903b26b5e1847dc835cfdbe5" name="a60c1b22b903b26b5e1847dc835cfdbe5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60c1b22b903b26b5e1847dc835cfdbe5">&#9670;&#160;</a></span>updateProfile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool DatabaseManager::updateProfile </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classUserProfile.html">UserProfile</a> &amp;&#160;</td>
+          <td class="paramname"><em>profile</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Оновлює дані існуючого профілю. </p>
+<p>Перезаписує всі поля в рядку таблиці, що відповідає profile.getId(). </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">profile</td><td>Оновлений об'єкт профілю. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true, якщо оновлення успішне. </dd></dl>
 
 </div>
 </div>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['logfile_0',['logFile',['../classUserLogger.html#a218caa226b96c0f4af1864a3747e4155',1,'UserLogger']]]
+  ['db_5fname_0',['DB_NAME',['../classDatabaseManager.html#afa9cf4ff04b04d87e3968cd8f269c9da',1,'DatabaseManager']]]
 ];

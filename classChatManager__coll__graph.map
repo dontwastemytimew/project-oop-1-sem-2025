@@ -1,7 +1,7 @@
 <map id="ChatManager" name="ChatManager">
-<area shape="rect" id="Node000001" title=" " alt="" coords="53,93,163,119"/>
+<area shape="rect" id="Node000001" title="Менеджер чатів та повідомлень." alt="" coords="53,93,163,119"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="5,5,80,31"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="62,40,101,91,97,94,58,43"/>
-<area shape="rect" id="Node000003" href="$classDatabaseManager.html" title="Клас DatabaseManager." alt="" coords="104,5,245,31"/>
+<area shape="rect" id="Node000003" href="$classDatabaseManager.html" title="Головний клас для керування базою даних (Data Access Layer)." alt="" coords="104,5,245,31"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="159,43,119,94,115,91,155,40"/>
 </map>

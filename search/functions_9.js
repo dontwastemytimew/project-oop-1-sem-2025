@@ -1,4 +1,26 @@
 var searchData=
 [
-  ['userprofile_0',['UserProfile',['../classUserProfile.html#a0c8122c1996095b960827595f85223d2',1,'UserProfile']]]
+  ['on_5fbtn_5ffind_5fclicked_0',['on_btn_Find_clicked',['../classSearchPageWidget.html#ac5a0cfd9571a8ef2316a9289e1cc8bb3',1,'SearchPageWidget']]],
+  ['on_5fbtn_5fsaveprofile_5fclicked_1',['on_btn_SaveProfile_clicked',['../classProfilePageWidget.html#ac4dcfbafff1d5a584a03788e67c58533',1,'ProfilePageWidget']]],
+  ['on_5fdeleteclicked_2',['on_deleteClicked',['../classSettingsPageWidget.html#ab036529102c043cc6c81e6e612201616',1,'SettingsPageWidget']]],
+  ['on_5flanguagechanged_3',['on_languageChanged',['../classSettingsPageWidget.html#a6ec5688861544334ce92012157cac77c',1,'SettingsPageWidget']]],
+  ['on_5flike_5fclicked_4',['on_Like_clicked',['../classSearchPageWidget.html#a9e54659b7eec51da1d105d33e298b93d',1,'SearchPageWidget']]],
+  ['on_5fpausetoggled_5',['on_pauseToggled',['../classSettingsPageWidget.html#a085188ff0cb56fa2f10ea6cc15db960e',1,'SettingsPageWidget']]],
+  ['on_5fskip_5fclicked_6',['on_Skip_clicked',['../classSearchPageWidget.html#a02a4e87f725b213607f72eeae8fe54a6',1,'SearchPageWidget']]],
+  ['on_5fthemetoggled_7',['on_themeToggled',['../classSettingsPageWidget.html#a5461b70b09975a84f33f34824d9b860e',1,'SettingsPageWidget']]],
+  ['onaccountdeleted_8',['onAccountDeleted',['../classMainWindow.html#a04601c1b37e167201c95e8d84d3092bb',1,'MainWindow']]],
+  ['onadminbtnclicked_9',['onAdminBtnClicked',['../classSettingsPageWidget.html#af352b3b5159597cc3f0199f487d0db67',1,'SettingsPageWidget']]],
+  ['onchoosephoto_10',['onChoosePhoto',['../classProfilePageWidget.html#a58258d14f2700014174d8f41c9375b80',1,'ProfilePageWidget']]],
+  ['oncustomcontextmenu_11',['onCustomContextMenu',['../classAdminPageWidget.html#a51fb31564564708c440eeea432a5d00d',1,'AdminPageWidget']]],
+  ['ondeleteclicked_12',['onDeleteClicked',['../classAdminPageWidget.html#a831b53de78ef6cf9d6977893bb2abcce',1,'AdminPageWidget']]],
+  ['ongenerateclicked_13',['onGenerateClicked',['../classAdminPageWidget.html#a21ea0d7d775ae13f8cb148c9b65ecaae',1,'AdminPageWidget']]],
+  ['onmatchclicked_14',['onMatchClicked',['../classMatchesPageWidget.html#adcb47813fcf019eabdcbfbb8fcb1fa4a',1,'MatchesPageWidget']]],
+  ['onmatchcreated_15',['onMatchCreated',['../classMatchesPageWidget.html#a30fb6fca92b858fa8a5f2d39e9acf61c',1,'MatchesPageWidget']]],
+  ['onopenchatrequested_16',['onOpenChatRequested',['../classMainWindow.html#ab777a8a5dc443116230605a3611244e2',1,'MainWindow']]],
+  ['onprofilesaved_17',['onProfileSaved',['../classMainWindow.html#a734f5e5adf3a879782ede61597f278da',1,'MainWindow']]],
+  ['onsearchtextchanged_18',['onSearchTextChanged',['../classMatchesPageWidget.html#a039179dc3bc863008f84c801d8d0b6af',1,'MatchesPageWidget']]],
+  ['onstatsclicked_19',['onStatsClicked',['../classAdminPageWidget.html#ad46781efd846ab635f75f32099ffeebe',1,'AdminPageWidget']]],
+  ['openadminpanelrequested_20',['openAdminPanelRequested',['../classSettingsPageWidget.html#a0442e79b4a90754fc5c3112ae1972136',1,'SettingsPageWidget']]],
+  ['openchatrequested_21',['openChatRequested',['../classMatchesPageWidget.html#a8d7a03815fabc10871a988769632689a',1,'MatchesPageWidget']]],
+  ['opendatabase_22',['openDatabase',['../classDatabaseManager.html#abf0518515ed9ec59c91bd4d3a39f7319',1,'DatabaseManager']]]
 ];

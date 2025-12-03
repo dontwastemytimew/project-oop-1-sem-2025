@@ -1,0 +1,25 @@
+var classAdminPageWidget =
+[
+    [ "AdminPageWidget", "classAdminPageWidget.html#ae7b0ced4f67adb2e81ac2c93063a0195", null ],
+    [ "backClicked", "classAdminPageWidget.html#ab26a7383789472292fbf93bc274fce6b", null ],
+    [ "changeEvent", "classAdminPageWidget.html#ac7c4e7c7fbf997bffc123552ffa44401", null ],
+    [ "onCustomContextMenu", "classAdminPageWidget.html#a51fb31564564708c440eeea432a5d00d", null ],
+    [ "onDeleteClicked", "classAdminPageWidget.html#a831b53de78ef6cf9d6977893bb2abcce", null ],
+    [ "onGenerateClicked", "classAdminPageWidget.html#a21ea0d7d775ae13f8cb148c9b65ecaae", null ],
+    [ "onStatsClicked", "classAdminPageWidget.html#ad46781efd846ab635f75f32099ffeebe", null ],
+    [ "refreshTable", "classAdminPageWidget.html#ae90298e677debbe3ea7a15e23d3a70c8", null ],
+    [ "retranslateUi", "classAdminPageWidget.html#a00ae5187ccd1188bbbfb94ad6c915f01", null ],
+    [ "setDatabaseManager", "classAdminPageWidget.html#ab12d5e6c42cc1ae1dabaf4666245bc7f", null ],
+    [ "toggleHiddenStatus", "classAdminPageWidget.html#ab7ecb7475371100c19c73f3fb3259c7c", null ],
+    [ "m_btnBack", "classAdminPageWidget.html#af86b22065439c6f19fd2d9a989ad79c7", null ],
+    [ "m_btnDelete", "classAdminPageWidget.html#af3e6bff27270d6ae9e35f8acf4d58ea7", null ],
+    [ "m_btnGenerate", "classAdminPageWidget.html#a0f8d216a29b06f57e30726c79d3abd79", null ],
+    [ "m_btnStats", "classAdminPageWidget.html#a1e58637a1a96f1e1105beaf5dc7bdcfe", null ],
+    [ "m_dbManager", "classAdminPageWidget.html#ac39e47bf8fd3fdc855378aa62e3af892", null ],
+    [ "m_model", "classAdminPageWidget.html#a6837e83255e17fa4dbcab900f4f4db7e", null ],
+    [ "m_proxyModel", "classAdminPageWidget.html#a946a38c8cf8b4e8e1c872c67ab918596", null ],
+    [ "m_searchField", "classAdminPageWidget.html#a1dc6fd047a2d725ec92e18e98316672d", null ],
+    [ "m_searchIconLabel", "classAdminPageWidget.html#a589a57d67494cd809a37bc313c5f78b6", null ],
+    [ "m_tableView", "classAdminPageWidget.html#adc600df608cca11eaaf5675e94fd27c8", null ],
+    [ "m_titleLabel", "classAdminPageWidget.html#a1b171aeea41189e0a89d51f4f4241082", null ]
+];

@@ -97,7 +97,7 @@ $(document).ready(function(){initNavTree('classContactInfo.html',''); initResiza
 </div><!--header-->
 <div class="contents">
 
-<p>Клас <a class="el" href="classContactInfo.html" title="Клас ContactInfo.">ContactInfo</a>.  
+<p>Клас для зберігання контактної інформації користувача.  
  <a href="classContactInfo.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="ContactInfo_8h_source.html">ContactInfo.h</a>&gt;</code></p>
@@ -105,19 +105,19 @@ $(document).ready(function(){initNavTree('classContactInfo.html',''); initResiza
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a23722206111b20fef830a083678ca184" id="r_a23722206111b20fef830a083678ca184"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classContactInfo.html#a23722206111b20fef830a083678ca184">ContactInfo</a> (const QString &amp;phone=&quot;&quot;, const QString &amp;email=&quot;&quot;)</td></tr>
-<tr class="memdesc:a23722206111b20fef830a083678ca184"><td class="mdescLeft">&#160;</td><td class="mdescRight">Конструктор <a class="el" href="classContactInfo.html" title="Клас ContactInfo.">ContactInfo</a>.  <br /></td></tr>
+<tr class="memdesc:a23722206111b20fef830a083678ca184"><td class="mdescLeft">&#160;</td><td class="mdescRight">Конструктор за замовчуванням та з параметрами.  <br /></td></tr>
 <tr class="separator:a23722206111b20fef830a083678ca184"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af6e77fe39b62521ae593e5da86b8da35" id="r_af6e77fe39b62521ae593e5da86b8da35"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classContactInfo.html#af6e77fe39b62521ae593e5da86b8da35">getPhone</a> () const</td></tr>
-<tr class="memdesc:af6e77fe39b62521ae593e5da86b8da35"><td class="mdescLeft">&#160;</td><td class="mdescRight">Повертає номер телефону.  <br /></td></tr>
+<tr class="memdesc:af6e77fe39b62521ae593e5da86b8da35"><td class="mdescLeft">&#160;</td><td class="mdescRight">Отримує збережений номер телефону.  <br /></td></tr>
 <tr class="separator:af6e77fe39b62521ae593e5da86b8da35"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a85311b46e65c68c964d32a102f5b17b5" id="r_a85311b46e65c68c964d32a102f5b17b5"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classContactInfo.html#a85311b46e65c68c964d32a102f5b17b5">getEmail</a> () const</td></tr>
-<tr class="memdesc:a85311b46e65c68c964d32a102f5b17b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Повертає адресу email.  <br /></td></tr>
+<tr class="memdesc:a85311b46e65c68c964d32a102f5b17b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Отримує збережену адресу електронної пошти.  <br /></td></tr>
 <tr class="separator:a85311b46e65c68c964d32a102f5b17b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aee40d07950e2a805e4def595e72d1723" id="r_aee40d07950e2a805e4def595e72d1723"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classContactInfo.html#aee40d07950e2a805e4def595e72d1723">setPhone</a> (const QString &amp;newPhone)</td></tr>
-<tr class="memdesc:aee40d07950e2a805e4def595e72d1723"><td class="mdescLeft">&#160;</td><td class="mdescRight">Встановлює номер телефону.  <br /></td></tr>
+<tr class="memdesc:aee40d07950e2a805e4def595e72d1723"><td class="mdescLeft">&#160;</td><td class="mdescRight">Встановлює або оновлює номер телефону.  <br /></td></tr>
 <tr class="separator:aee40d07950e2a805e4def595e72d1723"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a159a734b7d81d7c4ae20e8abc6eaf554" id="r_a159a734b7d81d7c4ae20e8abc6eaf554"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classContactInfo.html#a159a734b7d81d7c4ae20e8abc6eaf554">setEmail</a> (const QString &amp;newEmail)</td></tr>
-<tr class="memdesc:a159a734b7d81d7c4ae20e8abc6eaf554"><td class="mdescLeft">&#160;</td><td class="mdescRight">Встановлює адресу email.  <br /></td></tr>
+<tr class="memdesc:a159a734b7d81d7c4ae20e8abc6eaf554"><td class="mdescLeft">&#160;</td><td class="mdescRight">Встановлює або оновлює адресу електронної пошти.  <br /></td></tr>
 <tr class="separator:a159a734b7d81d7c4ae20e8abc6eaf554"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
@@ -132,8 +132,9 @@ QString&#160;</td><td class="memItemRight" valign="bottom"><b>m_email</b></td></
 <tr class="separator:aaea89d04225a74411152d3185c86235f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Клас <a class="el" href="classContactInfo.html" title="Клас ContactInfo.">ContactInfo</a>. </p>
-<p>Модель даних, що інкапсулює (зберігає) контактну інформацію користувача. Використовується як частина класу <a class="el" href="classUserProfile.html" title="Клас UserProfile.">UserProfile</a> (Композиція). </p>
+<div class="textblock"><p>Клас для зберігання контактної інформації користувача. </p>
+<p>Цей клас слугує контейнером для особистих контактних даних, таких як номер телефону та адреса електронної пошти. Він розроблений для використання як складова частина (композиція) більш складного об'єкта <a class="el" href="classUserProfile.html" title="Основна модель даних профілю користувача.">UserProfile</a>.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classUserProfile.html" title="Основна модель даних профілю користувача.">UserProfile</a> </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a23722206111b20fef830a083678ca184" name="a23722206111b20fef830a083678ca184"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a23722206111b20fef830a083678ca184">&#9670;&#160;</a></span>ContactInfo()</h2>
@@ -161,11 +162,12 @@ QString&#160;</td><td class="memItemRight" valign="bottom"><b>m_email</b></td></
       </table>
 </div><div class="memdoc">
 
-<p>Конструктор <a class="el" href="classContactInfo.html" title="Клас ContactInfo.">ContactInfo</a>. </p>
+<p>Конструктор за замовчуванням та з параметрами. </p>
+<p>Дозволяє створити об'єкт <a class="el" href="classContactInfo.html" title="Клас для зберігання контактної інформації користувача.">ContactInfo</a> як порожнім, так і з попередньо заповненими даними.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">phone</td><td>Номер телефону (за замовчуванням порожній). </td></tr>
-    <tr><td class="paramname">email</td><td>Адреса електронної пошти (за замовчуванням порожній). </td></tr>
+    <tr><td class="paramname">phone</td><td>Номер телефону користувача (за замовчуванням порожній рядок). </td></tr>
+    <tr><td class="paramname">email</td><td>Адреса електронної пошти користувача (за замовчуванням порожній рядок). </td></tr>
   </table>
   </dd>
 </dl>
@@ -188,8 +190,8 @@ QString&#160;</td><td class="memItemRight" valign="bottom"><b>m_email</b></td></
       </table>
 </div><div class="memdoc">
 
-<p>Повертає адресу email. </p>
-<dl class="section return"><dt>Returns</dt><dd>QString з адресою email. </dd></dl>
+<p>Отримує збережену адресу електронної пошти. </p>
+<dl class="section return"><dt>Returns</dt><dd>QString Рядок, що містить email. </dd></dl>
 
 </div>
 </div>
@@ -208,8 +210,8 @@ QString&#160;</td><td class="memItemRight" valign="bottom"><b>m_email</b></td></
       </table>
 </div><div class="memdoc">
 
-<p>Повертає номер телефону. </p>
-<dl class="section return"><dt>Returns</dt><dd>QString з номером телефону. </dd></dl>
+<p>Отримує збережений номер телефону. </p>
+<dl class="section return"><dt>Returns</dt><dd>QString Рядок, що містить номер телефону. </dd></dl>
 
 </div>
 </div>
@@ -229,7 +231,8 @@ QString&#160;</td><td class="memItemRight" valign="bottom"><b>m_email</b></td></
       </table>
 </div><div class="memdoc">
 
-<p>Встановлює адресу email. </p>
+<p>Встановлює або оновлює адресу електронної пошти. </p>
+<dl class="section note"><dt>Note</dt><dd>Метод не перевіряє валідність email (наявність @ тощо).</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">newEmail</td><td>Нова адреса email. </td></tr>
@@ -255,7 +258,8 @@ QString&#160;</td><td class="memItemRight" valign="bottom"><b>m_email</b></td></
       </table>
 </div><div class="memdoc">
 
-<p>Встановлює номер телефону. </p>
+<p>Встановлює або оновлює номер телефону. </p>
+<dl class="section note"><dt>Note</dt><dd>Метод просто зберігає рядок і не виконує перевірку формату (валідацію) телефону. Валідація повинна виконуватись на рівні UI або валідатора форми.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">newPhone</td><td>Новий номер телефону. </td></tr>

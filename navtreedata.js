@@ -30,7 +30,7 @@ var NAVTREE =
       [ "Class Index", "classes.html", null ],
       [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
       [ "Class Members", "functions.html", [
-        [ "All", "functions.html", null ],
+        [ "All", "functions.html", "functions_dup" ],
         [ "Functions", "functions_func.html", null ],
         [ "Variables", "functions_vars.html", null ]
       ] ]
@@ -43,7 +43,8 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"ChatManager_8h_source.html"
+"ChatManager_8h_source.html",
+"classSettingsPageWidget.html#a47361b187c5e04f0ae3fe0f1c0007820"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

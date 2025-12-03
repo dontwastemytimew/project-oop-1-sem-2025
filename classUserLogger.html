@@ -97,7 +97,7 @@ $(document).ready(function(){initNavTree('classUserLogger.html',''); initResizab
 </div><!--header-->
 <div class="contents">
 
-<p>Статичний клас <a class="el" href="classUserLogger.html" title="Статичний клас UserLogger.">UserLogger</a>.  
+<p>Статичний клас-утиліта для логування подій.  
  <a href="classUserLogger.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="UserLogger_8h_source.html">UserLogger.h</a>&gt;</code></p>
@@ -105,26 +105,30 @@ $(document).ready(function(){initNavTree('classUserLogger.html',''); initResizab
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a45f084aa222851ecac071c77ea5dd248" id="r_a45f084aa222851ecac071c77ea5dd248"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUserLogger.html#a45f084aa222851ecac071c77ea5dd248">init</a> (const QString &amp;fileName=&quot;app_log.txt&quot;)</td></tr>
-<tr class="memdesc:a45f084aa222851ecac071c77ea5dd248"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ініціалізує логер. Відкриває файл логів для запису. Цей метод має бути викликаний один раз при старті програми.  <br /></td></tr>
+<tr class="memdesc:a45f084aa222851ecac071c77ea5dd248"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ініціалізує систему логування.  <br /></td></tr>
 <tr class="separator:a45f084aa222851ecac071c77ea5dd248"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0b46b7418171fa636af3700203b1ca52" id="r_a0b46b7418171fa636af3700203b1ca52"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUserLogger.html#a0b46b7418171fa636af3700203b1ca52">log</a> (LogLevel level, const QString &amp;message)</td></tr>
-<tr class="memdesc:a0b46b7418171fa636af3700203b1ca52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Записує повідомлення у лог. Одночасно виводить повідомлення у qDebug() (консоль) та у файл логів.  <br /></td></tr>
+<tr class="memdesc:a0b46b7418171fa636af3700203b1ca52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Записує повідомлення у лог.  <br /></td></tr>
 <tr class="separator:a0b46b7418171fa636af3700203b1ca52"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-attribs" name="pri-static-attribs"></a>
 Static Private Attributes</h2></td></tr>
 <tr class="memitem:a218caa226b96c0f4af1864a3747e4155" id="r_a218caa226b96c0f4af1864a3747e4155"><td class="memItemLeft" align="right" valign="top"><a id="a218caa226b96c0f4af1864a3747e4155" name="a218caa226b96c0f4af1864a3747e4155"></a>
 static QFile *&#160;</td><td class="memItemRight" valign="bottom"><b>logFile</b> = nullptr</td></tr>
-<tr class="memdesc:a218caa226b96c0f4af1864a3747e4155"><td class="mdescLeft">&#160;</td><td class="mdescRight">Вказівник на об'єкт файлу логів. <br /></td></tr>
+<tr class="memdesc:a218caa226b96c0f4af1864a3747e4155"><td class="mdescLeft">&#160;</td><td class="mdescRight">Вказівник на об'єкт файлу, куди ведеться запис. Ініціалізується у методі <a class="el" href="classUserLogger.html#a45f084aa222851ecac071c77ea5dd248" title="Ініціалізує систему логування.">init()</a>. <br /></td></tr>
 <tr class="separator:a218caa226b96c0f4af1864a3747e4155"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a15057eef47619c83fa8a9e2e91342cf5" id="r_a15057eef47619c83fa8a9e2e91342cf5"><td class="memItemLeft" align="right" valign="top"><a id="a15057eef47619c83fa8a9e2e91342cf5" name="a15057eef47619c83fa8a9e2e91342cf5"></a>
 static bool&#160;</td><td class="memItemRight" valign="bottom"><b>initialized</b> = false</td></tr>
-<tr class="memdesc:a15057eef47619c83fa8a9e2e91342cf5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Прапорець, що показує, чи був логер успішно ініціалізований. <br /></td></tr>
+<tr class="memdesc:a15057eef47619c83fa8a9e2e91342cf5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Прапорець стану ініціалізації. Запобігає спробам запису у файл, якщо він не був успішно відкритий. <br /></td></tr>
 <tr class="separator:a15057eef47619c83fa8a9e2e91342cf5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Статичний клас <a class="el" href="classUserLogger.html" title="Статичний клас UserLogger.">UserLogger</a>. </p>
-<p>Забезпечує єдиний механізм логування подій у консоль та у файл. Всі методи є статичними, тому не потрібно створювати екземпляр класу. </p>
+<div class="textblock"><p>Статичний клас-утиліта для логування подій. </p>
+<p>Забезпечує централізований механізм запису діагностичних повідомлень. Особливістю класу є те, що він записує дані одночасно у два потоки:</p><ol type="1">
+<li>У консоль налагодження (через qDebug()), що зручно при розробці в IDE.</li>
+<li>У текстовий файл на диску, що дозволяє аналізувати проблеми після запуску (post-mortem analysis).</li>
+</ol>
+<p>Всі методи є статичними, тому створювати екземпляр класу не потрібно. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a45f084aa222851ecac071c77ea5dd248" name="a45f084aa222851ecac071c77ea5dd248"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a45f084aa222851ecac071c77ea5dd248">&#9670;&#160;</a></span>init()</h2>
@@ -150,10 +154,11 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>initialized</b
 </table>
 </div><div class="memdoc">
 
-<p>Ініціалізує логер. Відкриває файл логів для запису. Цей метод має бути викликаний один раз при старті програми. </p>
+<p>Ініціалізує систему логування. </p>
+<p>Цей метод відкриває файл для запису логів. Якщо файл не існує, він створюється. Якщо існує — нові записи додаються в кінець (append). Метод повинен бути викликаний один раз на початку роботи програми (у main.cpp).</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">fileName</td><td>Ім'я файлу логів (за замовчуванням "app_log.txt"). </td></tr>
+    <tr><td class="paramname">fileName</td><td>Ім'я або повний шлях до файлу логів (за замовчуванням "app_log.txt"). </td></tr>
   </table>
   </dd>
 </dl>
@@ -194,11 +199,13 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>initialized</b
 </table>
 </div><div class="memdoc">
 
-<p>Записує повідомлення у лог. Одночасно виводить повідомлення у qDebug() (консоль) та у файл логів. </p>
+<p>Записує повідомлення у лог. </p>
+<p>Форматує повідомлення, додаючи до нього поточну дату, час та рівень важливості. Записане повідомлення виводиться в консоль та зберігається у файл.</p>
+<p>Формат виводу: <code>[YYYY-MM-DD HH:MM:SS] [LEVEL] Message</code></p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">level</td><td>Рівень важливості повідомлення (Debug, Info, etc.). </td></tr>
-    <tr><td class="paramname">message</td><td>Текст повідомлення для запису. </td></tr>
+    <tr><td class="paramname">level</td><td>Рівень важливості повідомлення (Debug, Info, Error тощо). </td></tr>
+    <tr><td class="paramname">message</td><td>Текст повідомлення. </td></tr>
   </table>
   </dd>
 </dl>

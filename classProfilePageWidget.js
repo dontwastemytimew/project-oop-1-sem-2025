@@ -1,4 +1,29 @@
 var classProfilePageWidget =
 [
-    [ "clearFields", "classProfilePageWidget.html#af72db067a7957e8637699eb95e4caa56", null ]
+    [ "ProfilePageWidget", "classProfilePageWidget.html#a6177f789178b816ac4d99ada2c1e7c69", null ],
+    [ "changeEvent", "classProfilePageWidget.html#ad41ce780a1c1ae16d20e899fa6902df0", null ],
+    [ "clearFields", "classProfilePageWidget.html#af72db067a7957e8637699eb95e4caa56", null ],
+    [ "loadCurrentProfile", "classProfilePageWidget.html#aba283373c2cd155d7b1a268c7fbab7c6", null ],
+    [ "on_btn_SaveProfile_clicked", "classProfilePageWidget.html#ac4dcfbafff1d5a584a03788e67c58533", null ],
+    [ "onChoosePhoto", "classProfilePageWidget.html#a58258d14f2700014174d8f41c9375b80", null ],
+    [ "profileSaved", "classProfilePageWidget.html#a2b5881f2167c56282b97c5476a4e508e", null ],
+    [ "retranslateUi", "classProfilePageWidget.html#a39dc7f800f981d53172b5a072ea567f0", null ],
+    [ "setDatabaseManager", "classProfilePageWidget.html#a4d76b33f6b478d09a86f084bf158afc7", null ],
+    [ "setInternalProfile", "classProfilePageWidget.html#a32112cbab2b04e3744d4e4ee7ec710c3", null ],
+    [ "setupCityAutocomplete", "classProfilePageWidget.html#ad1dfb55edac0325c2a6078a9e19f763e", null ],
+    [ "m_ageSpinBox", "classProfilePageWidget.html#a6fbf5c94d34056ea55691577b9bfbfaa", null ],
+    [ "m_bioEdit", "classProfilePageWidget.html#a7b59754d4b86708870f49849a755dcd1", null ],
+    [ "m_choosePhotoButton", "classProfilePageWidget.html#ad5b52bd9fccd7a691067a65d47287441", null ],
+    [ "m_cityEdit", "classProfilePageWidget.html#ad0c5943fa6796ea00cce17d096a6c0f2", null ],
+    [ "m_currentUser", "classProfilePageWidget.html#aae3d10502727fa797ba14f1f5a85a5cb", null ],
+    [ "m_dbManager", "classProfilePageWidget.html#a254173005a52b4f20036fbfef132fe06", null ],
+    [ "m_emailEdit", "classProfilePageWidget.html#ac8b056282c1786f79b31ac43519bcfe8", null ],
+    [ "m_genderCombo", "classProfilePageWidget.html#a1c113c98c21e90b217b647e03d63dc11", null ],
+    [ "m_nameEdit", "classProfilePageWidget.html#af4754463d6b4c03e38896912e5e70f4f", null ],
+    [ "m_orientationCombo", "classProfilePageWidget.html#a2a2e5aa3050b9d54a9adc084f28d4495", null ],
+    [ "m_phoneEdit", "classProfilePageWidget.html#aa272f8467702ae12eb6160e9f0d86aa8", null ],
+    [ "m_photoLabel", "classProfilePageWidget.html#ab173f748a59fdff5555e077f4450b7d5", null ],
+    [ "m_photoPath", "classProfilePageWidget.html#a4bbbdeefab9b0d2331c15c91806e2cca", null ],
+    [ "m_saveButton", "classProfilePageWidget.html#a65fb2959845ff29a39a940edbe7cfc8d", null ],
+    [ "m_tagsEdit", "classProfilePageWidget.html#a9ce8e9d82789eb1076fde906c8ba6694", null ]
 ];

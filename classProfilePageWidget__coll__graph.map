@@ -1,13 +1,13 @@
 <map id="ProfilePageWidget" name="ProfilePageWidget">
-<area shape="rect" id="Node000001" title=" " alt="" coords="109,181,249,207"/>
+<area shape="rect" id="Node000001" title="Віджет сторінки &quot;Мій Профіль&quot; (Редагування)." alt="" coords="109,181,249,207"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="5,93,84,119"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="76,124,162,179,160,183,73,128"/>
-<area shape="rect" id="Node000003" href="$classDatabaseManager.html" title="Клас DatabaseManager." alt="" coords="109,93,250,119"/>
+<area shape="rect" id="Node000003" href="$classDatabaseManager.html" title="Головний клас для керування базою даних (Data Access Layer)." alt="" coords="109,93,250,119"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="182,133,182,181,177,181,177,133"/>
-<area shape="rect" id="Node000004" href="$classUserProfile.html" title="Клас UserProfile." alt="" coords="274,93,367,119"/>
+<area shape="rect" id="Node000004" href="$classUserProfile.html" title="Основна модель даних профілю користувача." alt="" coords="274,93,367,119"/>
 <area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="309,133,284,159,259,174,232,184,230,179,256,169,280,155,305,129"/>
-<area shape="rect" id="Node000005" href="$classContactInfo.html" title="Клас ContactInfo." alt="" coords="208,5,305,31"/>
+<area shape="rect" id="Node000005" href="$classContactInfo.html" title="Клас для зберігання контактної інформації користувача." alt="" coords="208,5,305,31"/>
 <area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="255,45,256,57,260,68,272,81,288,91,285,95,269,85,256,71,251,58,250,45"/>
-<area shape="rect" id="Node000006" href="$classPreference.html" title="Клас Preference." alt="" coords="339,5,431,31"/>
+<area shape="rect" id="Node000006" href="$classPreference.html" title="Клас моделі даних для збереження критеріїв пошуку (вподобань)." alt="" coords="339,5,431,31"/>
 <area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="374,45,357,71,335,95,331,91,353,68,370,42"/>
 </map>

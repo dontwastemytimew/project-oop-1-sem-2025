@@ -1,22 +1,22 @@
 var annotated_dup =
 [
-    [ "AdminPageWidget", "classAdminPageWidget.html", null ],
-    [ "ChatManager", "classChatManager.html", null ],
-    [ "ChatMessage", "structChatMessage.html", null ],
+    [ "AdminPageWidget", "classAdminPageWidget.html", "classAdminPageWidget" ],
+    [ "ChatManager", "classChatManager.html", "classChatManager" ],
+    [ "ChatMessage", "structChatMessage.html", "structChatMessage" ],
     [ "ChatPageWidget", "classChatPageWidget.html", "classChatPageWidget" ],
     [ "ContactInfo", "classContactInfo.html", "classContactInfo" ],
     [ "DatabaseManager", "classDatabaseManager.html", "classDatabaseManager" ],
     [ "FakeDataManager", "classFakeDataManager.html", null ],
-    [ "MainWindow", "classMainWindow.html", null ],
+    [ "MainWindow", "classMainWindow.html", "classMainWindow" ],
     [ "MatchEngine", "classMatchEngine.html", "classMatchEngine" ],
-    [ "MatchesPageWidget", "classMatchesPageWidget.html", null ],
+    [ "MatchesPageWidget", "classMatchesPageWidget.html", "classMatchesPageWidget" ],
     [ "Preference", "classPreference.html", "classPreference" ],
     [ "ProfileCard", "classProfileCard.html", "classProfileCard" ],
     [ "ProfilePageWidget", "classProfilePageWidget.html", "classProfilePageWidget" ],
-    [ "SearchPageWidget", "classSearchPageWidget.html", null ],
-    [ "SettingsPageWidget", "classSettingsPageWidget.html", null ],
-    [ "StatsDialog", "classStatsDialog.html", null ],
+    [ "SearchPageWidget", "classSearchPageWidget.html", "classSearchPageWidget" ],
+    [ "SettingsPageWidget", "classSettingsPageWidget.html", "classSettingsPageWidget" ],
+    [ "StatsDialog", "classStatsDialog.html", "classStatsDialog" ],
     [ "UserLogger", "classUserLogger.html", null ],
     [ "UserProfile", "classUserProfile.html", "classUserProfile" ],
-    [ "WelcomePageWidget", "classWelcomePageWidget.html", null ]
+    [ "WelcomePageWidget", "classWelcomePageWidget.html", "classWelcomePageWidget" ]
 ];

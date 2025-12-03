@@ -1,8 +1,19 @@
 var searchData=
 [
-  ['m_5femail_0',['m_email',['../classContactInfo.html#aaea89d04225a74411152d3185c86235f',1,'ContactInfo']]],
-  ['m_5fphone_1',['m_phone',['../classContactInfo.html#a5c428360349519f5162f775a0ea6ac24',1,'ContactInfo']]],
-  ['mainwindow_2',['MainWindow',['../classMainWindow.html',1,'']]],
-  ['matchengine_3',['MatchEngine',['../classMatchEngine.html',1,'']]],
-  ['matchespagewidget_4',['MatchesPageWidget',['../classMatchesPageWidget.html',1,'']]]
+  ['lblage_0',['lblAge',['../classProfileCard.html#a5bf78f6a47a85ae3f59dca310da07ab5',1,'ProfileCard']]],
+  ['lblcity_1',['lblCity',['../classProfileCard.html#a05f933c0e1bd6316f7adf095ec7f3e99',1,'ProfileCard']]],
+  ['lblcompatibility_2',['lblCompatibility',['../classProfileCard.html#a46d93a0f2bfd794f9b33a00fadd8f29e',1,'ProfileCard']]],
+  ['lbldescription_3',['lblDescription',['../classProfileCard.html#aa9895fc04edc3914f5ce5c684cd09c19',1,'ProfileCard']]],
+  ['lblname_4',['lblName',['../classProfileCard.html#a26669de62d5ecfc6d53de5d2b4d34a1f',1,'ProfileCard']]],
+  ['lblphoto_5',['lblPhoto',['../classProfileCard.html#ab665be625383a9782f4b9f6ad3893589',1,'ProfileCard']]],
+  ['lbltags_6',['lblTags',['../classProfileCard.html#a4b7425633411dd9d171f4af20e5efa5c',1,'ProfileCard']]],
+  ['loadchathistory_7',['loadChatHistory',['../classDatabaseManager.html#a14ae2d784f7117f07ba338b4cc464cf1',1,'DatabaseManager']]],
+  ['loadcurrentprofile_8',['loadCurrentProfile',['../classProfilePageWidget.html#aba283373c2cd155d7b1a268c7fbab7c6',1,'ProfilePageWidget']]],
+  ['loadcurrentsettings_9',['loadCurrentSettings',['../classSettingsPageWidget.html#a04e6117882ddca1e2169d0bc4cee41e0',1,'SettingsPageWidget']]],
+  ['loadcurrentuserid_10',['loadCurrentUserId',['../classDatabaseManager.html#a5d352b1c3c66e5fd362894540822ece7',1,'DatabaseManager']]],
+  ['loadhistory_11',['loadHistory',['../classChatPageWidget.html#a9477c97c05c9df4dd12c5a96f71c96e9',1,'ChatPageWidget']]],
+  ['loadprofilebyemail_12',['loadProfileByEmail',['../classDatabaseManager.html#aba74d09f4893a1d39317bf43693c480b',1,'DatabaseManager']]],
+  ['loadprofilebyid_13',['loadProfileById',['../classDatabaseManager.html#a956a7b76414754b422afc507d5797e24',1,'DatabaseManager']]],
+  ['log_14',['log',['../classUserLogger.html#a0b46b7418171fa636af3700203b1ca52',1,'UserLogger']]],
+  ['logfile_15',['logFile',['../classUserLogger.html#a218caa226b96c0f4af1864a3747e4155',1,'UserLogger']]]
 ];

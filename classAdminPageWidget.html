@@ -100,12 +100,17 @@ $(document).ready(function(){initNavTree('classAdminPageWidget.html',''); initRe
   <div class="headertitle"><div class="title">AdminPageWidget Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Віджет Панелі Адміністратора.  
+ <a href="classAdminPageWidget.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="adminpagewidget_8h_source.html">adminpagewidget.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for AdminPageWidget:</div>
 <div class="dyncontent">
 <div class="center"><img src="classAdminPageWidget__inherit__graph.png" border="0" usemap="#aAdminPageWidget_inherit__map" alt="Inheritance graph"/></div>
 <map name="aAdminPageWidget_inherit__map" id="aAdminPageWidget_inherit__map">
-<area shape="rect" title=" " alt="" coords="5,79,147,104"/>
+<area shape="rect" title="Віджет Панелі Адміністратора." alt="" coords="5,79,147,104"/>
 <area shape="rect" title=" " alt="" coords="37,5,115,31"/>
 <area shape="poly" title=" " alt="" coords="79,44,79,79,73,79,73,44"/>
 </map>
@@ -115,10 +120,10 @@ Collaboration diagram for AdminPageWidget:</div>
 <div class="dyncontent">
 <div class="center"><img src="classAdminPageWidget__coll__graph.png" border="0" usemap="#aAdminPageWidget_coll__map" alt="Collaboration graph"/></div>
 <map name="aAdminPageWidget_coll__map" id="aAdminPageWidget_coll__map">
-<area shape="rect" title=" " alt="" coords="41,93,182,119"/>
+<area shape="rect" title="Віджет Панелі Адміністратора." alt="" coords="41,93,182,119"/>
 <area shape="rect" title=" " alt="" coords="5,5,84,31"/>
 <area shape="poly" title=" " alt="" coords="64,40,104,91,100,94,60,43"/>
-<area shape="rect" href="classDatabaseManager.html" title="Клас DatabaseManager." alt="" coords="109,5,250,31"/>
+<area shape="rect" href="classDatabaseManager.html" title="Головний клас для керування базою даних (Data Access Layer)." alt="" coords="109,5,250,31"/>
 <area shape="poly" title=" " alt="" coords="164,43,123,94,119,91,159,40"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
@@ -127,86 +132,352 @@ Collaboration diagram for AdminPageWidget:</div>
 Signals</h2></td></tr>
 <tr class="memitem:ab26a7383789472292fbf93bc274fce6b" id="r_ab26a7383789472292fbf93bc274fce6b"><td class="memItemLeft" align="right" valign="top"><a id="ab26a7383789472292fbf93bc274fce6b" name="ab26a7383789472292fbf93bc274fce6b"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>backClicked</b> ()</td></tr>
+<tr class="memdesc:ab26a7383789472292fbf93bc274fce6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Сигнал, що емітується при натисканні кнопки "Назад". Використовується для навігації (повернення до налаштувань або головного меню). <br /></td></tr>
 <tr class="separator:ab26a7383789472292fbf93bc274fce6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ae7b0ced4f67adb2e81ac2c93063a0195" id="r_ae7b0ced4f67adb2e81ac2c93063a0195"><td class="memItemLeft" align="right" valign="top"><a id="ae7b0ced4f67adb2e81ac2c93063a0195" name="ae7b0ced4f67adb2e81ac2c93063a0195"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>AdminPageWidget</b> (QWidget *parent=nullptr)</td></tr>
+<tr class="memitem:ae7b0ced4f67adb2e81ac2c93063a0195" id="r_ae7b0ced4f67adb2e81ac2c93063a0195"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAdminPageWidget.html#ae7b0ced4f67adb2e81ac2c93063a0195">AdminPageWidget</a> (QWidget *parent=nullptr)</td></tr>
+<tr class="memdesc:ae7b0ced4f67adb2e81ac2c93063a0195"><td class="mdescLeft">&#160;</td><td class="mdescRight">Конструктор <a class="el" href="classAdminPageWidget.html" title="Віджет Панелі Адміністратора.">AdminPageWidget</a>.  <br /></td></tr>
 <tr class="separator:ae7b0ced4f67adb2e81ac2c93063a0195"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab12d5e6c42cc1ae1dabaf4666245bc7f" id="r_ab12d5e6c42cc1ae1dabaf4666245bc7f"><td class="memItemLeft" align="right" valign="top"><a id="ab12d5e6c42cc1ae1dabaf4666245bc7f" name="ab12d5e6c42cc1ae1dabaf4666245bc7f"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setDatabaseManager</b> (<a class="el" href="classDatabaseManager.html">DatabaseManager</a> *dbManager)</td></tr>
+<tr class="memitem:ab12d5e6c42cc1ae1dabaf4666245bc7f" id="r_ab12d5e6c42cc1ae1dabaf4666245bc7f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAdminPageWidget.html#ab12d5e6c42cc1ae1dabaf4666245bc7f">setDatabaseManager</a> (<a class="el" href="classDatabaseManager.html">DatabaseManager</a> *dbManager)</td></tr>
+<tr class="memdesc:ab12d5e6c42cc1ae1dabaf4666245bc7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ініціалізує менеджер бази даних та налаштовує моделі таблиці.  <br /></td></tr>
 <tr class="separator:ab12d5e6c42cc1ae1dabaf4666245bc7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae90298e677debbe3ea7a15e23d3a70c8" id="r_ae90298e677debbe3ea7a15e23d3a70c8"><td class="memItemLeft" align="right" valign="top"><a id="ae90298e677debbe3ea7a15e23d3a70c8" name="ae90298e677debbe3ea7a15e23d3a70c8"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>refreshTable</b> ()</td></tr>
+<tr class="memitem:ae90298e677debbe3ea7a15e23d3a70c8" id="r_ae90298e677debbe3ea7a15e23d3a70c8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAdminPageWidget.html#ae90298e677debbe3ea7a15e23d3a70c8">refreshTable</a> ()</td></tr>
+<tr class="memdesc:ae90298e677debbe3ea7a15e23d3a70c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Оновлює дані в таблиці.  <br /></td></tr>
 <tr class="separator:ae90298e677debbe3ea7a15e23d3a70c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:ac7c4e7c7fbf997bffc123552ffa44401" id="r_ac7c4e7c7fbf997bffc123552ffa44401"><td class="memItemLeft" align="right" valign="top"><a id="ac7c4e7c7fbf997bffc123552ffa44401" name="ac7c4e7c7fbf997bffc123552ffa44401"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>changeEvent</b> (QEvent *event) override</td></tr>
+<tr class="memitem:ac7c4e7c7fbf997bffc123552ffa44401" id="r_ac7c4e7c7fbf997bffc123552ffa44401"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAdminPageWidget.html#ac7c4e7c7fbf997bffc123552ffa44401">changeEvent</a> (QEvent *event) override</td></tr>
+<tr class="memdesc:ac7c4e7c7fbf997bffc123552ffa44401"><td class="mdescLeft">&#160;</td><td class="mdescRight">Обробник подій зміни стану віджета.  <br /></td></tr>
 <tr class="separator:ac7c4e7c7fbf997bffc123552ffa44401"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-slots" name="pri-slots"></a>
 Private Slots</h2></td></tr>
-<tr class="memitem:a831b53de78ef6cf9d6977893bb2abcce" id="r_a831b53de78ef6cf9d6977893bb2abcce"><td class="memItemLeft" align="right" valign="top"><a id="a831b53de78ef6cf9d6977893bb2abcce" name="a831b53de78ef6cf9d6977893bb2abcce"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>onDeleteClicked</b> ()</td></tr>
+<tr class="memitem:a831b53de78ef6cf9d6977893bb2abcce" id="r_a831b53de78ef6cf9d6977893bb2abcce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAdminPageWidget.html#a831b53de78ef6cf9d6977893bb2abcce">onDeleteClicked</a> ()</td></tr>
+<tr class="memdesc:a831b53de78ef6cf9d6977893bb2abcce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Слот видалення обраного користувача.  <br /></td></tr>
 <tr class="separator:a831b53de78ef6cf9d6977893bb2abcce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a21ea0d7d775ae13f8cb148c9b65ecaae" id="r_a21ea0d7d775ae13f8cb148c9b65ecaae"><td class="memItemLeft" align="right" valign="top"><a id="a21ea0d7d775ae13f8cb148c9b65ecaae" name="a21ea0d7d775ae13f8cb148c9b65ecaae"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>onGenerateClicked</b> ()</td></tr>
+<tr class="memitem:a21ea0d7d775ae13f8cb148c9b65ecaae" id="r_a21ea0d7d775ae13f8cb148c9b65ecaae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAdminPageWidget.html#a21ea0d7d775ae13f8cb148c9b65ecaae">onGenerateClicked</a> ()</td></tr>
+<tr class="memdesc:a21ea0d7d775ae13f8cb148c9b65ecaae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Слот генерації тестових даних.  <br /></td></tr>
 <tr class="separator:a21ea0d7d775ae13f8cb148c9b65ecaae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a51fb31564564708c440eeea432a5d00d" id="r_a51fb31564564708c440eeea432a5d00d"><td class="memItemLeft" align="right" valign="top"><a id="a51fb31564564708c440eeea432a5d00d" name="a51fb31564564708c440eeea432a5d00d"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>onCustomContextMenu</b> (const QPoint &amp;pos)</td></tr>
+<tr class="memitem:a51fb31564564708c440eeea432a5d00d" id="r_a51fb31564564708c440eeea432a5d00d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAdminPageWidget.html#a51fb31564564708c440eeea432a5d00d">onCustomContextMenu</a> (const QPoint &amp;pos)</td></tr>
+<tr class="memdesc:a51fb31564564708c440eeea432a5d00d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Виклик контекстного меню таблиці (правий клік).  <br /></td></tr>
 <tr class="separator:a51fb31564564708c440eeea432a5d00d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad46781efd846ab635f75f32099ffeebe" id="r_ad46781efd846ab635f75f32099ffeebe"><td class="memItemLeft" align="right" valign="top"><a id="ad46781efd846ab635f75f32099ffeebe" name="ad46781efd846ab635f75f32099ffeebe"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>onStatsClicked</b> ()</td></tr>
+<tr class="memdesc:ad46781efd846ab635f75f32099ffeebe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Відкриває діалогове вікно статистики. <br /></td></tr>
 <tr class="separator:ad46781efd846ab635f75f32099ffeebe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
-<tr class="memitem:ab7ecb7475371100c19c73f3fb3259c7c" id="r_ab7ecb7475371100c19c73f3fb3259c7c"><td class="memItemLeft" align="right" valign="top"><a id="ab7ecb7475371100c19c73f3fb3259c7c" name="ab7ecb7475371100c19c73f3fb3259c7c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>toggleHiddenStatus</b> (int row)</td></tr>
+<tr class="memitem:ab7ecb7475371100c19c73f3fb3259c7c" id="r_ab7ecb7475371100c19c73f3fb3259c7c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAdminPageWidget.html#ab7ecb7475371100c19c73f3fb3259c7c">toggleHiddenStatus</a> (int row)</td></tr>
+<tr class="memdesc:ab7ecb7475371100c19c73f3fb3259c7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Перемикає статус видимості профілю (is_hidden).  <br /></td></tr>
 <tr class="separator:ab7ecb7475371100c19c73f3fb3259c7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a00ae5187ccd1188bbbfb94ad6c915f01" id="r_a00ae5187ccd1188bbbfb94ad6c915f01"><td class="memItemLeft" align="right" valign="top"><a id="a00ae5187ccd1188bbbfb94ad6c915f01" name="a00ae5187ccd1188bbbfb94ad6c915f01"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>retranslateUi</b> ()</td></tr>
+<tr class="memdesc:a00ae5187ccd1188bbbfb94ad6c915f01"><td class="mdescLeft">&#160;</td><td class="mdescRight">Оновлює тексти інтерфейсу при зміні мови. <br /></td></tr>
 <tr class="separator:a00ae5187ccd1188bbbfb94ad6c915f01"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:ac39e47bf8fd3fdc855378aa62e3af892" id="r_ac39e47bf8fd3fdc855378aa62e3af892"><td class="memItemLeft" align="right" valign="top"><a id="ac39e47bf8fd3fdc855378aa62e3af892" name="ac39e47bf8fd3fdc855378aa62e3af892"></a>
 <a class="el" href="classDatabaseManager.html">DatabaseManager</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>m_dbManager</b></td></tr>
+<tr class="memdesc:ac39e47bf8fd3fdc855378aa62e3af892"><td class="mdescLeft">&#160;</td><td class="mdescRight">Посилання на бекенд бази даних. <br /></td></tr>
 <tr class="separator:ac39e47bf8fd3fdc855378aa62e3af892"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adc600df608cca11eaaf5675e94fd27c8" id="r_adc600df608cca11eaaf5675e94fd27c8"><td class="memItemLeft" align="right" valign="top"><a id="adc600df608cca11eaaf5675e94fd27c8" name="adc600df608cca11eaaf5675e94fd27c8"></a>
 QTableView *&#160;</td><td class="memItemRight" valign="bottom"><b>m_tableView</b></td></tr>
+<tr class="memdesc:adc600df608cca11eaaf5675e94fd27c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Таблиця для відображення даних. <br /></td></tr>
 <tr class="separator:adc600df608cca11eaaf5675e94fd27c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6837e83255e17fa4dbcab900f4f4db7e" id="r_a6837e83255e17fa4dbcab900f4f4db7e"><td class="memItemLeft" align="right" valign="top"><a id="a6837e83255e17fa4dbcab900f4f4db7e" name="a6837e83255e17fa4dbcab900f4f4db7e"></a>
 QSqlTableModel *&#160;</td><td class="memItemRight" valign="bottom"><b>m_model</b></td></tr>
+<tr class="memdesc:a6837e83255e17fa4dbcab900f4f4db7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">SQL модель для прямого доступу до таблиці 'users'. <br /></td></tr>
 <tr class="separator:a6837e83255e17fa4dbcab900f4f4db7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a946a38c8cf8b4e8e1c872c67ab918596" id="r_a946a38c8cf8b4e8e1c872c67ab918596"><td class="memItemLeft" align="right" valign="top"><a id="a946a38c8cf8b4e8e1c872c67ab918596" name="a946a38c8cf8b4e8e1c872c67ab918596"></a>
 QSortFilterProxyModel *&#160;</td><td class="memItemRight" valign="bottom"><b>m_proxyModel</b></td></tr>
+<tr class="memdesc:a946a38c8cf8b4e8e1c872c67ab918596"><td class="mdescLeft">&#160;</td><td class="mdescRight">Проксі-модель для фільтрації та сортування даних. <br /></td></tr>
 <tr class="separator:a946a38c8cf8b4e8e1c872c67ab918596"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af3e6bff27270d6ae9e35f8acf4d58ea7" id="r_af3e6bff27270d6ae9e35f8acf4d58ea7"><td class="memItemLeft" align="right" valign="top"><a id="af3e6bff27270d6ae9e35f8acf4d58ea7" name="af3e6bff27270d6ae9e35f8acf4d58ea7"></a>
 QPushButton *&#160;</td><td class="memItemRight" valign="bottom"><b>m_btnDelete</b></td></tr>
+<tr class="memdesc:af3e6bff27270d6ae9e35f8acf4d58ea7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Кнопка видалення. <br /></td></tr>
 <tr class="separator:af3e6bff27270d6ae9e35f8acf4d58ea7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0f8d216a29b06f57e30726c79d3abd79" id="r_a0f8d216a29b06f57e30726c79d3abd79"><td class="memItemLeft" align="right" valign="top"><a id="a0f8d216a29b06f57e30726c79d3abd79" name="a0f8d216a29b06f57e30726c79d3abd79"></a>
 QPushButton *&#160;</td><td class="memItemRight" valign="bottom"><b>m_btnGenerate</b></td></tr>
+<tr class="memdesc:a0f8d216a29b06f57e30726c79d3abd79"><td class="mdescLeft">&#160;</td><td class="mdescRight">Кнопка генерації фейків. <br /></td></tr>
 <tr class="separator:a0f8d216a29b06f57e30726c79d3abd79"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af86b22065439c6f19fd2d9a989ad79c7" id="r_af86b22065439c6f19fd2d9a989ad79c7"><td class="memItemLeft" align="right" valign="top"><a id="af86b22065439c6f19fd2d9a989ad79c7" name="af86b22065439c6f19fd2d9a989ad79c7"></a>
 QPushButton *&#160;</td><td class="memItemRight" valign="bottom"><b>m_btnBack</b></td></tr>
+<tr class="memdesc:af86b22065439c6f19fd2d9a989ad79c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Кнопка навігації назад. <br /></td></tr>
 <tr class="separator:af86b22065439c6f19fd2d9a989ad79c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1dc6fd047a2d725ec92e18e98316672d" id="r_a1dc6fd047a2d725ec92e18e98316672d"><td class="memItemLeft" align="right" valign="top"><a id="a1dc6fd047a2d725ec92e18e98316672d" name="a1dc6fd047a2d725ec92e18e98316672d"></a>
 QLineEdit *&#160;</td><td class="memItemRight" valign="bottom"><b>m_searchField</b></td></tr>
+<tr class="memdesc:a1dc6fd047a2d725ec92e18e98316672d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Поле вводу для пошуку/фільтрації. <br /></td></tr>
 <tr class="separator:a1dc6fd047a2d725ec92e18e98316672d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1e58637a1a96f1e1105beaf5dc7bdcfe" id="r_a1e58637a1a96f1e1105beaf5dc7bdcfe"><td class="memItemLeft" align="right" valign="top"><a id="a1e58637a1a96f1e1105beaf5dc7bdcfe" name="a1e58637a1a96f1e1105beaf5dc7bdcfe"></a>
 QPushButton *&#160;</td><td class="memItemRight" valign="bottom"><b>m_btnStats</b></td></tr>
+<tr class="memdesc:a1e58637a1a96f1e1105beaf5dc7bdcfe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Кнопка відкриття статистики. <br /></td></tr>
 <tr class="separator:a1e58637a1a96f1e1105beaf5dc7bdcfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1b171aeea41189e0a89d51f4f4241082" id="r_a1b171aeea41189e0a89d51f4f4241082"><td class="memItemLeft" align="right" valign="top"><a id="a1b171aeea41189e0a89d51f4f4241082" name="a1b171aeea41189e0a89d51f4f4241082"></a>
 QLabel *&#160;</td><td class="memItemRight" valign="bottom"><b>m_titleLabel</b></td></tr>
+<tr class="memdesc:a1b171aeea41189e0a89d51f4f4241082"><td class="mdescLeft">&#160;</td><td class="mdescRight">Заголовок сторінки. <br /></td></tr>
 <tr class="separator:a1b171aeea41189e0a89d51f4f4241082"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a589a57d67494cd809a37bc313c5f78b6" id="r_a589a57d67494cd809a37bc313c5f78b6"><td class="memItemLeft" align="right" valign="top"><a id="a589a57d67494cd809a37bc313c5f78b6" name="a589a57d67494cd809a37bc313c5f78b6"></a>
 QLabel *&#160;</td><td class="memItemRight" valign="bottom"><b>m_searchIconLabel</b></td></tr>
+<tr class="memdesc:a589a57d67494cd809a37bc313c5f78b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Іконка пошуку. <br /></td></tr>
 <tr class="separator:a589a57d67494cd809a37bc313c5f78b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Віджет Панелі Адміністратора. </p>
+<p>Цей клас надає інтерфейс для управління базою даних користувачів. Основні можливості:</p><ul>
+<li>Перегляд усіх користувачів у вигляді таблиці (QTableView).</li>
+<li>Сортування та фільтрація (пошук) користувачів за ім'ям або містом.</li>
+<li>Видалення обраних акаунтів.</li>
+<li>Генерація фейкових користувачів для тестування (через <a class="el" href="classFakeDataManager.html" title="Клас-утиліта для генерації фейкових (тестових) даних.">FakeDataManager</a>).</li>
+<li>Перегляд статистики (гендерний розподіл, вік, міста).</li>
+<li>Приховування/відображення профілів через контекстне меню. </li>
+</ul>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="ae7b0ced4f67adb2e81ac2c93063a0195" name="ae7b0ced4f67adb2e81ac2c93063a0195"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7b0ced4f67adb2e81ac2c93063a0195">&#9670;&#160;</a></span>AdminPageWidget()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">AdminPageWidget::AdminPageWidget </td>
+          <td>(</td>
+          <td class="paramtype">QWidget *&#160;</td>
+          <td class="paramname"><em>parent</em> = <code>nullptr</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Конструктор <a class="el" href="classAdminPageWidget.html" title="Віджет Панелі Адміністратора.">AdminPageWidget</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">parent</td><td>Батьківський віджет (зазвичай <a class="el" href="classMainWindow.html" title="Головне вікно додатку Match++.">MainWindow</a>). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="ac7c4e7c7fbf997bffc123552ffa44401" name="ac7c4e7c7fbf997bffc123552ffa44401"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac7c4e7c7fbf997bffc123552ffa44401">&#9670;&#160;</a></span>changeEvent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AdminPageWidget::changeEvent </td>
+          <td>(</td>
+          <td class="paramtype">QEvent *&#160;</td>
+          <td class="paramname"><em>event</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Обробник подій зміни стану віджета. </p>
+<p>Перевизначений для підтримки динамічної зміни мови (QEvent::LanguageChange). Викликає <a class="el" href="classAdminPageWidget.html#a00ae5187ccd1188bbbfb94ad6c915f01" title="Оновлює тексти інтерфейсу при зміні мови.">retranslateUi()</a> при зміні мови додатку.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">event</td><td>Подія, що сталася. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a51fb31564564708c440eeea432a5d00d" name="a51fb31564564708c440eeea432a5d00d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a51fb31564564708c440eeea432a5d00d">&#9670;&#160;</a></span>onCustomContextMenu</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AdminPageWidget::onCustomContextMenu </td>
+          <td>(</td>
+          <td class="paramtype">const QPoint &amp;&#160;</td>
+          <td class="paramname"><em>pos</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Виклик контекстного меню таблиці (правий клік). </p>
+<p>Дозволяє виконати дії над конкретним рядком, наприклад, "Приховати/Показати" профіль. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pos</td><td>Позиція курсора миші. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a831b53de78ef6cf9d6977893bb2abcce" name="a831b53de78ef6cf9d6977893bb2abcce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a831b53de78ef6cf9d6977893bb2abcce">&#9670;&#160;</a></span>onDeleteClicked</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AdminPageWidget::onDeleteClicked </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Слот видалення обраного користувача. </p>
+<p>Викликається при натисканні кнопки "Delete". Видаляє виділений рядок з бази даних після підтвердження у діалоговому вікні. </p>
+
+</div>
+</div>
+<a id="a21ea0d7d775ae13f8cb148c9b65ecaae" name="a21ea0d7d775ae13f8cb148c9b65ecaae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a21ea0d7d775ae13f8cb148c9b65ecaae">&#9670;&#160;</a></span>onGenerateClicked</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AdminPageWidget::onGenerateClicked </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Слот генерації тестових даних. </p>
+<p>Викликає <a class="el" href="classFakeDataManager.html" title="Клас-утиліта для генерації фейкових (тестових) даних.">FakeDataManager</a> для створення нових випадкових профілів та оновлює таблицю. </p>
+
+</div>
+</div>
+<a id="ae90298e677debbe3ea7a15e23d3a70c8" name="ae90298e677debbe3ea7a15e23d3a70c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae90298e677debbe3ea7a15e23d3a70c8">&#9670;&#160;</a></span>refreshTable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AdminPageWidget::refreshTable </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Оновлює дані в таблиці. </p>
+<p>Виконує повторний запит до бази даних (select()) для відображення актуальної інформації (наприклад, після генерації нових користувачів). </p>
+
+</div>
+</div>
+<a id="ab12d5e6c42cc1ae1dabaf4666245bc7f" name="ab12d5e6c42cc1ae1dabaf4666245bc7f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab12d5e6c42cc1ae1dabaf4666245bc7f">&#9670;&#160;</a></span>setDatabaseManager()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AdminPageWidget::setDatabaseManager </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classDatabaseManager.html">DatabaseManager</a> *&#160;</td>
+          <td class="paramname"><em>dbManager</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Ініціалізує менеджер бази даних та налаштовує моделі таблиці. </p>
+<p>Метод створює QSqlTableModel, прив'язує його до таблиці користувачів та налаштовує QSortFilterProxyModel для можливості пошуку/фільтрації.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dbManager</td><td>Вказівник на менеджер бази даних. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab7ecb7475371100c19c73f3fb3259c7c" name="ab7ecb7475371100c19c73f3fb3259c7c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab7ecb7475371100c19c73f3fb3259c7c">&#9670;&#160;</a></span>toggleHiddenStatus()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AdminPageWidget::toggleHiddenStatus </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>row</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Перемикає статус видимості профілю (is_hidden). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">row</td><td>Номер рядка в проксі-моделі, для якого змінюється статус. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>gui/<a class="el" href="adminpagewidget_8h_source.html">adminpagewidget.h</a></li>
 <li>gui/<b>adminpagewidget.cpp</b></li>

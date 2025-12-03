@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['initialized_0',['initialized',['../classUserLogger.html#a15057eef47619c83fa8a9e2e91342cf5',1,'UserLogger']]]
+  ['botreplies_0',['botReplies',['../classChatManager.html#a24ec191c4bd5c97dbd3b4cd3db96c022',1,'ChatManager']]]
 ];

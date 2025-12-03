@@ -96,12 +96,17 @@ $(document).ready(function(){initNavTree('classChatManager.html',''); initResiza
   <div class="headertitle"><div class="title">ChatManager Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Менеджер чатів та повідомлень.  
+ <a href="classChatManager.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="ChatManager_8h_source.html">ChatManager.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for ChatManager:</div>
 <div class="dyncontent">
 <div class="center"><img src="classChatManager__inherit__graph.png" border="0" usemap="#aChatManager_inherit__map" alt="Inheritance graph"/></div>
 <map name="aChatManager_inherit__map" id="aChatManager_inherit__map">
-<area shape="rect" title=" " alt="" coords="5,79,115,104"/>
+<area shape="rect" title="Менеджер чатів та повідомлень." alt="" coords="5,79,115,104"/>
 <area shape="rect" title=" " alt="" coords="23,5,97,31"/>
 <area shape="poly" title=" " alt="" coords="63,44,63,79,57,79,57,44"/>
 </map>
@@ -111,38 +116,201 @@ Collaboration diagram for ChatManager:</div>
 <div class="dyncontent">
 <div class="center"><img src="classChatManager__coll__graph.png" border="0" usemap="#aChatManager_coll__map" alt="Collaboration graph"/></div>
 <map name="aChatManager_coll__map" id="aChatManager_coll__map">
-<area shape="rect" title=" " alt="" coords="53,93,163,119"/>
+<area shape="rect" title="Менеджер чатів та повідомлень." alt="" coords="53,93,163,119"/>
 <area shape="rect" title=" " alt="" coords="5,5,80,31"/>
 <area shape="poly" title=" " alt="" coords="62,40,101,91,97,94,58,43"/>
-<area shape="rect" href="classDatabaseManager.html" title="Клас DatabaseManager." alt="" coords="104,5,245,31"/>
+<area shape="rect" href="classDatabaseManager.html" title="Головний клас для керування базою даних (Data Access Layer)." alt="" coords="104,5,245,31"/>
 <area shape="poly" title=" " alt="" coords="159,43,119,94,115,91,155,40"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ae594cdaf53e5892aacb407748d13c667" id="r_ae594cdaf53e5892aacb407748d13c667"><td class="memItemLeft" align="right" valign="top"><a id="ae594cdaf53e5892aacb407748d13c667" name="ae594cdaf53e5892aacb407748d13c667"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>ChatManager</b> (<a class="el" href="classDatabaseManager.html">DatabaseManager</a> *dbManager, QObject *parent=nullptr)</td></tr>
+<tr class="memitem:ae594cdaf53e5892aacb407748d13c667" id="r_ae594cdaf53e5892aacb407748d13c667"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classChatManager.html#ae594cdaf53e5892aacb407748d13c667">ChatManager</a> (<a class="el" href="classDatabaseManager.html">DatabaseManager</a> *dbManager, QObject *parent=nullptr)</td></tr>
+<tr class="memdesc:ae594cdaf53e5892aacb407748d13c667"><td class="mdescLeft">&#160;</td><td class="mdescRight">Конструктор <a class="el" href="classChatManager.html" title="Менеджер чатів та повідомлень.">ChatManager</a>.  <br /></td></tr>
 <tr class="separator:ae594cdaf53e5892aacb407748d13c667"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab113111974ec6a04106cfe0e30dfd74c" id="r_ab113111974ec6a04106cfe0e30dfd74c"><td class="memItemLeft" align="right" valign="top"><a id="ab113111974ec6a04106cfe0e30dfd74c" name="ab113111974ec6a04106cfe0e30dfd74c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>sendMessage</b> (int fromUserId, int toUserId, const QString &amp;message)</td></tr>
+<tr class="memitem:ab113111974ec6a04106cfe0e30dfd74c" id="r_ab113111974ec6a04106cfe0e30dfd74c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classChatManager.html#ab113111974ec6a04106cfe0e30dfd74c">sendMessage</a> (int fromUserId, int toUserId, const QString &amp;message)</td></tr>
+<tr class="memdesc:ab113111974ec6a04106cfe0e30dfd74c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Надсилає повідомлення від одного користувача іншому.  <br /></td></tr>
 <tr class="separator:ab113111974ec6a04106cfe0e30dfd74c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a11e38e702d0ef90cc099df4e859b3842" id="r_a11e38e702d0ef90cc099df4e859b3842"><td class="memItemLeft" align="right" valign="top"><a id="a11e38e702d0ef90cc099df4e859b3842" name="a11e38e702d0ef90cc099df4e859b3842"></a>
-QList&lt; <a class="el" href="structChatMessage.html">ChatMessage</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getMessages</b> (int userId, int targetId) const</td></tr>
+<tr class="memitem:a11e38e702d0ef90cc099df4e859b3842" id="r_a11e38e702d0ef90cc099df4e859b3842"><td class="memItemLeft" align="right" valign="top">QList&lt; <a class="el" href="structChatMessage.html">ChatMessage</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classChatManager.html#a11e38e702d0ef90cc099df4e859b3842">getMessages</a> (int userId, int targetId) const</td></tr>
+<tr class="memdesc:a11e38e702d0ef90cc099df4e859b3842"><td class="mdescLeft">&#160;</td><td class="mdescRight">Отримує історію повідомлень між двома користувачами.  <br /></td></tr>
 <tr class="separator:a11e38e702d0ef90cc099df4e859b3842"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a80fb25bc149b24a785a1454ffbba5600" id="r_a80fb25bc149b24a785a1454ffbba5600"><td class="memItemLeft" align="right" valign="top"><a id="a80fb25bc149b24a785a1454ffbba5600" name="a80fb25bc149b24a785a1454ffbba5600"></a>
-QString&#160;</td><td class="memItemRight" valign="bottom"><b>getBotReply</b> () const</td></tr>
+<tr class="memitem:a80fb25bc149b24a785a1454ffbba5600" id="r_a80fb25bc149b24a785a1454ffbba5600"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classChatManager.html#a80fb25bc149b24a785a1454ffbba5600">getBotReply</a> () const</td></tr>
+<tr class="memdesc:a80fb25bc149b24a785a1454ffbba5600"><td class="mdescLeft">&#160;</td><td class="mdescRight">Генерує випадкову відповідь від бота.  <br /></td></tr>
 <tr class="separator:a80fb25bc149b24a785a1454ffbba5600"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a24ec191c4bd5c97dbd3b4cd3db96c022" id="r_a24ec191c4bd5c97dbd3b4cd3db96c022"><td class="memItemLeft" align="right" valign="top"><a id="a24ec191c4bd5c97dbd3b4cd3db96c022" name="a24ec191c4bd5c97dbd3b4cd3db96c022"></a>
 QList&lt; QString &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>botReplies</b></td></tr>
+<tr class="memdesc:a24ec191c4bd5c97dbd3b4cd3db96c022"><td class="mdescLeft">&#160;</td><td class="mdescRight">Список заготовлених фраз для автоматичних відповідей. <br /></td></tr>
 <tr class="separator:a24ec191c4bd5c97dbd3b4cd3db96c022"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adc3af4c34166316e7341156aeebf00e4" id="r_adc3af4c34166316e7341156aeebf00e4"><td class="memItemLeft" align="right" valign="top"><a id="adc3af4c34166316e7341156aeebf00e4" name="adc3af4c34166316e7341156aeebf00e4"></a>
 <a class="el" href="classDatabaseManager.html">DatabaseManager</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>m_dbManager</b></td></tr>
+<tr class="memdesc:adc3af4c34166316e7341156aeebf00e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Посилання на базу даних для збереження історії. <br /></td></tr>
 <tr class="separator:adc3af4c34166316e7341156aeebf00e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Менеджер чатів та повідомлень. </p>
+<p>Цей клас відповідає за логіку обміну повідомленнями між користувачами. Він виступає прошарком між інтерфейсом чату (<a class="el" href="classChatPageWidget.html" title="Віджет сторінки чату (діалогу).">ChatPageWidget</a>) та базою даних.</p>
+<p>Основні функції:</p><ul>
+<li>Надсилання та збереження нових повідомлень.</li>
+<li>Завантаження історії листування для конкретної пари користувачів.</li>
+<li>Генерація автоматичних відповідей від "бота" (для симуляції спілкування з фейковими акаунтами). </li>
+</ul>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="ae594cdaf53e5892aacb407748d13c667" name="ae594cdaf53e5892aacb407748d13c667"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae594cdaf53e5892aacb407748d13c667">&#9670;&#160;</a></span>ChatManager()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ChatManager::ChatManager </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classDatabaseManager.html">DatabaseManager</a> *&#160;</td>
+          <td class="paramname"><em>dbManager</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QObject *&#160;</td>
+          <td class="paramname"><em>parent</em> = <code>nullptr</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Конструктор <a class="el" href="classChatManager.html" title="Менеджер чатів та повідомлень.">ChatManager</a>. </p>
+<p>Ініціалізує менеджер та завантажує список заготовок для відповідей бота.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dbManager</td><td>Вказівник на менеджер бази даних (для збереження/завантаження історії). </td></tr>
+    <tr><td class="paramname">parent</td><td>Батьківський об'єкт QObject (зазвичай <a class="el" href="classMainWindow.html" title="Головне вікно додатку Match++.">MainWindow</a> або nullptr). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a80fb25bc149b24a785a1454ffbba5600" name="a80fb25bc149b24a785a1454ffbba5600"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a80fb25bc149b24a785a1454ffbba5600">&#9670;&#160;</a></span>getBotReply()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString ChatManager::getBotReply </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Генерує випадкову відповідь від бота. </p>
+<p>Використовується, коли користувач пише повідомлення фейковому акаунту. Обирає випадкову фразу із заздалегідь підготовленого списку botReplies.</p>
+<dl class="section return"><dt>Returns</dt><dd>QString Текст відповіді. </dd></dl>
+
+</div>
+</div>
+<a id="a11e38e702d0ef90cc099df4e859b3842" name="a11e38e702d0ef90cc099df4e859b3842"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a11e38e702d0ef90cc099df4e859b3842">&#9670;&#160;</a></span>getMessages()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QList&lt; <a class="el" href="structChatMessage.html">ChatMessage</a> &gt; ChatManager::getMessages </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>userId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>targetId</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Отримує історію повідомлень між двома користувачами. </p>
+<p>Завантажує з бази даних усі повідомлення, де один користувач є відправником, а інший - отримувачем (і навпаки), відсортовані за часом.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">userId</td><td>ID першого користувача (зазвичай, поточний користувач). </td></tr>
+    <tr><td class="paramname">targetId</td><td>ID другого користувача (співрозмовник). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>QList&lt;ChatMessage&gt; Список повідомлень у хронологічному порядку. </dd></dl>
+
+</div>
+</div>
+<a id="ab113111974ec6a04106cfe0e30dfd74c" name="ab113111974ec6a04106cfe0e30dfd74c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab113111974ec6a04106cfe0e30dfd74c">&#9670;&#160;</a></span>sendMessage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ChatManager::sendMessage </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>fromUserId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>toUserId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>message</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Надсилає повідомлення від одного користувача іншому. </p>
+<p>Створює об'єкт <a class="el" href="structChatMessage.html" title="Структура для представлення одного повідомлення в чаті.">ChatMessage</a> з поточним часом та зберігає його в базі даних через <a class="el" href="classDatabaseManager.html#aaabdfef39bdef87373306e636c5bf3b9" title="Зберігає нове повідомлення в таблиці chat_messages.">DatabaseManager::saveChatMessage</a>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fromUserId</td><td>ID відправника. </td></tr>
+    <tr><td class="paramname">toUserId</td><td>ID отримувача. </td></tr>
+    <tr><td class="paramname">message</td><td>Текст повідомлення. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>models/<a class="el" href="ChatManager_8h_source.html">ChatManager.h</a></li>
 <li>models/<b>ChatManager.cpp</b></li>

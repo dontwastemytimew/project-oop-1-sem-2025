@@ -96,7 +96,7 @@ $(document).ready(function(){initNavTree('structChatMessage.html',''); initResiz
 </div><!--header-->
 <div class="contents">
 
-<p>Структура для зберігання повідомлення чату.  
+<p>Структура для представлення одного повідомлення в чаті.  
  <a href="structChatMessage.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="ChatStructures_8h_source.html">ChatStructures.h</a>&gt;</code></p>
@@ -105,19 +105,24 @@ $(document).ready(function(){initNavTree('structChatMessage.html',''); initResiz
 Public Attributes</h2></td></tr>
 <tr class="memitem:a55e40117a4aace68d1570b7c06f3262f" id="r_a55e40117a4aace68d1570b7c06f3262f"><td class="memItemLeft" align="right" valign="top"><a id="a55e40117a4aace68d1570b7c06f3262f" name="a55e40117a4aace68d1570b7c06f3262f"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>fromUserId</b></td></tr>
+<tr class="memdesc:a55e40117a4aace68d1570b7c06f3262f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Унікальний ідентифікатор користувача-відправника. Якщо це повідомлення від "Я", то цей ID співпадає з поточним користувачем. <br /></td></tr>
 <tr class="separator:a55e40117a4aace68d1570b7c06f3262f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8380f54bca6860db0edea3505e8f89f6" id="r_a8380f54bca6860db0edea3505e8f89f6"><td class="memItemLeft" align="right" valign="top"><a id="a8380f54bca6860db0edea3505e8f89f6" name="a8380f54bca6860db0edea3505e8f89f6"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>toUserId</b></td></tr>
+<tr class="memdesc:a8380f54bca6860db0edea3505e8f89f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Унікальний ідентифікатор користувача-отримувача. <br /></td></tr>
 <tr class="separator:a8380f54bca6860db0edea3505e8f89f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a24535a0c4055532a3db3596f4ce36052" id="r_a24535a0c4055532a3db3596f4ce36052"><td class="memItemLeft" align="right" valign="top"><a id="a24535a0c4055532a3db3596f4ce36052" name="a24535a0c4055532a3db3596f4ce36052"></a>
 QString&#160;</td><td class="memItemRight" valign="bottom"><b>message</b></td></tr>
+<tr class="memdesc:a24535a0c4055532a3db3596f4ce36052"><td class="mdescLeft">&#160;</td><td class="mdescRight">Текстовий вміст повідомлення. Підтримує Unicode (включно з емодзі, кирилицею тощо). <br /></td></tr>
 <tr class="separator:a24535a0c4055532a3db3596f4ce36052"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0c0c90c6f8737ec2e08f0999eab29a5d" id="r_a0c0c90c6f8737ec2e08f0999eab29a5d"><td class="memItemLeft" align="right" valign="top"><a id="a0c0c90c6f8737ec2e08f0999eab29a5d" name="a0c0c90c6f8737ec2e08f0999eab29a5d"></a>
 QDateTime&#160;</td><td class="memItemRight" valign="bottom"><b>timestamp</b></td></tr>
+<tr class="memdesc:a0c0c90c6f8737ec2e08f0999eab29a5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Точна дата та час відправлення повідомлення. Використовується для сортування історії та відображення часу в інтерфейсі. <br /></td></tr>
 <tr class="separator:a0c0c90c6f8737ec2e08f0999eab29a5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Структура для зберігання повідомлення чату. </p>
+<div class="textblock"><p>Структура для представлення одного повідомлення в чаті. </p>
+<p>Ця структура використовується як DTO (Data Transfer Object) для передачі даних повідомлення між базою даних, логікою (<a class="el" href="classChatManager.html" title="Менеджер чатів та повідомлень.">ChatManager</a>) та інтерфейсом (<a class="el" href="classChatPageWidget.html" title="Віджет сторінки чату (діалогу).">ChatPageWidget</a>). Вона містить всю необхідну інформацію для відображення одного "бабла" в історії листування. </p>
 </div><hr/>The documentation for this struct was generated from the following file:<ul>
 <li>models/<a class="el" href="ChatStructures_8h_source.html">ChatStructures.h</a></li>
 </ul>

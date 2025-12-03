@@ -1,7 +1,7 @@
 <map id="UserProfile" name="UserProfile">
-<area shape="rect" id="Node000001" title="Клас UserProfile." alt="" coords="71,93,165,119"/>
-<area shape="rect" id="Node000002" href="$classContactInfo.html" title="Клас ContactInfo." alt="" coords="5,5,103,31"/>
+<area shape="rect" id="Node000001" title="Основна модель даних профілю користувача." alt="" coords="71,93,165,119"/>
+<area shape="rect" id="Node000002" href="$classContactInfo.html" title="Клас для зберігання контактної інформації користувача." alt="" coords="5,5,103,31"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="53,45,54,57,58,68,70,81,85,91,82,95,66,85,53,71,48,58,47,45"/>
-<area shape="rect" id="Node000003" href="$classPreference.html" title="Клас Preference." alt="" coords="136,5,228,31"/>
+<area shape="rect" id="Node000003" href="$classPreference.html" title="Клас моделі даних для збереження критеріїв пошуку (вподобань)." alt="" coords="136,5,228,31"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="172,45,155,71,133,95,129,91,151,68,167,42"/>
 </map>

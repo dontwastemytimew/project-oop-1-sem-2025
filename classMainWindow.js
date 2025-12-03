@@ -1,0 +1,25 @@
+var classMainWindow =
+[
+    [ "MainWindow", "classMainWindow.html#a5b3af8408d0ad3edad61a67821888dc3", null ],
+    [ "~MainWindow", "classMainWindow.html#ae98d00a93bc118200eeef9f9bba1dba7", null ],
+    [ "changeEvent", "classMainWindow.html#a416ae2140ac1aa9f03a6279316abdcad", null ],
+    [ "onAccountDeleted", "classMainWindow.html#a04601c1b37e167201c95e8d84d3092bb", null ],
+    [ "onOpenChatRequested", "classMainWindow.html#ab777a8a5dc443116230605a3611244e2", null ],
+    [ "onProfileSaved", "classMainWindow.html#a734f5e5adf3a879782ede61597f278da", null ],
+    [ "showAdminPage", "classMainWindow.html#a7c2f97eee4a6c8fdceef1dee552b74f7", null ],
+    [ "switchLanguage", "classMainWindow.html#a8c46e71d664701ebec584cf9683b76c5", null ],
+    [ "switchTheme", "classMainWindow.html#a6f05d52d2990310653a1ef9777eb2519", null ],
+    [ "m_adminPage", "classMainWindow.html#afffcaf23e70ffe215d398a31fea89b60", null ],
+    [ "m_chatManager", "classMainWindow.html#ac53adcb90cd0930da337f48e42f7e292", null ],
+    [ "m_chatPage", "classMainWindow.html#aa0f5940bb4c8e02ccf60b39f48770c53", null ],
+    [ "m_currentProfile", "classMainWindow.html#a68d81205fef133f593e65de7cdf93be1", null ],
+    [ "m_dbManager", "classMainWindow.html#a0e60c24f6446d6407070981734d60026", null ],
+    [ "m_matchesPage", "classMainWindow.html#a388ea054e0a29de081b39d18b784a4ce", null ],
+    [ "m_navButtonGroup", "classMainWindow.html#aa2c27e75bbc858d344c6cb4658705da6", null ],
+    [ "m_profilePage", "classMainWindow.html#a436139152ca766d0ec5527c6d96f76a0", null ],
+    [ "m_searchPage", "classMainWindow.html#a38f3e8f170e3349f31d44253ca82553f", null ],
+    [ "m_settingsPage", "classMainWindow.html#ae3085ec2e599e007c582bb34f49eebed", null ],
+    [ "m_translator", "classMainWindow.html#ac38717511d80cf884d49aab596237967", null ],
+    [ "m_userExists", "classMainWindow.html#aa6d22235a91dfb3e7e34db312a010203", null ],
+    [ "m_welcomePage", "classMainWindow.html#a3d1c2265df360ee69a0dbf959ac7e3eb", null ]
+];

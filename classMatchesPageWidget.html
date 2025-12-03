@@ -101,12 +101,17 @@ $(document).ready(function(){initNavTree('classMatchesPageWidget.html',''); init
   <div class="headertitle"><div class="title">MatchesPageWidget Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Віджет сторінки "Метчі" (Взаємні лайки).  
+ <a href="classMatchesPageWidget.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="matchespagewidget_8h_source.html">matchespagewidget.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for MatchesPageWidget:</div>
 <div class="dyncontent">
 <div class="center"><img src="classMatchesPageWidget__inherit__graph.png" border="0" usemap="#aMatchesPageWidget_inherit__map" alt="Inheritance graph"/></div>
 <map name="aMatchesPageWidget_inherit__map" id="aMatchesPageWidget_inherit__map">
-<area shape="rect" title=" " alt="" coords="5,79,160,104"/>
+<area shape="rect" title="Віджет сторінки &quot;Метчі&quot; (Взаємні лайки)." alt="" coords="5,79,160,104"/>
 <area shape="rect" title=" " alt="" coords="43,5,122,31"/>
 <area shape="poly" title=" " alt="" coords="85,44,85,79,80,79,80,44"/>
 </map>
@@ -116,12 +121,12 @@ Collaboration diagram for MatchesPageWidget:</div>
 <div class="dyncontent">
 <div class="center"><img src="classMatchesPageWidget__coll__graph.png" border="0" usemap="#aMatchesPageWidget_coll__map" alt="Collaboration graph"/></div>
 <map name="aMatchesPageWidget_coll__map" id="aMatchesPageWidget_coll__map">
-<area shape="rect" title=" " alt="" coords="55,181,210,207"/>
+<area shape="rect" title="Віджет сторінки &quot;Метчі&quot; (Взаємні лайки)." alt="" coords="55,181,210,207"/>
 <area shape="rect" title=" " alt="" coords="5,93,84,119"/>
 <area shape="poly" title=" " alt="" coords="68,126,122,179,119,183,64,130"/>
-<area shape="rect" href="classDatabaseManager.html" title="Клас DatabaseManager." alt="" coords="77,5,218,31"/>
+<area shape="rect" href="classDatabaseManager.html" title="Головний клас для керування базою даних (Data Access Layer)." alt="" coords="77,5,218,31"/>
 <area shape="poly" title=" " alt="" coords="148,45,136,181,131,181,143,44"/>
-<area shape="rect" href="classChatManager.html" title=" " alt="" coords="198,93,307,119"/>
+<area shape="rect" href="classChatManager.html" title="Менеджер чатів та повідомлень." alt="" coords="198,93,307,119"/>
 <area shape="poly" title=" " alt="" coords="158,43,175,67,193,81,214,91,212,96,190,86,171,71,154,45"/>
 <area shape="poly" title=" " alt="" coords="227,129,151,183,147,179,224,125"/>
 <area shape="rect" title=" " alt="" coords="257,5,331,31"/>
@@ -131,76 +136,415 @@ Collaboration diagram for MatchesPageWidget:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-slots" name="pub-slots"></a>
 Public Slots</h2></td></tr>
-<tr class="memitem:a30fb6fca92b858fa8a5f2d39e9acf61c" id="r_a30fb6fca92b858fa8a5f2d39e9acf61c"><td class="memItemLeft" align="right" valign="top"><a id="a30fb6fca92b858fa8a5f2d39e9acf61c" name="a30fb6fca92b858fa8a5f2d39e9acf61c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>onMatchCreated</b> (int userId, int targetId)</td></tr>
+<tr class="memitem:a30fb6fca92b858fa8a5f2d39e9acf61c" id="r_a30fb6fca92b858fa8a5f2d39e9acf61c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMatchesPageWidget.html#a30fb6fca92b858fa8a5f2d39e9acf61c">onMatchCreated</a> (int userId, int targetId)</td></tr>
+<tr class="memdesc:a30fb6fca92b858fa8a5f2d39e9acf61c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Слот, що реагує на створення нового метчу в реальному часі.  <br /></td></tr>
 <tr class="separator:a30fb6fca92b858fa8a5f2d39e9acf61c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="signals" name="signals"></a>
 Signals</h2></td></tr>
-<tr class="memitem:a8d7a03815fabc10871a988769632689a" id="r_a8d7a03815fabc10871a988769632689a"><td class="memItemLeft" align="right" valign="top"><a id="a8d7a03815fabc10871a988769632689a" name="a8d7a03815fabc10871a988769632689a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>openChatRequested</b> (int targetUserId)</td></tr>
+<tr class="memitem:a8d7a03815fabc10871a988769632689a" id="r_a8d7a03815fabc10871a988769632689a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMatchesPageWidget.html#a8d7a03815fabc10871a988769632689a">openChatRequested</a> (int targetUserId)</td></tr>
+<tr class="memdesc:a8d7a03815fabc10871a988769632689a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Сигнал запиту на відкриття чату.  <br /></td></tr>
 <tr class="separator:a8d7a03815fabc10871a988769632689a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a79034a2167751d7523ee023145178236" id="r_a79034a2167751d7523ee023145178236"><td class="memItemLeft" align="right" valign="top"><a id="a79034a2167751d7523ee023145178236" name="a79034a2167751d7523ee023145178236"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>MatchesPageWidget</b> (QWidget *parent=nullptr)</td></tr>
+<tr class="memitem:a79034a2167751d7523ee023145178236" id="r_a79034a2167751d7523ee023145178236"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMatchesPageWidget.html#a79034a2167751d7523ee023145178236">MatchesPageWidget</a> (QWidget *parent=nullptr)</td></tr>
+<tr class="memdesc:a79034a2167751d7523ee023145178236"><td class="mdescLeft">&#160;</td><td class="mdescRight">Конструктор <a class="el" href="classMatchesPageWidget.html" title="Віджет сторінки &quot;Метчі&quot; (Взаємні лайки).">MatchesPageWidget</a>.  <br /></td></tr>
 <tr class="separator:a79034a2167751d7523ee023145178236"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afb0c8540c8cf52ac2cb957417036c83f" id="r_afb0c8540c8cf52ac2cb957417036c83f"><td class="memItemLeft" align="right" valign="top"><a id="afb0c8540c8cf52ac2cb957417036c83f" name="afb0c8540c8cf52ac2cb957417036c83f"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setDatabaseManager</b> (<a class="el" href="classDatabaseManager.html">DatabaseManager</a> *db)</td></tr>
+<tr class="memitem:aa3d243717b654976fa31c8d02f3f99ab" id="r_aa3d243717b654976fa31c8d02f3f99ab"><td class="memItemLeft" align="right" valign="top"><a id="aa3d243717b654976fa31c8d02f3f99ab" name="aa3d243717b654976fa31c8d02f3f99ab"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>~MatchesPageWidget</b> ()</td></tr>
+<tr class="memdesc:aa3d243717b654976fa31c8d02f3f99ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Деструктор. <br /></td></tr>
+<tr class="separator:aa3d243717b654976fa31c8d02f3f99ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb0c8540c8cf52ac2cb957417036c83f" id="r_afb0c8540c8cf52ac2cb957417036c83f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMatchesPageWidget.html#afb0c8540c8cf52ac2cb957417036c83f">setDatabaseManager</a> (<a class="el" href="classDatabaseManager.html">DatabaseManager</a> *db)</td></tr>
+<tr class="memdesc:afb0c8540c8cf52ac2cb957417036c83f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Встановлює залежність від менеджера бази даних.  <br /></td></tr>
 <tr class="separator:afb0c8540c8cf52ac2cb957417036c83f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a825411c1564ffc37e178d2031b64e779" id="r_a825411c1564ffc37e178d2031b64e779"><td class="memItemLeft" align="right" valign="top"><a id="a825411c1564ffc37e178d2031b64e779" name="a825411c1564ffc37e178d2031b64e779"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setCurrentUserId</b> (int id)</td></tr>
+<tr class="memitem:a825411c1564ffc37e178d2031b64e779" id="r_a825411c1564ffc37e178d2031b64e779"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMatchesPageWidget.html#a825411c1564ffc37e178d2031b64e779">setCurrentUserId</a> (int id)</td></tr>
+<tr class="memdesc:a825411c1564ffc37e178d2031b64e779"><td class="mdescLeft">&#160;</td><td class="mdescRight">Встановлює ID поточного авторизованого користувача.  <br /></td></tr>
 <tr class="separator:a825411c1564ffc37e178d2031b64e779"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2d55d15403e48cc232d60c301bf79924" id="r_a2d55d15403e48cc232d60c301bf79924"><td class="memItemLeft" align="right" valign="top"><a id="a2d55d15403e48cc232d60c301bf79924" name="a2d55d15403e48cc232d60c301bf79924"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>reloadMatches</b> ()</td></tr>
+<tr class="memitem:a2d55d15403e48cc232d60c301bf79924" id="r_a2d55d15403e48cc232d60c301bf79924"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMatchesPageWidget.html#a2d55d15403e48cc232d60c301bf79924">reloadMatches</a> ()</td></tr>
+<tr class="memdesc:a2d55d15403e48cc232d60c301bf79924"><td class="mdescLeft">&#160;</td><td class="mdescRight">Завантажує та відображає список метчів з бази даних.  <br /></td></tr>
 <tr class="separator:a2d55d15403e48cc232d60c301bf79924"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae083528a8ff538dc662cbcd78c1863e4" id="r_ae083528a8ff538dc662cbcd78c1863e4"><td class="memItemLeft" align="right" valign="top"><a id="ae083528a8ff538dc662cbcd78c1863e4" name="ae083528a8ff538dc662cbcd78c1863e4"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setChatManager</b> (<a class="el" href="classChatManager.html">ChatManager</a> *chatManager)</td></tr>
+<tr class="memitem:ae083528a8ff538dc662cbcd78c1863e4" id="r_ae083528a8ff538dc662cbcd78c1863e4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMatchesPageWidget.html#ae083528a8ff538dc662cbcd78c1863e4">setChatManager</a> (<a class="el" href="classChatManager.html">ChatManager</a> *chatManager)</td></tr>
+<tr class="memdesc:ae083528a8ff538dc662cbcd78c1863e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Встановлює залежність від менеджера чатів.  <br /></td></tr>
 <tr class="separator:ae083528a8ff538dc662cbcd78c1863e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:a018193067f81ef5af10fcf9041766208" id="r_a018193067f81ef5af10fcf9041766208"><td class="memItemLeft" align="right" valign="top"><a id="a018193067f81ef5af10fcf9041766208" name="a018193067f81ef5af10fcf9041766208"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>changeEvent</b> (QEvent *event) override</td></tr>
+<tr class="memitem:a018193067f81ef5af10fcf9041766208" id="r_a018193067f81ef5af10fcf9041766208"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMatchesPageWidget.html#a018193067f81ef5af10fcf9041766208">changeEvent</a> (QEvent *event) override</td></tr>
+<tr class="memdesc:a018193067f81ef5af10fcf9041766208"><td class="mdescLeft">&#160;</td><td class="mdescRight">Обробник подій зміни стану (зокрема, зміни мови).  <br /></td></tr>
 <tr class="separator:a018193067f81ef5af10fcf9041766208"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-slots" name="pri-slots"></a>
 Private Slots</h2></td></tr>
-<tr class="memitem:adcb47813fcf019eabdcbfbb8fcb1fa4a" id="r_adcb47813fcf019eabdcbfbb8fcb1fa4a"><td class="memItemLeft" align="right" valign="top"><a id="adcb47813fcf019eabdcbfbb8fcb1fa4a" name="adcb47813fcf019eabdcbfbb8fcb1fa4a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>onMatchClicked</b> (QListWidgetItem *item)</td></tr>
+<tr class="memitem:adcb47813fcf019eabdcbfbb8fcb1fa4a" id="r_adcb47813fcf019eabdcbfbb8fcb1fa4a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMatchesPageWidget.html#adcb47813fcf019eabdcbfbb8fcb1fa4a">onMatchClicked</a> (QListWidgetItem *item)</td></tr>
+<tr class="memdesc:adcb47813fcf019eabdcbfbb8fcb1fa4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Обробка кліку на елемент списку.  <br /></td></tr>
 <tr class="separator:adcb47813fcf019eabdcbfbb8fcb1fa4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a039179dc3bc863008f84c801d8d0b6af" id="r_a039179dc3bc863008f84c801d8d0b6af"><td class="memItemLeft" align="right" valign="top"><a id="a039179dc3bc863008f84c801d8d0b6af" name="a039179dc3bc863008f84c801d8d0b6af"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>onSearchTextChanged</b> (const QString &amp;text)</td></tr>
+<tr class="memitem:a039179dc3bc863008f84c801d8d0b6af" id="r_a039179dc3bc863008f84c801d8d0b6af"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMatchesPageWidget.html#a039179dc3bc863008f84c801d8d0b6af">onSearchTextChanged</a> (const QString &amp;text)</td></tr>
+<tr class="memdesc:a039179dc3bc863008f84c801d8d0b6af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Обробка зміни тексту в полі пошуку.  <br /></td></tr>
 <tr class="separator:a039179dc3bc863008f84c801d8d0b6af"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr class="memitem:a1786a3b4e7f6b4c7c20e10db453de4a8" id="r_a1786a3b4e7f6b4c7c20e10db453de4a8"><td class="memItemLeft" align="right" valign="top"><a id="a1786a3b4e7f6b4c7c20e10db453de4a8" name="a1786a3b4e7f6b4c7c20e10db453de4a8"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>retranslateUi</b> ()</td></tr>
+<tr class="memdesc:a1786a3b4e7f6b4c7c20e10db453de4a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Оновлює тексти інтерфейсу при зміні мови. <br /></td></tr>
 <tr class="separator:a1786a3b4e7f6b4c7c20e10db453de4a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:ad09fb2cb52eb5a3d680df7b2153b894b" id="r_ad09fb2cb52eb5a3d680df7b2153b894b"><td class="memItemLeft" align="right" valign="top"><a id="ad09fb2cb52eb5a3d680df7b2153b894b" name="ad09fb2cb52eb5a3d680df7b2153b894b"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>m_currentUserId</b> = -1</td></tr>
+<tr class="memdesc:ad09fb2cb52eb5a3d680df7b2153b894b"><td class="mdescLeft">&#160;</td><td class="mdescRight">ID поточного користувача. <br /></td></tr>
 <tr class="separator:ad09fb2cb52eb5a3d680df7b2153b894b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a04671dd68cee785aab3171f17532f47e" id="r_a04671dd68cee785aab3171f17532f47e"><td class="memItemLeft" align="right" valign="top"><a id="a04671dd68cee785aab3171f17532f47e" name="a04671dd68cee785aab3171f17532f47e"></a>
 <a class="el" href="classDatabaseManager.html">DatabaseManager</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>m_db</b> = nullptr</td></tr>
+<tr class="memdesc:a04671dd68cee785aab3171f17532f47e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Посилання на базу даних. <br /></td></tr>
 <tr class="separator:a04671dd68cee785aab3171f17532f47e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abab248428241eab0a8d4eb46471d7f9e" id="r_abab248428241eab0a8d4eb46471d7f9e"><td class="memItemLeft" align="right" valign="top"><a id="abab248428241eab0a8d4eb46471d7f9e" name="abab248428241eab0a8d4eb46471d7f9e"></a>
 <a class="el" href="classChatManager.html">ChatManager</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>m_chatManager</b> = nullptr</td></tr>
+<tr class="memdesc:abab248428241eab0a8d4eb46471d7f9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Посилання на менеджер чатів. <br /></td></tr>
 <tr class="separator:abab248428241eab0a8d4eb46471d7f9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aca34f10f5db9f39e35e70e1f3ff2371c" id="r_aca34f10f5db9f39e35e70e1f3ff2371c"><td class="memItemLeft" align="right" valign="top"><a id="aca34f10f5db9f39e35e70e1f3ff2371c" name="aca34f10f5db9f39e35e70e1f3ff2371c"></a>
 QLabel *&#160;</td><td class="memItemRight" valign="bottom"><b>m_titleLabel</b></td></tr>
+<tr class="memdesc:aca34f10f5db9f39e35e70e1f3ff2371c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Заголовок сторінки. <br /></td></tr>
 <tr class="separator:aca34f10f5db9f39e35e70e1f3ff2371c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad9943ce70ac2328ffd9912b72e1c0441" id="r_ad9943ce70ac2328ffd9912b72e1c0441"><td class="memItemLeft" align="right" valign="top"><a id="ad9943ce70ac2328ffd9912b72e1c0441" name="ad9943ce70ac2328ffd9912b72e1c0441"></a>
 QLineEdit *&#160;</td><td class="memItemRight" valign="bottom"><b>m_searchField</b></td></tr>
+<tr class="memdesc:ad9943ce70ac2328ffd9912b72e1c0441"><td class="mdescLeft">&#160;</td><td class="mdescRight">Поле для пошуку серед контактів. <br /></td></tr>
 <tr class="separator:ad9943ce70ac2328ffd9912b72e1c0441"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a87a73d8b49504c40f10b42a987282c19" id="r_a87a73d8b49504c40f10b42a987282c19"><td class="memItemLeft" align="right" valign="top"><a id="a87a73d8b49504c40f10b42a987282c19" name="a87a73d8b49504c40f10b42a987282c19"></a>
 QListWidget *&#160;</td><td class="memItemRight" valign="bottom"><b>m_list</b></td></tr>
+<tr class="memdesc:a87a73d8b49504c40f10b42a987282c19"><td class="mdescLeft">&#160;</td><td class="mdescRight">Список для відображення карток користувачів. <br /></td></tr>
 <tr class="separator:a87a73d8b49504c40f10b42a987282c19"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Віджет сторінки "Метчі" (Взаємні лайки). </p>
+<p>Цей клас відповідає за відображення списку користувачів, з якими у поточного користувача виникла взаємна симпатія ("Метч").</p>
+<p>Основні можливості:</p><ul>
+<li>Відображення списку контактів з іменами та фото.</li>
+<li>Пошук/фільтрація серед метчів за іменем.</li>
+<li>Перехід до чату при кліку на користувача.</li>
+<li>Автоматичне оновлення списку при виникненні нового метчу. </li>
+</ul>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a79034a2167751d7523ee023145178236" name="a79034a2167751d7523ee023145178236"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a79034a2167751d7523ee023145178236">&#9670;&#160;</a></span>MatchesPageWidget()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">MatchesPageWidget::MatchesPageWidget </td>
+          <td>(</td>
+          <td class="paramtype">QWidget *&#160;</td>
+          <td class="paramname"><em>parent</em> = <code>nullptr</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Конструктор <a class="el" href="classMatchesPageWidget.html" title="Віджет сторінки &quot;Метчі&quot; (Взаємні лайки).">MatchesPageWidget</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">parent</td><td>Батьківський віджет. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a018193067f81ef5af10fcf9041766208" name="a018193067f81ef5af10fcf9041766208"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a018193067f81ef5af10fcf9041766208">&#9670;&#160;</a></span>changeEvent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MatchesPageWidget::changeEvent </td>
+          <td>(</td>
+          <td class="paramtype">QEvent *&#160;</td>
+          <td class="paramname"><em>event</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Обробник подій зміни стану (зокрема, зміни мови). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">event</td><td>Подія. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="adcb47813fcf019eabdcbfbb8fcb1fa4a" name="adcb47813fcf019eabdcbfbb8fcb1fa4a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adcb47813fcf019eabdcbfbb8fcb1fa4a">&#9670;&#160;</a></span>onMatchClicked</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MatchesPageWidget::onMatchClicked </td>
+          <td>(</td>
+          <td class="paramtype">QListWidgetItem *&#160;</td>
+          <td class="paramname"><em>item</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Обробка кліку на елемент списку. </p>
+<p>Отримує ID користувача, збережений у QListWidgetItem (Qt::UserRole), та емітує сигнал openChatRequested.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">item</td><td>Елемент списку, на який натиснули. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a30fb6fca92b858fa8a5f2d39e9acf61c" name="a30fb6fca92b858fa8a5f2d39e9acf61c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a30fb6fca92b858fa8a5f2d39e9acf61c">&#9670;&#160;</a></span>onMatchCreated</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MatchesPageWidget::onMatchCreated </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>userId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>targetId</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Слот, що реагує на створення нового метчу в реальному часі. </p>
+<p>Зазвичай підключається до сигналу з <a class="el" href="classSearchPageWidget.html" title="Віджет сторінки пошуку (&quot;Свайпи&quot;).">SearchPageWidget</a>. Якщо userId або targetId співпадають з поточним користувачем, список оновлюється.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">userId</td><td>ID користувача, який поставив лайк. </td></tr>
+    <tr><td class="paramname">targetId</td><td>ID користувача, який отримав лайк (і відповів взаємністю). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a039179dc3bc863008f84c801d8d0b6af" name="a039179dc3bc863008f84c801d8d0b6af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a039179dc3bc863008f84c801d8d0b6af">&#9670;&#160;</a></span>onSearchTextChanged</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MatchesPageWidget::onSearchTextChanged </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>text</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Обробка зміни тексту в полі пошуку. </p>
+<p>Фільтрує відображені елементи списку, приховуючи ті, що не містять введеного тексту в імені.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">text</td><td>Введений текст пошуку. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a8d7a03815fabc10871a988769632689a" name="a8d7a03815fabc10871a988769632689a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d7a03815fabc10871a988769632689a">&#9670;&#160;</a></span>openChatRequested</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MatchesPageWidget::openChatRequested </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>targetUserId</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Сигнал запиту на відкриття чату. </p>
+<p>Емітується, коли користувач обирає когось зі списку метчів. Обробляється в <a class="el" href="classMainWindow.html" title="Головне вікно додатку Match++.">MainWindow</a> для перемикання на сторінку чату.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">targetUserId</td><td>ID співрозмовника. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a2d55d15403e48cc232d60c301bf79924" name="a2d55d15403e48cc232d60c301bf79924"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d55d15403e48cc232d60c301bf79924">&#9670;&#160;</a></span>reloadMatches()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MatchesPageWidget::reloadMatches </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Завантажує та відображає список метчів з бази даних. </p>
+<p>Метод очищає поточний список (QListWidget), робить запит до БД через DatabaseManager::getSortedMatches (або getMutualMatchIds) та створює елементи списку (QListWidgetItem) для кожного партнера. </p>
+
+</div>
+</div>
+<a id="ae083528a8ff538dc662cbcd78c1863e4" name="ae083528a8ff538dc662cbcd78c1863e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae083528a8ff538dc662cbcd78c1863e4">&#9670;&#160;</a></span>setChatManager()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MatchesPageWidget::setChatManager </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classChatManager.html">ChatManager</a> *&#160;</td>
+          <td class="paramname"><em>chatManager</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Встановлює залежність від менеджера чатів. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">chatManager</td><td>Вказівник на <a class="el" href="classChatManager.html" title="Менеджер чатів та повідомлень.">ChatManager</a> (може використовуватись для отримання останнього повідомлення). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a825411c1564ffc37e178d2031b64e779" name="a825411c1564ffc37e178d2031b64e779"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a825411c1564ffc37e178d2031b64e779">&#9670;&#160;</a></span>setCurrentUserId()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MatchesPageWidget::setCurrentUserId </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Встановлює ID поточного авторизованого користувача. </p>
+<p>Необхідно для завантаження саме його списку метчів. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>ID користувача. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="afb0c8540c8cf52ac2cb957417036c83f" name="afb0c8540c8cf52ac2cb957417036c83f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afb0c8540c8cf52ac2cb957417036c83f">&#9670;&#160;</a></span>setDatabaseManager()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MatchesPageWidget::setDatabaseManager </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classDatabaseManager.html">DatabaseManager</a> *&#160;</td>
+          <td class="paramname"><em>db</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Встановлює залежність від менеджера бази даних. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">db</td><td>Вказівник на <a class="el" href="classDatabaseManager.html" title="Головний клас для керування базою даних (Data Access Layer).">DatabaseManager</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>gui/<a class="el" href="matchespagewidget_8h_source.html">matchespagewidget.h</a></li>
 <li>gui/<b>matchespagewidget.cpp</b></li>

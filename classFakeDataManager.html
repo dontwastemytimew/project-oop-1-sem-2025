@@ -96,55 +96,189 @@ $(document).ready(function(){initNavTree('classFakeDataManager.html',''); initRe
   <div class="headertitle"><div class="title">FakeDataManager Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Клас-утиліта для генерації фейкових (тестових) даних.  
+ <a href="classFakeDataManager.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="FakeDataManager_8h_source.html">FakeDataManager.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a8c8edcc9506b03dd5f228f4f76407432" id="r_a8c8edcc9506b03dd5f228f4f76407432"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFakeDataManager.html#a8c8edcc9506b03dd5f228f4f76407432">generateTestUsers</a> (<a class="el" href="classDatabaseManager.html">DatabaseManager</a> *dbManager, int count=50)</td></tr>
-<tr class="memdesc:a8c8edcc9506b03dd5f228f4f76407432"><td class="mdescLeft">&#160;</td><td class="mdescRight">Генерує та зберігає випадкових користувачів у БД.  <br /></td></tr>
+<tr class="memdesc:a8c8edcc9506b03dd5f228f4f76407432"><td class="mdescLeft">&#160;</td><td class="mdescRight">Генерує та зберігає випадкових користувачів безпосередньо у базу даних.  <br /></td></tr>
 <tr class="separator:a8c8edcc9506b03dd5f228f4f76407432"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a583e46129b6ac2c75e8301fbe93f05d1" id="r_a583e46129b6ac2c75e8301fbe93f05d1"><td class="memItemLeft" align="right" valign="top"><a id="a583e46129b6ac2c75e8301fbe93f05d1" name="a583e46129b6ac2c75e8301fbe93f05d1"></a>
-static QList&lt; <a class="el" href="classUserProfile.html">UserProfile</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>generateList</b> (int count)</td></tr>
-<tr class="memdesc:a583e46129b6ac2c75e8301fbe93f05d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Генерує СПИСОК випадкових користувачів. <br /></td></tr>
+<tr class="memitem:a583e46129b6ac2c75e8301fbe93f05d1" id="r_a583e46129b6ac2c75e8301fbe93f05d1"><td class="memItemLeft" align="right" valign="top">static QList&lt; <a class="el" href="classUserProfile.html">UserProfile</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFakeDataManager.html#a583e46129b6ac2c75e8301fbe93f05d1">generateList</a> (int count)</td></tr>
+<tr class="memdesc:a583e46129b6ac2c75e8301fbe93f05d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Генерує список об'єктів <a class="el" href="classUserProfile.html" title="Основна модель даних профілю користувача.">UserProfile</a> у пам'яті.  <br /></td></tr>
 <tr class="separator:a583e46129b6ac2c75e8301fbe93f05d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7c1c31734c4f39d07318bd7684c97294" id="r_a7c1c31734c4f39d07318bd7684c97294"><td class="memItemLeft" align="right" valign="top"><a id="a7c1c31734c4f39d07318bd7684c97294" name="a7c1c31734c4f39d07318bd7684c97294"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>seedReverseLikes</b> (<a class="el" href="classDatabaseManager.html">DatabaseManager</a> *dbManager, int currentUserId, int count=50)</td></tr>
-<tr class="memdesc:a7c1c31734c4f39d07318bd7684c97294"><td class="mdescLeft">&#160;</td><td class="mdescRight">Створює випадкові зворотні лайки для поточного користувача. <br /></td></tr>
+<tr class="memitem:a7c1c31734c4f39d07318bd7684c97294" id="r_a7c1c31734c4f39d07318bd7684c97294"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFakeDataManager.html#a7c1c31734c4f39d07318bd7684c97294">seedReverseLikes</a> (<a class="el" href="classDatabaseManager.html">DatabaseManager</a> *dbManager, int currentUserId, int count=50)</td></tr>
+<tr class="memdesc:a7c1c31734c4f39d07318bd7684c97294"><td class="mdescLeft">&#160;</td><td class="mdescRight">Створює "вхідні" лайки для вказаного користувача.  <br /></td></tr>
 <tr class="separator:a7c1c31734c4f39d07318bd7684c97294"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-methods" name="pri-static-methods"></a>
 Static Private Member Functions</h2></td></tr>
-<tr class="memitem:a25026ec49651ba402923f4827bee694c" id="r_a25026ec49651ba402923f4827bee694c"><td class="memItemLeft" align="right" valign="top"><a id="a25026ec49651ba402923f4827bee694c" name="a25026ec49651ba402923f4827bee694c"></a>
-static QString&#160;</td><td class="memItemRight" valign="bottom"><b>getRandomName</b> ()</td></tr>
+<tr class="memitem:a25026ec49651ba402923f4827bee694c" id="r_a25026ec49651ba402923f4827bee694c"><td class="memItemLeft" align="right" valign="top">static QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFakeDataManager.html#a25026ec49651ba402923f4827bee694c">getRandomName</a> ()</td></tr>
+<tr class="memdesc:a25026ec49651ba402923f4827bee694c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Повертає випадкове чоловіче або жіноче ім'я.  <br /></td></tr>
 <tr class="separator:a25026ec49651ba402923f4827bee694c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5dc4a9402a46f491f18b0eb783234663" id="r_a5dc4a9402a46f491f18b0eb783234663"><td class="memItemLeft" align="right" valign="top"><a id="a5dc4a9402a46f491f18b0eb783234663" name="a5dc4a9402a46f491f18b0eb783234663"></a>
-static QString&#160;</td><td class="memItemRight" valign="bottom"><b>getRandomCity</b> ()</td></tr>
+<tr class="memitem:a5dc4a9402a46f491f18b0eb783234663" id="r_a5dc4a9402a46f491f18b0eb783234663"><td class="memItemLeft" align="right" valign="top">static QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFakeDataManager.html#a5dc4a9402a46f491f18b0eb783234663">getRandomCity</a> ()</td></tr>
+<tr class="memdesc:a5dc4a9402a46f491f18b0eb783234663"><td class="mdescLeft">&#160;</td><td class="mdescRight">Повертає випадкове місто зі списку великих міст України.  <br /></td></tr>
 <tr class="separator:a5dc4a9402a46f491f18b0eb783234663"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7234097b6cd5b7484e2a296644bc1f30" id="r_a7234097b6cd5b7484e2a296644bc1f30"><td class="memItemLeft" align="right" valign="top"><a id="a7234097b6cd5b7484e2a296644bc1f30" name="a7234097b6cd5b7484e2a296644bc1f30"></a>
-static QString&#160;</td><td class="memItemRight" valign="bottom"><b>getRandomBio</b> ()</td></tr>
+<tr class="memitem:a7234097b6cd5b7484e2a296644bc1f30" id="r_a7234097b6cd5b7484e2a296644bc1f30"><td class="memItemLeft" align="right" valign="top">static QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFakeDataManager.html#a7234097b6cd5b7484e2a296644bc1f30">getRandomBio</a> ()</td></tr>
+<tr class="memdesc:a7234097b6cd5b7484e2a296644bc1f30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Генерує випадковий текст біографії ("Про себе").  <br /></td></tr>
 <tr class="separator:a7234097b6cd5b7484e2a296644bc1f30"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad21e32f4850191f8eaf6bc6421647d24" id="r_ad21e32f4850191f8eaf6bc6421647d24"><td class="memItemLeft" align="right" valign="top"><a id="ad21e32f4850191f8eaf6bc6421647d24" name="ad21e32f4850191f8eaf6bc6421647d24"></a>
-static QString&#160;</td><td class="memItemRight" valign="bottom"><b>generateEmail</b> (const QString &amp;name)</td></tr>
+<tr class="memitem:ad21e32f4850191f8eaf6bc6421647d24" id="r_ad21e32f4850191f8eaf6bc6421647d24"><td class="memItemLeft" align="right" valign="top">static QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFakeDataManager.html#ad21e32f4850191f8eaf6bc6421647d24">generateEmail</a> (const QString &amp;name)</td></tr>
+<tr class="memdesc:ad21e32f4850191f8eaf6bc6421647d24"><td class="mdescLeft">&#160;</td><td class="mdescRight">Генерує фейкову електронну адресу на основі імені.  <br /></td></tr>
 <tr class="separator:ad21e32f4850191f8eaf6bc6421647d24"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7e48d992ebf417f0b0a80697f06e1eae" id="r_a7e48d992ebf417f0b0a80697f06e1eae"><td class="memItemLeft" align="right" valign="top"><a id="a7e48d992ebf417f0b0a80697f06e1eae" name="a7e48d992ebf417f0b0a80697f06e1eae"></a>
-static QString&#160;</td><td class="memItemRight" valign="bottom"><b>generatePhone</b> ()</td></tr>
+<tr class="memitem:a7e48d992ebf417f0b0a80697f06e1eae" id="r_a7e48d992ebf417f0b0a80697f06e1eae"><td class="memItemLeft" align="right" valign="top">static QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFakeDataManager.html#a7e48d992ebf417f0b0a80697f06e1eae">generatePhone</a> ()</td></tr>
+<tr class="memdesc:a7e48d992ebf417f0b0a80697f06e1eae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Генерує випадковий номер телефону у форматі +380...  <br /></td></tr>
 <tr class="separator:a7e48d992ebf417f0b0a80697f06e1eae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6a399ccb785467ed106b7b883823fb7d" id="r_a6a399ccb785467ed106b7b883823fb7d"><td class="memItemLeft" align="right" valign="top"><a id="a6a399ccb785467ed106b7b883823fb7d" name="a6a399ccb785467ed106b7b883823fb7d"></a>
-static QString&#160;</td><td class="memItemRight" valign="bottom"><b>getRandomMaleName</b> ()</td></tr>
+<tr class="memitem:a6a399ccb785467ed106b7b883823fb7d" id="r_a6a399ccb785467ed106b7b883823fb7d"><td class="memItemLeft" align="right" valign="top">static QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFakeDataManager.html#a6a399ccb785467ed106b7b883823fb7d">getRandomMaleName</a> ()</td></tr>
+<tr class="memdesc:a6a399ccb785467ed106b7b883823fb7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Повертає випадкове чоловіче ім'я зі списку.  <br /></td></tr>
 <tr class="separator:a6a399ccb785467ed106b7b883823fb7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa6ae1e0d60f9e49813e8a22a9bdb8186" id="r_aa6ae1e0d60f9e49813e8a22a9bdb8186"><td class="memItemLeft" align="right" valign="top"><a id="aa6ae1e0d60f9e49813e8a22a9bdb8186" name="aa6ae1e0d60f9e49813e8a22a9bdb8186"></a>
-static QString&#160;</td><td class="memItemRight" valign="bottom"><b>getRandomFemaleName</b> ()</td></tr>
+<tr class="memitem:aa6ae1e0d60f9e49813e8a22a9bdb8186" id="r_aa6ae1e0d60f9e49813e8a22a9bdb8186"><td class="memItemLeft" align="right" valign="top">static QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFakeDataManager.html#aa6ae1e0d60f9e49813e8a22a9bdb8186">getRandomFemaleName</a> ()</td></tr>
+<tr class="memdesc:aa6ae1e0d60f9e49813e8a22a9bdb8186"><td class="mdescLeft">&#160;</td><td class="mdescRight">Повертає випадкове жіноче ім'я зі списку.  <br /></td></tr>
 <tr class="separator:aa6ae1e0d60f9e49813e8a22a9bdb8186"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ada86120335e053ecfffd572566685e8b" id="r_ada86120335e053ecfffd572566685e8b"><td class="memItemLeft" align="right" valign="top"><a id="ada86120335e053ecfffd572566685e8b" name="ada86120335e053ecfffd572566685e8b"></a>
-static QList&lt; QString &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>generateRandomTags</b> ()</td></tr>
+<tr class="memitem:ada86120335e053ecfffd572566685e8b" id="r_ada86120335e053ecfffd572566685e8b"><td class="memItemLeft" align="right" valign="top">static QList&lt; QString &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFakeDataManager.html#ada86120335e053ecfffd572566685e8b">generateRandomTags</a> ()</td></tr>
+<tr class="memdesc:ada86120335e053ecfffd572566685e8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Генерує список випадкових тегів (інтересів).  <br /></td></tr>
 <tr class="separator:ada86120335e053ecfffd572566685e8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af2e3ff9a3194c343e68fd7e388ad659a" id="r_af2e3ff9a3194c343e68fd7e388ad659a"><td class="memItemLeft" align="right" valign="top"><a id="af2e3ff9a3194c343e68fd7e388ad659a" name="af2e3ff9a3194c343e68fd7e388ad659a"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>seedTags</b> (<a class="el" href="classDatabaseManager.html">DatabaseManager</a> *dbManager)</td></tr>
+<tr class="memitem:af2e3ff9a3194c343e68fd7e388ad659a" id="r_af2e3ff9a3194c343e68fd7e388ad659a"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFakeDataManager.html#af2e3ff9a3194c343e68fd7e388ad659a">seedTags</a> (<a class="el" href="classDatabaseManager.html">DatabaseManager</a> *dbManager)</td></tr>
+<tr class="memdesc:af2e3ff9a3194c343e68fd7e388ad659a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Додає випадкові теги до існуючих користувачів у базі даних.  <br /></td></tr>
 <tr class="separator:af2e3ff9a3194c343e68fd7e388ad659a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adfa9e5075a6a02d69647ae9418fe8774" id="r_adfa9e5075a6a02d69647ae9418fe8774"><td class="memItemLeft" align="right" valign="top"><a id="adfa9e5075a6a02d69647ae9418fe8774" name="adfa9e5075a6a02d69647ae9418fe8774"></a>
-static QString&#160;</td><td class="memItemRight" valign="bottom"><b>getRandomPhotoPath</b> (const QString &amp;gender)</td></tr>
+<tr class="memitem:adfa9e5075a6a02d69647ae9418fe8774" id="r_adfa9e5075a6a02d69647ae9418fe8774"><td class="memItemLeft" align="right" valign="top">static QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFakeDataManager.html#adfa9e5075a6a02d69647ae9418fe8774">getRandomPhotoPath</a> (const QString &amp;gender)</td></tr>
+<tr class="memdesc:adfa9e5075a6a02d69647ae9418fe8774"><td class="mdescLeft">&#160;</td><td class="mdescRight">Отримує шлях до випадкового фото з ресурсів.  <br /></td></tr>
 <tr class="separator:adfa9e5075a6a02d69647ae9418fe8774"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Клас-утиліта для генерації фейкових (тестових) даних. </p>
+<p>Цей клас надає набір статичних методів для створення випадкових профілів користувачів, генерації реалістичних атрибутів (ім'я, місто, біографія, контакти) та симуляції активності у додатку (наприклад, генерація вхідних лайків).</p>
+<dl class="section note"><dt>Note</dt><dd>Використовується переважно для тестування (Unit Tests) та наповнення бази даних під час розробки, щоб не вводити дані вручну. </dd></dl>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="ad21e32f4850191f8eaf6bc6421647d24" name="ad21e32f4850191f8eaf6bc6421647d24"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad21e32f4850191f8eaf6bc6421647d24">&#9670;&#160;</a></span>generateEmail()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString FakeDataManager::generateEmail </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Генерує фейкову електронну адресу на основі імені. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>Ім'я користувача для формування email. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>QString Рядок у форматі "name_1234@example.com". </dd></dl>
+
+</div>
+</div>
+<a id="a583e46129b6ac2c75e8301fbe93f05d1" name="a583e46129b6ac2c75e8301fbe93f05d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a583e46129b6ac2c75e8301fbe93f05d1">&#9670;&#160;</a></span>generateList()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QList&lt; <a class="el" href="classUserProfile.html">UserProfile</a> &gt; FakeDataManager::generateList </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>count</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Генерує список об'єктів <a class="el" href="classUserProfile.html" title="Основна модель даних профілю користувача.">UserProfile</a> у пам'яті. </p>
+<p>На відміну від generateTestUsers, цей метод НЕ зберігає дані в БД. Він корисний для юніт-тестів, де потрібно перевірити логіку без взаємодії з реальною базою даних.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">count</td><td>Кількість профілів для генерації. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>QList&lt;UserProfile&gt; Список згенерованих об'єктів профілів. </dd></dl>
+
+</div>
+</div>
+<a id="a7e48d992ebf417f0b0a80697f06e1eae" name="a7e48d992ebf417f0b0a80697f06e1eae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e48d992ebf417f0b0a80697f06e1eae">&#9670;&#160;</a></span>generatePhone()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString FakeDataManager::generatePhone </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Генерує випадковий номер телефону у форматі +380... </p>
+<dl class="section return"><dt>Returns</dt><dd>QString Номер телефону. </dd></dl>
+
+</div>
+</div>
+<a id="ada86120335e053ecfffd572566685e8b" name="ada86120335e053ecfffd572566685e8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada86120335e053ecfffd572566685e8b">&#9670;&#160;</a></span>generateRandomTags()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QList&lt; QString &gt; FakeDataManager::generateRandomTags </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Генерує список випадкових тегів (інтересів). </p>
+<p>Обирає випадкову підмножину зі списку доступних тегів (наприклад, "IT", "Спорт", "Кава"). </p><dl class="section return"><dt>Returns</dt><dd>QList&lt;QString&gt; Список тегів. </dd></dl>
+
+</div>
+</div>
 <a id="a8c8edcc9506b03dd5f228f4f76407432" name="a8c8edcc9506b03dd5f228f4f76407432"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8c8edcc9506b03dd5f228f4f76407432">&#9670;&#160;</a></span>generateTestUsers()</h2>
 
@@ -179,11 +313,275 @@ static QString&#160;</td><td class="memItemRight" valign="bottom"><b>getRandomPh
 </table>
 </div><div class="memdoc">
 
-<p>Генерує та зберігає випадкових користувачів у БД. </p>
+<p>Генерує та зберігає випадкових користувачів безпосередньо у базу даних. </p>
+<p>Метод створює вказану кількість профілів з випадковими параметрами (стать, вік, орієнтація, фото) та зберігає їх через <a class="el" href="classDatabaseManager.html" title="Головний клас для керування базою даних (Data Access Layer).">DatabaseManager</a>. Також для кожного створеного користувача додаються випадкові теги.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dbManager</td><td>Вказівник на ініціалізований менеджер бази даних. </td></tr>
+    <tr><td class="paramname">count</td><td>Кількість користувачів, яку необхідно згенерувати (за замовчуванням 50). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a7234097b6cd5b7484e2a296644bc1f30" name="a7234097b6cd5b7484e2a296644bc1f30"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7234097b6cd5b7484e2a296644bc1f30">&#9670;&#160;</a></span>getRandomBio()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString FakeDataManager::getRandomBio </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Генерує випадковий текст біографії ("Про себе"). </p>
+<dl class="section return"><dt>Returns</dt><dd>QString Текст біографії. </dd></dl>
+
+</div>
+</div>
+<a id="a5dc4a9402a46f491f18b0eb783234663" name="a5dc4a9402a46f491f18b0eb783234663"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5dc4a9402a46f491f18b0eb783234663">&#9670;&#160;</a></span>getRandomCity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString FakeDataManager::getRandomCity </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Повертає випадкове місто зі списку великих міст України. </p>
+<dl class="section return"><dt>Returns</dt><dd>QString Назва міста. </dd></dl>
+
+</div>
+</div>
+<a id="aa6ae1e0d60f9e49813e8a22a9bdb8186" name="aa6ae1e0d60f9e49813e8a22a9bdb8186"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa6ae1e0d60f9e49813e8a22a9bdb8186">&#9670;&#160;</a></span>getRandomFemaleName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString FakeDataManager::getRandomFemaleName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Повертає випадкове жіноче ім'я зі списку. </p>
+<dl class="section return"><dt>Returns</dt><dd>QString Жіноче ім'я. </dd></dl>
+
+</div>
+</div>
+<a id="a6a399ccb785467ed106b7b883823fb7d" name="a6a399ccb785467ed106b7b883823fb7d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a399ccb785467ed106b7b883823fb7d">&#9670;&#160;</a></span>getRandomMaleName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString FakeDataManager::getRandomMaleName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Повертає випадкове чоловіче ім'я зі списку. </p>
+<dl class="section return"><dt>Returns</dt><dd>QString Чоловіче ім'я. </dd></dl>
+
+</div>
+</div>
+<a id="a25026ec49651ba402923f4827bee694c" name="a25026ec49651ba402923f4827bee694c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a25026ec49651ba402923f4827bee694c">&#9670;&#160;</a></span>getRandomName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString FakeDataManager::getRandomName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Повертає випадкове чоловіче або жіноче ім'я. </p>
+<dl class="section return"><dt>Returns</dt><dd>QString Випадкове ім'я. </dd></dl>
+
+</div>
+</div>
+<a id="adfa9e5075a6a02d69647ae9418fe8774" name="adfa9e5075a6a02d69647ae9418fe8774"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adfa9e5075a6a02d69647ae9418fe8774">&#9670;&#160;</a></span>getRandomPhotoPath()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString FakeDataManager::getRandomPhotoPath </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>gender</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Отримує шлях до випадкового фото з ресурсів. </p>
+<p>Обирає фотографію з папки ресурсів відповідно до статі користувача.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gender</td><td>Стать користувача ("Чоловік" або "Жінка"). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>QString Шлях до ресурсу (наприклад, ":/resources/fake_photos/male/1.jpg"). </dd></dl>
+
+</div>
+</div>
+<a id="a7c1c31734c4f39d07318bd7684c97294" name="a7c1c31734c4f39d07318bd7684c97294"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c1c31734c4f39d07318bd7684c97294">&#9670;&#160;</a></span>seedReverseLikes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FakeDataManager::seedReverseLikes </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classDatabaseManager.html">DatabaseManager</a> *&#160;</td>
+          <td class="paramname"><em>dbManager</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>currentUserId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>count</em> = <code>50</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Створює "вхідні" лайки для вказаного користувача. </p>
+<p>Метод емулює ситуацію, коли інші (вже існуючі в базі) користувачі лайкнули вказаного користувача. Це необхідно для тестування функціоналу "Метчі" та "Хто мене лайкнув".</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">dbManager</td><td>Вказівник на менеджер бази даних. </td></tr>
-    <tr><td class="paramname">count</td><td>Кількість користувачів для генерації (за замовчуванням 50). </td></tr>
+    <tr><td class="paramname">currentUserId</td><td>ID користувача, який отримає лайки. </td></tr>
+    <tr><td class="paramname">count</td><td>Максимальна кількість лайків для генерації (за замовчуванням 50). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af2e3ff9a3194c343e68fd7e388ad659a" name="af2e3ff9a3194c343e68fd7e388ad659a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af2e3ff9a3194c343e68fd7e388ad659a">&#9670;&#160;</a></span>seedTags()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FakeDataManager::seedTags </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classDatabaseManager.html">DatabaseManager</a> *&#160;</td>
+          <td class="paramname"><em>dbManager</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Додає випадкові теги до існуючих користувачів у базі даних. </p>
+<p>Внутрішній метод для масового оновлення тегів. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dbManager</td><td>Вказівник на менеджер бази даних. </td></tr>
   </table>
   </dd>
 </dl>
