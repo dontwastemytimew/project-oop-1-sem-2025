@@ -16,6 +16,7 @@
 #include <QDir>
 #include <QEvent>
 #include <QSettings>
+#include <QIcon>
 
 MainWindow::MainWindow(DatabaseManager* dbManager, QWidget *parent)
     : QMainWindow(parent)
@@ -24,6 +25,9 @@ MainWindow::MainWindow(DatabaseManager* dbManager, QWidget *parent)
 
     ui->setupUi(this);
     setWindowTitle(tr("Match++"));
+
+    QIcon appIcon(":/resources/icons/logo.png");
+    this->setWindowIcon(appIcon);
 
     m_welcomePage = new WelcomePageWidget(this);
     m_searchPage = new SearchPageWidget(this);
