@@ -1,21 +1,29 @@
+/*
+ * =================================================================
+ * MATCH++ QSS STYLESHEET: DARK THEME (Minimalist IDE - VS Code Inspired)
+ * Основний Фон: #282C34 (Насичений сіро-синій)
+ * Акцент: #C678DD (Яскраво-фіолетовий)
+ * =================================================================
+ */
+
 /* ---------------------------------- */
 /* ЗАГАЛЬНІ СТИЛІ (ТЕМНА ТЕМА) */
 /* ---------------------------------- */
 QMainWindow {
-    background-color: #1e1e1e; /* Дуже темний фон */
+    background-color: #282C34; /* Основний фон IDE */
 }
 
 /* Стиль для бокового меню */
 QWidget#nav_menu {
-    background-color: #252526; /* Тло меню трохи світліше */
-    border-right: 1px solid #333333; /* Темна лінія-роздільник */
+    background-color: #21252B; /* Насичений темний фон (як панель) */
+    border-right: 1px solid #3E4452;
     padding: 5px 0;
 }
 
 /* Стиль для назви додатку */
 QLabel#label_AppTitle {
-    color: #9932CC; /* Фіолетовий акцент */
-    font-family: "Segoe UI", "Arial", sans-serif;
+    color: #C678DD; /* Яскраво-фіолетовий */
+    font-family: 'Consolas', 'Courier New', monospace;
     font-size: 18pt;
     font-weight: bold;
     text-align: center;
@@ -23,74 +31,76 @@ QLabel#label_AppTitle {
 }
 
 /* ---------------------------------- */
-/* НАВІГАЦІЯ (ТЕМНА ТЕМА) */
+/* НАВІГАЦІЯ */
 /* ---------------------------------- */
 QWidget#nav_menu QPushButton {
     background-color: transparent;
-    color: #AAAAAA; /* Світло-сірий текст */
+    color: #ABB2BF; /* М'який сірий текст */
     font-family: "Segoe UI", "Arial", sans-serif;
     font-size: 14px;
     font-weight: normal;
     border: none;
-    border-left: 4px solid transparent; /* Прозора лінія (запас) */
+    border-left: 4px solid transparent;
     padding: 12px 20px 12px 20px;
     text-align: left;
-    border-radius: 8px;
+    border-radius: 4px;
     margin: 4px 10px;
 }
 
 QWidget#nav_menu QPushButton:hover {
-    background-color: #333333; /* Темний фон при наведенні */
-    color: #FFFFFF; /* Білий текст */
-    border-left: 4px solid #555555;
+    background-color: #383D48; /* Темний фон при наведенні */
+    color: #FFFFFF;
+    border-left: 4px solid #5C6370;
 }
 
 QWidget#nav_menu QPushButton:checked {
-    background-color: #333333; /* Фон для активної */
-    color: #9932CC; /* Фіолетовий текст */
+    background-color: #383D48; /* Фон для активної */
+    color: #C678DD; /* ФІОЛЕТОВИЙ АКЦЕНТ */
     font-weight: bold;
-    border-left: 4px solid #9932CC; /* ФІОЛЕТОВА ЛІНІЯ */
+    border-left: 4px solid #C678DD; /* ФІОЛЕТОВА ЛІНІЯ */
 }
 
 /* ---------------------------------- */
-/* СТОРІНКИ (ТЕМНА ТЕМА) */
+/* СТОРІНКИ ТА ФОРМИ (MONOSPACE) */
 /* ---------------------------------- */
 QStackedWidget {
-    background-color: #1e1e1e; /* Темний фон сторінок */
+    background-color: #282C34;
     border: none;
 }
 
-/* Поля вводу */
+/* Поля вводу - Імітація редактора коду */
 QLineEdit, QSpinBox, QTextEdit {
-    border: 1px solid #555555; /* Темна рамка */
-    border-radius: 5px;
+    border: 1px solid #4B5263;
+    border-radius: 3px;
     padding: 8px;
-    background-color: #2D2D2D; /* Темний фон поля */
+    background-color: #21252B;
     font-size: 13px;
-    color: #F0F0F0; /* Світлий текст */
+    color: #ABB2BF; /* Світло-сірий текст */
+    font-family: 'Consolas', 'Courier New', monospace; /* Моноширинний шрифт */
 }
 
 QLineEdit:focus, QSpinBox:focus, QTextEdit:focus {
-    border: 1px solid #9932CC; /* Фіолетова рамка при фокусі */
-    background-color: #333333;
+    /* Чиста рамка фокусу */
+    border: 1px solid #61AFEF; /* Блакитний акцент (як для змінних) */
+    background-color: #313642;
 }
 
 /* Загальні QLabel та текст для галочок */
 QLabel, QCheckBox, QRadioButton {
-    color: #DDDDDD; /* Світло-сірий текст */
+    color: #ABB2BF; /* М'який сірий текст */
     font-family: "Segoe UI", "Arial", sans-serif;
     font-size: 13px;
 }
 
 /* ---------------------------------- */
-/* КНОПКИ (ТЕМНА ТЕМА) */
+/* КНОПКИ */
 /* ---------------------------------- */
 /* Звичайні кнопки (Зберегти, Знайти пару) */
 QPushButton {
-    background-color: #9932CC; /* Фіолетовий фон (такий самий, як у світлій) */
-    color: #ffffff; /* Білий текст */
+    background-color: #C678DD; /* Фіолетовий фон */
+    color: #111111; /* Чорний текст для контрасту */
     border: 1px solid transparent;
-    border-radius: 8px;
+    border-radius: 5px;
     padding: 10px 20px;
     font-size: 14px;
     font-weight: bold;
@@ -98,55 +108,57 @@ QPushButton {
 }
 
 QPushButton:hover {
-    background-color: #B048D4; /* Світліший фіолетовий */
+    background-color: #D69AF6; /* Світліший фіолетовий */
 }
 
 QPushButton:pressed {
-    background-color: #7A28A3; /* Темніший фіолетовий */
+    background-color: #B15CD1; /* Темніший фіолетовий */
 }
 
 /* Кнопки Like/Skip (залишаємо яскравими) */
 QPushButton#m_likeButton {
-    background-color: #4CAF50; /* Зелений */
-    color: white;
-    border: 1px solid transparent;
+    background-color: #98C379; /* Світлий зелений (як успіх) */
+    color: #282C34;
     border-radius: 20px;
     min-width: 100px;
     min-height: 40px;
+    font-family: 'Consolas', 'Courier New', monospace;
 }
-QPushButton#m_likeButton:hover { background-color: #66BB6A; }
+QPushButton#m_likeButton:hover { background-color: #A3D186; }
 
 QPushButton#m_skipButton {
-    background-color: #F44336; /* Червоний */
-    color: white;
-    border: 1px solid transparent;
+    background-color: #E06C75; /* Червоний (як помилка) */
+    color: #282C34;
     border-radius: 20px;
     min-width: 100px;
     min-height: 40px;
+    font-family: 'Consolas', 'Courier New', monospace;
 }
-QPushButton#m_skipButton:hover { background-color: #EF5350; }
+QPushButton#m_skipButton:hover { background-color: #E97C85; }
 
 /* ---------------------------------- */
-/* НАЛАШТУВАННЯ (ТЕМНА ТЕМА) */
+/* НАЛАШТУВАННЯ */
 /* ---------------------------------- */
 
 /* Стиль для QComboBox (випадаючий список) */
 QComboBox {
-    border: 1px solid #555555;
-    border-radius: 5px;
+    border: 1px solid #4B5263;
+    border-radius: 3px;
     padding: 8px;
-    background-color: #2D2D2D;
-    color: #F0F0F0;
+    background-color: #21252B;
+    color: #ABB2BF;
     min-width: 150px;
+    font-family: 'Consolas', 'Courier New', monospace;
 }
-QComboBox:focus { border: 1px solid #9932CC; }
+QComboBox:focus { border: 1px solid #61AFEF; }
 
 /* Список, що випадає */
 QComboBox QAbstractItemView {
-    background-color: #2D2D2D;
-    color: #F0F0F0;
-    border: 1px solid #555555;
-    selection-background-color: #4a00e0;
+    background-color: #21252B;
+    color: #ABB2BF;
+    border: 1px solid #4B5263;
+    selection-background-color: #4B5263;
+    selection-color: #C678DD;
 }
 
 /* Стрілка */
@@ -157,41 +169,24 @@ QComboBox::down-arrow {
 }
 
 /* Стиль для Перемикача Темної Теми (QCheckBox) */
-QCheckBox#themeToggleSwitch {
-    spacing: 5px;
+QCheckBox#themeToggleSwitch::indicator:checked {
+    background-color: #C678DD; /* Фіолетовий */
+    border: 1px solid #C678DD;
 }
 QCheckBox#themeToggleSwitch::indicator {
-    width: 40px;
-    height: 20px;
-    border: 1px solid #777777;
-    background-color: #555555; /* Темно-сірий фон (Вимкнено) */
-    border-radius: 10px;
-}
-QCheckBox#themeToggleSwitch::indicator:checked {
-    background-color: #9932CC; /* Фіолетовий (Увімкнено) */
-    border: 1px solid #9932CC;
+    background-color: #5C6370; /* Сірий (Вимкнено) */
 }
 QCheckBox#themeToggleSwitch::indicator:handle {
-    background-color: white;
-    border-radius: 8px;
-    width: 16px;
-    height: 16px;
-    margin: 2px;
-}
-QCheckBox#themeToggleSwitch::indicator:checked:handle {
-    margin-left: 22px;
+    background-color: #ABB2BF; /* Світлий рухливий елемент */
 }
 
 /* Стиль для Кнопки Видалення Акаунту */
 QPushButton#deleteAccountButton {
-    background-color: #F44336; /* Червоний */
-    color: white;
+    background-color: #E06C75; /* Червоний (як Skip) */
+    color: #282C34;
 }
 QPushButton#deleteAccountButton:hover {
-    background-color: #D32F2F; /* Темніший червоний */
-}
-QPushButton#deleteAccountButton:pressed {
-    background-color: #B71C1C; /* Дуже темний червоний */
+    background-color: #E97C85;
 }
 
 /* ---------------------------------- */
@@ -201,120 +196,100 @@ QPushButton#deleteAccountButton:pressed {
 QLabel#welcomeTitle {
     font-size: 28pt;
     font-weight: bold;
-    color: #9932CC; /* Фіолетовий */
+    color: #C678DD; /* Фіолетовий */
     padding-bottom: 10px;
+    font-family: 'Consolas', 'Courier New', monospace;
 }
 
-/* У темній темі підзаголовок має бути світлим */
 QLabel#welcomeSubtitle {
     font-size: 14pt;
-    color: #AAAAAA; /* Світло-сірий */
+    color: #ABB2BF;
 }
 
 /* ---------------------------------- */
-/* СТИЛІ ДЛЯ ДІАЛОГОВИХ ВІКОН (ТЕМНА ТЕМА) */
+/* СТИЛІ ДЛЯ ДІАЛОГОВИХ ВІКОН */
 /* ---------------------------------- */
 
-/* Фон самого вікна */
 QMessageBox {
-    background-color: #2D2D2D; /* Темний фон, як у полів вводу */
+    background-color: #282C34;
 }
 
-/* Текст всередині QMessageBox (ГОЛОВНЕ ВИРІШЕННЯ) */
 QMessageBox QLabel {
-    color: #EEEEEE; /* Яскравий білий/світло-сірий текст */
+    color: #ABB2BF;
     font-size: 13px;
-    font-weight: normal; /* (Скидаємо жирний шрифт, якщо він є) */
+    font-weight: normal;
 }
 
-/* Стилізація кнопок (Yes/No) всередині QMessageBox */
-/* (Вони вже фіолетові через загальний стиль,
-   але додамо мінімальну ширину для краси) */
 QMessageBox QPushButton {
-    min-width: 80px; /* Щоб кнопки "Yes" / "No" були гарної ширини */
+    min-width: 80px;
 }
 
 /* ---------------------------------- */
-/* ПАНЕЛЬ АДМІНІСТРАТОРА (ТЕМНА) */
+/* ПАНЕЛЬ АДМІНІСТРАТОРА */
 /* ---------------------------------- */
 
-/* Заголовок адмінки */
 QLabel#adminTitleLabel {
     font-size: 20pt;
     font-weight: bold;
-    color: #9932CC; /* Фіолетовий */
+    color: #C678DD;
     padding: 10px;
+    font-family: 'Consolas', 'Courier New', monospace;
 }
 
 /* Кнопка Назад (Сіра) */
 QPushButton#adminBackBtn {
-    background-color: #444444;
+    background-color: #5C6370;
     color: #dddddd;
-    border: 1px solid #555555;
+    border: 1px solid #4B5263;
     min-width: 100px;
-}
-QPushButton#adminBackBtn:hover { background-color: #555555; }
-
-/* Кнопка Генерувати (Фіолетова/Рожева) */
-QPushButton#adminGenBtn {
-    background-color: #7B1FA2;
-    color: white;
-}
-QPushButton#adminGenBtn:hover { background-color: #9C27B0; }
-
-/* Кнопка Видалити (Червона) */
-QPushButton#adminDelBtn {
-    background-color: #D32F2F;
-    color: white;
-}
-QPushButton#adminDelBtn:hover { background-color: #F44336; }
-
-/* Таблиця (Темна) */
-QTableView#adminTable {
-    background-color: #2D2D2D;
-    alternate-background-color: #383838;
-    gridline-color: #444444;
-    color: #F0F0F0;
-    border: 1px solid #444444;
-}
-QTableView#adminTable::item:selected {
-    background-color: #9932CC; /* Фіолетове виділення */
-    color: white;
-}
-QHeaderView::section {
-    background-color: #333333;
-    color: #F0F0F0;
-    border: 1px solid #444444;
-    padding: 4px;
-}
-
-QPushButton#adminBackBtn {
-    background-color: #444444;
-    color: #dddddd;
-    border: 1px solid #555555;
-    min-width: 100px;
-    /* ДОДАЄМО ІКОНКУ ЧЕРЕЗ QSS */
     qproperty-icon: url(:/resources/icons/back_white.png);
-    qproperty-iconSize: 20px 20px; /* Розмір іконки */
+    qproperty-iconSize: 20px 20px;
 }
+QPushButton#adminBackBtn:hover { background-color: #6A7182; }
 
+/* Кнопка Генерувати (Фіолетова) */
 QPushButton#adminGenBtn {
-    background-color: #7B1FA2;
-    color: white;
+    background-color: #C678DD;
+    color: #111111;
     qproperty-icon: url(:/resources/icons/dice_white.png);
     qproperty-iconSize: 24px 24px;
 }
+QPushButton#adminGenBtn:hover { background-color: #D69AF6; }
 
+/* Кнопка Видалити (Червона) */
 QPushButton#adminDelBtn {
-    background-color: #D32F2F;
-    color: white;
+    background-color: #E06C75;
+    color: #111111;
     qproperty-icon: url(:/resources/icons/trash_white.png);
     qproperty-iconSize: 20px 20px;
 }
+QPushButton#adminDelBtn:hover { background-color: #E97C85; }
 
+/* Таблиця (Темна) */
+QTableView#adminTable {
+    background-color: #21252B;
+    alternate-background-color: #2C3039;
+    gridline-color: #4B5263;
+    color: #ABB2BF;
+    border: 1px solid #4B5263;
+    font-family: 'Consolas', 'Courier New', monospace;
+}
+QTableView#adminTable::item:selected {
+    background-color: #61AFEF; /* Блакитне виділення */
+    color: #282C34;
+}
+QHeaderView::section {
+    background-color: #383D48;
+    color: #C678DD;
+    border: 1px solid #4B5263;
+    padding: 4px;
+    font-family: 'Consolas', 'Courier New', monospace;
+}
+
+/* Кнопка Адмін Налаштувань */
 QPushButton#settingsAdminBtn {
-    background-color: #9932CC;
-    color: white;
+    background-color: #C678DD;
+    color: #111111;
     font-size: 14pt;
     font-weight: bold;
     border-radius: 10px;
@@ -323,47 +298,45 @@ QPushButton#settingsAdminBtn {
     qproperty-iconSize: 32px 32px;
 }
 QPushButton#settingsAdminBtn:hover {
-    background-color: #B048D4;
+    background-color: #D69AF6;
 }
 
 QLabel#searchIconLbl {
-    image: url(:/resources/icons/search_icon.png);
+    image: url(:/resources/icons/search_icon_white.png); /* ПОТРІБНА БІЛА ІКОНКА */
     min-width: 24px;
     min-height: 24px;
     padding-right: 5px;
 }
 
-/* Кнопка Статистики (Синя) */
+/* Кнопка Статистики (Блакитна) */
 QPushButton#adminStatsBtn {
-    background-color: #0288D1;
-    color: white;
+    background-color: #61AFEF;
+    color: #111111;
     min-width: 100px;
-    qproperty-icon: url(:/resources/icons/chart.png);
+    qproperty-icon: url(:/resources/icons/chart_dark.png); /* ПОТРІБНА ТЕМНА ІКОНКА */
 }
 QPushButton#adminStatsBtn:hover {
-    background-color: #03A9F4;
+    background-color: #79B8FF;
 }
 
-/* Фон діалогового вікна */
 QDialog#statsDialog {
-    background-color: #2D2D2D;
+    background-color: #282C34;
 }
 
-/* Вкладки */
 QTabWidget#statsTabs::pane {
-    border: 1px solid #444444;
-    background-color: #2D2D2D;
+    border: 1px solid #4B5263;
+    background-color: #282C34;
 }
 QTabBar::tab {
-    background: #444444;
-    color: #AAAAAA;
+    background: #383D48;
+    color: #ABB2BF;
     padding: 8px 20px;
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
 }
 QTabBar::tab:selected {
-    background: #9932CC; /* Фіолетовий акцент */
-    color: white;
+    background: #C678DD; /* Фіолетовий акцент */
+    color: #282C34;
     font-weight: bold;
 }
 
@@ -371,108 +344,77 @@ QChartView {
     background-color: transparent;
 }
 
-/* --- КАРТКА ПРОФІЛЮ (Темна тема) --- */
+/* --- КАРТКА ПРОФІЛЮ (ПІДСВІЧУВАННЯ СИНТАКСИСУ) --- */
 
-/* Темно-сіра плашка */
 QFrame#cardFrame {
-    background-color: #2D2D2D;
-    border-radius: 20px;
-    border: 1px solid #444444;
-}
-
-/* Ім'я */
-QLabel#cardName {
-    font-size: 26px;
-    font-weight: bold;
-    color: #ffffff;
-}
-
-/* Вік */
-QLabel#cardAge {
-    font-size: 26px;
-    font-weight: normal;
-    color: #dddddd;
-}
-
-/* Місто */
-QLabel#cardCity {
-    font-size: 16px;
-    color: #aaaaaa;
-    padding-bottom: 10px;
-}
-
-/* Біо */
-QLabel#cardBio {
-    font-size: 14px;
-    color: #cccccc;
-}
-
-/* --- СТИЛІ КАРТКИ ПРОФІЛЮ (ТЕМНА ТЕМА) --- */
-
-/* Контейнер картки */
-QFrame#cardFrame {
-    background-color: #252526; /* Трохи світліше за фон вікна */
-    border-radius: 12px;
-    border: 1px solid #444444;
+    background-color: #21252B; /* Темніше для виділення */
+    border-radius: 10px;
+    border: 1px solid #4B5263;
 }
 
 /* ★ Заголовок (Ім'я, Вік) */
 QLabel#cardName {
     font-size: 26px;
     font-weight: bold;
-    color: #FFFFFF;
+    color: #E5C07B; /* Жовтуватий (як назва об'єкта) */
     padding-top: 10px;
+    font-family: 'Consolas', 'Courier New', monospace;
 }
 QLabel#cardAge {
     font-size: 26px;
     font-weight: normal;
-    color: #DDDDDD;
+    color: #D19A66; /* Помаранчевий (як числова константа) */
+    font-family: 'Consolas', 'Courier New', monospace;
 }
 
-/* ★ Сумісність (%) - Рожевий/Фіолетовий текст */
+/* ★ Сумісність (%) - Ключове слово */
 QLabel#cardCompatibility {
     font-size: 16px;
     font-weight: bold;
-    color: #9932CC; /* Фіолетовий, щоб виділявся на темному */
+    color: #61AFEF; /* Блакитний (як тип даних) */
     padding-top: 5px;
     padding-bottom: 5px;
-    qproperty-pixmap: url(:/resources/icons/heart_white.png);
+    font-family: 'Consolas', 'Courier New', monospace;
 }
 
-/* Місто */
+/* Місто (як рядок) */
 QLabel#cardCity {
     font-size: 14px;
-    color: #AAAAAA;
+    color: #98C379; /* Зелений (як рядок) */
     padding-bottom: 10px;
+    font-family: 'Consolas', 'Courier New', monospace;
+}
+
+/* Біо (як коментар) */
+QLabel#cardBio {
+    font-size: 14px;
+    color: #5C6370; /* Сірий (як коментар) */
+    font-family: 'Consolas', 'Courier New', monospace;
 }
 
 /* Фото Placeholder */
 QLabel#cardPhoto {
-    border-radius: 10px;
-    background-color: #333333;
+    border-radius: 8px;
+    background-color: #383D48;
 }
 
 /* --- СТИЛІ СТОРІНКИ МЕТЧІВ --- */
 
-/* Заголовок Сторінки Метчів */
 QLabel#matchesTitleLabel {
-    font-size: 22pt;
+    font-size: 20pt;
     font-weight: bold;
-    color: #9932CC; /* Світло-фіолетовий */
-    padding: 10px;
-
-    /* ★ ЗАМІНА ЕМОДЗІ НА ІКОНКУ СЕРЦЯ */
-    qproperty-pixmap: url(:/resources/icons/heart_white.png); /* Біле сердечко для темної теми */
-    qproperty-alignment: AlignHCenter;
+    color: #C678DD;
+    padding: 10px 0 15px 0;
+    font-family: 'Consolas', 'Courier New', monospace;
 }
 
-/* Список Метчів (Елементи) */
 QListWidget#matchesListWidget {
-    background-color: #2D2D2D;
-    color: #F0F0F0;
-    border: 1px solid #444444;
+    background-color: #21252B;
+    color: #ABB2BF;
+    border: 1px solid #4B5263;
     border-radius: 8px;
     font-size: 16px;
+    font-family: 'Consolas', 'Courier New', monospace;
 }
 QListWidget#matchesListWidget::item {
     padding: 8px;

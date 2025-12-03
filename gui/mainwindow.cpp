@@ -6,7 +6,9 @@
 #include "matchespagewidget.h"
 #include "settingspagewidget.h"
 #include "welcomepagewidget.h"
+#include "ChatPageWidget.h"
 #include "UserProfile.h"
+#include "FakeDataManager.h"
 #include <QFile>
 #include <QTextStream>
 #include <QMessageBox>
@@ -21,7 +23,6 @@ MainWindow::MainWindow(DatabaseManager* dbManager, QWidget *parent)
     ui->setupUi(this);
     setWindowTitle(tr("Match++"));
 
-    // Ініціалізація сторінок
     m_welcomePage = new WelcomePageWidget(this);
     m_searchPage = new SearchPageWidget(this);
     m_profilePage = new ProfilePageWidget(this);
@@ -29,6 +30,7 @@ MainWindow::MainWindow(DatabaseManager* dbManager, QWidget *parent)
     m_settingsPage = new SettingsPageWidget(this);
     m_adminPage = new AdminPageWidget(this);
     m_chatManager = new ChatManager(m_dbManager, this);
+    m_chatPage = new ChatPageWidget(UserProfile(), m_chatManager, -1, this);
 
 
     // Додавання до StackedWidget
@@ -38,6 +40,7 @@ MainWindow::MainWindow(DatabaseManager* dbManager, QWidget *parent)
     ui->stackedWidget_Pages->addWidget(m_matchesPage);
     ui->stackedWidget_Pages->addWidget(m_settingsPage);
     ui->stackedWidget_Pages->addWidget(m_adminPage);
+    ui->stackedWidget_Pages->addWidget(m_chatPage);
     m_matchesPage->setChatManager(m_chatManager);
 
     // Налаштування тем та мови
@@ -52,31 +55,33 @@ MainWindow::MainWindow(DatabaseManager* dbManager, QWidget *parent)
     // ПЕРЕВІРКА СЕСІЇ ТА ЗАВАНТАЖЕННЯ ДАНИХ
     UserProfile currentUser;
     m_userExists = m_dbManager->getCurrentUserProfile(currentUser);
+    m_currentProfile = currentUser;
 
     m_profilePage->setDatabaseManager(m_dbManager);
     m_settingsPage->setDatabaseManager(m_dbManager);
     m_adminPage->setDatabaseManager(m_dbManager);
-
     m_settingsPage->setMainWindow(this);
 
+
     if (m_userExists) {
-        m_profilePage->setInternalProfile(currentUser);
-        m_settingsPage->loadCurrentSettings(currentUser);
+        m_profilePage->setInternalProfile(m_currentProfile);
+        m_settingsPage->loadCurrentSettings(m_currentProfile);
 
         // ОНОВЛЕННЯ СИНХРОНІЗАЦІЇ
         m_searchPage->setDatabaseManager(m_dbManager);
-        m_searchPage->setCurrentUser(currentUser);
+        m_searchPage->setCurrentUser(m_currentProfile);
         m_matchesPage->setDatabaseManager(m_dbManager);
-        m_matchesPage->setCurrentUserId(currentUser.getId());
+        m_matchesPage->setCurrentUserId(m_currentProfile.getId());
+
+        FakeDataManager::seedReverseLikes(m_dbManager, m_currentProfile.getId(), 50);
 
         UserLogger::log(Info, QString("User profile (ID=%1) loaded and synchronized.")
-                                  .arg(currentUser.getId()));
+                                  .arg(m_currentProfile.getId()));
     } else {
         m_searchPage->setDatabaseManager(m_dbManager);
         UserLogger::log(Info, "No user found. App running in 'guest' mode.");
     }
 
-    // Початковий екран
     ui->stackedWidget_Pages->setCurrentWidget(m_welcomePage);
     UserLogger::log(Info, "Showing Welcome Page.");
 
@@ -90,12 +95,14 @@ MainWindow::MainWindow(DatabaseManager* dbManager, QWidget *parent)
     connect(m_settingsPage, &SettingsPageWidget::openAdminPanelRequested,
             this, &MainWindow::showAdminPage);
 
-    // ЗВ'ЯЗОК МІЖ ПОШУКОМ І МЕТЧАМИ
-    connect(m_searchPage, &SearchPageWidget::matchFound,
-            m_matchesPage, &MatchesPageWidget::onMatchCreated);
-
     connect(m_settingsPage, &SettingsPageWidget::accountDeleted,
             this, &MainWindow::onAccountDeleted);
+
+    connect(m_matchesPage, &MatchesPageWidget::openChatRequested,
+            this, &MainWindow::onOpenChatRequested);
+
+    connect(m_searchPage, &SearchPageWidget::matchFound,
+            m_matchesPage, &MatchesPageWidget::onMatchCreated);
 }
 
 MainWindow::~MainWindow()
@@ -178,18 +185,15 @@ void MainWindow::switchTheme(bool isDark)
 
 void MainWindow::onProfileSaved()
 {
-    UserProfile currentUser;
-
-    if (m_dbManager->getCurrentUserProfile(currentUser)) {
+    if (m_dbManager->getCurrentUserProfile(m_currentProfile)) {
 
         m_userExists = true;
 
-        m_searchPage->setCurrentUser(currentUser);
-
+        m_searchPage->setCurrentUser(m_currentProfile);
         m_matchesPage->setDatabaseManager(m_dbManager);
-        m_matchesPage->setCurrentUserId(currentUser.getId());
-
-        m_settingsPage->loadCurrentSettings(currentUser);
+        m_matchesPage->setCurrentUserId(m_currentProfile.getId());
+        m_settingsPage->loadCurrentSettings(m_currentProfile);
+        m_profilePage->setInternalProfile(m_currentProfile);
 
         UserLogger::log(Info, "MainWindow received profileSaved signal. Session established.");
     }
@@ -209,4 +213,23 @@ void MainWindow::onAccountDeleted() {
     m_profilePage->clearFields();
 
     UserLogger::log(Info, "Account deleted. Switching to Welcome Page.");
+}
+
+void MainWindow::on_btn_Exit_clicked()
+{
+    UserLogger::log(Info, "User requested application exit.");
+
+    qApp->quit();
+}
+
+void MainWindow::onOpenChatRequested(int targetUserId) {
+    UserProfile targetProfile;
+
+    if (m_dbManager->loadProfileById(targetUserId, targetProfile)) {
+
+        m_chatPage->setMatchProfile(targetProfile, m_currentProfile.getId());
+
+        ui->stackedWidget_Pages->setCurrentWidget(m_chatPage);
+        UserLogger::log(Info, QString("Switched to Chat with ID %1.").arg(targetUserId));
+    }
 }

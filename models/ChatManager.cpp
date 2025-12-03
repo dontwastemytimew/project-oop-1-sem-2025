@@ -3,6 +3,7 @@
 #include <QRandomGenerator>
 #include <QDebug>
 #include <algorithm>
+#include "DatabaseManager.h"
 
 ChatManager::ChatManager(DatabaseManager* dbManager, QObject* parent)
     : QObject(parent), m_dbManager(dbManager)
@@ -25,33 +26,17 @@ void ChatManager::sendMessage(int fromUserId, int toUserId, const QString &messa
     msg.message = message;
     msg.timestamp = QDateTime::currentDateTime();
 
-    QPair<int,int> key = (fromUserId < toUserId)
-                       ? QPair<int,int>(fromUserId, toUserId)
-                       : QPair<int,int>(toUserId, fromUserId);
-
-    chatHistory[key].append(msg);
+    if (m_dbManager) {
+        m_dbManager->saveChatMessage(msg);
+    }
     qDebug() << "Message sent and stored.";
 }
 
 QList<ChatMessage> ChatManager::getMessages(int userId, int targetId) const {
-    QList<ChatMessage> result;
-
-    QPair<int,int> key1(userId, targetId);
-    QPair<int,int> key2(targetId, userId);
-
-    if (chatHistory.contains(key1)) {
-        result.append(chatHistory.value(key1));
+    if (m_dbManager) {
+        return m_dbManager->loadChatHistory(userId, targetId);
     }
-    if (chatHistory.contains(key2)) {
-        result.append(chatHistory.value(key2));
-    }
-
-    // сортуємо за часом
-    std::sort(result.begin(), result.end(), [](const ChatMessage &a, const ChatMessage &b){
-        return a.timestamp < b.timestamp;
-    });
-
-    return result;
+    return QList<ChatMessage>();
 }
 
 QString ChatManager::getBotReply() const {

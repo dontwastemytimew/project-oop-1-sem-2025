@@ -13,6 +13,8 @@
 #include "settingspagewidget.h"
 #include "ChatManager.h"
 
+class ChatPageWidget;
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -35,6 +37,8 @@ private slots:
     void on_btn_Settings_clicked();
     void onProfileSaved();
     void onAccountDeleted();
+    void on_btn_Exit_clicked();
+    void onOpenChatRequested(int targetUserId);
 
 private:
     Ui::MainWindow *ui;
@@ -50,6 +54,8 @@ private:
     ChatManager* m_chatManager;
     bool m_userExists;
     AdminPageWidget* m_adminPage;
+    ChatPageWidget *m_chatPage;
+    UserProfile m_currentProfile;
 };
 
 #endif // MAINWINDOW_H

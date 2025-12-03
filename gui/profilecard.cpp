@@ -14,68 +14,47 @@ ProfileCard::ProfileCard(QWidget* parent)
 
     QFrame* cardFrame = new QFrame(this);
     cardFrame->setObjectName("cardFrame");
-    cardFrame->setFixedWidth(340);
+    cardFrame->setFixedWidth(550);
 
-    QVBoxLayout* cardLayout = new QVBoxLayout(cardFrame);
-    cardLayout->setSpacing(5);
-    cardLayout->setContentsMargins(15, 20, 15, 20);
+    QHBoxLayout* dualColumnLayout = new QHBoxLayout(cardFrame);
+    dualColumnLayout->setContentsMargins(20, 20, 20, 20);
+    dualColumnLayout->setSpacing(20);
 
-    // ФОТО
     lblPhoto = new QLabel(this);
     lblPhoto->setObjectName("cardPhoto");
     lblPhoto->setAlignment(Qt::AlignCenter);
-    lblPhoto->setFixedSize(250, 250);
+    lblPhoto->setFixedSize(200, 200);
 
-    // ІМ'Я та ВІК
+    QVBoxLayout* textStackLayout = new QVBoxLayout();
+    textStackLayout->setSpacing(5);
+    textStackLayout->setAlignment(Qt::AlignTop | Qt::AlignLeft);
+
+    lblName = new QLabel(this); lblName->setObjectName("cardName");
+    lblAge = new QLabel(this); lblAge->setObjectName("cardAge");
+    lblCity = new QLabel(this); lblCity->setObjectName("cardCity");
+    lblCompatibility = new QLabel(this); lblCompatibility->setObjectName("cardCompatibility");
+    lblDescription = new QLabel(this); lblDescription->setObjectName("cardBio");
+    lblDescription->setWordWrap(true);
+    lblTags = new QLabel(this); lblTags->setObjectName("tagsLabel");
+    lblTags->setWordWrap(true);
+    lblTags->setTextInteractionFlags(Qt::TextSelectableByMouse);
+
     QHBoxLayout* nameAgeLayout = new QHBoxLayout();
-
-    lblName = new QLabel(this);
-    lblName->setObjectName("cardName");
-
-    lblAge = new QLabel(this);
-    lblAge->setObjectName("cardAge");
-
     nameAgeLayout->addWidget(lblName);
     nameAgeLayout->addWidget(lblAge);
     nameAgeLayout->addStretch();
 
-    // МІСТО
-    lblCity = new QLabel(this);
-    lblCity->setObjectName("cardCity");
+    textStackLayout->addLayout(nameAgeLayout);
+    textStackLayout->addWidget(lblCompatibility);
+    textStackLayout->addWidget(lblCity);
+    textStackLayout->addWidget(lblTags);
+    textStackLayout->addWidget(lblDescription);
+    textStackLayout->addStretch(1);
 
-    // ВІДСОТОК СУМІСНОСТІ
-    lblCompatibility = new QLabel(this);
-    lblCompatibility->setObjectName("cardCompatibility");
-
-    // БІО
-    lblDescription = new QLabel(this);
-    lblDescription->setObjectName("cardBio");
-    lblDescription->setWordWrap(true);
-    lblDescription->setAlignment(Qt::AlignTop | Qt::AlignLeft);
-
-    lblTags = new QLabel(this);
-    lblTags->setObjectName("tagsLabel");
-    lblTags->setWordWrap(true);
-    lblTags->setTextInteractionFlags(Qt::TextSelectableByMouse);
-
-
-    // 1. Фото та Ім'я/Вік
-    cardLayout->addWidget(lblPhoto, 0, Qt::AlignCenter);
-    cardLayout->addLayout(nameAgeLayout);
-
-    // 2. Сумісність та Місто
-    cardLayout->addWidget(lblCompatibility);
-    cardLayout->addWidget(lblCity);
-
-    // 3. ТЕГИ
-    cardLayout->addWidget(lblTags);
-
-    // 4. Біо
-    cardLayout->addWidget(lblDescription);
-    cardLayout->addStretch();
+    dualColumnLayout->addWidget(lblPhoto);
+    dualColumnLayout->addLayout(textStackLayout);
 
     mainLayout->addWidget(cardFrame);
-
     setLayout(mainLayout);
 }
 
@@ -106,9 +85,7 @@ void ProfileCard::setProfileData(const UserProfile& profile)
 
     lblName->setText(profile.getName());
     lblAge->setText(QString(", %1").arg(profile.getAge()));
-
     lblCity->setText(QString("📍 %1").arg(profile.getCity()));
-
     lblDescription->setText(profile.getBio());
 
     QList<QString> tags = profile.getTags();
