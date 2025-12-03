@@ -11,8 +11,12 @@
 #include <QVariant>
 
 DatabaseManager::DatabaseManager() {
-    m_db = QSqlDatabase::addDatabase("QSQLITE");
-    m_db.setDatabaseName(DB_NAME);
+    if (QSqlDatabase::contains(QSqlDatabase::defaultConnection)) {
+        m_db = QSqlDatabase::database(QSqlDatabase::defaultConnection);
+    } else {
+        m_db = QSqlDatabase::addDatabase("QSQLITE");
+        m_db.setDatabaseName(DB_NAME);
+    }
 }
 
 DatabaseManager::~DatabaseManager() {
@@ -85,19 +89,21 @@ bool DatabaseManager::createTables() {
         ");";
 
     if (!query.exec(createTagsSql)) {
-        UserLogger::log(Error, "Failed to create 'user_tags' table.");
+        UserLogger::log(Error, "Failed to create 'user_tags' table: " + query.lastError().text());
         return false;
     }
 
-    query.exec("CREATE INDEX IF NOT EXISTS idx_tags_user ON user_tags(user_id)");
     query.exec("CREATE INDEX IF NOT EXISTS idx_users_age ON users(age)");
+    query.exec("CREATE INDEX IF NOT EXISTS idx_users_city ON users(city)");
+    query.exec("CREATE INDEX IF NOT EXISTS idx_users_gender ON users(gender)");
+    query.exec("CREATE INDEX IF NOT EXISTS idx_users_orient ON users(orientation)");
     query.exec("CREATE INDEX IF NOT EXISTS idx_likes_user ON likes(user_id)");
     query.exec("CREATE INDEX IF NOT EXISTS idx_likes_target ON likes(target_id)");
+    query.exec("CREATE INDEX IF NOT EXISTS idx_tags_user ON user_tags(user_id)");
 
-    UserLogger::log(Info, "Tables 'users' and 'likes' verified/created successfully.");
+    UserLogger::log(Info, "Tables 'users', 'likes', 'user_tags' and indices verified/created.");
     return true;
 }
-
 
 // ЛАЙКИ / МЕТЧІ
 bool DatabaseManager::addLike(int userId, int targetId) {
@@ -412,8 +418,8 @@ QList<UserProfile> DatabaseManager::getProfilesByCriteria(const Preference &pref
         bind[":maxAge"] = prefs.getMaxAge();
     }
     if (!prefs.getCity().isEmpty()) {
-        sql += " AND city LIKE :city";
-        bind[":city"] = "%" + prefs.getCity() + "%";
+        sql += " AND city = :city";
+        bind[":city"] = prefs.getCity();
     }
     if (!prefs.getGender().isEmpty() && prefs.getGender() != "Не важливо") {
         sql += " AND gender = :gender";
@@ -692,6 +698,7 @@ QList<UserProfile> DatabaseManager::getProfilesByIds(const QList<int> &ids) {
             profile.setGender(query.value("gender").toString());
             profile.setOrientation(query.value("orientation").toString());
             profile.setPhotoPath(query.value("photo_path").toString());
+            profile.setTags(getTagsForUser(profile.getId()));
 
             profile.setContactInfo(ContactInfo(
                 query.value("phone").toString(),

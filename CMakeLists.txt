@@ -68,6 +68,9 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(googletest)
 include(GoogleTest)
 
+set(BENCHMARK_ENABLE_LIB_GFLAGS OFF CACHE BOOL "Disable GFlags")
+set(BENCHMARK_ENABLE_REGEX OFF CACHE BOOL "Disable Regex")
+
 add_executable(dating_agency_tests
         tests/tests_main.cpp
         tests/DatabaseManagerTests.cpp
@@ -78,11 +81,29 @@ target_link_libraries(dating_agency_tests PRIVATE
         Qt6::Core Qt6::Sql gtest_main
 )
 
-add_executable(project_benchmark
-        tests/benchmark_main.cpp
-        utils/BenchmarkTool.h
+set(BENCHMARK_ENABLE_TESTING OFF CACHE BOOL "" FORCE)
+set(BENCHMARK_ENABLE_INSTALL OFF CACHE BOOL "" FORCE)
+set(BENCHMARK_DOWNLOAD_DEPENDENCIES ON CACHE BOOL "" FORCE)
+set(BENCHMARK_ENABLE_SHARED OFF CACHE BOOL "" FORCE)
+
+FetchContent_Declare(
+        googlebenchmark
+        URL https://github.com/google/benchmark/archive/refs/tags/v1.8.3.zip
 )
+FetchContent_MakeAvailable(googlebenchmark)
+
+add_executable(project_benchmark
+        benchmarks/db_benchmarks.cpp
+        benchmarks/match_benchmarks.cpp
+)
+
 target_link_libraries(project_benchmark PRIVATE
         DatingAgencyLogic
+        benchmark::benchmark
+        benchmark::benchmark_main
         Qt6::Core Qt6::Sql Qt6::Charts
 )
+
+if(MINGW)
+    target_compile_definitions(project_benchmark PRIVATE BENCHMARK_STATIC_DEFINE)
+endif()
