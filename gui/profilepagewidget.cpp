@@ -11,6 +11,7 @@
 #include <QBuffer>
 #include <QCompleter>
 #include <QEvent>
+#include <QMessageBox>
 #include "UserLogger.h"
 
 ProfilePageWidget::ProfilePageWidget(QWidget *parent) : QWidget(parent)
@@ -138,7 +139,8 @@ ProfilePageWidget::ProfilePageWidget(QWidget *parent) : QWidget(parent)
     retranslateUi();
 
     connect(m_choosePhotoButton, &QPushButton::clicked, this, &ProfilePageWidget::onChoosePhoto);
-    connect(m_saveButton, &QPushButton::clicked, this, &ProfilePageWidget::on_btn_SaveProfile_clicked);
+    connect(m_saveButton, &QPushButton::clicked,
+            this, &ProfilePageWidget::on_btn_SaveProfile_clicked);
 }
 
 void ProfilePageWidget::retranslateUi() {
@@ -163,6 +165,10 @@ void ProfilePageWidget::setDatabaseManager(DatabaseManager* dbManager) {
 }
 
 void ProfilePageWidget::loadCurrentProfile() {
+    if (m_currentUser.getId() == -1 && m_dbManager) {
+        m_dbManager->getCurrentUserProfile(m_currentUser);
+    }
+
     if (!m_currentUser.getPhotoPath().isEmpty()) {
         m_photoPath = m_currentUser.getPhotoPath();
         QPixmap pix(m_photoPath);
@@ -183,7 +189,16 @@ void ProfilePageWidget::loadCurrentProfile() {
     m_emailEdit->setText(m_currentUser.getContactInfo().getEmail());
     m_genderCombo->setCurrentText(m_currentUser.getGender());
     m_orientationCombo->setCurrentText(m_currentUser.getOrientation());
-    m_tagsEdit->setText(m_currentUser.getTags().join(", "));
+
+    if (m_dbManager && m_currentUser.getId() != -1) {
+        QList<QString> tags = m_dbManager->getTagsForUser(m_currentUser.getId());
+
+        m_currentUser.setTags(tags);
+
+        m_tagsEdit->setText(tags.join(", "));
+    } else {
+        m_tagsEdit->setText("");
+    }
 }
 
 void ProfilePageWidget::setInternalProfile(const UserProfile& profile) {
@@ -223,46 +238,73 @@ void ProfilePageWidget::setupCityAutocomplete() {
 }
 
 void ProfilePageWidget::on_btn_SaveProfile_clicked() {
-    if (m_nameEdit->text().isEmpty()) {
+    QString name = m_nameEdit->text();
+    QString email = m_emailEdit->text();
+    int age = m_ageSpinBox->value();
+
+    if (name.isEmpty()) {
+        QMessageBox::warning(this, tr("Помилка валідації"), tr("Ім'я не може бути пустим."));
         UserLogger::log(Warning, "Validation error: Name is empty.");
         return;
     }
 
-    m_currentUser.setName(m_nameEdit->text());
-    m_currentUser.setAge(m_ageSpinBox->value());
+    if (age < 18) {
+        QMessageBox::critical(this, tr("Помилка валідації"), tr("Вік має бути не менше 18 років."));
+        UserLogger::log(Critical, "Validation error: Age is below 18.");
+        return;
+    }
+
+    if (!email.contains('@') || !email.contains('.')) {
+        QMessageBox::warning(this, tr("Помилка валідації"), tr("Введіть коректну адресу електронної пошти."));
+        UserLogger::log(Warning, "Validation error: Invalid email format.");
+        return;
+    }
+
+    m_currentUser.setName(name);
+    m_currentUser.setAge(age);
     m_currentUser.setCity(m_cityEdit->text());
     m_currentUser.setBio(m_bioEdit->toPlainText());
     m_currentUser.setGender(m_genderCombo->currentText());
     m_currentUser.setOrientation(m_orientationCombo->currentText());
     m_currentUser.setPhotoPath(m_photoPath);
 
-    ContactInfo info(m_phoneEdit->text(), m_emailEdit->text());
+    ContactInfo info(m_phoneEdit->text(), email);
     m_currentUser.setContactInfo(info);
 
-    // Обробка тегів
-    QString tagsString = m_tagsEdit->text();
-    QStringList tags = tagsString.split(",", Qt::SkipEmptyParts);
-    for (QString& tag : tags) tag = tag.trimmed();
-    m_currentUser.setTags(tags);
-
     int id = -1;
+    bool success = false;
+
     if (m_currentUser.getId() == -1) {
         id = m_dbManager->saveProfile(m_currentUser);
-        m_currentUser.setId(id);
+        if (id != -1) {
+            m_currentUser.setId(id);
+            success = true;
+        }
     } else {
-        m_dbManager->updateProfile(m_currentUser);
+        success = m_dbManager->updateProfile(m_currentUser);
         id = m_currentUser.getId();
     }
 
-    if (id != -1) {
+    if (id != -1 && success) {
+        QString tagsString = m_tagsEdit->text();
+        QStringList tags = tagsString.split(",", Qt::SkipEmptyParts);
+        for (QString& tag : tags) tag = tag.trimmed();
+
+        m_currentUser.setTags(tags);
+
         m_dbManager->removeAllTags(id);
         for (const QString& tag : tags) {
             m_dbManager->addTag(id, tag);
         }
 
         m_dbManager->saveCurrentUserId(id);
-        UserLogger::log(Info, "Profile saved successfully.");
-        emit profileSaved();
+
+        QMessageBox::information(this, tr("Успіх"), tr("Профіль успішно збережено!"));
+        UserLogger::log(Info, "Profile saved successfully. ID=" + QString::number(id));
+        emit profileSaved(m_currentUser);
+    } else {
+        QMessageBox::critical(this, tr("Помилка БД"), tr("Не вдалося зберегти профіль у базу даних."));
+        UserLogger::log(Error, "Failed to save profile.");
     }
 }
 

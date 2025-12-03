@@ -96,7 +96,7 @@ MainWindow::MainWindow(DatabaseManager* dbManager, QWidget *parent)
     UserLogger::log(Info, "Showing Welcome Page.");
 
     connect(m_profilePage, &ProfilePageWidget::profileSaved,
-            this, &MainWindow::onProfileSaved);
+         this, &MainWindow::onProfileSaved);
 
     connect(m_adminPage, &AdminPageWidget::backClicked, this, [this](){
         ui->stackedWidget_Pages->setCurrentWidget(m_settingsPage);
@@ -222,20 +222,21 @@ void MainWindow::switchTheme(bool isDark)
     m_settingsPage->updateThemeIcon(isDark);
 }
 
-void MainWindow::onProfileSaved()
+void MainWindow::onProfileSaved(const UserProfile& savedProfile)
 {
-    if (m_dbManager->getCurrentUserProfile(m_currentProfile)) {
+    m_currentProfile = savedProfile;
+    m_userExists = true;
 
-        m_userExists = true;
+    m_searchPage->setCurrentUser(m_currentProfile);
+    m_matchesPage->setDatabaseManager(m_dbManager);
+    m_matchesPage->setCurrentUserId(m_currentProfile.getId());
+    m_settingsPage->loadCurrentSettings(m_currentProfile);
 
-        m_searchPage->setCurrentUser(m_currentProfile);
-        m_matchesPage->setDatabaseManager(m_dbManager);
-        m_matchesPage->setCurrentUserId(m_currentProfile.getId());
-        m_settingsPage->loadCurrentSettings(m_currentProfile);
-        m_profilePage->setInternalProfile(m_currentProfile);
+    m_profilePage->setInternalProfile(m_currentProfile);
 
-        UserLogger::log(Info, "MainWindow received profileSaved signal. Session established.");
-    }
+    UserLogger::log(Info, "MainWindow received profileSaved signal. Session established.");
+
+    ui->stackedWidget_Pages->setCurrentWidget(m_searchPage);
 }
 
 void MainWindow::showAdminPage() {

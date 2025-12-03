@@ -97,7 +97,7 @@ private slots:
      * Оновлює внутрішній об'єкт m_currentProfile, активує навігацію та перемикає
      * користувача на сторінку пошуку.
      */
-    void onProfileSaved();
+ void onProfileSaved(const UserProfile& savedProfile);
 
     /**
      * @brief Слот обробки видалення акаунту.

@@ -80,7 +80,7 @@ signals:
      * Емітується після того, як дані пройшли валідацію та були успішно
      * записані в базу даних. MainWindow використовує цей сигнал для навігації.
      */
-    void profileSaved();
+ void profileSaved(const UserProfile& savedProfile);
 
 private slots:
     /**
