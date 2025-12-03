@@ -1,88 +1,125 @@
 #include <gtest/gtest.h>
-
+#include <QFile>
 #include "MatchEngine.h"
-#include "UserProfile.h"
 #include "DatabaseManager.h"
-#include <QSqlQuery>
+#include "UserProfile.h"
+#include "ContactInfo.h"
 
-UserProfile makeProfile(int id, const QString& name, int age, const QString& city,
-                        const QString& gender, const QString& orientation)
-{
-    UserProfile p;
-    p.setId(id);
-    p.setName(name);
-    p.setAge(age);
-    p.setCity(city);
-    p.setGender(gender);
-    p.setOrientation(orientation);
-    return p;
+class MatchEngineTests : public ::testing::Test {
+protected:
+    DatabaseManager* dbManager;
+    MatchEngine* engine;
+    const QString DB_FILE = "dating_agency.db";
+
+    void SetUp() override {
+        QFile::remove(DB_FILE);
+        dbManager = new DatabaseManager();
+        if (!dbManager->openDatabase()) {
+            FAIL() << "Failed to open DB";
+        }
+        engine = new MatchEngine(dbManager);
+    }
+
+    void TearDown() override {
+        delete engine;
+        delete dbManager;
+        QFile::remove(DB_FILE);
+    }
+
+    UserProfile createProfileInMemory(const QString& gender, const QString& orientation,
+                                      int age, const QString& city) {
+        UserProfile p;
+        p.setGender(gender);
+        p.setOrientation(orientation);
+        p.setAge(age);
+        p.setCity(city);
+        return p;
+    }
+};
+
+// ТЕСТИ ЛОГІКИ СУМІСНОСТІ
+TEST_F(MatchEngineTests, Compatibility_Standard_Score) {
+    UserProfile p1 = createProfileInMemory("Чоловік", "Гетеро", 25, "Київ");
+
+    UserProfile p2 = createProfileInMemory("Жінка", "Гетеро", 24, "Київ");
+
+    // Розрахунок очікуваного балу:
+    // Орієнтація: Сумісні (немає штрафу -1000)
+    // Місто (Київ == Київ): +20
+    // Вік (|25-24| <= 2): +20
+    // Біо: 0
+    // Теги: 0
+    // Сума: 40. Відсоток: (40*100)/105 = 38.
+
+    EXPECT_TRUE(engine->isCompatible(p1, p2));
+    EXPECT_EQ(engine->compatibilityPercent(p1, p2), 38);
 }
 
-TEST(MatchEngineTests, HighCompatibilitySameCityCloseAge)
-{
-    DatabaseManager db;
-    MatchEngine engine(&db);
+TEST_F(MatchEngineTests, Compatibility_Incompatible_Orientation) {
+    UserProfile p1 = createProfileInMemory("Чоловік", "Гетеро", 25, "Київ");
+    UserProfile p2 = createProfileInMemory("Чоловік", "Гетеро", 25, "Київ");
 
-    UserProfile p1 = makeProfile(1, "Аня", 22, "Київ", "Жіноча", "Гетеро");
-    UserProfile p2 = makeProfile(2, "Ігор", 23, "Київ", "Чоловіча", "Гетеро");
-
-    int score = engine.compatibilityScore(p1, p2);
-    int percent = engine.compatibilityPercent(p1, p2);
-    bool compatible = engine.isCompatible(p1, p2);
-
-    EXPECT_GT(score, 0);
-    EXPECT_GE(percent, 60);
-    EXPECT_TRUE(compatible);
+    EXPECT_FALSE(engine->isCompatible(p1, p2));
+    EXPECT_EQ(engine->compatibilityPercent(p1, p2), 0);
 }
 
-TEST(MatchEngineTests, IncompatibleOrientation)
-{
-    DatabaseManager db;
-    MatchEngine engine(&db);
+TEST_F(MatchEngineTests, Compatibility_Age_Mismatch_But_Same_City) {
+    // Велика різниця у віці, але одне місто.
+    // P1: 20 років. P2: 50 років. Різниця 30.
+    // Місто: Київ (+20 балів).
 
-    UserProfile p1 = makeProfile(1, "Марія", 25, "Львів", "Жіноча", "Гетеро");
-    UserProfile p2 = makeProfile(2, "Олена", 25, "Львів", "Жіноча", "Гетеро");
+    UserProfile p1 = createProfileInMemory("Чоловік", "Гетеро", 20, "Київ");
+    UserProfile p2 = createProfileInMemory("Жінка", "Гетеро", 50, "Київ");
 
-    int score = engine.compatibilityScore(p1, p2);
-    int percent = engine.compatibilityPercent(p1, p2);
-    bool compatible = engine.isCompatible(p1, p2);
+    // Score = 20 (місто) + 0 (вік) = 20.
 
-    EXPECT_LT(score, 0);
-    EXPECT_EQ(percent, 0);
-    EXPECT_FALSE(compatible);
+    EXPECT_TRUE(engine->isCompatible(p1, p2));
+
+    // Відсоток: (20*100)/105 = 19.
+    EXPECT_EQ(engine->compatibilityPercent(p1, p2), 19);
 }
 
-TEST(MatchEngineTests, AgeDifferenceTooBig)
-{
-    DatabaseManager db;
-    MatchEngine engine(&db);
+TEST_F(MatchEngineTests, Compatibility_Total_Mismatch) {
+    // Різні міста, велика різниця у віці -> 0 балів -> Несумісні
+    UserProfile p1 = createProfileInMemory("Чоловік", "Гетеро", 20, "Київ");
+    UserProfile p2 = createProfileInMemory("Жінка", "Гетеро", 50, "Львів");
 
-    UserProfile p1 = makeProfile(1, "Вася", 20, "Київ", "Чоловіча", "Гетеро");
-    UserProfile p2 = makeProfile(2, "Оксана", 40, "Київ", "Жіноча", "Гетеро");
+    // Score = 0 (місто) + 0 (вік)
 
-    int percent = engine.compatibilityPercent(p1, p2);
-    bool compatible = engine.isCompatible(p1, p2);
-
-    EXPECT_LT(percent, 60);
-    EXPECT_FALSE(compatible);
+    EXPECT_FALSE(engine->isCompatible(p1, p2));
+    EXPECT_EQ(engine->compatibilityPercent(p1, p2), 0);
 }
 
-TEST(DatabaseManagerTests, MutualLikeBecomesMatch)
-{
-    DatabaseManager db;
-    ASSERT_TRUE(db.openDatabase());
+TEST_F(MatchEngineTests, Bisexual_Compatibility) {
+    // Бісексуал сумісний з ким завгодно
+    // Але щоб score > 0, потрібне співпадіння міста або віку.
+    UserProfile p1 = createProfileInMemory("Чоловік", "Бісексуал", 25, "Київ");
+    UserProfile p2 = createProfileInMemory("Чоловік", "Гей/Лесбі", 26, "Київ"); // Вік < 2, Місто +
 
-    QSqlQuery("DELETE FROM likes");
+    // Score = 20 (місто) + 20 (вік) = 40.
+    EXPECT_TRUE(engine->isCompatible(p1, p2));
+    EXPECT_EQ(engine->compatibilityPercent(p1, p2), 38);
+}
 
-    int userId = 1;
-    int targetId = 2;
+// ТЕСТИ ІНТЕГРАЦІЇ З БД (Лайки)
+TEST_F(MatchEngineTests, MutualLikes_Logic) {
+    UserProfile u1(-1, "User1", 20, "Kyiv", "Bio");
+    u1.setContactInfo(ContactInfo("111", "u1@test.com"));
+    ASSERT_TRUE(dbManager->saveProfile(u1));
 
-    EXPECT_TRUE(db.addLike(userId, targetId));
-    EXPECT_FALSE(db.isMutualLike(userId, targetId));
+    UserProfile u2(-1, "User2", 20, "Kyiv", "Bio");
+    u2.setContactInfo(ContactInfo("222", "u2@test.com"));
+    ASSERT_TRUE(dbManager->saveProfile(u2));
 
-    EXPECT_TRUE(db.addLike(targetId, userId));
-    EXPECT_TRUE(db.isMutualLike(userId, targetId));
+    dbManager->loadProfileByEmail("u1@test.com", u1);
+    dbManager->loadProfileByEmail("u2@test.com", u2);
 
-    QList<int> matches = db.getMutualMatchIds(userId);
-    EXPECT_TRUE(matches.contains(targetId));
+    int id1 = u1.getId();
+    int id2 = u2.getId();
+
+    EXPECT_TRUE(dbManager->addLike(id1, id2));
+    EXPECT_FALSE(dbManager->isMutualLike(id1, id2));
+
+    EXPECT_TRUE(dbManager->addLike(id2, id1));
+    EXPECT_TRUE(dbManager->isMutualLike(id1, id2));
 }

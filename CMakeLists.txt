@@ -75,6 +75,8 @@ add_executable(dating_agency_tests
         tests/tests_main.cpp
         tests/DatabaseManagerTests.cpp
         tests/matchengine_tests.cpp
+        tests/chat_preference_tests.cpp
+        tests/core_models_tests.cpp
 )
 target_link_libraries(dating_agency_tests PRIVATE
         DatingAgencyLogic
