@@ -93,7 +93,9 @@ $(document).ready(function(){initNavTree('classMatchesPageWidget.html',''); init
 <a href="#pub-slots">Public Slots</a> &#124;
 <a href="#signals">Signals</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pri-slots">Private Slots</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classMatchesPageWidget-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">MatchesPageWidget Class Reference</div></div>
@@ -129,9 +131,6 @@ Collaboration diagram for MatchesPageWidget:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-slots" name="pub-slots"></a>
 Public Slots</h2></td></tr>
-<tr class="memitem:a2d55d15403e48cc232d60c301bf79924" id="r_a2d55d15403e48cc232d60c301bf79924"><td class="memItemLeft" align="right" valign="top"><a id="a2d55d15403e48cc232d60c301bf79924" name="a2d55d15403e48cc232d60c301bf79924"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>reloadMatches</b> ()</td></tr>
-<tr class="separator:a2d55d15403e48cc232d60c301bf79924"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a30fb6fca92b858fa8a5f2d39e9acf61c" id="r_a30fb6fca92b858fa8a5f2d39e9acf61c"><td class="memItemLeft" align="right" valign="top"><a id="a30fb6fca92b858fa8a5f2d39e9acf61c" name="a30fb6fca92b858fa8a5f2d39e9acf61c"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>onMatchCreated</b> (int userId, int targetId)</td></tr>
 <tr class="separator:a30fb6fca92b858fa8a5f2d39e9acf61c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -153,9 +152,18 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>setDatabaseManager</b
 <tr class="memitem:a825411c1564ffc37e178d2031b64e779" id="r_a825411c1564ffc37e178d2031b64e779"><td class="memItemLeft" align="right" valign="top"><a id="a825411c1564ffc37e178d2031b64e779" name="a825411c1564ffc37e178d2031b64e779"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setCurrentUserId</b> (int id)</td></tr>
 <tr class="separator:a825411c1564ffc37e178d2031b64e779"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d55d15403e48cc232d60c301bf79924" id="r_a2d55d15403e48cc232d60c301bf79924"><td class="memItemLeft" align="right" valign="top"><a id="a2d55d15403e48cc232d60c301bf79924" name="a2d55d15403e48cc232d60c301bf79924"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>reloadMatches</b> ()</td></tr>
+<tr class="separator:a2d55d15403e48cc232d60c301bf79924"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae083528a8ff538dc662cbcd78c1863e4" id="r_ae083528a8ff538dc662cbcd78c1863e4"><td class="memItemLeft" align="right" valign="top"><a id="ae083528a8ff538dc662cbcd78c1863e4" name="ae083528a8ff538dc662cbcd78c1863e4"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setChatManager</b> (<a class="el" href="classChatManager.html">ChatManager</a> *chatManager)</td></tr>
 <tr class="separator:ae083528a8ff538dc662cbcd78c1863e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:a018193067f81ef5af10fcf9041766208" id="r_a018193067f81ef5af10fcf9041766208"><td class="memItemLeft" align="right" valign="top"><a id="a018193067f81ef5af10fcf9041766208" name="a018193067f81ef5af10fcf9041766208"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>changeEvent</b> (QEvent *event) override</td></tr>
+<tr class="separator:a018193067f81ef5af10fcf9041766208"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-slots" name="pri-slots"></a>
 Private Slots</h2></td></tr>
@@ -166,26 +174,32 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>onMatchClicked</b> (Q
 void&#160;</td><td class="memItemRight" valign="bottom"><b>onSearchTextChanged</b> (const QString &amp;text)</td></tr>
 <tr class="separator:a039179dc3bc863008f84c801d8d0b6af"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a1786a3b4e7f6b4c7c20e10db453de4a8" id="r_a1786a3b4e7f6b4c7c20e10db453de4a8"><td class="memItemLeft" align="right" valign="top"><a id="a1786a3b4e7f6b4c7c20e10db453de4a8" name="a1786a3b4e7f6b4c7c20e10db453de4a8"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>retranslateUi</b> ()</td></tr>
+<tr class="separator:a1786a3b4e7f6b4c7c20e10db453de4a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:a04671dd68cee785aab3171f17532f47e" id="r_a04671dd68cee785aab3171f17532f47e"><td class="memItemLeft" align="right" valign="top"><a id="a04671dd68cee785aab3171f17532f47e" name="a04671dd68cee785aab3171f17532f47e"></a>
-<a class="el" href="classDatabaseManager.html">DatabaseManager</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>m_db</b> = nullptr</td></tr>
-<tr class="separator:a04671dd68cee785aab3171f17532f47e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad09fb2cb52eb5a3d680df7b2153b894b" id="r_ad09fb2cb52eb5a3d680df7b2153b894b"><td class="memItemLeft" align="right" valign="top"><a id="ad09fb2cb52eb5a3d680df7b2153b894b" name="ad09fb2cb52eb5a3d680df7b2153b894b"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>m_currentUserId</b> = -1</td></tr>
 <tr class="separator:ad09fb2cb52eb5a3d680df7b2153b894b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04671dd68cee785aab3171f17532f47e" id="r_a04671dd68cee785aab3171f17532f47e"><td class="memItemLeft" align="right" valign="top"><a id="a04671dd68cee785aab3171f17532f47e" name="a04671dd68cee785aab3171f17532f47e"></a>
+<a class="el" href="classDatabaseManager.html">DatabaseManager</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>m_db</b> = nullptr</td></tr>
+<tr class="separator:a04671dd68cee785aab3171f17532f47e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abab248428241eab0a8d4eb46471d7f9e" id="r_abab248428241eab0a8d4eb46471d7f9e"><td class="memItemLeft" align="right" valign="top"><a id="abab248428241eab0a8d4eb46471d7f9e" name="abab248428241eab0a8d4eb46471d7f9e"></a>
+<a class="el" href="classChatManager.html">ChatManager</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>m_chatManager</b> = nullptr</td></tr>
+<tr class="separator:abab248428241eab0a8d4eb46471d7f9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aca34f10f5db9f39e35e70e1f3ff2371c" id="r_aca34f10f5db9f39e35e70e1f3ff2371c"><td class="memItemLeft" align="right" valign="top"><a id="aca34f10f5db9f39e35e70e1f3ff2371c" name="aca34f10f5db9f39e35e70e1f3ff2371c"></a>
 QLabel *&#160;</td><td class="memItemRight" valign="bottom"><b>m_titleLabel</b></td></tr>
 <tr class="separator:aca34f10f5db9f39e35e70e1f3ff2371c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a87a73d8b49504c40f10b42a987282c19" id="r_a87a73d8b49504c40f10b42a987282c19"><td class="memItemLeft" align="right" valign="top"><a id="a87a73d8b49504c40f10b42a987282c19" name="a87a73d8b49504c40f10b42a987282c19"></a>
-QListWidget *&#160;</td><td class="memItemRight" valign="bottom"><b>m_list</b></td></tr>
-<tr class="separator:a87a73d8b49504c40f10b42a987282c19"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abab248428241eab0a8d4eb46471d7f9e" id="r_abab248428241eab0a8d4eb46471d7f9e"><td class="memItemLeft" align="right" valign="top"><a id="abab248428241eab0a8d4eb46471d7f9e" name="abab248428241eab0a8d4eb46471d7f9e"></a>
-<a class="el" href="classChatManager.html">ChatManager</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>m_chatManager</b></td></tr>
-<tr class="separator:abab248428241eab0a8d4eb46471d7f9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad9943ce70ac2328ffd9912b72e1c0441" id="r_ad9943ce70ac2328ffd9912b72e1c0441"><td class="memItemLeft" align="right" valign="top"><a id="ad9943ce70ac2328ffd9912b72e1c0441" name="ad9943ce70ac2328ffd9912b72e1c0441"></a>
 QLineEdit *&#160;</td><td class="memItemRight" valign="bottom"><b>m_searchField</b></td></tr>
 <tr class="separator:ad9943ce70ac2328ffd9912b72e1c0441"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87a73d8b49504c40f10b42a987282c19" id="r_a87a73d8b49504c40f10b42a987282c19"><td class="memItemLeft" align="right" valign="top"><a id="a87a73d8b49504c40f10b42a987282c19" name="a87a73d8b49504c40f10b42a987282c19"></a>
+QListWidget *&#160;</td><td class="memItemRight" valign="bottom"><b>m_list</b></td></tr>
+<tr class="separator:a87a73d8b49504c40f10b42a987282c19"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>gui/<a class="el" href="matchespagewidget_8h_source.html">matchespagewidget.h</a></li>

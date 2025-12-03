@@ -15,7 +15,7 @@ var annotated_dup =
     [ "Preference", "classPreference.html", "classPreference" ],
     [ "ProfileCard", "classProfileCard.html", "classProfileCard" ],
     [ "ProfilePageWidget", "classProfilePageWidget.html", "classProfilePageWidget" ],
-    [ "SearchPageWidget", "classSearchPageWidget.html", "classSearchPageWidget" ],
+    [ "SearchPageWidget", "classSearchPageWidget.html", null ],
     [ "SettingsPageWidget", "classSettingsPageWidget.html", null ],
     [ "StatsDialog", "classStatsDialog.html", null ],
     [ "UserLogger", "classUserLogger.html", null ],

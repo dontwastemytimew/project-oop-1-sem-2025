@@ -92,6 +92,7 @@ $(document).ready(function(){initNavTree('classSearchPageWidget.html',''); initR
   <div class="summary">
 <a href="#signals">Signals</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pri-slots">Private Slots</a> &#124;
 <a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
@@ -121,21 +122,21 @@ Collaboration diagram for SearchPageWidget:</div>
 <area shape="poly" title=" " alt="" coords="167,43,150,79,146,98,147,118,161,153,177,180,173,183,156,155,142,119,141,98,145,77,163,41"/>
 <area shape="rect" href="classMatchEngine.html" title="MatchEngine class." alt="" coords="254,93,361,119"/>
 <area shape="poly" title=" " alt="" coords="212,36,292,91,289,95,209,41"/>
+<area shape="poly" title=" " alt="" coords="281,129,202,183,199,179,278,124"/>
 <area shape="rect" href="classUserProfile.html" title="Клас UserProfile." alt="" coords="385,93,478,119"/>
 <area shape="poly" title=" " alt="" coords="412,130,393,146,370,160,312,179,255,190,254,185,311,174,368,155,390,142,409,126"/>
 <area shape="rect" href="classContactInfo.html" title="Клас ContactInfo." alt="" coords="327,5,424,31"/>
 <area shape="poly" title=" " alt="" coords="374,44,379,68,390,81,405,91,402,95,386,85,374,71,369,45"/>
 <area shape="rect" href="classPreference.html" title="Клас Preference." alt="" coords="457,5,549,31"/>
 <area shape="poly" title=" " alt="" coords="494,44,476,71,450,95,446,91,472,68,490,41"/>
-<area shape="poly" title=" " alt="" coords="281,129,202,183,199,179,278,124"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="signals" name="signals"></a>
 Signals</h2></td></tr>
-<tr class="memitem:ab0b403af5731a44f479cebe333e72c0a" id="r_ab0b403af5731a44f479cebe333e72c0a"><td class="memItemLeft" align="right" valign="top"><a id="ab0b403af5731a44f479cebe333e72c0a" name="ab0b403af5731a44f479cebe333e72c0a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>matchFound</b> (int userId, int targetId)</td></tr>
-<tr class="separator:ab0b403af5731a44f479cebe333e72c0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7dd1136eac463d64e08708cb02b8808" id="r_ad7dd1136eac463d64e08708cb02b8808"><td class="memItemLeft" align="right" valign="top"><a id="ad7dd1136eac463d64e08708cb02b8808" name="ad7dd1136eac463d64e08708cb02b8808"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>matchFound</b> (int currentUserId, int targetId)</td></tr>
+<tr class="separator:ad7dd1136eac463d64e08708cb02b8808"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -147,12 +148,13 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>setDatabaseManager</b
 <tr class="separator:adc192dd453470524da0a2ff00cc2acdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af7ddd63e6b7576a6e4ecb50c6745137c" id="r_af7ddd63e6b7576a6e4ecb50c6745137c"><td class="memItemLeft" align="right" valign="top"><a id="af7ddd63e6b7576a6e4ecb50c6745137c" name="af7ddd63e6b7576a6e4ecb50c6745137c"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setCurrentUser</b> (const <a class="el" href="classUserProfile.html">UserProfile</a> &amp;profile)</td></tr>
-<tr class="memdesc:af7ddd63e6b7576a6e4ecb50c6745137c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Встановлює дані поточного користувача. Викликається при старті додатку. <br /></td></tr>
 <tr class="separator:af7ddd63e6b7576a6e4ecb50c6745137c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a697bb52f9c2b4980944328facce1ebb0" id="r_a697bb52f9c2b4980944328facce1ebb0"><td class="memItemLeft" align="right" valign="top"><a id="a697bb52f9c2b4980944328facce1ebb0" name="a697bb52f9c2b4980944328facce1ebb0"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>getCurrentUserId</b> () const</td></tr>
-<tr class="memdesc:a697bb52f9c2b4980944328facce1ebb0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Повертає ID поточного користувача. <br /></td></tr>
-<tr class="separator:a697bb52f9c2b4980944328facce1ebb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:a8bda822f51706aad5b4d20537c6e8fbf" id="r_a8bda822f51706aad5b4d20537c6e8fbf"><td class="memItemLeft" align="right" valign="top"><a id="a8bda822f51706aad5b4d20537c6e8fbf" name="a8bda822f51706aad5b4d20537c6e8fbf"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>changeEvent</b> (QEvent *event) override</td></tr>
+<tr class="separator:a8bda822f51706aad5b4d20537c6e8fbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-slots" name="pri-slots"></a>
 Private Slots</h2></td></tr>
@@ -171,36 +173,69 @@ Private Member Functions</h2></td></tr>
 <tr class="memitem:a482adb93bcba1dd6c9f0736d2b7e735d" id="r_a482adb93bcba1dd6c9f0736d2b7e735d"><td class="memItemLeft" align="right" valign="top"><a id="a482adb93bcba1dd6c9f0736d2b7e735d" name="a482adb93bcba1dd6c9f0736d2b7e735d"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>showNextProfile</b> ()</td></tr>
 <tr class="separator:a482adb93bcba1dd6c9f0736d2b7e735d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9b7ce3a6fadcb217680b03c363b9b811" id="r_a9b7ce3a6fadcb217680b03c363b9b811"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSearchPageWidget.html#a9b7ce3a6fadcb217680b03c363b9b811">showMatchPopup</a> (const <a class="el" href="classUserProfile.html">UserProfile</a> &amp;target)</td></tr>
-<tr class="memdesc:a9b7ce3a6fadcb217680b03c363b9b811"><td class="mdescLeft">&#160;</td><td class="mdescRight">Показує спливаюче вікно про Match.  <br /></td></tr>
-<tr class="separator:a9b7ce3a6fadcb217680b03c363b9b811"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad292988edc1bcec0f7be03b11d7c036c" id="r_ad292988edc1bcec0f7be03b11d7c036c"><td class="memItemLeft" align="right" valign="top"><a id="ad292988edc1bcec0f7be03b11d7c036c" name="ad292988edc1bcec0f7be03b11d7c036c"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setupCityAutocomplete</b> ()</td></tr>
 <tr class="separator:ad292988edc1bcec0f7be03b11d7c036c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b7ce3a6fadcb217680b03c363b9b811" id="r_a9b7ce3a6fadcb217680b03c363b9b811"><td class="memItemLeft" align="right" valign="top"><a id="a9b7ce3a6fadcb217680b03c363b9b811" name="a9b7ce3a6fadcb217680b03c363b9b811"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>showMatchPopup</b> (const <a class="el" href="classUserProfile.html">UserProfile</a> &amp;target)</td></tr>
+<tr class="separator:a9b7ce3a6fadcb217680b03c363b9b811"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4aed839122d19001795794f78642b236" id="r_a4aed839122d19001795794f78642b236"><td class="memItemLeft" align="right" valign="top"><a id="a4aed839122d19001795794f78642b236" name="a4aed839122d19001795794f78642b236"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>retranslateUi</b> ()</td></tr>
+<tr class="separator:a4aed839122d19001795794f78642b236"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a3b51cda1b386ac074d0a07aa1169b488" id="r_a3b51cda1b386ac074d0a07aa1169b488"><td class="memItemLeft" align="right" valign="top"><a id="a3b51cda1b386ac074d0a07aa1169b488" name="a3b51cda1b386ac074d0a07aa1169b488"></a>
-<a class="el" href="classDatabaseManager.html">DatabaseManager</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>m_dbManager</b> = nullptr</td></tr>
+<a class="el" href="classDatabaseManager.html">DatabaseManager</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>m_dbManager</b></td></tr>
 <tr class="separator:a3b51cda1b386ac074d0a07aa1169b488"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b85267db292db205b3ab3136fe70fbf" id="r_a4b85267db292db205b3ab3136fe70fbf"><td class="memItemLeft" align="right" valign="top"><a id="a4b85267db292db205b3ab3136fe70fbf" name="a4b85267db292db205b3ab3136fe70fbf"></a>
+<a class="el" href="classMatchEngine.html">MatchEngine</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>m_matchEngine</b></td></tr>
+<tr class="separator:a4b85267db292db205b3ab3136fe70fbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af732b1978fb697b9f17cee125e79655e" id="r_af732b1978fb697b9f17cee125e79655e"><td class="memItemLeft" align="right" valign="top"><a id="af732b1978fb697b9f17cee125e79655e" name="af732b1978fb697b9f17cee125e79655e"></a>
+<a class="el" href="classUserProfile.html">UserProfile</a>&#160;</td><td class="memItemRight" valign="bottom"><b>m_currentUser</b></td></tr>
+<tr class="separator:af732b1978fb697b9f17cee125e79655e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41bd24d284873398023b71addd1d4f67" id="r_a41bd24d284873398023b71addd1d4f67"><td class="memItemLeft" align="right" valign="top"><a id="a41bd24d284873398023b71addd1d4f67" name="a41bd24d284873398023b71addd1d4f67"></a>
+QList&lt; <a class="el" href="classUserProfile.html">UserProfile</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_currentMatches</b></td></tr>
+<tr class="separator:a41bd24d284873398023b71addd1d4f67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad4ccfa1995d96153740b842319c22a6" id="r_aad4ccfa1995d96153740b842319c22a6"><td class="memItemLeft" align="right" valign="top"><a id="aad4ccfa1995d96153740b842319c22a6" name="aad4ccfa1995d96153740b842319c22a6"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>m_currentMatchIndex</b></td></tr>
+<tr class="separator:aad4ccfa1995d96153740b842319c22a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0da93c3b75a7191a40603f9604d4fb77" id="r_a0da93c3b75a7191a40603f9604d4fb77"><td class="memItemLeft" align="right" valign="top"><a id="a0da93c3b75a7191a40603f9604d4fb77" name="a0da93c3b75a7191a40603f9604d4fb77"></a>
 QSpinBox *&#160;</td><td class="memItemRight" valign="bottom"><b>m_minAgeSpin</b></td></tr>
 <tr class="separator:a0da93c3b75a7191a40603f9604d4fb77"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a82ed64aa9cdc86efbb33b5a902f3625e" id="r_a82ed64aa9cdc86efbb33b5a902f3625e"><td class="memItemLeft" align="right" valign="top"><a id="a82ed64aa9cdc86efbb33b5a902f3625e" name="a82ed64aa9cdc86efbb33b5a902f3625e"></a>
 QSpinBox *&#160;</td><td class="memItemRight" valign="bottom"><b>m_maxAgeSpin</b></td></tr>
 <tr class="separator:a82ed64aa9cdc86efbb33b5a902f3625e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1b9fbb98b551d2dad2224fb4abd4a6de" id="r_a1b9fbb98b551d2dad2224fb4abd4a6de"><td class="memItemLeft" align="right" valign="top"><a id="a1b9fbb98b551d2dad2224fb4abd4a6de" name="a1b9fbb98b551d2dad2224fb4abd4a6de"></a>
-QLineEdit *&#160;</td><td class="memItemRight" valign="bottom"><b>m_cityEdit</b></td></tr>
-<tr class="separator:a1b9fbb98b551d2dad2224fb4abd4a6de"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7dfb98d20482662cbdd5b05d198daaab" id="r_a7dfb98d20482662cbdd5b05d198daaab"><td class="memItemLeft" align="right" valign="top"><a id="a7dfb98d20482662cbdd5b05d198daaab" name="a7dfb98d20482662cbdd5b05d198daaab"></a>
-QPushButton *&#160;</td><td class="memItemRight" valign="bottom"><b>m_findButton</b></td></tr>
-<tr class="separator:a7dfb98d20482662cbdd5b05d198daaab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a40fbc97af4aef877931b6fd6dd01318e" id="r_a40fbc97af4aef877931b6fd6dd01318e"><td class="memItemLeft" align="right" valign="top"><a id="a40fbc97af4aef877931b6fd6dd01318e" name="a40fbc97af4aef877931b6fd6dd01318e"></a>
 QComboBox *&#160;</td><td class="memItemRight" valign="bottom"><b>m_genderCombo</b></td></tr>
 <tr class="separator:a40fbc97af4aef877931b6fd6dd01318e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4267693d1e63cc446064560da30d2dfe" id="r_a4267693d1e63cc446064560da30d2dfe"><td class="memItemLeft" align="right" valign="top"><a id="a4267693d1e63cc446064560da30d2dfe" name="a4267693d1e63cc446064560da30d2dfe"></a>
 QComboBox *&#160;</td><td class="memItemRight" valign="bottom"><b>m_orientationCombo</b></td></tr>
 <tr class="separator:a4267693d1e63cc446064560da30d2dfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b9fbb98b551d2dad2224fb4abd4a6de" id="r_a1b9fbb98b551d2dad2224fb4abd4a6de"><td class="memItemLeft" align="right" valign="top"><a id="a1b9fbb98b551d2dad2224fb4abd4a6de" name="a1b9fbb98b551d2dad2224fb4abd4a6de"></a>
+QLineEdit *&#160;</td><td class="memItemRight" valign="bottom"><b>m_cityEdit</b></td></tr>
+<tr class="separator:a1b9fbb98b551d2dad2224fb4abd4a6de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7dfb98d20482662cbdd5b05d198daaab" id="r_a7dfb98d20482662cbdd5b05d198daaab"><td class="memItemLeft" align="right" valign="top"><a id="a7dfb98d20482662cbdd5b05d198daaab" name="a7dfb98d20482662cbdd5b05d198daaab"></a>
+QPushButton *&#160;</td><td class="memItemRight" valign="bottom"><b>m_findButton</b></td></tr>
+<tr class="separator:a7dfb98d20482662cbdd5b05d198daaab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3359e08f027788baa70028500a5aae4c" id="r_a3359e08f027788baa70028500a5aae4c"><td class="memItemLeft" align="right" valign="top"><a id="a3359e08f027788baa70028500a5aae4c" name="a3359e08f027788baa70028500a5aae4c"></a>
+QLabel *&#160;</td><td class="memItemRight" valign="bottom"><b>m_labelMinAge</b></td></tr>
+<tr class="separator:a3359e08f027788baa70028500a5aae4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92982deaa9cf67f76481a2971a016b17" id="r_a92982deaa9cf67f76481a2971a016b17"><td class="memItemLeft" align="right" valign="top"><a id="a92982deaa9cf67f76481a2971a016b17" name="a92982deaa9cf67f76481a2971a016b17"></a>
+QLabel *&#160;</td><td class="memItemRight" valign="bottom"><b>m_labelMaxAge</b></td></tr>
+<tr class="separator:a92982deaa9cf67f76481a2971a016b17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16f8d4278e37810ba3ec4e7dcccb1f52" id="r_a16f8d4278e37810ba3ec4e7dcccb1f52"><td class="memItemLeft" align="right" valign="top"><a id="a16f8d4278e37810ba3ec4e7dcccb1f52" name="a16f8d4278e37810ba3ec4e7dcccb1f52"></a>
+QLabel *&#160;</td><td class="memItemRight" valign="bottom"><b>m_labelGender</b></td></tr>
+<tr class="separator:a16f8d4278e37810ba3ec4e7dcccb1f52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74d059de3adec8745f9e401eb770070b" id="r_a74d059de3adec8745f9e401eb770070b"><td class="memItemLeft" align="right" valign="top"><a id="a74d059de3adec8745f9e401eb770070b" name="a74d059de3adec8745f9e401eb770070b"></a>
+QLabel *&#160;</td><td class="memItemRight" valign="bottom"><b>m_labelOrientation</b></td></tr>
+<tr class="separator:a74d059de3adec8745f9e401eb770070b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf48d9adb3b07d9cbe83e49355d6c42a" id="r_acf48d9adb3b07d9cbe83e49355d6c42a"><td class="memItemLeft" align="right" valign="top"><a id="acf48d9adb3b07d9cbe83e49355d6c42a" name="acf48d9adb3b07d9cbe83e49355d6c42a"></a>
+QLabel *&#160;</td><td class="memItemRight" valign="bottom"><b>m_labelCity</b></td></tr>
+<tr class="separator:acf48d9adb3b07d9cbe83e49355d6c42a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81866e756ba530edef6381fee928541f" id="r_a81866e756ba530edef6381fee928541f"><td class="memItemLeft" align="right" valign="top"><a id="a81866e756ba530edef6381fee928541f" name="a81866e756ba530edef6381fee928541f"></a>
+QLabel *&#160;</td><td class="memItemRight" valign="bottom"><b>m_placeholderLabel</b></td></tr>
+<tr class="separator:a81866e756ba530edef6381fee928541f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad0e64fb773cc39798ec25464de67c467" id="r_ad0e64fb773cc39798ec25464de67c467"><td class="memItemLeft" align="right" valign="top"><a id="ad0e64fb773cc39798ec25464de67c467" name="ad0e64fb773cc39798ec25464de67c467"></a>
 QStackedWidget *&#160;</td><td class="memItemRight" valign="bottom"><b>m_resultsStack</b></td></tr>
 <tr class="separator:ad0e64fb773cc39798ec25464de67c467"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -210,54 +245,7 @@ QPushButton *&#160;</td><td class="memItemRight" valign="bottom"><b>m_likeButton
 <tr class="memitem:a2a8a674f2350e88aaed984f48c443e1e" id="r_a2a8a674f2350e88aaed984f48c443e1e"><td class="memItemLeft" align="right" valign="top"><a id="a2a8a674f2350e88aaed984f48c443e1e" name="a2a8a674f2350e88aaed984f48c443e1e"></a>
 QPushButton *&#160;</td><td class="memItemRight" valign="bottom"><b>m_skipButton</b></td></tr>
 <tr class="separator:a2a8a674f2350e88aaed984f48c443e1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6b4c1264f241c8dd45a107b557e84e48" id="r_a6b4c1264f241c8dd45a107b557e84e48"><td class="memItemLeft" align="right" valign="top"><a id="a6b4c1264f241c8dd45a107b557e84e48" name="a6b4c1264f241c8dd45a107b557e84e48"></a>
-QVector&lt; <a class="el" href="classUserProfile.html">UserProfile</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_currentMatches</b></td></tr>
-<tr class="separator:a6b4c1264f241c8dd45a107b557e84e48"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aad4ccfa1995d96153740b842319c22a6" id="r_aad4ccfa1995d96153740b842319c22a6"><td class="memItemLeft" align="right" valign="top"><a id="aad4ccfa1995d96153740b842319c22a6" name="aad4ccfa1995d96153740b842319c22a6"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>m_currentMatchIndex</b> = 0</td></tr>
-<tr class="separator:aad4ccfa1995d96153740b842319c22a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af732b1978fb697b9f17cee125e79655e" id="r_af732b1978fb697b9f17cee125e79655e"><td class="memItemLeft" align="right" valign="top"><a id="af732b1978fb697b9f17cee125e79655e" name="af732b1978fb697b9f17cee125e79655e"></a>
-<a class="el" href="classUserProfile.html">UserProfile</a>&#160;</td><td class="memItemRight" valign="bottom"><b>m_currentUser</b></td></tr>
-<tr class="separator:af732b1978fb697b9f17cee125e79655e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4b85267db292db205b3ab3136fe70fbf" id="r_a4b85267db292db205b3ab3136fe70fbf"><td class="memItemLeft" align="right" valign="top"><a id="a4b85267db292db205b3ab3136fe70fbf" name="a4b85267db292db205b3ab3136fe70fbf"></a>
-<a class="el" href="classMatchEngine.html">MatchEngine</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>m_matchEngine</b></td></tr>
-<tr class="separator:a4b85267db292db205b3ab3136fe70fbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a id="a9b7ce3a6fadcb217680b03c363b9b811" name="a9b7ce3a6fadcb217680b03c363b9b811"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9b7ce3a6fadcb217680b03c363b9b811">&#9670;&#160;</a></span>showMatchPopup()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void SearchPageWidget::showMatchPopup </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="classUserProfile.html">UserProfile</a> &amp;&#160;</td>
-          <td class="paramname"><em>target</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Показує спливаюче вікно про Match. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">target</td><td>Профіль, з яким відбувся метч. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>gui/<a class="el" href="searchpagewidget_8h_source.html">searchpagewidget.h</a></li>
 <li>gui/<b>searchpagewidget.cpp</b></li>
