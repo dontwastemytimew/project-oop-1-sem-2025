@@ -445,3 +445,136 @@ QLineEdit#inputField {
     font-size: 14px;
     font-family: 'Consolas', 'Courier New', monospace;
 }
+
+/* --- СТИЛІ PROFILE CARD (Dark Theme) --- */
+
+QWidget#ProfileCard {
+    background-color: #282C34; /* Фон редактора коду */
+    border: 1px solid #3E4451;
+    border-radius: 12px;
+}
+
+/* Фото */
+QLabel#profilePhoto {
+    border: 2px solid #61AFEF; /* Блакитна рамка */
+    border-radius: 8px;
+    background-color: #21252B;
+}
+
+/* Заголовки та ключові слова */
+QLabel#profileHeader, QLabel#profileFooter {
+    font-family: 'Consolas', monospace;
+    font-size: 18px;
+    font-weight: bold;
+    color: #ABB2BF;
+}
+
+QLabel#profilePublicKeyword {
+    font-family: 'Consolas', monospace;
+    font-size: 15px;
+    font-weight: bold;
+    color: #C678DD; /* Фіолетовий (public) */
+}
+
+/* Основний текст полів */
+QLabel#profileField {
+    font-family: 'Consolas', monospace;
+    font-size: 15px;
+    color: #ABB2BF;
+}
+
+/* Коментарі (Біографія) */
+QLabel#profileComment {
+    font-family: 'Consolas', monospace;
+    font-size: 14px;
+    color: #7A8294; /* Сірий коментар */
+    font-style: italic;
+}
+
+/* Сумісність */
+QLabel#profileCompatibility {
+    font-family: 'Consolas', monospace;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* --- СТИЛІЗАЦІЯ CHAT PAGE (TERMINAL/VS CODE) --- */
+
+/* 1. Головний контейнер (фон редактора) */
+QWidget#chatPageWidget {
+    background-color: #1E1E1E; /* Глибокий сірий фон */
+}
+
+/* 2. Верхня панель (Header Panel) */
+QWidget#chatHeaderPanel {
+    background-color: #252526; /* Фон панелі */
+    border-bottom: 1px solid #333333;
+}
+
+/* Заголовок (TERMINAL: Name) */
+QLabel#chatHeaderLabel {
+    font-family: 'Consolas', monospace;
+    font-size: 16pt;
+    font-weight: bold;
+    color: #C678DD; /* Фіолетовий (VS Code Accent) */
+    padding: 0;
+}
+
+/* 3. Область чату */
+QTextEdit#chatArea {
+    background-color: #1E1E1E;
+    color: #ABB2BF; /* Стандартний світло-сірий текст */
+    font-family: 'Consolas', monospace;
+    border: none;
+    padding: 15px; /* Забезпечуємо відступи, які були раніше */
+}
+
+/* 4. Панель вводу */
+QWidget#chatInputPanel {
+    background-color: #252526;
+    border-top: 1px solid #333333;
+}
+
+/* Промпт (>) */
+QLabel#chatPromptLabel {
+    font-family: 'Consolas', monospace;
+    font-weight: bold;
+    font-size: 16px;
+    color: #C678DD; /* Фіолетовий промпт */
+}
+
+/* Поле вводу */
+QLineEdit#chatInputField {
+    background: transparent;
+    border: none;
+    color: #D4D4D4; /* Колір вводу */
+    font-family: 'Consolas', monospace;
+}
+
+/* Кнопка Send */
+QPushButton#btnSendChat {
+    background-color: #7B1FA2; /* Фіолетовий акцент */
+    color: white;
+    border-radius: 4px;
+    font-weight: bold;
+}
+QPushButton#btnSendChat:hover {
+    background-color: #8E24AA;
+}
+
+/* --- СТИЛІЗАЦІЯ ПОВІДОМЛЕНЬ (HTML Classes) --- */
+/* Ці стилі застосовуються до тегів <span> всередині QTextEdit */
+
+.time_stamp {
+    color: #5C6370; /* Сірий (Коментар / Неактивний) */
+    font-size: 12px;
+}
+.user_me {
+    color: #C678DD; /* Фіолетовий (Я) */
+}
+.user_target {
+    color: #E5C07B; /* Золотистий (Співрозмовник) */
+}
+.message_text {
+    color: #FFFFFF; /* Чистий білий текст повідомлення */
+}

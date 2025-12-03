@@ -24,6 +24,7 @@ MainWindow::MainWindow(DatabaseManager* dbManager, QWidget *parent)
     , m_dbManager(dbManager) {
 
     ui->setupUi(this);
+
     setWindowTitle(tr("Match++"));
 
     QIcon appIcon(":/resources/icons/logo.jpg");
@@ -56,8 +57,11 @@ MainWindow::MainWindow(DatabaseManager* dbManager, QWidget *parent)
 
     QLayout* navLayout = ui->nav_menu->layout();
     if (navLayout) {
-        navLayout->setContentsMargins(0, 0, 0, 0);
+        navLayout->setContentsMargins(0, 10, 0, 0);
+        navLayout->setSpacing(5);
     }
+
+    ui->nav_menu->setMinimumWidth(260);
 
     // ПЕРЕВІРКА СЕСІЇ ТА ЗАВАНТАЖЕННЯ ДАНИХ
     UserProfile currentUser;
@@ -109,6 +113,8 @@ MainWindow::MainWindow(DatabaseManager* dbManager, QWidget *parent)
 
     connect(m_searchPage, &SearchPageWidget::matchFound,
             m_matchesPage, &MatchesPageWidget::onMatchCreated);
+
+    updateMenuLabels();
 }
 
 MainWindow::~MainWindow()
@@ -116,12 +122,23 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::updateMenuLabels()
+{
+    ui->btn_Profile->setText("  > " + tr("Профіль"));
+    ui->btn_Search->setText("  > " + tr("Пошук"));
+    ui->btn_Matches->setText("  > " + tr("Метчі"));
+    ui->btn_Settings->setText("  > " + tr("Налаштування"));
+
+    ui->btn_Exit->setText("  // " + tr("Вихід"));
+
+    setWindowTitle(tr("Match++"));
+}
+
 void MainWindow::changeEvent(QEvent *event)
 {
     if (event->type() == QEvent::LanguageChange) {
-        setWindowTitle(tr("Match++"));
-
         ui->retranslateUi(this);
+        updateMenuLabels();
     }
     QMainWindow::changeEvent(event);
 }
@@ -152,7 +169,6 @@ void MainWindow::on_btn_Matches_clicked()
         return;
     }
 
-    // Перезавантажуємо список на випадок нових матчів
     m_matchesPage->reloadMatches();
     ui->stackedWidget_Pages->setCurrentWidget(m_matchesPage);
     UserLogger::log(Info, "User switched to Matches Page");
@@ -230,28 +246,21 @@ void MainWindow::showAdminPage() {
 
 void MainWindow::onAccountDeleted() {
     m_userExists = false;
-
     ui->stackedWidget_Pages->setCurrentWidget(m_welcomePage);
-
     m_profilePage->clearFields();
-
     UserLogger::log(Info, "Account deleted. Switching to Welcome Page.");
 }
 
 void MainWindow::on_btn_Exit_clicked()
 {
     UserLogger::log(Info, "User requested application exit.");
-
     qApp->quit();
 }
 
 void MainWindow::onOpenChatRequested(int targetUserId) {
     UserProfile targetProfile;
-
     if (m_dbManager->loadProfileById(targetUserId, targetProfile)) {
-
         m_chatPage->setMatchProfile(targetProfile, m_currentProfile.getId());
-
         ui->stackedWidget_Pages->setCurrentWidget(m_chatPage);
         UserLogger::log(Info, QString("Switched to Chat with ID %1.").arg(targetUserId));
     }
