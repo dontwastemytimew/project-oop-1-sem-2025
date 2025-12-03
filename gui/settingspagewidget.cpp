@@ -19,46 +19,86 @@ SettingsPageWidget::SettingsPageWidget(QWidget *parent)
     m_isDarkTheme = settings.value("isDarkTheme", true).toBool();
 
     QVBoxLayout* mainLayout = new QVBoxLayout(this);
-    mainLayout->setContentsMargins(20, 20, 20, 20);
+    mainLayout->setContentsMargins(30, 30, 30, 30);
+    mainLayout->setSpacing(10);
+
+    QLabel* header = new QLabel("class <span style='color:#9932CC'>Settings</span> {", this);
+    QFont headerFont("Consolas", 22, QFont::Bold);
+    headerFont.setStyleHint(QFont::Monospace);
+    header->setFont(headerFont);
+    header->setTextFormat(Qt::RichText);
+    mainLayout->addWidget(header);
+
+    QLabel* publicLabel = new QLabel("public:", this);
+    publicLabel->setStyleSheet("font-family: 'Consolas'; font-size: 16px; font-weight: bold; color: #9932CC; margin-top: 5px;");
+    mainLayout->addWidget(publicLabel);
+
+    QWidget* contentWidget = new QWidget(this);
+    QVBoxLayout* contentLayout = new QVBoxLayout(contentWidget);
+    contentLayout->setContentsMargins(30, 10, 0, 10);
+    contentLayout->setSpacing(20);
 
     QFormLayout* formLayout = new QFormLayout();
+    formLayout->setSpacing(15);
+    formLayout->setLabelAlignment(Qt::AlignLeft | Qt::AlignVCenter);
 
     m_langLabel = new QLabel(this);
+    m_langLabel->setStyleSheet("font-size: 14px; font-weight: bold;");
+
     m_langComboBox = new QComboBox(this);
     m_langComboBox->addItem("Українська", "ua");
     m_langComboBox->addItem("English", "en");
     m_langComboBox->setObjectName("langComboBox");
+    m_langComboBox->setMinimumHeight(35);
 
     formLayout->addRow(m_langLabel, m_langComboBox);
 
     m_themeLabel = new QLabel(this);
+    m_themeLabel->setStyleSheet("font-size: 14px; font-weight: bold;");
+
     m_themeToggle = new QPushButton(this);
     m_themeToggle->setCheckable(true);
     m_themeToggle->setObjectName("themeToggleButton");
-    m_themeToggle->setFixedWidth(50);
+    m_themeToggle->setFixedSize(50, 50);
+    m_themeToggle->setIconSize(QSize(32, 32));
 
     m_themeToggle->setChecked(m_isDarkTheme);
-
-    formLayout->addRow(m_themeLabel, m_themeToggle);
     updateThemeIcon(m_isDarkTheme);
 
+    formLayout->addRow(m_themeLabel, m_themeToggle);
+
     m_accountLabel = new QLabel(this);
+    m_accountLabel->setStyleSheet("font-size: 14px; font-weight: bold;");
+
     m_pauseToggle = new QCheckBox(this);
     m_pauseToggle->setObjectName("pauseToggleSwitch");
+    m_pauseToggle->setMinimumHeight(30);
+
     formLayout->addRow(m_accountLabel, m_pauseToggle);
 
-    mainLayout->addLayout(formLayout);
-    mainLayout->addStretch();
+    contentLayout->addLayout(formLayout);
+    contentLayout->addSpacing(20);
 
     m_deleteButton = new QPushButton(this);
     m_deleteButton->setObjectName("deleteAccountButton");
-    mainLayout->addWidget(m_deleteButton);
+    m_deleteButton->setMinimumHeight(45);
+    m_deleteButton->setCursor(Qt::PointingHandCursor);
+    m_deleteButton->setStyleSheet("font-weight: bold; font-size: 14px; border-radius: 5px;");
+    contentLayout->addWidget(m_deleteButton);
 
     m_btnOpenAdmin = new QPushButton(this);
     m_btnOpenAdmin->setObjectName("settingsAdminBtn");
+    m_btnOpenAdmin->setMinimumHeight(45);
+    m_btnOpenAdmin->setCursor(Qt::PointingHandCursor);
+    m_btnOpenAdmin->setStyleSheet("font-weight: bold; font-size: 14px; border-radius: 5px;");
+    contentLayout->addWidget(m_btnOpenAdmin);
 
+    mainLayout->addWidget(contentWidget);
     mainLayout->addStretch();
-    mainLayout->addWidget(m_btnOpenAdmin);
+
+    QLabel* footer = new QLabel("};", this);
+    footer->setFont(headerFont);
+    mainLayout->addWidget(footer);
 
     setLayout(mainLayout);
 
@@ -108,10 +148,6 @@ void SettingsPageWidget::on_languageChanged(int index) {
     settings.setValue("language", langCode);
 
     m_mainWindow->switchLanguage(langCode);
-
-    retranslateUi();
-
-    UserLogger::log(Info, "Language saved and switched to: " + langCode);
 }
 
 void SettingsPageWidget::on_themeToggled() {
@@ -154,7 +190,7 @@ void SettingsPageWidget::on_deleteClicked() {
             QMessageBox::information(this, tr("Успіх"), tr("Ваш акаунт видалено."));
             QSettings settings("DatingAgency", "Match++");
             settings.remove("current_user_id");
-            accountDeleted();
+            emit accountDeleted();
         } else {
             UserLogger::log(Error, "Failed to delete profile from DB.");
         }

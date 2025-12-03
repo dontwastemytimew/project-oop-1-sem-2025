@@ -1,9 +1,10 @@
 #include "ChatPageWidget.h"
 #include <QHBoxLayout>
+#include <QVBoxLayout>
 #include <QTimer>
 #include <QScrollBar>
 #include <QLabel>
-
+#include <QDateTime>
 
 ChatPageWidget::ChatPageWidget(const UserProfile& matchProfile, ChatManager* chatManager, int currentUserId, QWidget *parent)
     : QWidget(parent),
@@ -11,28 +12,60 @@ ChatPageWidget::ChatPageWidget(const UserProfile& matchProfile, ChatManager* cha
     m_chatManager(chatManager),
     m_currentUserId(currentUserId)
 {
-    setWindowTitle(tr("Чат з %1").arg(m_matchProfile.getName()));
+    setWindowTitle(tr("Terminal - %1").arg(m_matchProfile.getName()));
+
+    // ОСНОВНИЙ ФОН - ПРИБРАНО ХАРДКОД
+    this->setObjectName("chatPageWidget");
 
     QVBoxLayout* mainLayout = new QVBoxLayout(this);
-    QLabel* titleLabel = new QLabel(tr("Чат"), this);
-    titleLabel->setStyleSheet("font-size: 28px; font-weight: bold; color: #9932CC; margin-bottom: 10px;");
-    mainLayout->addWidget(titleLabel, 0, Qt::AlignLeft);
+    mainLayout->setContentsMargins(0, 0, 0, 0);
+    mainLayout->setSpacing(0);
 
+    // --- 1. ВЕРХНЯ ПАНЕЛЬ (ЗАГОЛОВОК) ---
+    QWidget* headerPanel = new QWidget(this);
+    headerPanel->setObjectName("chatHeaderPanel"); // Для фону та лінії
+    QHBoxLayout* headerLayout = new QHBoxLayout(headerPanel);
+    headerLayout->setContentsMargins(15, 10, 15, 10);
+
+    QLabel* headerLabel = new QLabel(tr("TERMINAL: %1").arg(m_matchProfile.getName()), this);
+    headerLabel->setObjectName("chatHeaderLabel"); // Для стилізації шрифту та кольору
+    headerLayout->addWidget(headerLabel);
+    headerLayout->addStretch();
+
+    mainLayout->addWidget(headerPanel);
+
+    // --- 2. ОБЛАСТЬ ЧАТУ ---
     m_chatArea = new QTextEdit(this);
+    m_chatArea->setObjectName("chatArea"); // Для фону, шрифту та відступів
     m_chatArea->setReadOnly(true);
     m_chatArea->setFrameShape(QFrame::NoFrame);
-    m_chatArea->setStyleSheet("background-color: #F8F8F8; color: #333333; font-size: 15px;");
     m_chatArea->setTextInteractionFlags(Qt::TextSelectableByMouse);
-    m_inputField = new QLineEdit(this);
-    m_inputField->setStyleSheet("font-size: 15px;");
-    m_sendButton = new QPushButton(tr("Відправити"), this);
 
-    QHBoxLayout* inputLayout = new QHBoxLayout();
+    mainLayout->addWidget(m_chatArea);
+
+    // --- 3. ОБЛАСТЬ ВВОДУ ---
+    QWidget* inputPanel = new QWidget(this);
+    inputPanel->setObjectName("chatInputPanel"); // Для фону та лінії
+    QHBoxLayout* inputLayout = new QHBoxLayout(inputPanel);
+    inputLayout->setContentsMargins(10, 10, 10, 10);
+
+    QLabel* promptLbl = new QLabel(">", this);
+    promptLbl->setObjectName("chatPromptLabel"); // Для кольору промпта (>)
+    inputLayout->addWidget(promptLbl);
+
+    m_inputField = new QLineEdit(this);
+    m_inputField->setObjectName("chatInputField"); // Для стилізації поля вводу
+    m_inputField->setPlaceholderText("std::cin >> message;");
+
+    // Кнопка ВІДПРАВИТИ
+    m_sendButton = new QPushButton(tr("Send"), this);
+    m_sendButton->setObjectName("btnSendChat"); // Для стилізації кнопки
+    m_sendButton->setCursor(Qt::PointingHandCursor);
+
     inputLayout->addWidget(m_inputField);
     inputLayout->addWidget(m_sendButton);
 
-    mainLayout->addWidget(m_chatArea);
-    mainLayout->addLayout(inputLayout);
+    mainLayout->addWidget(inputPanel);
 
     connect(m_sendButton, &QPushButton::clicked, this, &ChatPageWidget::sendMessage);
     connect(m_inputField, &QLineEdit::returnPressed, this, &ChatPageWidget::sendMessage);
@@ -41,104 +74,102 @@ ChatPageWidget::ChatPageWidget(const UserProfile& matchProfile, ChatManager* cha
 }
 
 void ChatPageWidget::setMatchProfile(const UserProfile& matchProfile, int currentUserId) {
-
     m_matchProfile = matchProfile;
     m_currentUserId = currentUserId;
 
-    setWindowTitle(tr("Чат з %1").arg(m_matchProfile.getName()));
+    m_chatArea->clear();
+    m_inputField->clear();
+
+    setWindowTitle(tr("Terminal - %1").arg(m_matchProfile.getName()));
     loadHistory();
 }
 
-QString formatMessage(const ChatMessage& msg, int currentUserId, const QString& matchName)
-{
-    bool isSenderMe = (msg.fromUserId == currentUserId);
+void ChatPageWidget::sendMessage() {
+    QString text = m_inputField->text().trimmed();
+    if (text.isEmpty()) return;
 
-    QString borderColor = isSenderMe ? "#9932CC" : "#E0E0E0";
-    QString textColor = "#333333";
-    QString nameColor = "#9932CC";
-
-    QString html = "<table width='100%' border='0' cellpadding='0' cellspacing='0'><tr>";
-
-    if (isSenderMe) {
-        html += "<td width='30%'></td>";
-        html += "<td align='right'>";
-        html += QString("<table border='0' cellspacing='0' cellpadding='10' style='border: 2px solid %1; background-color: #ffffff;'>")
-                    .arg(borderColor);
-        html += "<tr><td>";
-        html += QString("<span style='font-size: 16px; color: %1;'>%2</span>")
-                    .arg(textColor, msg.message);
-
-        html += "</td></tr></table>";
-        html += "</td>";
-
-    } else {
-        html += "<td align='left'>";
-        html += QString("<table border='0' cellspacing='0' cellpadding='10' style='border: 2px solid %1; background-color: #ffffff;'>")
-                    .arg(borderColor);
-        html += "<tr><td>";
-        html += QString("<b style='font-size: 16px; color: %1'>%2:</b> ")
-                    .arg(nameColor, matchName);
-        html += QString("<span style='font-size: 16px; color: %1;'>%2</span>")
-                     .arg(textColor, msg.message);
-
-        html += "</td></tr></table>";
-        html += "</td>";
-        html += "<td width='30%'></td>";
+    if (m_chatManager) {
+        m_chatManager->sendMessage(m_currentUserId, m_matchProfile.getId(), text);
     }
 
-    html += "</tr></table>";
-    html += "<div style='height: 5px;'></div>";
+    QString time = QDateTime::currentDateTime().toString("HH:mm");
 
-    return html;
-}
-
-
-void ChatPageWidget::loadHistory()
-{
-    if (!m_chatManager) return;
-
-    QList<ChatMessage> history = m_chatManager->getMessages(m_currentUserId, m_matchProfile.getId());
-
-    m_chatArea->clear();
-    for (const auto& msg : history) {
-        m_chatArea->append(formatMessage(msg, m_currentUserId, m_matchProfile.getName()));
-    }
-
-    m_chatArea->verticalScrollBar()->setValue(m_chatArea->verticalScrollBar()->maximum());
-}
-
-
-void ChatPageWidget::sendMessage()
-{
-    QString message = m_inputField->text().trimmed();
-    if (message.isEmpty()) return;
-
-    if (m_chatManager)
-        m_chatManager->sendMessage(m_currentUserId, m_matchProfile.getId(), message);
-
-    ChatMessage myMsg;
-    myMsg.fromUserId = m_currentUserId;
-    myMsg.message = message;
-    m_chatArea->append(formatMessage(myMsg, m_currentUserId, m_matchProfile.getName()));
+    // HTML-теги залишаються для підсвічування СИНТАКСИСУ, але кольори винесені у константи.
+    // Використовуємо класи для керування кольором тексту, які ви оголосите в QSS
+    m_chatArea->append(
+        QString(
+            "<div style='margin-bottom: 4px;'>"
+            "<span class='time_stamp'>[%1]</span> " // Час
+            "<b class='user_me'>Me:</b> "          // Me
+            "<span class='message_text'>%2</span>" // Текст
+            "</div>"
+        ).arg(time, text)
+    );
 
     m_inputField->clear();
 
-    QTimer::singleShot(1000, this, &ChatPageWidget::botReply);
+    QScrollBar *sb = m_chatArea->verticalScrollBar();
+    sb->setValue(sb->maximum());
+
+    QTimer::singleShot(1500, this, &ChatPageWidget::botReply);
 }
 
-void ChatPageWidget::botReply()
-{
+void ChatPageWidget::botReply() {
     if (!m_chatManager) return;
 
-    QString botMessage = m_chatManager->getBotReply();
+    QString reply = m_chatManager->getBotReply();
+    QString time = QDateTime::currentDateTime().toString("HH:mm");
 
-    if (m_chatManager)
-        m_chatManager->sendMessage(m_matchProfile.getId(), m_currentUserId, botMessage);
+    m_chatManager->sendMessage(m_matchProfile.getId(), m_currentUserId, reply);
 
-    ChatMessage botMsg;
-    botMsg.fromUserId = m_matchProfile.getId();
-    botMsg.message = botMessage;
-    m_chatArea->append(formatMessage(botMsg, m_currentUserId, m_matchProfile.getName()));
+    // Стиль відповіді:
+    m_chatArea->append(
+        QString(
+            "<div style='margin-bottom: 4px;'>"
+            "<span class='time_stamp'>[%1]</span> " // Час
+            "<b class='user_target'>%2:</b> "     // Ім'я співрозмовника
+            "<span class='message_text'>%3</span>"// Текст
+            "</div>"
+        ).arg(time, m_matchProfile.getName(), reply)
+    );
 
-    m_chatArea->verticalScrollBar()->setValue(m_chatArea->verticalScrollBar()->maximum());
+    QScrollBar *sb = m_chatArea->verticalScrollBar();
+    sb->setValue(sb->maximum());
+}
+
+void ChatPageWidget::loadHistory() {
+    if (!m_chatManager) return;
+
+    QList<ChatMessage> messages = m_chatManager->getMessages(m_currentUserId, m_matchProfile.getId());
+
+    for (const ChatMessage& msg : messages) {
+        QString time = msg.timestamp.toString("HH:mm");
+
+        if (msg.fromUserId == m_currentUserId) {
+            // Моє повідомлення
+            m_chatArea->append(
+                QString(
+                    "<div style='margin-bottom: 4px;'>"
+                    "<span class='time_stamp'>[%1]</span> "
+                    "<b class='user_me'>Me:</b> "
+                    "<span class='message_text'>%2</span>"
+                    "</div>"
+                ).arg(time, msg.message)
+            );
+        } else {
+            // Повідомлення співрозмовника
+            m_chatArea->append(
+                QString(
+                    "<div style='margin-bottom: 4px;'>"
+                    "<span class='time_stamp'>[%1]</span> "
+                    "<b class='user_target'>%2:</b> "
+                    "<span class='message_text'>%3</span>"
+                    "</div>"
+                ).arg(time, m_matchProfile.getName(), msg.message)
+            );
+        }
+    }
+
+    QScrollBar *sb = m_chatArea->verticalScrollBar();
+    sb->setValue(sb->maximum());
 }

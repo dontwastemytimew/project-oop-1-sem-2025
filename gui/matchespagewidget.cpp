@@ -13,21 +13,61 @@
 MatchesPageWidget::MatchesPageWidget(QWidget *parent)
     : QWidget(parent)
 {
+    // --- ГОЛОВНИЙ LAYOUT ---
     QVBoxLayout* layout = new QVBoxLayout(this);
+    layout->setContentsMargins(30, 30, 30, 30);
+    layout->setSpacing(10);
 
-    m_titleLabel = new QLabel(this);
-    m_titleLabel->setObjectName("matchesTitleLabel");
-    m_titleLabel->setAlignment(Qt::AlignCenter);
-    layout->addWidget(m_titleLabel);
+    // 1. Заголовок "class MatchList {"
+    // Колір та стиль тексту налаштовуйте в QSS через #matchesHeaderLabel
+    QLabel* headerLabel = new QLabel("class MatchList {", this);
+    headerLabel->setObjectName("matchesHeaderLabel");
 
+    // Шрифт залишаємо тут, оскільки це частина "кодової" структури
+    QFont headerFont("Consolas", 20, QFont::Bold);
+    headerFont.setStyleHint(QFont::Monospace);
+    headerLabel->setFont(headerFont);
+    layout->addWidget(headerLabel);
+
+    // 2. "private:"
+    // Колір в QSS через #matchesAccessLabel
+    QLabel* accessLabel = new QLabel("private:", this);
+    accessLabel->setObjectName("matchesAccessLabel");
+
+    QFont accessFont("Consolas", 16, QFont::Bold);
+    accessLabel->setFont(accessFont);
+    layout->addWidget(accessLabel);
+
+    // 3. Контейнер з відступом (Tab)
+    QWidget* contentWidget = new QWidget(this);
+    contentWidget->setObjectName("matchesContentWidget");
+    QVBoxLayout* contentLayout = new QVBoxLayout(contentWidget);
+    contentLayout->setContentsMargins(25, 5, 0, 5); // Відступ зліва
+    contentLayout->setSpacing(15);
+
+    // Поле пошуку
     m_searchField = new QLineEdit(this);
-    layout->addWidget(m_searchField);
+    m_searchField->setObjectName("matchesSearchField"); // Стилізація в QSS
+    contentLayout->addWidget(m_searchField);
 
+    // Список метчів
     m_list = new QListWidget(this);
-    m_list->setObjectName("matchesListWidget");
-    layout->addWidget(m_list);
+    m_list->setObjectName("matchesListWidget"); // Стилізація в QSS
+    contentLayout->addWidget(m_list);
+
+    layout->addWidget(contentWidget);
+
+    // 4. Футер "};"
+    QLabel* footerLabel = new QLabel("};", this);
+    footerLabel->setObjectName("matchesFooterLabel");
+    footerLabel->setFont(headerFont);
+    layout->addWidget(footerLabel);
 
     setLayout(layout);
+
+    // Ініціалізуємо m_titleLabel, щоб не було крашу
+    m_titleLabel = new QLabel(this);
+    m_titleLabel->setVisible(false);
 
     retranslateUi();
 
@@ -49,7 +89,6 @@ void MatchesPageWidget::changeEvent(QEvent *event) {
 }
 
 void MatchesPageWidget::retranslateUi() {
-    m_titleLabel->setText(tr("Мої Метчі та Чати"));
     m_searchField->setPlaceholderText(tr("Введіть ім'я метча..."));
     reloadMatches();
 }
@@ -112,8 +151,9 @@ void MatchesPageWidget::reloadMatches()
 
     if (m_list->count() == 0)
     {
-        QListWidgetItem* empty = new QListWidgetItem(tr("Немає метчів поки що"));
+        QListWidgetItem* empty = new QListWidgetItem(tr("// Немає метчів поки що"));
         empty->setFlags(Qt::NoItemFlags);
+        // Колір коментаря також прибрано, контролюйте через QSS (якщо можливо для item) або залиште дефолтним
         m_list->addItem(empty);
     }
 }
