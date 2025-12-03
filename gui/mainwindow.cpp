@@ -26,7 +26,7 @@ MainWindow::MainWindow(DatabaseManager* dbManager, QWidget *parent)
     ui->setupUi(this);
     setWindowTitle(tr("Match++"));
 
-    QIcon appIcon(":/resources/icons/logo.png");
+    QIcon appIcon(":/resources/icons/logo.jpg");
     this->setWindowIcon(appIcon);
 
     m_welcomePage = new WelcomePageWidget(this);
