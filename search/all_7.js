@@ -1,8 +1,7 @@
 var searchData=
 [
-  ['init_0',['init',['../classUserLogger.html#a45f084aa222851ecac071c77ea5dd248',1,'UserLogger']]],
-  ['initialized_1',['initialized',['../classUserLogger.html#a15057eef47619c83fa8a9e2e91342cf5',1,'UserLogger']]],
-  ['iscompatible_2',['isCompatible',['../classMatchEngine.html#aad67fc8e8acb424b930d8bec26ebfcf6',1,'MatchEngine']]],
-  ['ismutuallike_3',['isMutualLike',['../classDatabaseManager.html#a285b559a56e24e72d0c711ef9ad584c0',1,'DatabaseManager']]],
-  ['isvalid_4',['isValid',['../classUserProfile.html#a9123f69a5681cd3b3d84545e0ec096ac',1,'UserProfile']]]
+  ['loadchathistory_0',['loadChatHistory',['../classDatabaseManager.html#a14ae2d784f7117f07ba338b4cc464cf1',1,'DatabaseManager']]],
+  ['loadprofilebyid_1',['loadProfileById',['../classDatabaseManager.html#a956a7b76414754b422afc507d5797e24',1,'DatabaseManager']]],
+  ['log_2',['log',['../classUserLogger.html#a0b46b7418171fa636af3700203b1ca52',1,'UserLogger']]],
+  ['logfile_3',['logFile',['../classUserLogger.html#a218caa226b96c0f4af1864a3747e4155',1,'UserLogger']]]
 ];

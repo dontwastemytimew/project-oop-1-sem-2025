@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['preference_0',['Preference',['../classPreference.html',1,'']]],
-  ['profilecard_1',['ProfileCard',['../classProfileCard.html',1,'']]],
-  ['profilepagewidget_2',['ProfilePageWidget',['../classProfilePageWidget.html',1,'']]]
+  ['searchpagewidget_0',['SearchPageWidget',['../classSearchPageWidget.html',1,'']]],
+  ['settingspagewidget_1',['SettingsPageWidget',['../classSettingsPageWidget.html',1,'']]],
+  ['statsdialog_2',['StatsDialog',['../classStatsDialog.html',1,'']]]
 ];

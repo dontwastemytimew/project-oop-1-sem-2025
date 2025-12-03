@@ -1,13 +1,11 @@
 var annotated_dup =
 [
     [ "AdminPageWidget", "classAdminPageWidget.html", null ],
-    [ "BenchmarkTool", "classBenchmarkTool.html", null ],
     [ "ChatManager", "classChatManager.html", null ],
     [ "ChatMessage", "structChatMessage.html", null ],
     [ "ChatPageWidget", "classChatPageWidget.html", "classChatPageWidget" ],
     [ "ContactInfo", "classContactInfo.html", "classContactInfo" ],
     [ "DatabaseManager", "classDatabaseManager.html", "classDatabaseManager" ],
-    [ "DBFixture", "classDBFixture.html", null ],
     [ "FakeDataManager", "classFakeDataManager.html", null ],
     [ "MainWindow", "classMainWindow.html", null ],
     [ "MatchEngine", "classMatchEngine.html", "classMatchEngine" ],

@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['preference_0',['preference',['../classPreference.html',1,'Preference'],['../classPreference.html#a17dda34bb452f1b0cc899aa867ecad40',1,'Preference::Preference()']]],
-  ['profilecard_1',['ProfileCard',['../classProfileCard.html',1,'']]],
-  ['profilepagewidget_2',['ProfilePageWidget',['../classProfilePageWidget.html',1,'']]]
+  ['removealltags_0',['removeAllTags',['../classDatabaseManager.html#a3c965d418abb4a94f7fc26ca700d8950',1,'DatabaseManager']]],
+  ['removelike_1',['removeLike',['../classDatabaseManager.html#aed162acddff1f040eca0ea5ed9ae1f3e',1,'DatabaseManager']]]
 ];

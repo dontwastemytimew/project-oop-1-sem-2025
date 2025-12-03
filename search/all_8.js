@@ -1,7 +1,8 @@
 var searchData=
 [
-  ['loadchathistory_0',['loadChatHistory',['../classDatabaseManager.html#a14ae2d784f7117f07ba338b4cc464cf1',1,'DatabaseManager']]],
-  ['loadprofilebyid_1',['loadProfileById',['../classDatabaseManager.html#a956a7b76414754b422afc507d5797e24',1,'DatabaseManager']]],
-  ['log_2',['log',['../classUserLogger.html#a0b46b7418171fa636af3700203b1ca52',1,'UserLogger']]],
-  ['logfile_3',['logFile',['../classUserLogger.html#a218caa226b96c0f4af1864a3747e4155',1,'UserLogger']]]
+  ['m_5femail_0',['m_email',['../classContactInfo.html#aaea89d04225a74411152d3185c86235f',1,'ContactInfo']]],
+  ['m_5fphone_1',['m_phone',['../classContactInfo.html#a5c428360349519f5162f775a0ea6ac24',1,'ContactInfo']]],
+  ['mainwindow_2',['MainWindow',['../classMainWindow.html',1,'']]],
+  ['matchengine_3',['MatchEngine',['../classMatchEngine.html',1,'']]],
+  ['matchespagewidget_4',['MatchesPageWidget',['../classMatchesPageWidget.html',1,'']]]
 ];

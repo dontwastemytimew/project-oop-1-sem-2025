@@ -1,6 +1,14 @@
 var searchData=
 [
-  ['removealltags_0',['removeAllTags',['../classDatabaseManager.html#a3c965d418abb4a94f7fc26ca700d8950',1,'DatabaseManager']]],
-  ['removelike_1',['removeLike',['../classDatabaseManager.html#aed162acddff1f040eca0ea5ed9ae1f3e',1,'DatabaseManager']]],
-  ['run_2',['run',['../classBenchmarkTool.html#ade683eab42eb656ac2b6d387ad208bde',1,'BenchmarkTool']]]
+  ['savechatmessage_0',['saveChatMessage',['../classDatabaseManager.html#aaabdfef39bdef87373306e636c5bf3b9',1,'DatabaseManager']]],
+  ['searchpagewidget_1',['SearchPageWidget',['../classSearchPageWidget.html',1,'']]],
+  ['seedreverselikes_2',['seedReverseLikes',['../classFakeDataManager.html#a7c1c31734c4f39d07318bd7684c97294',1,'FakeDataManager']]],
+  ['setcompatibilitypercent_3',['setCompatibilityPercent',['../classProfileCard.html#ac17ce8aa69ee384b2288843e6c4d6bab',1,'ProfileCard']]],
+  ['setemail_4',['setEmail',['../classContactInfo.html#a159a734b7d81d7c4ae20e8abc6eaf554',1,'ContactInfo']]],
+  ['setmatchprofile_5',['setMatchProfile',['../classChatPageWidget.html#af08e6a479db94e3fa9011c209bf48089',1,'ChatPageWidget']]],
+  ['setphone_6',['setPhone',['../classContactInfo.html#aee40d07950e2a805e4def595e72d1723',1,'ContactInfo']]],
+  ['setprofiledata_7',['setProfileData',['../classProfileCard.html#a4d5e9e5fd52ec97ef17f3469309d78c7',1,'ProfileCard']]],
+  ['settags_8',['setTags',['../classUserProfile.html#a9e4466ef0a9582a9b50883e87c63ba4c',1,'UserProfile']]],
+  ['settingspagewidget_9',['SettingsPageWidget',['../classSettingsPageWidget.html',1,'']]],
+  ['statsdialog_10',['StatsDialog',['../classStatsDialog.html',1,'']]]
 ];

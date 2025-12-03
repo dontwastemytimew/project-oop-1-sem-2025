@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['databasemanager_0',['DatabaseManager',['../classDatabaseManager.html',1,'']]],
-  ['dbfixture_1',['DBFixture',['../classDBFixture.html',1,'']]]
+  ['fakedatamanager_0',['FakeDataManager',['../classFakeDataManager.html',1,'']]]
 ];
