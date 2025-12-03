@@ -3,24 +3,31 @@
 #include "UserLogger.h"
 #include "FakeDataManager.h"
 #include "StatsDialog.h"
+#include <QApplication>
+#include <QClipboard>
+#include <QMenu>
+#include <QHeaderView>
+#include <QMessageBox>
+#include <QEvent>
 
 AdminPageWidget::AdminPageWidget(QWidget *parent)
     : QWidget(parent), m_dbManager(nullptr), m_model(nullptr), m_proxyModel(nullptr)
 {
     QVBoxLayout* mainLayout = new QVBoxLayout(this);
-   // Верхня панель
+
+    // Верхня панель
     QHBoxLayout* topBar = new QHBoxLayout();
 
-    m_btnBack = new QPushButton(tr(" Назад"), this);
+    m_btnBack = new QPushButton(this);
     m_btnBack->setObjectName("adminBackBtn");
 
-    QLabel* title = new QLabel(tr("Панель Адміністратора"), this);
-    title->setObjectName("adminTitleLabel");
-    title->setAlignment(Qt::AlignCenter);
+    m_titleLabel = new QLabel(this);
+    m_titleLabel->setObjectName("adminTitleLabel");
+    m_titleLabel->setAlignment(Qt::AlignCenter);
 
     topBar->addWidget(m_btnBack);
     topBar->addStretch();
-    topBar->addWidget(title);
+    topBar->addWidget(m_titleLabel);
     topBar->addStretch();
     topBar->addSpacing(120);
 
@@ -29,18 +36,17 @@ AdminPageWidget::AdminPageWidget(QWidget *parent)
     // Панель інструментів
     QHBoxLayout* toolbarLayout = new QHBoxLayout();
 
-    m_btnGenerate = new QPushButton(tr(" +50 Фейків"), this);
+    m_btnGenerate = new QPushButton(this);
     m_btnGenerate->setObjectName("adminGenBtn");
-    m_btnStats = new QPushButton(tr(" Статистика"), this);
+    m_btnStats = new QPushButton(this);
     m_btnStats->setObjectName("adminStatsBtn");
-    m_btnDelete = new QPushButton(tr(" Видалити"), this);
+    m_btnDelete = new QPushButton(this);
     m_btnDelete->setObjectName("adminDelBtn");
 
-    QLabel* searchLabel = new QLabel(this);
-    searchLabel->setObjectName("searchIconLbl");
+    m_searchIconLabel = new QLabel(this);
+    m_searchIconLabel->setObjectName("searchIconLbl");
 
     m_searchField = new QLineEdit(this);
-    m_searchField->setPlaceholderText(tr("Введіть ім'я або місто..."));
     m_searchField->setClearButtonEnabled(true);
     m_searchField->setObjectName("adminSearchInput");
 
@@ -48,7 +54,7 @@ AdminPageWidget::AdminPageWidget(QWidget *parent)
     toolbarLayout->addWidget(m_btnStats);
     toolbarLayout->addWidget(m_btnDelete);
     toolbarLayout->addSpacing(20);
-    toolbarLayout->addWidget(searchLabel);
+    toolbarLayout->addWidget(m_searchIconLabel);
     toolbarLayout->addWidget(m_searchField);
 
     mainLayout->addLayout(toolbarLayout);
@@ -67,6 +73,8 @@ AdminPageWidget::AdminPageWidget(QWidget *parent)
     mainLayout->addWidget(m_tableView);
     setLayout(mainLayout);
 
+    retranslateUi();
+
     connect(m_btnDelete, &QPushButton::clicked, this, &AdminPageWidget::onDeleteClicked);
     connect(m_btnGenerate, &QPushButton::clicked, this, &AdminPageWidget::onGenerateClicked);
     connect(m_btnBack, &QPushButton::clicked, this, &AdminPageWidget::backClicked);
@@ -75,11 +83,40 @@ AdminPageWidget::AdminPageWidget(QWidget *parent)
     // ЛОГІКА ПОШУКУ ЧЕРЕЗ PROXY
     connect(m_searchField, &QLineEdit::textChanged, this, [this](const QString &text){
         if (!m_proxyModel) return;
-
         m_proxyModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
         m_proxyModel->setFilterFixedString(text);
         m_proxyModel->setFilterKeyColumn(-1);
     });
+}
+
+void AdminPageWidget::changeEvent(QEvent *event) {
+    if (event->type() == QEvent::LanguageChange) {
+        retranslateUi();
+    }
+    QWidget::changeEvent(event);
+}
+
+void AdminPageWidget::retranslateUi() {
+    m_btnBack->setText(tr(" Назад"));
+    m_titleLabel->setText(tr("Панель Адміністратора"));
+
+    m_btnGenerate->setText(tr(" +50 Фейків"));
+    m_btnStats->setText(tr(" Статистика"));
+    m_btnDelete->setText(tr(" Видалити"));
+
+    m_searchField->setPlaceholderText(tr("Введіть ім'я або місто..."));
+
+    if (m_model) {
+        m_model->setHeaderData(0, Qt::Horizontal, "ID");
+        m_model->setHeaderData(1, Qt::Horizontal, tr("Ім'я"));
+        m_model->setHeaderData(2, Qt::Horizontal, tr("Вік"));
+        m_model->setHeaderData(3, Qt::Horizontal, tr("Місто"));
+        m_model->setHeaderData(5, Qt::Horizontal, tr("Стать"));
+        m_model->setHeaderData(6, Qt::Horizontal, "Email");
+        m_model->setHeaderData(7, Qt::Horizontal, tr("Телефон"));
+        m_model->setHeaderData(8, Qt::Horizontal, tr("Орієнтація"));
+        m_model->setHeaderData(9, Qt::Horizontal, tr("Прихований"));
+    }
 }
 
 void AdminPageWidget::setDatabaseManager(DatabaseManager* dbManager) {
@@ -102,11 +139,13 @@ void AdminPageWidget::refreshTable() {
     // Створюємо базову SQL модель
     m_model = m_dbManager->getUsersModel(this);
 
+    retranslateUi();
+
     // Створюємо Проксі-модель
     m_proxyModel = new QSortFilterProxyModel(this);
     m_proxyModel->setSourceModel(m_model);
 
-    // Налаштування пошуку: шукати по всіх колонках (-1) або конкретній (1 - Name)
+    // Налаштування пошуку
     m_proxyModel->setFilterKeyColumn(-1);
 
     // Підключаємо Проксі до Таблиці
@@ -173,24 +212,19 @@ void AdminPageWidget::onCustomContextMenu(const QPoint &pos) {
     if (!proxyIndex.isValid()) return;
 
     QMenu contextMenu(this);
-
     QModelIndex sourceIndex = m_proxyModel->mapToSource(proxyIndex);
-
     bool isHidden = m_model->data(m_model->index(sourceIndex.row(), 9)).toBool();
 
-    // Копіювати Email
     QAction *copyAction = contextMenu.addAction(QIcon(":/resources/icons/copy.png"), tr("Копіювати Email"));
-
     contextMenu.addSeparator();
 
     QString banText = isHidden ? tr("Розбанити (Показати)") : tr("Забанити (Приховати)");
     QString banIconPath = isHidden ? ":/resources/icons/unhide.png" : ":/resources/icons/hide.png";
     QAction *banAction = contextMenu.addAction(QIcon(banIconPath), banText);
 
-    // Видалити
     contextMenu.addSeparator();
-
     QAction *deleteAction = contextMenu.addAction(QIcon(":/resources/icons/trash-black.png"), tr("Видалити"));
+
     QAction *selectedAction = contextMenu.exec(m_tableView->viewport()->mapToGlobal(pos));
 
     if (selectedAction == copyAction) {
@@ -210,21 +244,19 @@ void AdminPageWidget::toggleHiddenStatus(int row) {
     if (!m_dbManager || !m_model) return;
 
     int userId = m_model->data(m_model->index(row, 0)).toInt();
-
     bool currentHidden = m_model->data(m_model->index(row, 9)).toBool();
     bool newHidden = !currentHidden;
 
     if (m_dbManager->setProfileHidden(userId, newHidden)) {
         UserLogger::log(Info, QString("Admin set user ID %1 hidden status to %2").arg(userId).arg(newHidden));
-
         refreshTable();
     } else {
         QMessageBox::critical(this, tr("Помилка"), tr("Не вдалося виконати операцію Бану/Розбану."));
     }
 }
+
 void AdminPageWidget::onStatsClicked() {
     if (!m_dbManager) return;
-
     StatsDialog dlg(m_dbManager, this);
     dlg.exec();
 }

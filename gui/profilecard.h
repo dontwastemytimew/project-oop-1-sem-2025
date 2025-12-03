@@ -22,6 +22,9 @@ public:
     /// Встановлює % сумісності
     void setCompatibilityPercent(int percent);
 
+protected:
+    void changeEvent(QEvent *event) override;
+
 private:
     QLabel* lblPhoto;
     QLabel* lblName;
@@ -30,6 +33,9 @@ private:
     QLabel* lblDescription;
     QLabel* lblCompatibility;
     QLabel* lblTags;
+    void retranslateUi();
+    int m_currentPercent = 0;
+    bool m_hasPhoto = false;
 };
 
 #endif

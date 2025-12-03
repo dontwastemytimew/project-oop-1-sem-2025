@@ -4,9 +4,10 @@
 #include <QLabel>
 #include <QFrame>
 #include <QFile>
+#include <QEvent>
 
 ProfileCard::ProfileCard(QWidget* parent)
-    : QWidget(parent)
+    : QWidget(parent), m_currentPercent(0), m_hasPhoto(false)
 {
     QVBoxLayout* mainLayout = new QVBoxLayout(this);
     mainLayout->setAlignment(Qt::AlignCenter);
@@ -58,6 +59,21 @@ ProfileCard::ProfileCard(QWidget* parent)
     setLayout(mainLayout);
 }
 
+void ProfileCard::changeEvent(QEvent *event) {
+    if (event->type() == QEvent::LanguageChange) {
+        retranslateUi();
+    }
+    QWidget::changeEvent(event);
+}
+
+void ProfileCard::retranslateUi() {
+    lblCompatibility->setText(tr("Сумісність: %1%").arg(m_currentPercent));
+
+    if (!m_hasPhoto) {
+        lblPhoto->setText(tr("Немає фото"));
+    }
+}
+
 void ProfileCard::setProfileData(const UserProfile& profile)
 {
     QString photoPath = profile.getPhotoPath();
@@ -72,8 +88,11 @@ void ProfileCard::setProfileData(const UserProfile& profile)
     }
 
     if (pixmap.isNull()) {
+        m_hasPhoto = false;
+        lblPhoto->clear();
         lblPhoto->setText(tr("Немає фото"));
     } else {
+        m_hasPhoto = true;
         lblPhoto->setPixmap(
             pixmap.scaled(
                 lblPhoto->size(),
@@ -105,6 +124,8 @@ void ProfileCard::setCompatibilityPercent(int percent)
 {
     if (percent < 0) percent = 0;
     if (percent > 100) percent = 100;
+
+    m_currentPercent = percent;
 
     lblCompatibility->setText(
         tr("Сумісність: %1%").arg(percent)

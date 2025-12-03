@@ -1,7 +1,6 @@
 #ifndef ADMINPAGEWIDGET_H
 #define ADMINPAGEWIDGET_H
 
-#include <QWidget>
 #include "DatabaseManager.h"
 
 class QTableView;
@@ -10,6 +9,7 @@ class QPushButton;
 class QLineEdit;
 class QSortFilterProxyModel;
 class StatsDialog;
+class QLabel;
 
 class AdminPageWidget : public QWidget {
     Q_OBJECT
@@ -18,6 +18,9 @@ public:
 
     void setDatabaseManager(DatabaseManager* dbManager);
     void refreshTable();
+
+protected:
+    void changeEvent(QEvent *event) override;
 
     signals:
         void backClicked();
@@ -39,6 +42,9 @@ private:
     QPushButton* m_btnBack;
     QLineEdit* m_searchField;
     QPushButton* m_btnStats;
+    void retranslateUi();
+    QLabel* m_titleLabel;
+    QLabel* m_searchIconLabel;
 };
 
 #endif // ADMINPAGEWIDGET_H

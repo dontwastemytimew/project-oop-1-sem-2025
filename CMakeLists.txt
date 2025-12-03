@@ -47,10 +47,10 @@ add_executable(project_oop_1_sem_2025
 file(GLOB TS_SOURCES "core/*.cpp" "gui/*.cpp" "gui/*.h" "models/*.cpp" "main.cpp")
 
 qt_add_translations(project_oop_1_sem_2025
-        QM_FILES_OUTPUT_DIR "${CMAKE_BINARY_DIR}/translations"
         TS_FILES
         translations/app_ua.ts
         translations/app_en.ts
+        RESOURCE_PREFIX "/translations"
 )
 
 add_dependencies(project_oop_1_sem_2025 project_oop_1_sem_2025_lrelease)

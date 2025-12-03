@@ -1,17 +1,10 @@
 #ifndef MATCHESPAGEWIDGET_H
 #define MATCHESPAGEWIDGET_H
 
-#include <QWidget>
-#include <QVector>
 #include <QListWidget>
-#include "UserProfile.h"
-#include "DatabaseManager.h"
 #include <QLabel>
+#include "DatabaseManager.h"
 #include "ChatManager.h"
-
-class QLineEdit;
-class QListWidget;
-class QSortFilterProxyModel;
 
 class MatchesPageWidget : public QWidget
 {
@@ -23,27 +16,32 @@ public:
 
     void setDatabaseManager(DatabaseManager* db);
     void setCurrentUserId(int id);
+    void reloadMatches();
     void setChatManager(ChatManager* chatManager);
 
     public slots:
-        void reloadMatches();
-    void onMatchCreated(int userId, int targetId);
+        void onMatchCreated(int userId, int targetId);
+
+    signals:
+        void openChatRequested(int targetUserId);
+
+protected:
+    void changeEvent(QEvent *event) override;
 
     private slots:
         void onMatchClicked(QListWidgetItem* item);
-    void onSearchTextChanged(const QString& text);
-
-    signals:
-    void openChatRequested(int targetUserId);
+    void onSearchTextChanged(const QString &text);
 
 private:
+    void retranslateUi();
 
-    DatabaseManager* m_db = nullptr;
     int m_currentUserId = -1;
+    DatabaseManager* m_db = nullptr;
+    ChatManager* m_chatManager = nullptr;
+
     QLabel* m_titleLabel;
-    QListWidget* m_list;
-    ChatManager* m_chatManager;
     QLineEdit* m_searchField;
+    QListWidget* m_list;
 };
 
 #endif // MATCHESPAGEWIDGET_H

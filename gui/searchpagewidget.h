@@ -1,40 +1,30 @@
 #ifndef SEARCHPAGEWIDGET_H
 #define SEARCHPAGEWIDGET_H
 
-#include <QWidget>
-#include <QVector>
+#include <QSpinBox>
+#include <QComboBox>
+#include <QStackedWidget>
+#include <QLabel>
 #include "DatabaseManager.h"
 #include "UserProfile.h"
-#include "profilecard.h"
 #include "MatchEngine.h"
 
-class QSpinBox;
-class QLineEdit;
-class QPushButton;
-class QStackedWidget;
-class QComboBox;
-
-class SearchPageWidget : public QWidget {
+class SearchPageWidget : public QWidget
+{
     Q_OBJECT
+
 public:
     explicit SearchPageWidget(QWidget *parent = nullptr);
     ~SearchPageWidget();
 
     void setDatabaseManager(DatabaseManager* dbManager);
-
-    /**
-     * @brief Встановлює дані поточного користувача. Викликається при старті додатку.
-     */
     void setCurrentUser(const UserProfile& profile);
 
-    /**
-     * @brief Повертає ID поточного користувача.
-     */
-    int getCurrentUserId() const;
-
-
     signals:
-        void matchFound(int userId, int targetId);
+        void matchFound(int currentUserId, int targetId);
+
+protected:
+    void changeEvent(QEvent *event) override;
 
     private slots:
         void on_btn_Find_clicked();
@@ -42,28 +32,35 @@ public:
     void on_Skip_clicked();
 
 private:
-    DatabaseManager* m_dbManager = nullptr;
+    void showNextProfile();
+    void setupCityAutocomplete();
+    void showMatchPopup(const UserProfile& target);
+    void retranslateUi();
+
+    DatabaseManager* m_dbManager;
+    MatchEngine* m_matchEngine;
+    UserProfile m_currentUser;
+
+    QList<UserProfile> m_currentMatches;
+    int m_currentMatchIndex;
+
     QSpinBox* m_minAgeSpin;
     QSpinBox* m_maxAgeSpin;
-    QLineEdit* m_cityEdit;
-    QPushButton* m_findButton;
     QComboBox* m_genderCombo;
     QComboBox* m_orientationCombo;
+    QLineEdit* m_cityEdit;
+    QPushButton* m_findButton;
+
+    QLabel* m_labelMinAge;
+    QLabel* m_labelMaxAge;
+    QLabel* m_labelGender;
+    QLabel* m_labelOrientation;
+    QLabel* m_labelCity;
+    QLabel* m_placeholderLabel;
+
     QStackedWidget* m_resultsStack;
     QPushButton* m_likeButton;
     QPushButton* m_skipButton;
-    QVector<UserProfile> m_currentMatches;
-    int m_currentMatchIndex = 0;
-    UserProfile m_currentUser;
-    MatchEngine *m_matchEngine;
-    void showNextProfile();
-
-    /**
-     * @brief Показує спливаюче вікно про Match.
-     * @param target Профіль, з яким відбувся метч.
-     */
-    void showMatchPopup(const UserProfile& target);
-    void setupCityAutocomplete();
 };
 
 #endif // SEARCHPAGEWIDGET_H

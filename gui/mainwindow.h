@@ -30,6 +30,9 @@ public:
     void switchTheme(bool isDark);
     void showAdminPage();
 
+    protected:
+    void changeEvent(QEvent *event) override;
+
 private slots:
     void on_btn_Search_clicked();
     void on_btn_Profile_clicked();

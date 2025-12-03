@@ -169,7 +169,7 @@ protected:
 TEST_F(SearchTests, GetProfilesByCity) {
     Preference prefs(0, 0, "Київ");
 
-    QList<UserProfile> results = dbManager->getProfilesByCriteria(prefs);
+    QList<UserProfile> results = dbManager->getProfilesByCriteria(prefs, -1);
 
     ASSERT_EQ(results.count(), 2);
     ASSERT_EQ(results[0].getName(), "Анна");
@@ -180,7 +180,7 @@ TEST_F(SearchTests, GetProfilesByCity) {
 TEST_F(SearchTests, GetProfilesByAgeRange) {
     Preference prefs(28, 32, "");
 
-    QList<UserProfile> results = dbManager->getProfilesByCriteria(prefs);
+    QList<UserProfile> results = dbManager->getProfilesByCriteria(prefs, -1);
 
     ASSERT_EQ(results.count(), 1);
     ASSERT_EQ(results[0].getName(), "Борис");
@@ -190,7 +190,7 @@ TEST_F(SearchTests, GetProfilesByAgeRange) {
 TEST_F(SearchTests, GetProfilesByAgeAndCity) {
     Preference prefs(30, 40, "Київ");
 
-    QList<UserProfile> results = dbManager->getProfilesByCriteria(prefs);
+    QList<UserProfile> results = dbManager->getProfilesByCriteria(prefs, -1);
 
     ASSERT_EQ(results.count(), 1);
     ASSERT_EQ(results[0].getName(), "Вікторія");
@@ -200,7 +200,7 @@ TEST_F(SearchTests, GetProfilesByAgeAndCity) {
 TEST_F(SearchTests, GetProfiles_NoResults) {
     Preference prefs(50, 60, "Одеса");
 
-    QList<UserProfile> results = dbManager->getProfilesByCriteria(prefs);
+    QList<UserProfile> results = dbManager->getProfilesByCriteria(prefs, -1);
 
     ASSERT_EQ(results.count(), 0);
 }

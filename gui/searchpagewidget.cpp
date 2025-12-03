@@ -16,6 +16,7 @@
 #include <QCompleter>
 #include <QStringList>
 #include <algorithm>
+#include <QEvent>
 
 SearchPageWidget::SearchPageWidget(QWidget *parent)
 : QWidget(parent)
@@ -30,37 +31,42 @@ SearchPageWidget::SearchPageWidget(QWidget *parent)
     m_maxAgeSpin->setValue(99);
 
     m_genderCombo = new QComboBox(this);
-    m_genderCombo->addItem(tr("Не важливо"));
-    m_genderCombo->addItem(tr("Чоловік"));
-    m_genderCombo->addItem(tr("Жінка"));
+    m_genderCombo->addItem("", "any");
+    m_genderCombo->addItem("", "male");
+    m_genderCombo->addItem("", "female");
 
     m_orientationCombo = new QComboBox(this);
-    m_orientationCombo->addItem(tr("Не важливо"));
-    m_orientationCombo->addItem(tr("Гетеро"));
-    m_orientationCombo->addItem(tr("Бісексуал"));
-    m_orientationCombo->addItem(tr("Гей/Лесбі"));
+    m_orientationCombo->addItem("", "any");
+    m_orientationCombo->addItem("", "hetero");
+    m_orientationCombo->addItem("", "bi");
+    m_orientationCombo->addItem("", "gay");
 
     m_cityEdit = new QLineEdit(this);
-    m_cityEdit->setPlaceholderText(tr("Введіть місто..."));
-    m_findButton = new QPushButton(tr("Знайти пару"), this);
+    m_findButton = new QPushButton(this);
 
-    filterLayout->addRow(tr("Мін. вік:"), m_minAgeSpin);
-    filterLayout->addRow(tr("Макс. вік:"), m_maxAgeSpin);
-    filterLayout->addRow(tr("Стать:"), m_genderCombo);
-    filterLayout->addRow(tr("Орієнтація:"), m_orientationCombo);
-    filterLayout->addRow(tr("Місто:"), m_cityEdit);
+    m_labelMinAge = new QLabel(this);
+    m_labelMaxAge = new QLabel(this);
+    m_labelGender = new QLabel(this);
+    m_labelOrientation = new QLabel(this);
+    m_labelCity = new QLabel(this);
+
+    filterLayout->addRow(m_labelMinAge, m_minAgeSpin);
+    filterLayout->addRow(m_labelMaxAge, m_maxAgeSpin);
+    filterLayout->addRow(m_labelGender, m_genderCombo);
+    filterLayout->addRow(m_labelOrientation, m_orientationCombo);
+    filterLayout->addRow(m_labelCity, m_cityEdit);
 
     m_resultsStack = new QStackedWidget(this);
     m_resultsStack->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
-    QLabel* placeholder = new QLabel(tr("Натисніть 'Знайти пару', щоб побачити профілі"), this);
-    placeholder->setAlignment(Qt::AlignCenter);
-    m_resultsStack->addWidget(placeholder);
+    m_placeholderLabel = new QLabel(this);
+    m_placeholderLabel->setAlignment(Qt::AlignCenter);
+    m_resultsStack->addWidget(m_placeholderLabel);
 
-    m_likeButton = new QPushButton(tr(" Like"), this);
+    m_likeButton = new QPushButton(this);
     m_likeButton->setObjectName("m_likeButton");
 
-    m_skipButton = new QPushButton(tr(" Skip"), this);
+    m_skipButton = new QPushButton(this);
     m_skipButton->setObjectName("m_skipButton");
 
     QHBoxLayout* buttonLayout = new QHBoxLayout();
@@ -80,12 +86,45 @@ SearchPageWidget::SearchPageWidget(QWidget *parent)
 
     setLayout(mainLayout);
 
+    retranslateUi();
+
     connect(m_findButton, &QPushButton::clicked, this, &SearchPageWidget::on_btn_Find_clicked);
     connect(m_likeButton, &QPushButton::clicked, this, &SearchPageWidget::on_Like_clicked);
     connect(m_skipButton, &QPushButton::clicked, this, &SearchPageWidget::on_Skip_clicked);
 }
 
 SearchPageWidget::~SearchPageWidget() {
+}
+
+
+void SearchPageWidget::changeEvent(QEvent *event) {
+    if (event->type() == QEvent::LanguageChange) {
+        retranslateUi();
+    }
+    QWidget::changeEvent(event);
+}
+
+void SearchPageWidget::retranslateUi() {
+    m_labelMinAge->setText(tr("Мін. вік:"));
+    m_labelMaxAge->setText(tr("Макс. вік:"));
+    m_labelGender->setText(tr("Стать:"));
+    m_labelOrientation->setText(tr("Орієнтація:"));
+    m_labelCity->setText(tr("Місто:"));
+
+    m_genderCombo->setItemText(0, tr("Не важливо"));
+    m_genderCombo->setItemText(1, tr("Чоловік"));
+    m_genderCombo->setItemText(2, tr("Жінка"));
+
+    m_orientationCombo->setItemText(0, tr("Не важливо"));
+    m_orientationCombo->setItemText(1, tr("Гетеро"));
+    m_orientationCombo->setItemText(2, tr("Бісексуал"));
+    m_orientationCombo->setItemText(3, tr("Гей/Лесбі"));
+
+    m_cityEdit->setPlaceholderText(tr("Введіть місто..."));
+    m_findButton->setText(tr("Знайти пару"));
+    m_placeholderLabel->setText(tr("Натисніть 'Знайти пару', щоб побачити профілі"));
+    m_likeButton->setText(tr(" Like"));
+    m_skipButton->setText(tr(" Skip"));
 }
 
 void SearchPageWidget::setDatabaseManager(DatabaseManager* dbManager) {
@@ -110,20 +149,16 @@ void SearchPageWidget::showMatchPopup(const UserProfile& target)
 
 // ЛОГІКА ПОШУКУ
 void SearchPageWidget::on_btn_Find_clicked() {
-    // 1. ПЕРЕВІРКА СЕСІЇ
     if (!m_dbManager || m_currentUser.getId() == -1) {
         QMessageBox::critical(this, tr("Профіль не завантажено"), tr("Профіль не завантажено. Створіть профіль."));
         return;
     }
 
-    // 2. ЗБІР КРИТЕРІЇВ З UI
     Preference prefs(m_minAgeSpin->value(), m_maxAgeSpin->value(), m_cityEdit->text(),
                       m_genderCombo->currentText(), m_orientationCombo->currentText());
 
-    // 3. ВИКЛИК БАЗИ ДАНИХ
     QList<UserProfile> dbResults = m_dbManager->getProfilesByCriteria(prefs, m_currentUser.getId());
 
-    // 4. ФІЛЬТРАЦІЯ, ОЦІНКА ТА СОРТУВАННЯ
     QList<QPair<UserProfile, int>> ratedMatches;
 
     for (UserProfile profile : dbResults) {
@@ -137,7 +172,6 @@ void SearchPageWidget::on_btn_Find_clicked() {
         }
     }
 
-    // Сортування: від найбільшого відсотка до найменшого
     std::sort(ratedMatches.begin(), ratedMatches.end(),
               [](const QPair<UserProfile, int>& a, const QPair<UserProfile, int>& b){
                   return a.second > b.second;
@@ -174,11 +208,9 @@ void SearchPageWidget::showNextProfile() {
 
     UserProfile profile = m_currentMatches.at(m_currentMatchIndex);
 
-    // Створюємо картку
     ProfileCard* card = new ProfileCard(this);
     card->setProfileData(profile);
 
-    // Встановлюємо відсоток сумісності
     int compatibility = m_matchEngine->compatibilityPercent(m_currentUser, profile);
     card->setCompatibilityPercent(compatibility);
 
@@ -224,27 +256,16 @@ void SearchPageWidget::on_Skip_clicked() {
     showNextProfile();
 }
 
-
-    void SearchPageWidget::setCurrentUser(const UserProfile& profile) {
-        m_currentUser = profile;
-    }
+void SearchPageWidget::setCurrentUser(const UserProfile& profile) {
+    m_currentUser = profile;
+}
 
 void SearchPageWidget::setupCityAutocomplete() {
     if (!m_dbManager) return;
-
-    // Отримуємо список міст
     QStringList cities = m_dbManager->getAllCities();
-
     if (cities.isEmpty()) return;
-
     QCompleter* completer = new QCompleter(cities, this);
-
     completer->setFilterMode(Qt::MatchContains);
     completer->setCaseSensitivity(Qt::CaseInsensitive);
-
     m_cityEdit->setCompleter(completer);
-}
-
-int SearchPageWidget::getCurrentUserId() const {
-    return m_currentUser.getId();
 }

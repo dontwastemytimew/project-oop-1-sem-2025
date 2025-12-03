@@ -4,20 +4,24 @@
 #include "mainwindow.h"
 #include "BenchmarkTool.h"
 #include "ChatPageWidget.h"
-#include "ChatManager.h"
+#include <QSettings>
+#include <QTranslator>
 
 
 int main(int argc, char *argv[]) {
-
-    // --- ПОЧАТОК БЕНЧМАРКУ ЗАПУСКУ ---
-    // QElapsedTimer timer;
-    // timer.start();
-    // ---------------------------------------------
-
     QCoreApplication::setOrganizationName("DatingAgency");
     QCoreApplication::setApplicationName("Match++");
 
     QApplication a(argc, argv);
+
+    QSettings settings;
+    QString langCode = settings.value("language", "ua").toString();
+
+    QTranslator translator;
+    if (translator.load(":/translations/translations/app_" + langCode + ".qm") ||
+        translator.load(":/translations/app_" + langCode + ".qm")) {
+        a.installTranslator(&translator);
+        }
 
     QElapsedTimer startupTimer;
     startupTimer.start();
@@ -38,11 +42,6 @@ int main(int argc, char *argv[]) {
     MainWindow w(&dbManager);
     w.showMaximized();
 
-    // --- КІНЕЦЬ БЕНЧМАРКУ ЗАПУСКУ ---
-    // qInfo() << "--- STARTUP BENCHMARK ---";
-    // qInfo() << QString("Total startup time (ms): %1").arg(timer.elapsed());
-    // qInfo() << "-------------------------";
-    // -------------------------------------------
 
     return a.exec();
 }

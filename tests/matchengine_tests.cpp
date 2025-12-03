@@ -3,6 +3,7 @@
 #include "MatchEngine.h"
 #include "UserProfile.h"
 #include "DatabaseManager.h"
+#include <QSqlQuery>
 
 UserProfile makeProfile(int id, const QString& name, int age, const QString& city,
                         const QString& gender, const QString& orientation)
@@ -82,6 +83,6 @@ TEST(DatabaseManagerTests, MutualLikeBecomesMatch)
     EXPECT_TRUE(db.addLike(targetId, userId));
     EXPECT_TRUE(db.isMutualLike(userId, targetId));
 
-    QList<int> matches = db.getMatches(userId);
+    QList<int> matches = db.getMutualMatchIds(userId);
     EXPECT_TRUE(matches.contains(targetId));
 }

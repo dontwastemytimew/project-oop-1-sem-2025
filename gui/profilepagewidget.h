@@ -1,7 +1,6 @@
 #ifndef PROFILEPAGEWIDGET_H
 #define PROFILEPAGEWIDGET_H
 
-#include <QWidget>
 #include "DatabaseManager.h"
 #include "UserProfile.h"
 
@@ -25,6 +24,9 @@ public:
      * @brief Очищає всі поля форми після видалення профілю.
      */
     void clearFields();
+
+protected:
+    void changeEvent(QEvent *event) override;
 
     signals:
         void profileSaved();
@@ -53,6 +55,18 @@ private:
     // --- ПРИВАТНІ МЕТОДИ ---
     void setupCityAutocomplete(); // <-- Метод для автодоповнення
     QLineEdit* m_tagsEdit;
+
+    void retranslateUi();
+    QLabel* m_labelPhotoTitle;
+    QLabel* m_labelName;
+    QLabel* m_labelAge;
+    QLabel* m_labelCity;
+    QLabel* m_labelEmail;
+    QLabel* m_labelPhone;
+    QLabel* m_labelGender;
+    QLabel* m_labelOrientation;
+    QLabel* m_labelTags;
+    QLabel* m_labelBio;
 };
 
 #endif // PROFILEPAGEWIDGET_H

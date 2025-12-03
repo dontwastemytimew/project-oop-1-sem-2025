@@ -2,6 +2,7 @@
 #define SETTINGSPAGEWIDGET_H
 
 #include <QCheckBox>
+#include <QLabel>
 #include "DatabaseManager.h"
 
 class MainWindow;
@@ -18,6 +19,7 @@ public:
     void on_pauseToggled(bool checked);
     void setDatabaseManager(DatabaseManager* dbManager);
     void loadCurrentSettings(const UserProfile& profile);
+    void retranslateUi();
 
     signals:
     void openAdminPanelRequested();
@@ -40,5 +42,8 @@ private:
     QPushButton* m_deleteButton;
     int m_currentProfileId;
     QPushButton* m_btnOpenAdmin;
+    QLabel* m_langLabel;
+    QLabel* m_themeLabel;
+    QLabel* m_accountLabel;
 };
 #endif // SETTINGSPAGEWIDGET_H

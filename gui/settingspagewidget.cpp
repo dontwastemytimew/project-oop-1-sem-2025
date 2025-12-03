@@ -11,53 +11,70 @@
 #include <QApplication>
 #include <QSettings>
 
-SettingsPageWidget::SettingsPageWidget(QWidget *parent) 
+SettingsPageWidget::SettingsPageWidget(QWidget *parent)
     : QWidget(parent), m_mainWindow(nullptr), m_isDarkTheme(false)
 {
     QVBoxLayout* mainLayout = new QVBoxLayout(this);
     mainLayout->setContentsMargins(20, 20, 20, 20);
 
     QFormLayout* formLayout = new QFormLayout();
-    
-    m_langComboBox = new QComboBox(this);
-    m_langComboBox->addItem(tr("Українська"), "ua"); // Текст, який бачить юзер + дані (код мови)
-    m_langComboBox->addItem(tr("English"), "en");
-    m_langComboBox->setObjectName("langComboBox");
-    formLayout->addRow(tr("Мова (Language):"), m_langComboBox);
 
+    m_langLabel = new QLabel(this);
+    m_langComboBox = new QComboBox(this);
+    m_langComboBox->addItem("Українська", "ua");
+    m_langComboBox->addItem("English", "en");
+    m_langComboBox->setObjectName("langComboBox");
+
+    formLayout->addRow(m_langLabel, m_langComboBox);
+
+    m_themeLabel = new QLabel(this);
     m_themeToggle = new QPushButton(this);
     m_themeToggle->setCheckable(true);
     m_themeToggle->setObjectName("themeToggleButton");
     m_themeToggle->setFixedWidth(50);
-    formLayout->addRow(tr("Тема:"), m_themeToggle);
+    formLayout->addRow(m_themeLabel, m_themeToggle);
     updateThemeIcon(m_isDarkTheme);
 
+    m_accountLabel = new QLabel(this);
     m_pauseToggle = new QCheckBox(this);
-    m_pauseToggle->setText(tr("Призупинити мій профіль (приховати з пошуку)"));
     m_pauseToggle->setObjectName("pauseToggleSwitch");
-    formLayout->addRow(tr("Акаунт:"), m_pauseToggle);
+    formLayout->addRow(m_accountLabel, m_pauseToggle);
 
     mainLayout->addLayout(formLayout);
     mainLayout->addStretch();
 
-    m_deleteButton = new QPushButton(tr("ВИДАЛИТИ МІЙ АКАУНТ"), this);
+    m_deleteButton = new QPushButton(this);
     m_deleteButton->setObjectName("deleteAccountButton");
     mainLayout->addWidget(m_deleteButton);
 
-    setLayout(mainLayout);
-
-    m_btnOpenAdmin = new QPushButton(tr("Панель Адміністратора"), this);
+    m_btnOpenAdmin = new QPushButton(this);
     m_btnOpenAdmin->setObjectName("settingsAdminBtn");
 
     mainLayout->addStretch();
     mainLayout->addWidget(m_btnOpenAdmin);
 
-    connect(m_btnOpenAdmin, &QPushButton::clicked, this, &SettingsPageWidget::onAdminBtnClicked);
+    setLayout(mainLayout);
 
+    retranslateUi();
+
+    connect(m_btnOpenAdmin, &QPushButton::clicked, this, &SettingsPageWidget::onAdminBtnClicked);
     connect(m_langComboBox, &QComboBox::currentIndexChanged, this, &SettingsPageWidget::on_languageChanged);
     connect(m_themeToggle, &QPushButton::clicked, this, &SettingsPageWidget::on_themeToggled);
     connect(m_pauseToggle, &QCheckBox::toggled, this, &SettingsPageWidget::on_pauseToggled);
     connect(m_deleteButton, &QPushButton::clicked, this, &SettingsPageWidget::on_deleteClicked);
+}
+
+void SettingsPageWidget::retranslateUi() {
+    m_langLabel->setText(tr("Мова (Language):"));
+    m_themeLabel->setText(tr("Тема:"));
+    m_accountLabel->setText(tr("Акаунт:"));
+
+    m_pauseToggle->setText(tr("Призупинити мій профіль (приховати з пошуку)"));
+    m_deleteButton->setText(tr("ВИДАЛИТИ МІЙ АКАУНТ"));
+    m_btnOpenAdmin->setText(tr("Панель Адміністратора"));
+
+    m_langComboBox->setItemText(0, tr("Українська"));
+    m_langComboBox->setItemText(1, tr("English"));
 }
 
 void SettingsPageWidget::setMainWindow(MainWindow* window) {
@@ -68,25 +85,26 @@ void SettingsPageWidget::setDatabaseManager(DatabaseManager* dbManager) {
     m_dbManager = dbManager;
 }
 
-// Ця функція заповнює налаштування при завантаженні
 void SettingsPageWidget::loadCurrentSettings(const UserProfile& profile) {
     m_currentProfileId = profile.getId();
-    // (Тут ми ще не маємо доступу до is_hidden, бо UserProfile не оновлений,
-    // але ми можемо завантажити QCheckBox стан з БД)
-
-    // TODO: Завантажити стан m_pauseToggle з БД
 }
 
 void SettingsPageWidget::on_languageChanged(int index) {
     if (!m_mainWindow) return;
     QString langCode = m_langComboBox->itemData(index).toString();
+
+    QSettings settings("DatingAgency", "Match++");
+    settings.setValue("language", langCode);
+
     m_mainWindow->switchLanguage(langCode);
-    UserLogger::log(Info, "Language selection changed.");
+
+    retranslateUi();
+
+    UserLogger::log(Info, "Language saved and switched to: " + langCode);
 }
 
 void SettingsPageWidget::on_themeToggled() {
     if (!m_mainWindow) return;
-
     m_isDarkTheme = !m_isDarkTheme;
     m_mainWindow->switchTheme(m_isDarkTheme);
     updateThemeIcon(m_isDarkTheme);
@@ -103,7 +121,6 @@ void SettingsPageWidget::updateThemeIcon(bool isDark) {
 
 void SettingsPageWidget::on_pauseToggled(bool checked) {
     if (!m_dbManager || m_currentProfileId == -1) return;
-
     m_dbManager->setProfileHidden(m_currentProfileId, checked);
     UserLogger::log(Info, QString("Pause Account toggled to: %1").arg(checked));
 }
@@ -120,7 +137,7 @@ void SettingsPageWidget::on_deleteClicked() {
         if (m_dbManager->deleteProfile(m_currentProfileId)) {
             UserLogger::log(Info, "Profile deleted successfully.");
             QMessageBox::information(this, tr("Успіх"), tr("Ваш акаунт видалено."));
-            QSettings settings("DatingAgency", "TitleApp");
+            QSettings settings("DatingAgency", "Match++");
             settings.remove("current_user_id");
             accountDeleted();
         } else {

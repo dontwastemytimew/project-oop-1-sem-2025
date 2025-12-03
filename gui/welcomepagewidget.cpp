@@ -4,6 +4,7 @@
 #include <QTimer>
 #include <QFont>
 #include <QCoreApplication>
+#include <QEvent>
 
 #define CODE_TEXT_FINAL \
     "// Starting Match++ core system...\n" \
@@ -21,7 +22,8 @@
     "<span style='font-size: 14pt; color: #555555; margin-top: 10px;'>%2</span>" \
     "</div>"
 
-WelcomePageWidget::WelcomePageWidget(QWidget *parent) : QWidget(parent)
+WelcomePageWidget::WelcomePageWidget(QWidget *parent)
+    : QWidget(parent), m_animationFinished(false)
 {
     QVBoxLayout* mainLayout = new QVBoxLayout(this);
     mainLayout->setContentsMargins(50, 50, 50, 50);
@@ -53,14 +55,15 @@ WelcomePageWidget::WelcomePageWidget(QWidget *parent) : QWidget(parent)
     m_animationTimer->start();
 }
 
-        void WelcomePageWidget::updateTextAnimation() {
-    if (m_currentIndex < m_fullText.length()) {
-        QString currentText = m_fullText.left(m_currentIndex + 1);
-        m_welcomeTextLabel->setText(currentText);
-        m_currentIndex++;
-    } else {
-        m_animationTimer->stop();
+void WelcomePageWidget::changeEvent(QEvent *event) {
+    if (event->type() == QEvent::LanguageChange) {
+        retranslateUi();
+    }
+    QWidget::changeEvent(event);
+}
 
+void WelcomePageWidget::retranslateUi() {
+    if (m_animationFinished) {
         QString titleText = tr("Вітаємо у Match++!");
         QString subtitleText = tr("Оберіть 'Профіль' для налаштування або 'Пошук', щоб почати");
 
@@ -69,8 +72,21 @@ WelcomePageWidget::WelcomePageWidget(QWidget *parent) : QWidget(parent)
                                 .arg(subtitleText);
 
         m_welcomeTextLabel->setText(finalHtml);
+    }
+}
+
+void WelcomePageWidget::updateTextAnimation() {
+    if (m_currentIndex < m_fullText.length()) {
+        QString currentText = m_fullText.left(m_currentIndex + 1);
+        m_welcomeTextLabel->setText(currentText);
+        m_currentIndex++;
+    } else {
+        m_animationTimer->stop();
+        m_animationFinished = true;
         m_welcomeTextLabel->setTextFormat(Qt::RichText);
         m_welcomeTextLabel->setStyleSheet("");
         m_welcomeTextLabel->setAlignment(Qt::AlignCenter);
+
+        retranslateUi();
     }
 }

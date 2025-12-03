@@ -14,6 +14,7 @@
 #include <QMessageBox>
 #include <QCoreApplication>
 #include <QDir>
+#include <QEvent>
 
 MainWindow::MainWindow(DatabaseManager* dbManager, QWidget *parent)
     : QMainWindow(parent)
@@ -110,6 +111,16 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::changeEvent(QEvent *event)
+{
+    if (event->type() == QEvent::LanguageChange) {
+        setWindowTitle(tr("Match++"));
+
+        ui->retranslateUi(this);
+    }
+    QMainWindow::changeEvent(event);
+}
+
 void MainWindow::on_btn_Search_clicked()
 {
     if (!m_userExists) {
@@ -152,17 +163,24 @@ void MainWindow::switchLanguage(const QString& languageCode)
 {
     qApp->removeTranslator(&m_translator);
 
-    QString appDir = QCoreApplication::applicationDirPath();
+    QString path = ":/translations/translations/app_" + languageCode + ".qm";
 
-    QString path = appDir + "/translations/app_" + languageCode + ".qm";
-
-    UserLogger::log(Info, "Looking for translation at: " + path);
+    UserLogger::log(Info, "Looking for translation at resource: " + path);
 
     if (m_translator.load(path)) {
         qApp->installTranslator(&m_translator);
-        UserLogger::log(Info, "Language switched to: " + languageCode);
-    } else {
-        UserLogger::log(Warning, "Failed to load translation file. Path: " + path);
+        UserLogger::log(Info, "Language switched successfully to: " + languageCode);
+    }
+    else {
+        QString altPath = ":/translations/app_" + languageCode + ".qm";
+        UserLogger::log(Warning, "First path failed. Trying alternative: " + altPath);
+
+        if (m_translator.load(altPath)) {
+            qApp->installTranslator(&m_translator);
+            UserLogger::log(Info, "Language switched using alternative path.");
+        } else {
+            UserLogger::log(Error, "CRITICAL: Failed to load translation file!");
+        }
     }
 }
 
